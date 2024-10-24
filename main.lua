@@ -31804,7 +31804,8 @@ function Addfile(filename)
 end
 
 if not io.open("darwinconf.lua") then
-    print("darwingconf.lua not provided")
+    print("darwinconf.lua not provided")
+    return 
 end
 
 dofile("darwinconf.lua")
