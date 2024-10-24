@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 dependencies
+teste.lua
 # Object files
 *.o
 *.ko

@@ -1,5 +1,6 @@
 
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -82,48 +83,64 @@ unsigned char *load_any_content(const char * path,long *size,bool *is_binary){
     return content;
 }
 
-char *load_string_file_content(const char * path){
-    long size;
-    bool is_binary;
-    unsigned char *element = load_any_content(path,&size,&is_binary);
-    if(element == NULL){
-        return NULL;
+bool write_any_content(const char *path,unsigned  char *content,long size){
+    //Iterate through the path and create directories if they don't exist
+    FILE *file = fopen(path,"wb");
+    if(file == NULL){
+
+        return false;
     }
 
-    if(is_binary){
-        free(element);
-        return NULL;
-    }
-    return (char*)element;
+    fwrite(content, sizeof(char),size, file);
+
+    fclose(file);
+    return true;
 }
 
-#ifndef  DARWING_BUILD
-unsigned char lua_code [10] ={0};
-unsigned char main_code[10] = {0};
-
-
-#endif
-
+void concat_str(
+     char *dest,
+    const  char *value,
+    int value_size,
+    int *acumulated_size
+){
+    memcpy(dest+*acumulated_size,value,value_size);
+    *acumulated_size+=value_size;
+}
 
 int main(int argc,char *argv[]){
 
     if(argc < 2){
-        printf("file not provided\n");
+        printf("argv[2] not provided \n");
         return 1;
     }
 
-    char *file = load_string_file_content(argv[1]);
+    bool is_binary;
+    long size;
+    unsigned char *file = load_any_content(argv[1],&size,&is_binary);
     if(file == NULL){
         printf("file not provided\n");
         return 1;
     }
 
-    char *required_size = (char*)calloc(
-        sizeof(lua_code) + sizeof(main_code) + (size_t)strlen(file)
-        ,sizeof(char)
-    );
+    if(is_binary){
+        free(file);
+        printf("its not a valid file\n");
+        return 1;
+    }
+    const int BUFFER_SIZE = 6;
+    const char start[]  = "unsigned char lua_code[] = {";
+    int required_final_size = (size * BUFFER_SIZE) + sizeof(start) + 2;
+     char *final = calloc(required_final_size, sizeof(unsigned char));
 
+    int actual_size = 0;
+    concat_str(final,start,sizeof(start),&actual_size);
 
+    for(int i = 0; i< size; i++){
+        char buffer[BUFFER_SIZE];
+        int buffer_size = sprintf(buffer,"%d,", file[i]);
+        concat_str(final,buffer,buffer_size,&actual_size);
+    }
 
+    write_any_content("teste.c",(unsigned char*)final,actual_size);
 
 }
