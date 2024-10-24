@@ -19,7 +19,7 @@ Compiler = "gcc"
 Output = "final.o"  
 Runafter = true 
 ```
-
+and run with: 
 ```shel
 gcc darwin003.c -o darwin003.o && ./darwin003.o 
 ```
