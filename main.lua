@@ -31783,6 +31783,7 @@ int main(){
 }
 ]]
 
+
 local main_code = ""
 
 ---@param code string
@@ -31792,7 +31793,12 @@ end
 
 --@param filename string
 function Addfile(filename)
-    Addcode(io.open(filename):read())
+    local content = io.open(filename)
+    if not content then
+        error("content of: " .. filename .. " not provided")
+    end
+    Addcode(content:read())
+    content:close()
 end
 
 if not io.open("darwinconf.lua") then
@@ -31811,19 +31817,23 @@ end
 formmated_main_code = formmated_main_code .. "0,};\n"
 local final = LUA_CEMBED .. formmated_main_code .. MAIN_C
 
-if Cfilename then
-    io.open(Cfilename, "w"):write(final)
-else
+if not Cfilename then
     Cfilename = "final003.c"
 end
 
-if Compiler then
-    if not Output then
-        Output = "final003"
-    end
-    os.execute(Compiler .. " " .. Compiler .. "-o " .. Output)
+io.open(Cfilename, "w"):write(final):close()
 
-    if RunAfter then
-        os.execute("./" .. Output)
-    end
+if not Compiler then
+    return
+end
+
+
+if not Output then
+    Output = "final003"
+end
+local compilation_command = Compiler .. " " .. Cfilename .. " -o " .. Output
+os.execute(compilation_command)
+
+if RunAfter then
+    -- os.execute("./" .. Cfilename)
 end
