@@ -31809,7 +31809,7 @@ if not io.open("darwinconf.lua") then
 end
 
 dofile("darwinconf.lua")
-
+local size =  string.len(main_code)
 local buffer = { "unsigned char exec_code[] = {" }
 for i = 1, size do
       local current_char = string.sub(main_code, i, i)
