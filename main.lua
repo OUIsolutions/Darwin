@@ -31783,17 +31783,34 @@ int main(){
 }
 ]]
 
-local mainfile   = io.open("main.lua")
-if not mainfile then
-    print("main.lua not provided")
-    return
+
+
+local main_code = ""
+
+---@param code string
+function Addcode(code)
+    main_code = main_code .. "\n" .. code
 end
 
-local main_code = mainfile:read("a")
-mainfile:close()
+--@param filename string
+function Addfile(filename)
+    local content = io.open(filename)
+    if not content then
+        print("content of: " .. filename .. " not provided")
+        os.exit(1) -- Encerra o programa com código de saída 0
+    end
 
+    Addcode(content:read('a'))
+    content:close()
+end
 
-local size   = string.len(main_code)
+if not io.open("darwinconf.lua") then
+    print("darwinconf.lua not provided")
+    return 
+end
+
+dofile("darwinconf.lua")
+local size =  string.len(main_code)
 local buffer = { "unsigned char exec_code[] = {" }
 for i = 1, size do
       local current_char = string.sub(main_code, i, i)
@@ -31803,5 +31820,26 @@ for i = 1, size do
 end
 buffer[#buffer + 1] = "0,};\n"
 local formmated_main_code =  table.concat(buffer, "")
+
 local final = LUA_CEMBED .. formmated_main_code .. MAIN_C
-io.open("final002.c", "w"):write(final):close()
+
+if not Cfilename then
+    Cfilename = "final003.c"
+end
+
+io.open(Cfilename, "w"):write(final):close()
+
+if not Compiler then
+    return
+end
+
+
+if not Output then
+    Output = "final003"
+end
+local compilation_command = Compiler .. " " .. Cfilename .. " -o " .. Output
+os.execute(compilation_command)
+
+if Runafter then
+    os.execute("./" .. Output)
+end

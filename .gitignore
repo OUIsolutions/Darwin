@@ -2,9 +2,12 @@
 *.d
 dependencies
 teste.lua
+final*
 teste.c
 first.c
-darwin*
+final.o
+darwin0*
+test.lua
 final.c
 # Object files
 *.o
