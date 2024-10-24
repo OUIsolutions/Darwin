@@ -2,6 +2,7 @@
 *.d
 dependencies
 teste.lua
+final*
 teste.c
 first.c
 darwin*
