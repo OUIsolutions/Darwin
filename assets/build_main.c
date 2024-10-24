@@ -103,8 +103,8 @@ void concat_str(
     int value_size,
     int *acumulated_size
 ){
-    memcpy(dest+*acumulated_size,value,value_size);
-    *acumulated_size+=value_size;
+    memcpy((dest+ *acumulated_size),value,value_size);
+    *acumulated_size+=value_size-1;
 }
 
 int main(int argc,char *argv[]){
@@ -141,6 +141,10 @@ int main(int argc,char *argv[]){
         concat_str(final,buffer,buffer_size,&actual_size);
     }
 
-    write_any_content("teste.c",(unsigned char*)final,actual_size);
+    const char end_acumulator[] = "0};";
+    concat_str(final,end_acumulator,sizeof(end_acumulator),&actual_size);
 
+    write_any_content("teste.c",(unsigned char*)final,strlen(final));
+    free(final);
+    free(file);
 }
