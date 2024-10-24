@@ -22,7 +22,7 @@
   #include <locale.h>
   #include <direct.h>
 #endif
-
+#define static_str_size(str) sizeof(str)-1
 
 unsigned char *load_any_content(const char * path,long *size,bool *is_binary){
 
@@ -97,6 +97,7 @@ bool write_any_content(const char *path,unsigned  char *content,long size){
     return true;
 }
 
+
 void concat_str(
      char *dest,
     const  char *value,
@@ -104,7 +105,7 @@ void concat_str(
     int *acumulated_size
 ){
     memcpy((dest+ *acumulated_size),value,value_size);
-    *acumulated_size+=value_size-1;
+    *acumulated_size+=value_size;
 }
 
 int main(int argc,char *argv[]){
@@ -133,7 +134,7 @@ int main(int argc,char *argv[]){
      char *final = calloc(required_final_size, sizeof(unsigned char));
 
     int actual_size = 0;
-    concat_str(final,start,sizeof(start),&actual_size);
+    concat_str(final,start,static_str_size(start),&actual_size);
 
     for(int i = 0; i< size; i++){
         char buffer[BUFFER_SIZE];
@@ -142,9 +143,9 @@ int main(int argc,char *argv[]){
     }
 
     const char end_acumulator[] = "0};";
-    concat_str(final,end_acumulator,sizeof(end_acumulator),&actual_size);
+    concat_str(final,end_acumulator,static_str_size(end_acumulator),&actual_size);
 
-    write_any_content("teste.c",(unsigned char*)final,strlen(final));
+    write_any_content("teste.c",(unsigned char*)final,actual_size);
     free(final);
     free(file);
 }
