@@ -31799,7 +31799,8 @@ function Addfile(filename)
         print("content of: " .. filename .. " not provided")
         os.exit(1) -- Encerra o programa com código de saída 0
     end
-    Addcode(content:read())
+
+    Addcode(content:read('a'))
     content:close()
 end
 
@@ -31839,6 +31840,6 @@ end
 local compilation_command = Compiler .. " " .. Cfilename .. " -o " .. Output
 os.execute(compilation_command)
 
-if RunAfter then
+if Runafter then
     os.execute("./" .. Output)
 end
