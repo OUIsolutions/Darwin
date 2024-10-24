@@ -31796,9 +31796,7 @@ mainfile:close()
 local size   = string.len(main_code)
 local buffer = { "unsigned char exec_code[] = {" }
 for i = 1, size do
-    if size % 1000 then
-        print(size)
-    end
+
     local current_char = string.sub(main_code, i, i)
     local byte = string.byte(current_char)
     buffer[#buffer + 1] = string.format("%d,", byte)
