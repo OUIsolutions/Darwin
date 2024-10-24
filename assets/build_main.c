@@ -1,4 +1,10 @@
 
+#ifndef DARWING_BUILD
+unsigned char lua_code[] = "lua code\n";
+unsigned char main_code[] = "main code\n";
+
+#endif
+
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
@@ -110,8 +116,8 @@ void concat_str(
 
 int main(int argc,char *argv[]){
 
-    if(argc < 2){
-        printf("argv[2] not provided \n");
+    if(argc < 3){
+        printf("args not provided not provided \n");
         return 1;
     }
 
@@ -129,11 +135,22 @@ int main(int argc,char *argv[]){
         return 1;
     }
     const int BUFFER_SIZE = 6;
-    const char start[]  = "unsigned char lua_code[] = {";
-    int required_final_size = (size * BUFFER_SIZE) + sizeof(start) + 2;
-     char *final = calloc(required_final_size, sizeof(unsigned char));
+    const int SECURITY_EXTRA_SIZE = 200;
+    int required_final_size = (size * BUFFER_SIZE) +
+        sizeof(lua_code) +
+        sizeof(main_code) +
+        SECURITY_EXTRA_SIZE;
 
-    int actual_size = 0;
+    char *final = (char*)calloc(required_final_size, sizeof(unsigned char));
+     int actual_size = 0;
+
+
+    const char  darwing_build[] ="#define DARWING_BUILD\n";
+    concat_str(final,darwing_build, static_str_size(darwing_build),&actual_size);
+
+    concat_str(final,(char*)lua_code,static_str_size(lua_code),&actual_size);
+
+    const char start[]  = "unsigned char exec_code[] = {";
     concat_str(final,start,static_str_size(start),&actual_size);
 
     for(int i = 0; i< size; i++){
@@ -142,10 +159,10 @@ int main(int argc,char *argv[]){
         concat_str(final,buffer,buffer_size,&actual_size);
     }
 
-    const char end_acumulator[] = "0};";
+    const char end_acumulator[] = "0};\n";
     concat_str(final,end_acumulator,static_str_size(end_acumulator),&actual_size);
-
-    write_any_content("teste.c",(unsigned char*)final,actual_size);
+    concat_str(final,(char*)main_code,static_str_size(main_code),&actual_size);
+    write_any_content(argv[2],(unsigned char*)final,actual_size);
     free(final);
     free(file);
 }

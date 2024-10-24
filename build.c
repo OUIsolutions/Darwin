@@ -1,5 +1,6 @@
 #include "dependencies/doTheWorld.h"
 #include "dependencies/CTextEngine.h"
+#include "dependencies/UniversalGarbage.h"
 #include <stdbool.h>
 
 DtwNamespace dtw;
@@ -9,14 +10,23 @@ int main(){
     stack = newCTextStackModule();
 
     long size;
+
+    CTextStack *final = stack.newStack_string_empty();
+    //these its requred because there is a debug flag for intelisense
+    stack.text(final,"#define DARWING_BUILD\n");
+
+    stack.text(final,"unsigned char lua_code[] = {");
     bool is_binary;
-    unsigned char *content = dtw.load_any_content("dependencies/LuaCEmbed.h",&size,&is_binary);
-    CTextStack *s = stack.newStack_string("unsigned char lua_code[] = {");
+    unsigned char *lua_code = dtw.load_any_content("dependencies/LuaCEmbed.h",&size,&is_binary);
+
     for(int i = 0;i< size;i++){
-        stack.format(s,"%d,",content[i]);
+        stack.format(final,"%d,",lua_code[i]);
     }
-    stack.text(s,"0};");
-    dtw.write_string_file_content("assets/lua_code.h",s->rendered_text);
-    stack.free(s);
-    free(content);
+    stack.text(final,"0};\n");
+
+
+
+
+
+
 }
