@@ -5,7 +5,7 @@ Install:
 download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.002/darwin.c)
 and run
 ```shel
-gcc darwin.c -o darwin.o && ./darwin.o && gcc final.c -o final.o
+gcc darwin002.c -o darwin002.o && ./darwin002.o && gcc final002.c -o final002.o
 ```
 note that these its a especif version its designed for boostraping, it does not suport
 argv, env variables, etc, it only suport one file , called **main.lua**, that needs to
