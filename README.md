@@ -2,7 +2,7 @@
 A Boostrapped lua Compiler
 
 Install:
-download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.001/darwin.c)
+download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.002/darwin.c)
 and run
 ```shel
 gcc darwin.c -o darwin.o && ./darwin.o && gcc final.c -o final.o

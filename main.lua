@@ -31793,4 +31793,4 @@ for i = 1, size do
 end
 formmated_main_code = formmated_main_code .. "0,};\n"
 local final = LUA_CEMBED .. formmated_main_code .. MAIN_C
-io.open("final2.c", "w"):write(final)
+io.open("final002.c", "w"):write(final)
