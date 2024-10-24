@@ -31783,7 +31783,24 @@ int main(){
 }
 ]]
 
-local main_code = io.open("main.lua"):read()
+local main_code = ""
+
+---@param code string
+function Addcode(code)
+    main_code = main_code .. "\n" .. code
+end
+
+--@param filename string
+function Addfile(filename)
+    Addcode(io.open(filename):read())
+end
+
+if not io.open("darwinconf.lua") then
+    print("darwingconf.lua not provided")
+end
+
+dofile("darwinconf.lua")
+
 local formmated_main_code = "unsigned char exec_code[] = {"
 local size = string.len(main_code)
 for i = 1, size do
@@ -31793,4 +31810,20 @@ for i = 1, size do
 end
 formmated_main_code = formmated_main_code .. "0,};\n"
 local final = LUA_CEMBED .. formmated_main_code .. MAIN_C
-io.open("final002.c", "w"):write(final)
+
+if Cfilename then
+    io.open(Cfilename, "w"):write(final)
+else
+    Cfilename = "final003.c"
+end
+
+if Compiler then
+    if not Output then
+        Output = "final003"
+    end
+    os.execute(Compiler .. " " .. Compiler .. "-o " .. Output)
+
+    if RunAfter then
+        os.execute("./" .. Output)
+    end
+end
