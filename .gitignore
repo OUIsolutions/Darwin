@@ -58,3 +58,5 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+build_teste.sh

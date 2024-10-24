@@ -1,3 +1,17 @@
 
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.002/darwin002.c -o darwin002.c
-gcc darwin002.c -o darwin002.o && ./darwin002.o && mv final002.c darwin003.c && gcc  darwin003.c -o  darwin003.o
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.003/darwin003.c -o darwin003.c
+
+echo ""
+echo "get trivals darwin"
+echo ""
+
+gcc darwin003.c -o darwin003.o
+
+echo "compilded the trivals darwin"
+echo ""
+
+./darwin003.o
+
+echo "generate the new version"
+echo ""
+

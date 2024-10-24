@@ -1,8 +1,11 @@
 
-Addcode("print('hello world')") -- embed these code to o final.o
-Addfile("test.lua") --embed these file to final.o
+Addfile("luacembed.lua")
+Addfile("main_c.lua")
+Addfile("globals.lua")
+Addfile("comp_time_functions.lua")
+Addfile("main.lua")
 
-Cfilename = "final.c" 
-Compiler = "gcc" 
-Output = "final.o"  
-Runafter = true 
+Cfilename = "darwin004.c"
+Compiler = "gcc"
+Output = "darwin004.o"
+Runafter = false
