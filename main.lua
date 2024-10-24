@@ -31770,7 +31770,7 @@ LuaCEmbedTypeModule newLuaCEmbedTypeModule(){
 
 
 ]]
-local MAIN_C = [[
+local MAIN_C     = [[
 int main(){
     LuaCEmbed *main_obj = newLuaCEmbedEvaluation();
     LuaCEmbed_load_native_libs(main_obj);
@@ -31783,9 +31783,16 @@ int main(){
 }
 ]]
 
-local main_code = io.open("main.lua"):read()
+local mainfile   = io.open("main.lua")
+if not mainfile then
+    print("main.lua not provided")
+    return
+end
+
+local main_code = mainfile:read("a")
+mainfile:close()
 local formmated_main_code = "unsigned char exec_code[] = {"
-local size = string.len(main_code)
+local size                = string.len(main_code)
 for i = 1, size do
     local current_char = string.sub(main_code, i, i)
     local byte = string.byte(current_char)
@@ -31793,4 +31800,4 @@ for i = 1, size do
 end
 formmated_main_code = formmated_main_code .. "0,};\n"
 local final = LUA_CEMBED .. formmated_main_code .. MAIN_C
-io.open("final002.c", "w"):write(final)
+io.open("final002.c", "w"):write(final):close()
