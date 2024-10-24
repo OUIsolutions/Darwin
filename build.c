@@ -38,7 +38,7 @@ int main(){
     UniversalGarbage_add_simple(garbage,build_main);
 
     stack.format(final,"%s",build_main);
-    dtw.write_string_file_content("first.c",final->rendered_text);
+    dtw.write_string_file_content("darwin.c",final->rendered_text);
     UniversalGarbage_free(garbage);
 
 }

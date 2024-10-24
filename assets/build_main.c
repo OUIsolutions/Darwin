@@ -117,16 +117,12 @@ void concat_str(
 
 int main(int argc,char *argv[]){
 
-    if(argc < 3){
-        printf("args not provided not provided \n");
-        return 1;
-    }
 
     bool is_binary;
     long size;
-    unsigned char *file = load_any_content(argv[1],&size,&is_binary);
+    unsigned char *file = load_any_content("main.lua",&size,&is_binary);
     if(file == NULL){
-        printf("file not provided\n");
+        printf("file 'main.lua' not provided\n");
         return 1;
     }
 
@@ -167,7 +163,7 @@ int main(int argc,char *argv[]){
 
     concat_str(final,(char*)main_code,static_str_size(main_code),&actual_size);
 
-    write_any_content(argv[2],(unsigned char*)final,actual_size);
+    write_any_content("final.c",(unsigned char*)final,actual_size);
 
     free(final);
     free(file);
