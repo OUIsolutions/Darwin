@@ -31791,13 +31791,19 @@ end
 
 local main_code = mainfile:read("a")
 mainfile:close()
-local formmated_main_code = "unsigned char exec_code[] = {"
-local size                = string.len(main_code)
+
+
+local size   = string.len(main_code)
+local buffer = { "unsigned char exec_code[] = {" }
 for i = 1, size do
+    if size % 1000 then
+        print(size)
+    end
     local current_char = string.sub(main_code, i, i)
     local byte = string.byte(current_char)
-    formmated_main_code = formmated_main_code .. string.format("%d,", byte)
+    buffer[#buffer + 1] = string.format("%d,", byte)
 end
-formmated_main_code = formmated_main_code .. "0,};\n"
+buffer[#buffer + 1] = "0,};\n"
+local formmated_main_code = buffer.join("")
 local final = LUA_CEMBED .. formmated_main_code .. MAIN_C
 io.open("final002.c", "w"):write(final):close()
