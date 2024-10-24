@@ -1,4 +1,3 @@
-local LUA_CEMBED = [[
 //path: src/one.c
 
 #ifndef LUACEMBED_H
@@ -31769,8 +31768,7 @@ LuaCEmbedTypeModule newLuaCEmbedTypeModule(){
 #endif
 
 
-]]
-local MAIN_C = [[
+unsigned char exec_code[] = {108,111,99,97,108,32,76,85,65,95,67,69,77,66,69,68,32,61,32,91,91,0,};
 int main(){
     LuaCEmbed *main_obj = newLuaCEmbedEvaluation();
     LuaCEmbed_load_native_libs(main_obj);
@@ -31781,16 +31779,3 @@ int main(){
     }
     LuaCEmbed_free(main_obj);
 }
-]]
-
-local main_code = io.open("main.lua"):read()
-local formmated_main_code = "unsigned char exec_code[] = {"
-local size = string.len(main_code)
-for i = 1, size do
-    local current_char = string.sub(main_code, i, i)
-    local byte = string.byte(current_char)
-    formmated_main_code = formmated_main_code .. string.format("%d,", byte)
-end
-formmated_main_code = formmated_main_code .. "0,};\n"
-local final = LUA_CEMBED .. formmated_main_code .. MAIN_C
-io.open("final2.c", "w"):write(final)
