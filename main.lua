@@ -31795,7 +31795,8 @@ end
 function Addfile(filename)
     local content = io.open(filename)
     if not content then
-        error("content of: " .. filename .. " not provided")
+        print("content of: " .. filename .. " not provided")
+        os.exit(1) -- Encerra o programa com código de saída 0
     end
     Addcode(content:read())
     content:close()
@@ -31835,5 +31836,5 @@ local compilation_command = Compiler .. " " .. Cfilename .. " -o " .. Output
 os.execute(compilation_command)
 
 if RunAfter then
-    -- os.execute("./" .. Cfilename)
+    os.execute("./" .. Output)
 end
