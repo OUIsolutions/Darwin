@@ -4,6 +4,7 @@ dependencies
 teste.lua
 teste.c
 first.c
+final.c
 # Object files
 *.o
 *.ko

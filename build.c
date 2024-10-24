@@ -30,7 +30,7 @@ int main(){
     unsigned char *main_code = dtw.load_any_content("assets/final_main.c",&size,&is_binary);
     UniversalGarbage_add_simple(garbage, main_code);
     for(int i = 0;i< size;i++){
-        stack.format(final,"%d,",lua_code[i]);
+        stack.format(final,"%d,",main_code[i]);
     }
     stack.text(final,"0};\n");
 

@@ -1,5 +1,7 @@
 
-#ifndef DARWING_BUILD //these its just fo facilitate intelisense
+// these its just fo facilitate intelisense
+// and wont be used in the final code
+#ifndef DARWING_BUILD
 #include "../dependencies/LuaCEmbed.h"
 unsigned char exec_code[10] = {0};
 #endif

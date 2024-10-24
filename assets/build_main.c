@@ -1,4 +1,5 @@
-
+// these its just fo facilitate intelisense
+// and wont be used in the final code
 #ifndef DARWING_BUILD
 unsigned char lua_code[] = "lua code\n";
 unsigned char main_code[] = "main code\n";
@@ -146,9 +147,11 @@ int main(int argc,char *argv[]){
 
 
     const char  darwing_build[] ="#define DARWING_BUILD\n";
+
     concat_str(final,darwing_build, static_str_size(darwing_build),&actual_size);
 
     concat_str(final,(char*)lua_code,static_str_size(lua_code),&actual_size);
+
 
     const char start[]  = "unsigned char exec_code[] = {";
     concat_str(final,start,static_str_size(start),&actual_size);
@@ -159,10 +162,13 @@ int main(int argc,char *argv[]){
         concat_str(final,buffer,buffer_size,&actual_size);
     }
 
-    const char end_acumulator[] = "0};\n";
-    concat_str(final,end_acumulator,static_str_size(end_acumulator),&actual_size);
+    const char end_code[] = "0};\n";
+    concat_str(final,end_code,static_str_size(end_code),&actual_size);
+
     concat_str(final,(char*)main_code,static_str_size(main_code),&actual_size);
+
     write_any_content(argv[2],(unsigned char*)final,actual_size);
+
     free(final);
     free(file);
 }
