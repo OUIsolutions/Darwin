@@ -14,7 +14,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
         if not is_inside({ "string", "number" }, key_type) then
             error("invalid key on " .. original_name)
         end
-        if not is_inside({ "string", "number", "table", "bool" }, key_type) then
+        if not is_inside({ "string", "number", "table", "boolean" }, key_type) then
             error("invalid val on " .. original_name)
         end
 
@@ -29,7 +29,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
 
         if key_type == "number" and valtype == "string" then
             PrivateDarwinEmbed_global_concat(string.format(
-                "LuaCEmbedTable_set_string_by_index(%s,%d,(char*)%s);\n",
+                "LuaCEmbedTable_set_string_by_index(%s,%d,(char[])%s);\n",
                 table_name,
                 key,
                 val
@@ -76,7 +76,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
         end
         if key_type == "string" and valtype == "string" then
             PrivateDarwinEmbed_global_concat(string.format(
-                "LuaCEmbedTable_set_string_prop(%s,%s,(char*)%s);\n",
+                "LuaCEmbedTable_set_string_prop(%s,%s,(char[])%s);\n",
                 table_name,
                 key,
                 val
@@ -119,34 +119,39 @@ end
 ---@param name string
 ---@param var any
 function Private_embed_global_in_c(name, var)
+    if is_inside(PrivateDawring_cglobals_already_setted, name) then
+        error("var " .. name .. "already setted")
+    end
+    PrivateDawring_cglobals_already_setted[#PrivateDawring_cglobals_already_setted + 1] = name
     var_type = type(var)
 
-    if not is_inside({ "string", "number", "table", "bool" }, var_type) then
+    if not is_inside({ "string", "number", "table", "boolean" }, var_type) then
         error("invalid val on " .. name)
     end
 
 
     if var_type == "number" then
         PrivateDarwinEmbed_global_concat(
-            string.format('LuaCEmbed_set_global_long("%s",%d);\n', name, var)
+            string.format('LuaCEmbed_set_global_long(args,"%s",%d);\n', name, var)
         )
     end
     if var_type == "boolean" then
         if var == true then
             PrivateDarwinEmbed_global_concat(
-                string.format('LuaCEmbed_set_global_bool("%s",true);\n', name)
+                string.format('LuaCEmbed_set_global_bool(args,"%s",true);\n', name)
             )
         end
         if var == false then
             PrivateDarwinEmbed_global_concat(
-                string.format('LuaCEmbed_set_global_bool("%s",false);\n', name)
+                string.format('LuaCEmbed_set_global_bool(args,"%s",false);\n', name)
             )
         end
     end
     if var_type == "string" then
         PrivateDarwinEmbed_global_concat(
             string.format(
-                'LuaCEmbed_set_global_raw_string("%s",(char*)%s,%d);\n',
+                'LuaCEmbed_set_global_raw_string(args,"%s",(char[])%s,%d);\n',
+                name,
                 PrivateDarwing_Create_c_str_buffer(var),
                 string.len(var)
             )

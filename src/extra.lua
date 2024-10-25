@@ -2,7 +2,7 @@
 ---@param str string
 ---@return string
 function PrivateDarwing_Create_c_str_buffer(str_code)
-    local buffer = { "(unsigned char[]){" }
+    local buffer = { "{" }
     local size = string.len(str_code)
     for i = 1, size do
         local current_char = string.sub(str_code, i, i)
