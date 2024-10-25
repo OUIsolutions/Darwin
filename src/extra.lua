@@ -25,3 +25,14 @@ function PrivateDarwingreplace_simple(text, old, new)
         return text -- Retorna a string original se não encontrar
     end
 end
+
+---@param target_table table
+---@param value any
+function is_inside(target_table, value)
+    for i = 1, #target_table do
+        if target_table[i] == value then
+            return true
+        end
+    end
+    return false
+end

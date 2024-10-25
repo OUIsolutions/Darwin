@@ -10,6 +10,14 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
     for key, val in pairs(current_table) do
         local key_type = type(key)
         local valtype = type(val)
+
+        if not is_inside({ "string", "number" }, key_type) then
+            error("invalid key on " .. original_name)
+        end
+        if not is_inside({ "string", "number", "table", "bool" }, key_type) then
+            error("invalid val on " .. original_name)
+        end
+
         if key_type == "number" and valtype == "string" then
             PrivateDarwinEmbed_global_concat(string.format(
                 "LuaCEmbedTable_set_double_by_index(%s,%d,%lf);\n",
@@ -112,6 +120,12 @@ end
 ---@param var any
 function Private_embed_global_in_c(name, var)
     var_type = type(var)
+
+    if not is_inside({ "string", "number", "table", "bool" }, var_type) then
+        error("invalid val on " .. name)
+    end
+
+
     if var_type == "number" then
         PrivateDarwinEmbed_global_concat(
             string.format("LuaCEmbed_set_global_long(%s,%d);\n", name, var)
@@ -147,12 +161,5 @@ function Private_embed_global_in_c(name, var)
             name
         ));
         PrivateDarwinEmbed_c_table(table_name, table_name, var)
-    end
-
-    if var_type == "nil" then
-        error("nill cannot be serialized")
-    end
-    if var_type == "function" then
-        error("functions cannot be  not serialized")
     end
 end
