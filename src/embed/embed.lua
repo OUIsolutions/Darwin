@@ -1,8 +1,8 @@
 ---@param name string
 ---@param var any
----@param mode Mode
+---@param mode "c" | "lua"
 function Embedglobal(name, var, mode)
-    if mode == EMBEDC then
+    if mode == "c" then
         Private_embed_global_in_c(name, var)
     end
 end
