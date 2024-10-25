@@ -14,5 +14,3 @@ echo ""
 
 echo "generate the new version"
 echo ""
-
-mv darwin005.o /home/mateusmoutinho/Documentos/teste/darwin005.o

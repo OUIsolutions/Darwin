@@ -6,6 +6,7 @@ final*
 teste.c
 first.c
 final.o
+local_build.sh
 darwin0*
 test.lua
 final.c
