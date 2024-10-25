@@ -5,7 +5,7 @@ Addfile("src/globals.lua")
 Addfile("src/comp_time_functions.lua")
 Addfile("src/main.lua")
 
-Cfilename = "darwin004.c"
+Cfilename = "darwin005.c"
 Compiler = "gcc"
-Output = "darwin004.o"
+Output = "darwin005.o"
 Runafter = false
