@@ -1,4 +1,4 @@
-local MAIN_C = [[
+MAIN_C = [[
 int main(){
     LuaCEmbed *main_obj = newLuaCEmbedEvaluation();
     LuaCEmbed_load_native_libs(main_obj);

@@ -1,4 +1,4 @@
-local LUA_CEMBED = [[
+LUA_CEMBED = [[
 //path: src/one.c
 
 #ifndef LUACEMBED_H
@@ -31770,4 +31770,3 @@ LuaCEmbedTypeModule newLuaCEmbedTypeModule(){
 
 
 ]]
-
