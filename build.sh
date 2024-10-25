@@ -1,5 +1,5 @@
 
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.003/darwin003.c -o darwin003.c
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.004/darwin003.c -o darwin004.c
 
 echo ""
 echo "get trivals darwin"
