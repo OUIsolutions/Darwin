@@ -6,20 +6,16 @@ function main()
 
     dofile("darwinconf.lua")
 
-    local set_globals_func = string.format([[
-       void private_darwing_set_globals(LuaCEmbed *args){
-            %s
-       };
-    ]], PrivateDarwin_cglobals)
-
-    local formmated_main_code = Create_c_str_buffer(main_code)
-    local final = string.format(
-        "%s %s \nunsigned char exec_code[] = %s;\n %s",
-        LUA_CEMBED,
-        set_globals_func,
-        formmated_main_code,
-        MAIN_C
-    )
+    local replacers = {
+        { item = "##luacembed##", value = LUA_CEMBED },
+        { item = "##cglobals##",  value = PrivateDarwin_cglobals },
+        { item = "##execcode##",  value = Create_c_str_buffer(main_code) },
+    }
+    local final = ""
+    for i = 1, #replacers do
+        local current = replacers[i]
+        final = string.gsub(final, current.item, current.value)
+    end
 
     if not Cfilename then
         Cfilename = "final004.c"

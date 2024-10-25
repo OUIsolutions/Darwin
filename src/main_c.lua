@@ -1,4 +1,15 @@
 MAIN_C = [[
+
+##luacembed##
+
+
+void private_darwing_set_globals(LuaCEmbed *args){
+     ##cglobals##
+};
+
+nsigned char exec_code[] = ##execcode##
+
+
 int main(){
     LuaCEmbed *main_obj = newLuaCEmbedEvaluation();
     LuaCEmbed_load_native_libs(main_obj);
