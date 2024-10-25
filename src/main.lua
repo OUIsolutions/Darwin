@@ -5,11 +5,18 @@ function main()
     end
 
     dofile("darwinconf.lua")
-    local size = string.len(main_code)
+
+    local set_globals_func = string.format([[
+       void private_darwing_set_globals(LuaCEmbed *args){
+            %s
+       };
+    ]], PrivateDarwin_cglobals)
+
     local formmated_main_code = Create_c_str_buffer(main_code)
     local final = string.format(
-        "%s \nunsigned char exec_code[] = %s %s",
+        "%s %s \nunsigned char exec_code[] = %s;\n %s",
         LUA_CEMBED,
+        set_globals_func,
         formmated_main_code,
         MAIN_C
     )
@@ -20,6 +27,10 @@ function main()
 
     io.open(Cfilename, "w"):write(final):close()
 
+    if Luaoutput then
+        io.open(Luaoutput, "w"):write(main_code):close()
+    end
+
     if not Compiler then
         return
     end
@@ -28,6 +39,7 @@ function main()
     if not Output then
         Output = "final004"
     end
+
 
     local compilation_command = Compiler .. " " .. Cfilename .. " -o " .. Output
     os.execute(compilation_command)
