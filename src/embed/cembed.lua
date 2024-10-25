@@ -18,9 +18,9 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
             error("invalid val on " .. original_name)
         end
 
-        if key_type == "number" and valtype == "string" then
+        if key_type == "number" and valtype == "number" then
             PrivateDarwinEmbed_global_concat(string.format(
-                "LuaCEmbedTable_set_double_by_index(%s,%d,%lf);\n",
+                "LuaCEmbedTable_set_double_by_index(%s,%d,%f);\n",
                 table_name,
                 key,
                 val
@@ -32,18 +32,18 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
                 "LuaCEmbedTable_set_string_by_index(%s,%d,(char[])%s);\n",
                 table_name,
                 key,
-                val
+                PrivateDarwing_Create_c_str_buffer(val)
             ))
         end
 
-        if key_type == "number" and valtype == true then
+        if key_type == "number" and val == true then
             PrivateDarwinEmbed_global_concat(string.format(
                 "LuaCEmbedTable_set_bool_by_index(%s,%d,true);\n",
                 table_name,
                 key
             ))
         end
-        if key_type == "number" and valtype == false then
+        if key_type == "number" and val == false then
             PrivateDarwinEmbed_global_concat(string.format(
                 "LuaCEmbedTable_set_bool_by_index(%s,%d,false);\n",
                 table_name,
@@ -68,7 +68,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
 
         if key_type == "string" and valtype == "number" then
             PrivateDarwinEmbed_global_concat(string.format(
-                "LuaCEmbedTable_set_double_prop(%s,%s,%lf);\n",
+                "LuaCEmbedTable_set_double_prop(%s,%s,%f);\n",
                 table_name,
                 key,
                 val
@@ -79,17 +79,17 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
                 "LuaCEmbedTable_set_string_prop(%s,%s,(char[])%s);\n",
                 table_name,
                 key,
-                val
+                PrivateDarwing_Create_c_str_buffer(val)
             ))
         end
-        if key_type == "string" and valtype == true then
+        if key_type == "string" and val == true then
             PrivateDarwinEmbed_global_concat(string.format(
                 "LuaCEmbedTable_set_bool_prop(%s,%s,true);\n",
                 table_name,
                 key
             ))
         end
-        if key_type == "string" and valtype == false then
+        if key_type == "string" and val == false then
             PrivateDarwinEmbed_global_concat(string.format(
                 "LuaCEmbedTable_set_bool_prop(%s,%s,false);\n",
                 table_name,
@@ -132,7 +132,7 @@ function Private_embed_global_in_c(name, var)
 
     if var_type == "number" then
         PrivateDarwinEmbed_global_concat(
-            string.format('LuaCEmbed_set_global_long(args,"%s",%d);\n', name, var)
+            string.format('LuaCEmbed_set_global_double(args,"%s",%f);\n', name, var)
         )
     end
     if var_type == "boolean" then
@@ -161,7 +161,7 @@ function Private_embed_global_in_c(name, var)
         local table_name = 'x' .. PrivateDarwin_cglobals_size
         PrivateDarwin_cglobals_size = PrivateDarwin_cglobals_size + 1
         PrivateDarwinEmbed_global_concat(string.format(
-            'LuaCembedTable *%s = LuaCembed_new_global_table(args,"%s");\n',
+            'LuaCEmbedTable *%s = LuaCembed_new_global_table(args,"%s");\n',
             table_name,
             name
         ));
