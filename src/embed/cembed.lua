@@ -128,25 +128,25 @@ function Private_embed_global_in_c(name, var)
 
     if var_type == "number" then
         PrivateDarwinEmbed_global_concat(
-            string.format("LuaCEmbed_set_global_long(%s,%d);\n", name, var)
+            string.format('LuaCEmbed_set_global_long("%s",%d);\n', name, var)
         )
     end
     if var_type == "boolean" then
         if var == true then
             PrivateDarwinEmbed_global_concat(
-                string.format("LuaCEmbed_set_global_bool(%s,true);\n", name)
+                string.format('LuaCEmbed_set_global_bool("%s",true);\n', name)
             )
         end
         if var == false then
             PrivateDarwinEmbed_global_concat(
-                string.format("LuaCEmbed_set_global_bool(%s,false);\n", name)
+                string.format('LuaCEmbed_set_global_bool("%s",false);\n', name)
             )
         end
     end
     if var_type == "string" then
         PrivateDarwinEmbed_global_concat(
             string.format(
-                "LuaCEmbed_set_global_raw_string(%s,(char*)%s,%d);\n",
+                'LuaCEmbed_set_global_raw_string("%s",(char*)%s,%d);\n',
                 PrivateDarwing_Create_c_str_buffer(var),
                 string.len(var)
             )
