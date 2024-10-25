@@ -18,6 +18,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
                 val
             ))
         end
+
         if key_type == "number" and valtype == "string" then
             PrivateDarwinEmbed_global_concat(string.format(
                 "LuaCEmbedTable_set_string_by_index(%s,%d,(char*)%s);\n",
@@ -26,6 +27,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
                 val
             ))
         end
+
         if key_type == "number" and valtype == true then
             PrivateDarwinEmbed_global_concat(string.format(
                 "LuaCEmbedTable_set_bool_by_index(%s,%d,true);\n",
@@ -56,7 +58,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
             PrivateDarwinEmbed_c_table(original_name, sub_name, val)
         end
 
-        if key_type == "string" and valtype == "string" then
+        if key_type == "string" and valtype == "number" then
             PrivateDarwinEmbed_global_concat(string.format(
                 "LuaCEmbedTable_set_double_prop(%s,%s,%lf);\n",
                 table_name,
@@ -86,16 +88,19 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
                 key
             ))
         end
-        if key_type == "string" and valtype == "number" then
+
+        if key_type == "string" and valtype == "table" then
             local sub_name = 'x' .. PrivateDarwin_cglobals_size
             PrivateDarwin_cglobals_size = PrivateDarwin_cglobals_size + 1
             PrivateDarwinEmbed_global_concat(string.format(
                 'LuaCembedTable *%s = LuaCembed_new_anonymous_table(args);\n',
                 sub_name
             ));
+
             PrivateDarwinEmbed_global_concat(string.format(
-                'LuaCEmbedTable_append_table(%s,%s,args);\n',
+                'LuaCEmbedTable_set_sub_table_prop(%s,%d,%s);\n',
                 table_name,
+                key,
                 sub_name
             ));
             PrivateDarwinEmbed_c_table(original_name, sub_name, val)
