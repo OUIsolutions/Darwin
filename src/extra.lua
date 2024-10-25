@@ -1,7 +1,7 @@
 ---comment
 ---@param str string
 ---@return string
-function Create_c_str_buffer(str_code)
+function PrivateDarwing_Create_c_str_buffer(str_code)
     local buffer = { "(unsigned char[]){" }
     local size = string.len(str_code)
     for i = 1, size do
@@ -11,4 +11,17 @@ function Create_c_str_buffer(str_code)
     end
     buffer[#buffer + 1] = "}"
     return table.concat(buffer, "")
+end
+
+---@param text string
+---@param old string
+---@param new string
+---@return string
+function PrivateDarwingreplace_simple(text, old, new)
+    local start_pos = text:find(old)
+    if start_pos then
+        return text:sub(1, start_pos - 1) .. new .. text:sub(start_pos + #old)
+    else
+        return text -- Retorna a string original se não encontrar
+    end
 end
