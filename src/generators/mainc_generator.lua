@@ -30,6 +30,7 @@ function Generate_c_executable_code()
 
         final = PrivateDarwingreplace_simple(final, current.item, current.value)
     end
+    return final
 end
 
 ---@param filename string
