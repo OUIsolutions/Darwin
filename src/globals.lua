@@ -1,4 +1,7 @@
-main_code = ""
+PrivateDarwing_main_lua_code = ""
+
 PrivateDarwin_cglobals_size = 1
 PrivateDarwin_cglobals = ""
+
+
 PrivateDawring_cglobals_already_setted = {}

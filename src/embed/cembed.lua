@@ -74,6 +74,8 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
                 val
             ))
         end
+
+
         if key_type == "string" and valtype == "string" then
             PrivateDarwinEmbed_global_concat(string.format(
                 "LuaCEmbedTable_set_string_prop(%s,%s,(char[])%s);\n",

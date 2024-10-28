@@ -8,4 +8,7 @@ function Embedglobal(name, var, mode)
     if mode == "c" then
         Private_embed_global_in_c(name, var)
     end
+    if mode == "lua" then
+        Private_embed_global_in_lua(name, var)
+    end
 end

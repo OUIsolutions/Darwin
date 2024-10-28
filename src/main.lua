@@ -30,7 +30,7 @@ function main()
     local replacers = {
         { item = "darwin_luacembed", value = LUA_CEMBED },
         { item = "darwin_cglobals",  value = PrivateDarwin_cglobals },
-        { item = "darwin_execcode",  value = PrivateDarwing_Create_c_str_buffer(main_code) },
+        { item = "darwin_execcode",  value = PrivateDarwing_Create_c_str_buffer(PrivateDarwing_main_lua_code) },
     }
     local final = MAIN_C
     for i = 1, #replacers do
