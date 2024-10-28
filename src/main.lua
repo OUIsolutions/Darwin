@@ -1,10 +1,8 @@
 MAIN_C = [[
-
     darwin_luacembed
     void private_darwing_set_globals(LuaCEmbed *args){
         darwin_cglobals
     };
-
     unsigned char exec_code[] = darwin_execcode;
 
     int main(){

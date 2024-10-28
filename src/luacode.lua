@@ -1,7 +1,6 @@
-
 ---@param code string
 function Addcode(code)
-    main_code = main_code .. "\n" .. code
+    PrivateDarwing_main_lua_code = PrivateDarwing_main_lua_code .. "\n" .. code
 end
 
 --@param filename string
@@ -15,5 +14,3 @@ function Addfile(filename)
     Addcode(content:read('a'))
     content:close()
 end
-
-
