@@ -4,7 +4,6 @@ MAIN_C = [[
     unsigned char exec_code[] = darwin_execcode;
     LuaCEmbed *main_obj = newLuaCEmbedEvaluation();
         LuaCEmbed_load_native_libs(main_obj);
-
         darwin_cglobals
         LuaCEmbed_evaluate(main_obj, "%s",(const char*)exec_code);
         if(LuaCEmbed_has_errors(main_obj)){
