@@ -1,9 +1,6 @@
 ---@param name string
 ---@param var any
 function Private_embed_global_in_lua(name, var)
-    if is_inside(PrivateDawring_cglobals_already_setted, name) then
-        error("var " .. name .. "already setted")
-    end
     PrivateDawring_cglobals_already_setted[#PrivateDawring_cglobals_already_setted + 1] = name
     var_type = type(var)
 

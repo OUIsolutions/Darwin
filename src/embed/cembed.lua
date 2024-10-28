@@ -29,10 +29,11 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
 
         if key_type == "number" and valtype == "string" then
             PrivateDarwinEmbed_global_concat(string.format(
-                "LuaCEmbedTable_set_string_by_index(%s,%d,(char[])%s);\n",
+                "LuaCEmbedTable_set_raw_string_by_index(%s,%d,(char[])%s,%d);\n",
                 table_name,
                 key,
-                PrivateDarwing_Create_c_str_buffer(val)
+                PrivateDarwing_Create_c_str_buffer(val),
+                string.len(val)
             ))
         end
 
@@ -78,10 +79,11 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
 
         if key_type == "string" and valtype == "string" then
             PrivateDarwinEmbed_global_concat(string.format(
-                "LuaCEmbedTable_set_string_prop(%s,%s,(char[])%s);\n",
+                "LuaCEmbedTable_set_raw_string_prop(%s,%s,(char[])%s,%d);\n",
                 table_name,
                 key,
-                PrivateDarwing_Create_c_str_buffer(val)
+                PrivateDarwing_Create_c_str_buffer(val),
+                string.len(val)
             ))
         end
         if key_type == "string" and val == true then
@@ -121,9 +123,6 @@ end
 ---@param name string
 ---@param var any
 function Private_embed_global_in_c(name, var)
-    if is_inside(PrivateDawring_cglobals_already_setted, name) then
-        error("var " .. name .. "already setted")
-    end
     PrivateDawring_cglobals_already_setted[#PrivateDawring_cglobals_already_setted + 1] = name
     var_type = type(var)
 
