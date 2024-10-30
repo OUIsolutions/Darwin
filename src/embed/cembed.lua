@@ -55,7 +55,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
             local sub_name = 'x' .. PrivateDarwin_cglobals_size
             PrivateDarwin_cglobals_size = PrivateDarwin_cglobals_size + 1
             PrivateDarwinEmbed_c_global_concat(string.format(
-                'LuaCembedTable *%s = LuaCembed_new_anonymous_table(args);\n',
+                'LuaCEmbedTable *%s = LuaCembed_new_anonymous_table(main_obj);\n',
                 sub_name
             ));
             PrivateDarwinEmbed_c_global_concat(string.format(
@@ -105,7 +105,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
             local sub_name = 'x' .. PrivateDarwin_cglobals_size
             PrivateDarwin_cglobals_size = PrivateDarwin_cglobals_size + 1
             PrivateDarwinEmbed_c_global_concat(string.format(
-                'LuaCembedTable *%s = LuaCembed_new_anonymous_table(main_obj);\n',
+                'LuaCEmbedTable *%s = LuaCembed_new_anonymous_table(main_obj);\n',
                 sub_name
             ));
 
