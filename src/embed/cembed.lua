@@ -22,7 +22,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
             PrivateDarwinEmbed_c_global_concat(string.format(
                 "LuaCEmbedTable_set_double_by_index(%s,%d,%f);\n",
                 table_name,
-                key,
+                key - 1,
                 val
             ))
         end
@@ -31,7 +31,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
             PrivateDarwinEmbed_c_global_concat(string.format(
                 "LuaCEmbedTable_set_raw_string_by_index(%s,%d,(const char *)(unsigned  char[])%s,%d);\n",
                 table_name,
-                key,
+                key - 1,
                 PrivateDarwing_Create_c_str_buffer(val),
                 string.len(val)
             ))
@@ -41,14 +41,14 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
             PrivateDarwinEmbed_c_global_concat(string.format(
                 "LuaCEmbedTable_set_bool_by_index(%s,%d,true);\n",
                 table_name,
-                key
+                key - 1
             ))
         end
         if key_type == "number" and val == false then
             PrivateDarwinEmbed_c_global_concat(string.format(
                 "LuaCEmbedTable_set_bool_by_index(%s,%d,false);\n",
                 table_name,
-                key
+                key - 1
             ))
         end
         if key_type == "number" and valtype == "table" then
@@ -61,7 +61,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
             PrivateDarwinEmbed_c_global_concat(string.format(
                 'LuaCEmbedTable_set_sub_table_by_index(%s,%d,%s);\n',
                 table_name,
-                key,
+                key - 1,
                 sub_name
             ));
             PrivateDarwinEmbed_c_table(original_name, sub_name, val)
@@ -69,7 +69,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
 
         if key_type == "string" and valtype == "number" then
             PrivateDarwinEmbed_c_global_concat(string.format(
-                "LuaCEmbedTable_set_double_prop(%s,%s,%f);\n",
+                "LuaCEmbedTable_set_double_prop(%s,%q,%f);\n",
                 table_name,
                 key,
                 val
@@ -79,7 +79,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
 
         if key_type == "string" and valtype == "string" then
             PrivateDarwinEmbed_c_global_concat(string.format(
-                "LuaCEmbedTable_set_raw_string_prop(%s,%s,(const char *)(unsigned  char[])%s,%d);\n",
+                "LuaCEmbedTable_set_raw_string_prop(%s,%q,(const char *)(unsigned  char[])%s,%d);\n",
                 table_name,
                 key,
                 PrivateDarwing_Create_c_str_buffer(val),
@@ -88,14 +88,14 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
         end
         if key_type == "string" and val == true then
             PrivateDarwinEmbed_c_global_concat(string.format(
-                "LuaCEmbedTable_set_bool_prop(%s,%s,true);\n",
+                "LuaCEmbedTable_set_bool_prop(%s,%q,true);\n",
                 table_name,
                 key
             ))
         end
         if key_type == "string" and val == false then
             PrivateDarwinEmbed_c_global_concat(string.format(
-                "LuaCEmbedTable_set_bool_prop(%s,%s,false);\n",
+                "LuaCEmbedTable_set_bool_prop(%s,%q,false);\n",
                 table_name,
                 key
             ))
@@ -105,12 +105,12 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
             local sub_name = 'x' .. PrivateDarwin_cglobals_size
             PrivateDarwin_cglobals_size = PrivateDarwin_cglobals_size + 1
             PrivateDarwinEmbed_c_global_concat(string.format(
-                'LuaCembedTable *%s = LuaCembed_new_anonymous_table(args);\n',
+                'LuaCembedTable *%s = LuaCembed_new_anonymous_table(main_obj);\n',
                 sub_name
             ));
 
             PrivateDarwinEmbed_c_global_concat(string.format(
-                'LuaCEmbedTable_set_sub_table_prop(%s,%d,%s);\n',
+                'LuaCEmbedTable_set_sub_table_prop(%s,%q,%s);\n',
                 table_name,
                 key,
                 sub_name
