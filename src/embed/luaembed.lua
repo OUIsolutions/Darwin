@@ -1,33 +1,6 @@
----@param name string
----@param var any
-function Private_embed_global_in_lua(name, var)
-    PrivateDawring_cglobals_already_setted[#PrivateDawring_cglobals_already_setted + 1] = name
-    var_type = type(var)
-
-    if not is_inside({ "string", "number", "table", "boolean" }, var_type) then
-        error("invalid val on " .. name)
-    end
-
-    -- For simple types (number, boolean, string)
-    if var_type == "number" then
-        PrivateDarwinEmbed_global_concat(
-            string.format('%s = %f\n', name, var)
-        )
-    end
-    if var_type == "boolean" then
-        PrivateDarwinEmbed_global_concat(
-            string.format('%s = %s\n', name, tostring(var))
-        )
-    end
-    if var_type == "string" then
-        PrivateDarwinEmbed_global_concat(
-            string.format('%s = %q\n', name, var)
-        )
-    end
-    if var_type == "table" then
-        PrivateDarwinEmbed_global_concat(string.format('%s = {}\n', name))
-        Private_embed_lua_table(name, var)
-    end
+--@param value string
+function PrivateDarwinEmbed_lua_global_concat(value)
+    PrivateDarwin_lua_globals = PrivateDarwin_lua_globals .. value
 end
 
 ---@param table_name string
@@ -54,19 +27,19 @@ function Private_embed_lua_table(table_name, current_table)
 
         -- Handle different value types
         if val_type == "number" then
-            PrivateDarwinEmbed_global_concat(
+            PrivateDarwinEmbed_lua_global_concat(
                 string.format('%s%s = %f\n', table_name, formatted_key, val)
             )
         elseif val_type == "string" then
-            PrivateDarwinEmbed_global_concat(
+            PrivateDarwinEmbed_lua_global_concat(
                 string.format('%s%s = %q\n', table_name, formatted_key, val)
             )
         elseif val_type == "boolean" then
-            PrivateDarwinEmbed_global_concat(
+            PrivateDarwinEmbed_lua_global_concat(
                 string.format('%s%s = %s\n', table_name, formatted_key, tostring(val))
             )
         elseif val_type == "table" then
-            PrivateDarwinEmbed_global_concat(
+            PrivateDarwinEmbed_lua_global_concat(
                 string.format('%s%s = {}\n', table_name, formatted_key)
             )
             Private_embed_lua_table(
@@ -74,5 +47,31 @@ function Private_embed_lua_table(table_name, current_table)
                 val
             )
         end
+    end
+end
+
+---@param name string
+---@param var any
+---@param var_type string
+function Private_embed_global_in_lua(name, var, var_type)
+    -- For simple types (number, boolean, string)
+    if var_type == "number" then
+        PrivateDarwinEmbed_lua_global_concat(
+            string.format('%s = %f\n', name, var)
+        )
+    end
+    if var_type == "boolean" then
+        PrivateDarwinEmbed_lua_global_concat(
+            string.format('%s = %s\n', name, tostring(var))
+        )
+    end
+    if var_type == "string" then
+        PrivateDarwinEmbed_lua_global_concat(
+            string.format('%s = %q\n', name, var)
+        )
+    end
+    if var_type == "table" then
+        PrivateDarwinEmbed_lua_global_concat(string.format('%s = {}\n', name))
+        Private_embed_lua_table(name, var)
     end
 end

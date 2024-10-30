@@ -12,6 +12,7 @@ MAIN_C = [[
         LuaCEmbed_free(main_obj);
     }
 ]]
+
 ---@return string
 function Generate_c_executable_code()
     local main_lua_code = PrivateDarwing_Create_c_str_buffer(
