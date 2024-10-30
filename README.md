@@ -5,7 +5,7 @@ Install:
 download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.005/darwin005.c)
 by typing
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.004/darwin005.c -o darwin005.c
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.005/darwin005.c -o darwin005.c
 ```
 
 Create the **darwinconf.lua** file, these file configure the entire project ,to you
