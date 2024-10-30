@@ -1,8 +1,9 @@
-PrivateDarwing_main_lua_code = ""
+PrivateDarwing_main_lua_code           = ""
 
-PrivateDarwin_cglobals_size = 1
-PrivateDarwin_cglobals = ""
+PrivateDarwin_cglobals_size            = 1
+PrivateDarwin_cglobals                 = ""
 
+PrivateDarwin_require_parse_to_bytes   = false
 
 PrivateDarwin_lua_globals_size         = 1
 PrivateDarwin_lua_globals              = ""
