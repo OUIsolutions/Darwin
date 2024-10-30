@@ -1,5 +1,5 @@
 MAIN_C = [[
-
+    darwin_luacembed
     int main(){
     unsigned char exec_code[] = darwin_execcode;
     LuaCEmbed *main_obj = newLuaCEmbedEvaluation();
