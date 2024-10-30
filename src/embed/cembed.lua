@@ -29,7 +29,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
 
         if key_type == "number" and valtype == "string" then
             PrivateDarwinEmbed_c_global_concat(string.format(
-                "LuaCEmbedTable_set_raw_string_by_index(%s,%d,(char[])%s,%d);\n",
+                "LuaCEmbedTable_set_raw_string_by_index(%s,%d,(const char *)(unsigned  char[])%s,%d);\n",
                 table_name,
                 key,
                 PrivateDarwing_Create_c_str_buffer(val),
@@ -79,7 +79,7 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
 
         if key_type == "string" and valtype == "string" then
             PrivateDarwinEmbed_c_global_concat(string.format(
-                "LuaCEmbedTable_set_raw_string_prop(%s,%s,(char[])%s,%d);\n",
+                "LuaCEmbedTable_set_raw_string_prop(%s,%s,(const char *)(unsigned  char[])%s,%d);\n",
                 table_name,
                 key,
                 PrivateDarwing_Create_c_str_buffer(val),
@@ -126,25 +126,25 @@ end
 function Private_embed_global_in_c(name, var, var_type)
     if var_type == "number" then
         PrivateDarwinEmbed_c_global_concat(
-            string.format('LuaCEmbed_set_global_double(args,"%s",%f);\n', name, var)
+            string.format('LuaCEmbed_set_global_double(main_obj,"%s",%f);\n', name, var)
         )
     end
     if var_type == "boolean" then
         if var == true then
             PrivateDarwinEmbed_c_global_concat(
-                string.format('LuaCEmbed_set_global_bool(args,"%s",true);\n', name)
+                string.format('LuaCEmbed_set_global_bool(main_obj,"%s",true);\n', name)
             )
         end
         if var == false then
             PrivateDarwinEmbed_c_global_concat(
-                string.format('LuaCEmbed_set_global_bool(args,"%s",false);\n', name)
+                string.format('LuaCEmbed_set_global_bool(main_obj,"%s",false);\n', name)
             )
         end
     end
     if var_type == "string" then
         PrivateDarwinEmbed_c_global_concat(
             string.format(
-                'LuaCEmbed_set_global_raw_string(args,"%s",(char[])%s,%d);\n',
+                'LuaCEmbed_set_global_raw_string(main_obj,"%s",(const char *)(unsigned  char[])%s,%d);\n',
                 name,
                 PrivateDarwing_Create_c_str_buffer(var),
                 string.len(var)
@@ -155,7 +155,7 @@ function Private_embed_global_in_c(name, var, var_type)
         local table_name = 'x' .. PrivateDarwin_cglobals_size
         PrivateDarwin_cglobals_size = PrivateDarwin_cglobals_size + 1
         PrivateDarwinEmbed_c_global_concat(string.format(
-            'LuaCEmbedTable *%s = LuaCembed_new_global_table(args,"%s");\n',
+            'LuaCEmbedTable *%s = LuaCembed_new_global_table(main_obj,"%s");\n',
             table_name,
             name
         ));

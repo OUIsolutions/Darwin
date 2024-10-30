@@ -8,7 +8,7 @@ function PrivateDarwing_Create_c_str_buffer(str_code)
         local byte = string.byte(current_char)
         buffer[#buffer + 1] = string.format("%d,", byte)
     end
-    buffer[#buffer + 1] = "}"
+    buffer[#buffer + 1] = "0}"
     return table.concat(buffer, "")
 end
 
