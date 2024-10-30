@@ -1,4 +1,3 @@
----comment
 ---@param str string
 ---@return string
 function PrivateDarwing_Create_c_str_buffer(str_code)
@@ -10,6 +9,21 @@ function PrivateDarwing_Create_c_str_buffer(str_code)
         buffer[#buffer + 1] = string.format("%d,", byte)
     end
     buffer[#buffer + 1] = "}"
+    return table.concat(buffer, "")
+end
+
+---@param str_code string
+---@return string
+function PrivateDarwin_create_lua_str_buffer(str_code)
+    local buffer = { '"' }
+    local size = string.len(str_code)
+    for i = 1, size do
+        local current_char = string.sub(str_code, i, i)
+        local byte = string.byte(current_char)
+        buffer[#buffer + 1] = string.format("\\x%X", byte)
+    end
+
+    buffer[#buffer + 1] = '"'
     return table.concat(buffer, "")
 end
 

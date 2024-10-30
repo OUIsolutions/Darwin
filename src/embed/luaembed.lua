@@ -31,8 +31,9 @@ function Private_embed_lua_table(table_name, current_table)
                 string.format('%s%s = %f\n', table_name, formatted_key, val)
             )
         elseif val_type == "string" then
+            local converted = PrivateDarwin_create_lua_str_buffer(val)
             PrivateDarwinEmbed_lua_global_concat(
-                string.format('%s%s = %q\n', table_name, formatted_key, val)
+                string.format('%s%s = %s\n', table_name, formatted_key, converted)
             )
         elseif val_type == "boolean" then
             PrivateDarwinEmbed_lua_global_concat(
@@ -66,8 +67,9 @@ function Private_embed_global_in_lua(name, var, var_type)
         )
     end
     if var_type == "string" then
+        local converted = PrivateDarwin_create_lua_str_buffer(var)
         PrivateDarwinEmbed_lua_global_concat(
-            string.format('%s = %q\n', name, var)
+            string.format('%s = %s\n', name, converted)
         )
     end
     if var_type == "table" then
