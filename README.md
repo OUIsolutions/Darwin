@@ -20,7 +20,7 @@ os.execute("./a.out")
 ```
 and run with:
 ```shel
-gcc darwin004.c -o darwin004.o && ./darwin004.o
+gcc darwin005.c -o darwin005.o && ./darwin005.o
 ```
 ### Understanding Commands
 
