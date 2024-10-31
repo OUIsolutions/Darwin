@@ -1,5 +1,6 @@
 # Prerequisites
 *.d
+LuaCEmbed.h
 dependencies
 teste.lua
 final*
