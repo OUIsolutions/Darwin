@@ -1,7 +1,8 @@
 ---@param contents_list string[]
 ---@param already_included string[]
 ---@param filename string
-function PrivateDarwin_Addcfile(contents_list, already_included, filename)
+---@param include_verifier function |nil
+function PrivateDarwin_Addcfile(contents_list, already_included, filename, include_verifier)
     local file = io.open(filename, "r")
     if not file then
         error("file " .. filename .. " not provided")
@@ -91,7 +92,16 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename)
         --- ends collecting the filename
         if state == COLLECTING_FILE and current_char == '"' then
             local path = current_dir .. actual_filename
-            PrivateDarwin_Addcfile(contents_list, already_included, path)
+            local include = true
+            if include_verifier then
+                if not include_verifier(actual_filename, path) then
+                    include = false
+                end
+            end
+            if include then
+                PrivateDarwin_Addcfile(contents_list, already_included, path, include_verifier)
+            end
+
             actual_filename = ""
             state = START_STATE
         end
@@ -101,7 +111,8 @@ end
 
 ---@param filename string
 ---@param folow_includes boolean | nil
-function Addcfile(filename, folow_includes)
+---@param include_verifier function |nil
+function Addcfile(filename, folow_includes, include_verifier)
     if not folow_includes then
         local content = io.open(filename)
         if not content then
@@ -113,6 +124,6 @@ function Addcfile(filename, folow_includes)
     end
     local contents_list = {}
     local already_included = {}
-    PrivateDarwin_Addcfile(contents_list, already_included, filename)
+    PrivateDarwin_Addcfile(contents_list, already_included, filename, include_verifier)
     Addccode(table.concat(contents_list, ""))
 end
