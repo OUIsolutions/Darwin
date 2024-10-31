@@ -8,6 +8,9 @@ function Generate_c_executable_code()
         { item = "darwin_luacembed", value = LUA_CEMBED },
         { item = "darwin_cglobals",  value = PrivateDarwin_cglobals },
         { item = "darwin_execcode",  value = main_lua_code },
+        { item = "cincludes",        value = PrivateDarwin_include_code },
+        { item = "ccalls",           value = PrivateDarwin_c_calls },
+
     }
     local final = MAIN_C
     for i = 1, #replacers do
