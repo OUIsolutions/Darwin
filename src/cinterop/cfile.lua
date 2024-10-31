@@ -21,7 +21,7 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename)
     local INSIDE_STRING                     = 6
     local state                             = START_STATE
     local current_dir                       = PrivateDarwin_extract_dir(filename)
-    local actual_filename                   = current_dir
+    local actual_filename                   = ""
     local VALID_CHAR_BUFFER                 = {
         INSIDE_STRING,
         INSIDE_CHAR,
@@ -90,8 +90,9 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename)
 
         --- ends collecting the filename
         if state == COLLECTING_FILE and current_char == '"' then
-            PrivateDarwin_Addcfile(contents_list, already_included, actual_filename)
-            actual_filename = current_dir
+            local path = current_dir .. actual_filename
+            PrivateDarwin_Addcfile(contents_list, already_included, path)
+            actual_filename = ""
             state = START_STATE
         end
     end
