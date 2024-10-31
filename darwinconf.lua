@@ -9,7 +9,7 @@ Addfile("src/generators/mainc_generator.lua")
 Addfile("src/generators/lua_generator.lua")
 Addfile("src/main.lua")
 
-Cfilename = "darwin005.c"
-Compiler = "gcc"
-Output = "darwin005.o"
-Runafter = false
+
+Generate_c_executable_output("darwin006.c")
+os.execute("gcc darwin006.c -o  darwin006.o")
+os.execute("mv darwin006.o /home/mateusmoutinho/Documentos/teste/darwin006.o")
