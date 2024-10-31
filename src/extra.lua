@@ -58,7 +58,6 @@ end
 ---@return boolean
 function PrivateDarwin_is_string_at_point(str, target, point)
     local possible = string.sub(str, point, point + #target - 1)
-    print(possible)
     if possible == target then
         return true
     end

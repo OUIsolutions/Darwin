@@ -1,4 +1,4 @@
-os.execute("curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/v0.77/LuaCEmbed.h -o LuaCEmbed.h  ")
+--os.execute("curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/v0.77/LuaCEmbed.h -o LuaCEmbed.h  ")
 
 local luaembed = io.open("LuaCEmbed.h")
 Embedglobal("LUA_CEMBED", luaembed:read("a"))
@@ -30,4 +30,3 @@ Addfile("src/main.lua")
 
 Generate_c_executable_output("darwin006.c")
 os.execute("gcc darwin006.c -o  darwin006.o")
-os.execute("mv darwin006.o /home/mateusmoutinho/Documentos/teste/darwin006.o")
