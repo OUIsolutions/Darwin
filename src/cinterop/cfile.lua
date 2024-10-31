@@ -17,6 +17,7 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename)
     local WAITING_INCLUDE = 1
     local COLLECTING_FILE = 2
     local INSIDE_INLINE_COMMENT = 3
+    local INSIDE_BLOCK_COMMENT = 4
     local state = COLLECTING_CHAR
     local current_dir = PrivateDarwin_extract_dir(filename)
     local actual_filename = current_dir
@@ -33,6 +34,14 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename)
             state = COLLECTING_CHAR
         end
 
+
+        if state == COLLECTING_CHAR and PrivateDarwin_is_string_at_point(content, "/*", i) then
+            state = INSIDE_BLOCK_COMMENT
+        end
+
+        if state == INSIDE_BLOCK_COMMENT and PrivateDarwin_is_string_at_point(content, "*/", i) then
+            state = COLLECTING_CHAR
+        end
 
 
         if PrivateDarwin_is_string_at_point(content, "#include", i) then
@@ -52,7 +61,7 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename)
             actual_filename = actual_filename .. current_char
         end
 
-        if PrivateDarwin_is_inside({ COLLECTING_CHAR, INSIDE_INLINE_COMMENT }, state) then
+        if PrivateDarwin_is_inside({ COLLECTING_CHAR, INSIDE_INLINE_COMMENT, INSIDE_BLOCK_COMMENT }, state) then
             contents_list[#contents_list + 1] = current_char
         end
 
