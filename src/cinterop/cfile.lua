@@ -16,6 +16,7 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename)
     local COLLECTING_CHAR = 0
     local WAITING_INCLUDE = 1
     local COLLECTING_FILE = 2
+    local INSIDE_INLINE_COMMENT = 3
     local state = COLLECTING_CHAR
     local current_dir = PrivateDarwin_extract_dir(filename)
     local actual_filename = current_dir
@@ -23,6 +24,17 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename)
     for i = 1, #content do
         local current_char = string.sub(content, i, i)
         local last_char = string.sub(content, i - 1, i - 1)
+
+        if state == COLLECTING_CHAR and PrivateDarwin_is_string_at_point(content, "//", i) then
+            state = INSIDE_INLINE_COMMENT
+        end
+
+        if state == INSIDE_INLINE_COMMENT and current_char == "\n" then
+            state = COLLECTING_CHAR
+        end
+
+
+
         if PrivateDarwin_is_string_at_point(content, "#include", i) then
             state = WAITING_INCLUDE
         end
@@ -40,7 +52,7 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename)
             actual_filename = actual_filename .. current_char
         end
 
-        if state == COLLECTING_CHAR then
+        if PrivateDarwin_is_inside({ COLLECTING_CHAR, INSIDE_INLINE_COMMENT }, state) then
             contents_list[#contents_list + 1] = current_char
         end
 
