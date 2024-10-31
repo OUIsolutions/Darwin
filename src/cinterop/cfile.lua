@@ -46,7 +46,6 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename)
 
         --- ends collecting the filename
         if state == COLLECTING_FILE and current_char == '"' then
-            print(actual_filename)
             PrivateDarwin_Addcfile(contents_list, already_included, actual_filename)
             actual_filename = current_dir
             state = COLLECTING_CHAR
@@ -57,8 +56,7 @@ end
 
 ---@param filename string
 ---@param folow_includes boolean | nil
----@param not_inside string[] | nil
-function Addcfile(filename, folow_includes, not_inside)
+function Addcfile(filename, folow_includes)
     if not folow_includes then
         local content = io.open(filename)
         if not content then
