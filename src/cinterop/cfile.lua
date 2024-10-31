@@ -2,7 +2,14 @@
 ---@param already_included string[]
 ---@param filename string
 function PrivateDarwin_Addcfile(contents, already_included, filename)
-
+    local file = io.open(filename, "r")
+    if not file then
+        error("file " .. filename .. "not provided")
+    end
+    local content = file:read("a")
+    if PrivateDarwin_is_inside(already_included, content) then
+        return
+    end
 end
 
 ---@param filename string

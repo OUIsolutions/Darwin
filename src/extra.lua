@@ -43,7 +43,7 @@ end
 
 ---@param target_table table
 ---@param value any
-function is_inside(target_table, value)
+function PrivateDarwin_is_inside(target_table, value)
     for i = 1, #target_table do
         if target_table[i] == value then
             return true

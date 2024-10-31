@@ -10,10 +10,10 @@ function Private_embed_lua_table(table_name, current_table)
         local key_type = type(key)
         local val_type = type(val)
 
-        if not is_inside({ "string", "number" }, key_type) then
+        if not PrivateDarwin_is_inside({ "string", "number" }, key_type) then
             error("invalid key on " .. table_name)
         end
-        if not is_inside({ "string", "number", "table", "boolean" }, val_type) then
+        if not PrivateDarwin_is_inside({ "string", "number", "table", "boolean" }, val_type) then
             error("invalid val on " .. table_name)
         end
 
