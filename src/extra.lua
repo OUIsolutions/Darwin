@@ -63,3 +63,17 @@ function PrivateDarwin_is_string_at_point(str, target, point)
     end
     return false
 end
+
+---@param path string
+---@return string
+function PrivateDarwin_extract_dir(path)
+    local i = string.len(path)
+    while i > 0 do
+        local current_char = string.sub(path, i, i)
+        if current_char == '/' then
+            return string.sub(path, 1, i)
+        end
+        i = i - 1
+    end
+    return ""
+end
