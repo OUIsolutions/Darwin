@@ -51,3 +51,16 @@ function PrivateDarwin_is_inside(target_table, value)
     end
     return false
 end
+
+---@param str string
+---@param target string
+---@param point number
+---@return boolean
+function PrivateDarwin_is_string_at_point(str, target, point)
+    local possible = string.sub(str, point, point + #target - 1)
+    print(possible)
+    if possible == target then
+        return true
+    end
+    return false
+end
