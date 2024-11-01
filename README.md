@@ -25,7 +25,7 @@ os.execute("./a.out")
 ```
 and run with:
 ```shel
-gcc darwin010.c -o darwin010.o && ./darwin010.o
+gcc darwin010.c -o darwin010.o && ./darwin010.o build darwinconf.lua
 ```
 
 ### Understanding Commands

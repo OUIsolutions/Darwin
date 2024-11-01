@@ -1,8 +1,12 @@
 function main()
-    local action = "build"
-    local darwin_conf_file = "darwinconf.lua"
+    local action = arg[2]
 
     if action == "build" then
+        local darwin_conf_file = arg[3]
+        if not darwin_conf_file then
+            private_darwin.print_red("conf file not provided \n")
+            return
+        end
         if not io.open(darwin_conf_file) then
             private_darwin.print_red(darwin_conf_file .. " not provided\n")
             return
