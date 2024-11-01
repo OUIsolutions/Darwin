@@ -29,13 +29,13 @@ if you need to get type annotations you can download the [Type Anotations](https
 Here
 ### Understanding Commands
 
-### darwin.add_lua_file
+#### darwin.add_lua_file
 Add a lua file to be embed into the final  code
 
-### darwin.add_lua_code
+#### darwin.add_lua_code
 Add code to be interpreted
 
-### darwin.embedglobal
+#### darwin.embedglobal
 Embed anything to the final executable,it works for any type of object ,(except for functions)
 if you pass "lua" as the 3 parameter, it will embed into the final lua
 
@@ -44,8 +44,8 @@ if you pass "lua" as the 3 parameter, it will embed into the final lua
 there is a lot of generators , that can be used to generate exports, for a lot
 of formats
 
-### darwin.generate_c_executable_output
+#### darwin.generate_c_executable_output
 export to a final *c* file , with a full runable executable code
 
-### darwin.generate_lua_output
+#### darwin.generate_lua_output
 Generate a full lua code, with all the elements you added
