@@ -27,7 +27,7 @@ for i = 1, #src_files do
     local current = src_files[i]
     Addluafile(current)
 end
-
+Addlua("main()")
 Generate_lua_output("debug.lua")
 Generate_c_executable_output("darwin008.c")
 os.execute("gcc darwin008.c -o  darwin008.o")
