@@ -11,7 +11,7 @@ executable:close()
 local parse_to_bytes = io.open("assets/parse_to_bytes.lua")
 Embedglobal("PARSE_TO_BYTES", parse_to_bytes:read("a"))
 parse_to_bytes:close()
-
+os.execute("rm -rf LuaDoTheWorld")
 os.execute("git clone -b v0.71 https://github.com/OUIsolutions/LuaDoTheWorld.git")
 Add_c_file("LuaDoTheWorld/src/one.c", true, function(import, path)
     -- to make the luacembe not be imported twice
