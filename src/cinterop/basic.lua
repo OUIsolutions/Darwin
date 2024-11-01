@@ -3,6 +3,11 @@ function Add_c_code(code)
     PrivateDarwin_include_code = PrivateDarwin_include_code .. code
 end
 
+---@param lib string
+function Cinclude(lib)
+    Add_c_code(string.format('#include "%s"', lib))
+end
+
 ---@param code string
 function Add_c_internal(code)
     PrivateDarwin_c_calls = PrivateDarwin_c_calls .. code

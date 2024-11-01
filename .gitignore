@@ -1,5 +1,6 @@
 # Prerequisites
 *.d
+LuaDoTheWorld
 LuaCEmbed.h
 dependencies
 teste.lua
