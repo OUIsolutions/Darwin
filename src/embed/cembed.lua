@@ -11,10 +11,10 @@ function PrivateDarwinEmbed_c_table(original_name, table_name, current_table)
         local key_type = type(key)
         local valtype = type(val)
 
-        if not is_inside({ "string", "number" }, key_type) then
+        if not PrivateDarwin_is_inside({ "string", "number" }, key_type) then
             error("invalid key on " .. original_name)
         end
-        if not is_inside({ "string", "number", "table", "boolean" }, key_type) then
+        if not PrivateDarwin_is_inside({ "string", "number", "table", "boolean" }, key_type) then
             error("invalid val on " .. original_name)
         end
 
