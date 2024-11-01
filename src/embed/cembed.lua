@@ -49,8 +49,8 @@ private_darwin.embed_c_table = function(original_name, table_name, current_table
             ))
         end
         if key_type == "number" and valtype == "table" then
-            local sub_name = 'x' .. PrivateDarwin_cglobals_size
-            PrivateDarwin_cglobals_size = PrivateDarwin_cglobals_size + 1
+            local sub_name = 'x' .. private_darwin.cglobals_size
+            private_darwin.cglobals_size = private_darwin.cglobals_size + 1
             private_darwin.c_global_concat(string.format(
                 'LuaCEmbedTable *%s = LuaCembed_new_anonymous_table(main_obj);\n',
                 sub_name
@@ -99,8 +99,8 @@ private_darwin.embed_c_table = function(original_name, table_name, current_table
         end
 
         if key_type == "string" and valtype == "table" then
-            local sub_name = 'x' .. PrivateDarwin_cglobals_size
-            PrivateDarwin_cglobals_size = PrivateDarwin_cglobals_size + 1
+            local sub_name = 'x' .. private_darwin.cglobals_size
+            private_darwin.cglobals_size = private_darwin.cglobals_size + 1
             private_darwin.c_global_concat(string.format(
                 'LuaCEmbedTable *%s = LuaCembed_new_anonymous_table(main_obj);\n',
                 sub_name
@@ -147,8 +147,8 @@ private_darwin.embed_global_in_c = function(name, var, var_type)
         )
     end
     if var_type == "table" then
-        local table_name = 'x' .. PrivateDarwin_cglobals_size
-        PrivateDarwin_cglobals_size = PrivateDarwin_cglobals_size + 1
+        local table_name = 'x' .. private_darwin.cglobals_size
+        private_darwin.cglobals_size = private_darwin.cglobals_size + 1
         private_darwin.c_global_concat(string.format(
             'LuaCEmbedTable *%s = LuaCembed_new_global_table(main_obj,"%s");\n',
             table_name,
