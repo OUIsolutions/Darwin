@@ -2,10 +2,10 @@
 A Boostrapped lua Compiler
 
 Install:
-download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.006/darwin006.c)
+download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.008/darwin008.c)
 by typing
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.006/darwin006.c -o darwin006.c
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.008/darwin008.c -o darwin008.c
 ```
 
 Create the **darwinconf.lua** file, these file configure the entire project ,to you
@@ -22,11 +22,11 @@ os.execute("./a.out")
 ```
 and run with:
 ```shel
-gcc darwin006.c -o darwin006.o && ./darwin006.o
+gcc darwin008.c -o darwin008.o && ./darwin008.o
 ```
 ### Getting type anotations
-if you need to get type annotations
-
+if you need to get type annotations you can download here
+[Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.008/ypes008.lua)
 ### Understanding Commands
 
 ### darwin.add_lua_file
