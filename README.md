@@ -2,25 +2,26 @@
 A Boostrapped lua Compiler
 
 Install:
-download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.005/darwin005.c)
+download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.006/darwin006.c)
 by typing
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.005/darwin005.c -o darwin005.c
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.006/darwin006.c -o darwin006.c
 ```
 
 Create the **darwinconf.lua** file, these file configure the entire project ,to you
 
 ```lua
 Embedglobal("hello_msg", "hello world")
-Addcode("print(hello_msg)")
+Addlua("print(hello_msg)")
 Generate_c_executable_output("saida.c")
 Generate_lua_output("saida.lua")
 os.execute("g++ saida.c ")
 os.execute("./a.out")
+
 ```
 and run with:
 ```shel
-gcc darwin005.c -o darwin005.o && ./darwin005.o
+gcc darwin006.c -o darwin006.o && ./darwin006.o
 ```
 ### Understanding Commands
 
