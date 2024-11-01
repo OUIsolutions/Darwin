@@ -11,27 +11,31 @@ curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.006/darwin006
 Create the **darwinconf.lua** file, these file configure the entire project ,to you
 
 ```lua
-Embedglobal("hello_msg", "hello world")
-Addlua("print(hello_msg)")
-Generate_c_executable_output("saida.c")
-Generate_lua_output("saida.lua")
+darwin.embedglobal("hello_msg", "hello world")
+darwin.add_lua_code("print(hello_msg)")
+darwin.generate_c_executable_output("saida.c")
+darwin.generate_lua_output("saida.lua")
 os.execute("g++ saida.c ")
 os.execute("./a.out")
+
 
 ```
 and run with:
 ```shel
 gcc darwin006.c -o darwin006.o && ./darwin006.o
 ```
+### Getting type anotations
+if you need to get type annotations
+
 ### Understanding Commands
 
-### Addfile
+### darwin.add_lua_file
 Add a lua file to be embed into the final  code
 
-### Addcode
+### darwin.add_lua_code
 Add code to be interpreted
 
-### Embedglobal
+### darwin.embedglobal
 Embed anything to the final executable,it works for any type of object ,(except for functions)
 if you pass "lua" as the 3 parameter, it will embed into the final lua
 
@@ -40,8 +44,8 @@ if you pass "lua" as the 3 parameter, it will embed into the final lua
 there is a lot of generators , that can be used to generate exports, for a lot
 of formats
 
-### Generate_c_executable_output
+### darwin.generate_c_executable_output
 export to a final *c* file , with a full runable executable code
 
-### Generate_lua_output
+### darwin.generate_lua_output
 Generate a full lua code, with all the elements you added
