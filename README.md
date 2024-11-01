@@ -2,12 +2,12 @@
 A Boostrapped lua Compiler
 
 Install:
-download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.008/darwin008.c)
-and [Type Anotations](https://github.com/OUIsolutions/Darwin/releases/download/0.008/types008.lua)
+download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.009/darwin009.c)
+and [Type Anotations](https://github.com/OUIsolutions/Darwin/releases/download/0.009/types009.lua)
 by typing
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.008/darwin008.c -o darwin008.c &&
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.008/types008.lua -o types008.lua
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.009/darwin009.c -o darwin009.c &&
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.009/types009.lua -o types009.lua
 
 ```
 
@@ -25,7 +25,7 @@ os.execute("./a.out")
 ```
 and run with:
 ```shel
-gcc darwin008.c -o darwin008.o && ./darwin008.o
+gcc darwin009.c -o darwin009.o && ./darwin009.o
 ```
 
 ### Understanding Commands
