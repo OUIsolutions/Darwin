@@ -31,9 +31,9 @@ for i = 1, #src_files do
 end
 darwin.add_lua_code("main()")
 darwin.generate_lua_output("debug.lua")
-darwin.generate_c_executable_output("darwin009.c")
-os.execute("gcc darwin009.c -o  darwin009.o")
-os.execute("gcc darwin009.c -o  darwin009.o")
+darwin.generate_c_executable_output("darwin010.c")
+os.execute("gcc darwin010.c -o  darwin010.o")
+os.execute("gcc darwin010.c -o  darwin010.o")
 
 local types = dtw.load_file("assets/dtw_types.lua") .. dtw.load_file("assets/types.lua")
-dtw.write_file("types009.lua", types)
+dtw.write_file("types010.lua", types)
