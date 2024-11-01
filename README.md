@@ -25,7 +25,7 @@ and run with:
 gcc darwin008.c -o darwin008.o && ./darwin008.o
 ```
 ### Getting type anotations
-if you need to get type annotations you can download the [Type Anotations](https://github.com/OUIsolutions/Darwin/releases/download/0.008/ypes008.lua)
+if you need to get type annotations you can download the [Type Anotations](https://github.com/OUIsolutions/Darwin/releases/download/0.008/types008.lua)
 Here
 ### Understanding Commands
 
