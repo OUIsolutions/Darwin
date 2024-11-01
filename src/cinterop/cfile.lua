@@ -112,13 +112,13 @@ end
 ---@param filename string
 ---@param folow_includes boolean | nil
 ---@param include_verifier function |nil
-function Addcfile(filename, folow_includes, include_verifier)
+function Add_c_file(filename, folow_includes, include_verifier)
     if not folow_includes then
         local content = io.open(filename)
         if not content then
             error("file " .. filename .. "not provided")
         end
-        Addccode(content:read("a"))
+        Add_c_code(content:read("a"))
         content:close()
         return
     end
