@@ -1,15 +1,15 @@
-PrivateDarwing_main_lua_code = ""
+private_darwin.main_lua_code = ""
 
-PrivateDarwin_cglobals_size  = 1
-PrivateDarwin_cglobals       = ""
+private_darwin.cglobals_size = 1
+private_darwin.cglobals      = ""
 
-PrivateDarwin_include_code   = ""
-PrivateDarwin_c_calls        = ""
+private_darwin.include_code  = ""
+private_darwin.c_calls       = ""
 
 
-PrivateDarwin_require_parse_to_bytes   = false
+private_darwin.require_parse_to_bytes  = false
 
-PrivateDarwin_lua_globals_size         = 1
-PrivateDarwin_lua_globals              = ""
+private_darwin.lua_globals_size        = 1
+private_darwin.lua_globals             = ""
 
-PrivateDawring_cglobals_already_setted = {}
+private_darwin.cglobals_already_setted = {}

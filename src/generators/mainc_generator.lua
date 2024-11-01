@@ -5,18 +5,18 @@ function Generate_c_executable_code()
     )
 
     local replacers = {
-        { item = "darwin_luacembed", value = LUA_CEMBED },
+        { item = "darwin_luacembed", value = PRIVATE_DARWIN_LUA_CEMBED },
         { item = "darwin_cglobals",  value = PrivateDarwin_cglobals },
         { item = "darwin_execcode",  value = main_lua_code },
         { item = "cincludes",        value = PrivateDarwin_include_code },
         { item = "ccalls",           value = PrivateDarwin_c_calls },
 
     }
-    local final = ASSETS["assets/executable.c"]
+    local final = PRIVATE_DARWIN_ASSETS["assets/executable.c"]
     for i = 1, #replacers do
         local current = replacers[i]
 
-        final = PrivateDarwingreplace_simple(final, current.item, current.value)
+        final = private_darwin.replace_simple(final, current.item, current.value)
     end
     return final
 end

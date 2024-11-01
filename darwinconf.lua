@@ -1,6 +1,6 @@
 os.execute("curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/v0.77/LuaCEmbed.h -o LuaCEmbed.h  ")
 
-Embedglobal("LUA_CEMBED", dtw.load_file("LuaCEmbed.h"))
+Embedglobal("PRIVATE_DARWIN_LUA_CEMBED", dtw.load_file("LuaCEmbed.h"))
 
 local assets_files = dtw.list_files_recursively("assets", true)
 local assets = {}
@@ -8,7 +8,7 @@ for i = 1, #assets_files do
     local current = assets_files[i]
     assets[current] = dtw.load_file(current)
 end
-Embedglobal("ASSETS", assets)
+Embedglobal("PRIVATE_DARWIN_ASSETS", assets)
 
 dtw.remove_any("LuaDoTheWorld")
 os.execute("git clone -b v0.71 https://github.com/OUIsolutions/LuaDoTheWorld.git")

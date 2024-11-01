@@ -1,6 +1,4 @@
----@param str string
----@return string
-function PrivateDarwing_Create_c_str_buffer(str_code)
+private_darwin.create_c_str_buffer = function(str_code)
     local buffer = { "{" }
     local size = string.len(str_code)
     for i = 1, size do
@@ -12,9 +10,8 @@ function PrivateDarwing_Create_c_str_buffer(str_code)
     return table.concat(buffer, "")
 end
 
----@param str_code string
----@return string
-function PrivateDarwin_create_lua_str_buffer(str_code)
+
+private_darwin.create_lua_str_buffer = function(str_code)
     PrivateDarwin_require_parse_to_bytes = true
     local buffer = { "table.concat(PrivateDarwing_parse_to_bytes({" }
     local size = string.len(str_code)
@@ -28,11 +25,8 @@ function PrivateDarwin_create_lua_str_buffer(str_code)
     return table.concat(buffer, "")
 end
 
----@param text string
----@param old string
----@param new string
----@return string
-function PrivateDarwingreplace_simple(text, old, new)
+
+private_darwin.replace_simple = function(text, old, new)
     local start_pos = text:find(old)
     if start_pos then
         return text:sub(1, start_pos - 1) .. new .. text:sub(start_pos + #old)
@@ -52,11 +46,7 @@ function PrivateDarwin_is_inside(target_table, value)
     return false
 end
 
----@param str string
----@param target string
----@param point number
----@return boolean
-function PrivateDarwin_is_string_at_point(str, target, point)
+private_darwin.is_string_at_point = function(str, target, point)
     local possible = string.sub(str, point, point + #target - 1)
     if possible == target then
         return true
@@ -64,9 +54,10 @@ function PrivateDarwin_is_string_at_point(str, target, point)
     return false
 end
 
----@param path string
----@return string
-function PrivateDarwin_extract_dir(path)
+
+
+
+private_darwin.extract_dir = function(path)
     local i = string.len(path)
     while i > 0 do
         local current_char = string.sub(path, i, i)
