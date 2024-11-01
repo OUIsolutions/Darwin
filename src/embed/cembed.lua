@@ -1,5 +1,5 @@
 private_darwin.c_global_concat = function(value)
-    PrivateDarwin_cglobals = PrivateDarwin_cglobals .. value
+    private_darwin.cglobals = private_darwin.cglobals .. value
 end
 
 
