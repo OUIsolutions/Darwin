@@ -102,3 +102,13 @@ void your_func(LuaCEmbed *l);
 ```lua
 darwin.call_c_func("your_func")
 ```
+### LuaDotheWorld
+Note that Darwin has [LuaDotheWorld](https://github.com/OUIsolutions/LuaDoTheWorld) Embed inside
+as **dtw** ,so , any function of dotheWorld, will work at  **darwinconf.lua**
+```lua
+local src_files = dtw.list_files_recursively("src", true)
+for i = 1, #src_files do
+    local current = src_files[i]
+    darwin.add_lua_file(current)
+end
+```
