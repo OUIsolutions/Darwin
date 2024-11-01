@@ -1,22 +1,18 @@
----@param  code string
-function Add_c_code(code)
-    PrivateDarwin_include_code = PrivateDarwin_include_code .. code
+darwin.add_c_code = function(code)
+    private_darwin.include_code = private_darwin.include_code .. code
 end
 
----@param lib string
-function Cinclude(lib)
-    Add_c_code(string.format('#include "%s"', lib))
+darwin.c_include = function(lib)
+    darwin.add_c_code(string.format('#include "%s"', lib))
 end
 
----@param code string
-function Add_c_internal(code)
-    PrivateDarwin_c_calls = PrivateDarwin_c_calls .. code
+darwin.add_c_internal = function(code)
+    private_darwin.c_calls = private_darwin.c_calls .. code
 end
 
----@param function_name string
----@param object_name string
-function Load_lualib_from_c(function_name, object_name)
-    Add_c_internal(string.format(
+
+darwin.load_lualib_from_c = function(function_name, object_name)
+    darwin.add_c_internal(string.format(
         'LuaCEmbed_load_lib_from_c(main_obj,%s, "%s");\n',
         function_name,
         object_name
@@ -24,8 +20,8 @@ function Load_lualib_from_c(function_name, object_name)
 end
 
 ---@param function_name string
-function Call_c_func(function_name)
-    Add_c_internal(string.format(
+darwin.call_c_func = function(function_name)
+    darwin.add_c_internal(string.format(
         '%s(main_obj);\n',
         function_name
     ))
