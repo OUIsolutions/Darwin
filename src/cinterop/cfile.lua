@@ -125,5 +125,5 @@ function Add_c_file(filename, folow_includes, include_verifier)
     local contents_list = {}
     local already_included = {}
     PrivateDarwin_Addcfile(contents_list, already_included, filename, include_verifier)
-    Addccode(table.concat(contents_list, ""))
+    Add_c_code(table.concat(contents_list, ""))
 end
