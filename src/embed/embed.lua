@@ -1,6 +1,6 @@
 ---@param name string
 ---@param var any
----@param mode "c" | "lua"
+---@param mode "c" | "lua" | nil
 function Embedglobal(name, var, mode)
     if PrivateDarwin_is_inside(PrivateDawring_cglobals_already_setted, name) then
         error("var " .. name .. "already setted")

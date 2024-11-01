@@ -12,7 +12,7 @@ function Generate_c_executable_code()
         { item = "ccalls",           value = PrivateDarwin_c_calls },
 
     }
-    local final = MAIN_C
+    local final = ASSETS["assets/executable.c"]
     for i = 1, #replacers do
         local current = replacers[i]
 

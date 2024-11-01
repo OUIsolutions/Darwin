@@ -2,7 +2,7 @@
 function Generate_lua_code()
     local final = ""
     if PrivateDarwin_require_parse_to_bytes then
-        final = final .. PARSE_TO_BYTES .. "\n"
+        final = final .. ASSETS["assets/parse_to_bytes.lua"] .. "\n"
     end
     final = final .. PrivateDarwin_lua_globals .. "\n"
     final = final .. PrivateDarwing_main_lua_code .. "\n"

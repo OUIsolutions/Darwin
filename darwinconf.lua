@@ -2,19 +2,13 @@ os.execute("curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/
 
 Embedglobal("LUA_CEMBED", dtw.load_file("LuaCEmbed.h"))
 
-local assets = dtw.list_files_recursively("assets", true)
-for i = 1, #assets do
-    local current = assets[i]
-    print(current)
+local assets_files = dtw.list_files_recursively("assets", true)
+local assets = {}
+for i = 1, #assets_files do
+    local current = assets_files[i]
+    assets[current] = dtw.load_file(current)
 end
-
-local executable = io.open("assets/executable.c")
-Embedglobal("MAIN_C", executable:read("a"))
-executable:close()
-
-local parse_to_bytes = io.open("assets/parse_to_bytes.lua")
-Embedglobal("PARSE_TO_BYTES", parse_to_bytes:read("a"))
-parse_to_bytes:close()
+Embedglobal("ASSETS", assets)
 
 dtw.remove_any("LuaDoTheWorld")
 os.execute("git clone -b v0.71 https://github.com/OUIsolutions/LuaDoTheWorld.git")
