@@ -5,5 +5,3 @@ function main()
     end
     dofile("darwinconf.lua")
 end
-
-main()
