@@ -42,7 +42,8 @@ darwin.add_lua_file("main.lua")
 Add code to be interpreted
 ```lua
 darwin.add_lua_code("print(hello_msg)")
-``
+```
+
 
 #### darwin.embedglobal
 Embed anything to the final executable,it works for any type of object ,(except for functions)
