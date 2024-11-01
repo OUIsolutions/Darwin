@@ -35,9 +35,8 @@ private_darwin.replace_simple = function(text, old, new)
     end
 end
 
----@param target_table table
----@param value any
-function PrivateDarwin_is_inside(target_table, value)
+
+private_darwin.is_inside = function(target_table, value)
     for i = 1, #target_table do
         if target_table[i] == value then
             return true

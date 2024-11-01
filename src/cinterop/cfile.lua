@@ -1,15 +1,11 @@
----@param contents_list string[]
----@param already_included string[]
----@param filename string
----@param include_verifier function |nil
-function PrivateDarwin_Addcfile(contents_list, already_included, filename, include_verifier)
+private_darwin.addcfile_internal = function(contents_list, already_included, filename, include_verifier)
     local file = io.open(filename, "r")
     if not file then
         error("file " .. filename .. " not provided")
     end
     local content = file:read("a")
     file:close()
-    if PrivateDarwin_is_inside(already_included, content) then
+    if private_darwin.is_inside(already_included, content) then
         return
     end
     already_included[#already_included + 1] = content
@@ -21,7 +17,7 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename, inclu
     local INSIDE_CHAR                       = 5
     local INSIDE_STRING                     = 6
     local state                             = START_STATE
-    local current_dir                       = PrivateDarwin_extract_dir(filename)
+    local current_dir                       = private_darwin.extract_dir(filename)
     local actual_filename                   = ""
     local VALID_CHAR_BUFFER                 = {
         INSIDE_STRING,
@@ -48,8 +44,7 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename, inclu
             state = START_STATE
         end
 
-
-        if state == START_STATE and PrivateDarwin_is_string_at_point(content, "//", i) then
+        if state == START_STATE and private_darwin.is_string_at_point(content, "//", i) then
             state = INSIDE_INLINE_COMMENT
         end
 
@@ -58,17 +53,17 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename, inclu
         end
 
 
-        if state == START_STATE and PrivateDarwin_is_string_at_point(content, "/*", i) then
+        if state == START_STATE and private_darwin.is_string_at_point(content, "/*", i) then
             state = INSIDE_BLOCK_COMMENT
         end
 
 
-        if state == INSIDE_BLOCK_COMMENT and PrivateDarwin_is_string_at_point(content, "*/", i) then
+        if state == INSIDE_BLOCK_COMMENT and private_darwin.is_string_at_point(content, "*/", i) then
             state = START_STATE
         end
 
 
-        if PrivateDarwin_is_string_at_point(content, "#include", i) then
+        if private_darwin.is_string_at_point(content, "#include", i) then
             state = WAITING_INCLUDE
         end
 
@@ -85,7 +80,7 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename, inclu
             actual_filename = actual_filename .. current_char
         end
 
-        if PrivateDarwin_is_inside(VALID_CHAR_BUFFER, state) then
+        if private_darwin.is_inside(VALID_CHAR_BUFFER, state) then
             contents_list[#contents_list + 1] = current_char
         end
 
@@ -99,7 +94,7 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename, inclu
                 end
             end
             if include then
-                PrivateDarwin_Addcfile(contents_list, already_included, path, include_verifier)
+                private_darwin.addcfile_internal(contents_list, already_included, path, include_verifier)
             end
 
             actual_filename = ""
@@ -109,21 +104,19 @@ function PrivateDarwin_Addcfile(contents_list, already_included, filename, inclu
     contents_list[#contents_list + 1] = "\n"
 end
 
----@param filename string
----@param folow_includes boolean | nil
----@param include_verifier function |nil
-function Add_c_file(filename, folow_includes, include_verifier)
+darwin.add_c_file = function(filename, folow_includes, include_verifier)
     if not folow_includes then
         local content = io.open(filename)
         if not content then
             error("file " .. filename .. "not provided")
         end
-        Add_c_code(content:read("a"))
+        darwin.add_c_code(content:read("a"))
         content:close()
         return
     end
+
     local contents_list = {}
     local already_included = {}
-    PrivateDarwin_Addcfile(contents_list, already_included, filename, include_verifier)
-    Add_c_code(table.concat(contents_list, ""))
+    private_darwin.addcfile_internal(contents_list, already_included, filename, include_verifier)
+    darwin.add_c_code(table.concat(contents_list, ""))
 end
