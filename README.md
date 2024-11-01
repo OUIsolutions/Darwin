@@ -6,7 +6,7 @@ download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/
 by typing
 ```shel
 curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.008/darwin008.c -o darwin008.c &&
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.008/types008.lua -o types008.lua &&
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.008/types008.lua -o types008.lua
 
 ```
 
