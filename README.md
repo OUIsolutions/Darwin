@@ -73,6 +73,14 @@ Add C code to the final **.c** file
 ```lua
 darwin.add_c_code('#include "your lib here"')
 ```
+
+#### darwin.add_c_file
+Add C file to your project,if you pass true as second argument (folow_includes) ,it will follow
+all the **#includes** of the file, and embed into the **final.c** file
+```lua
+  local follow = true
+ darwin.add_c_file("your c file", follow)
+```
 #### darwin.c_include
 Include your lib into the final **c** code
 
