@@ -5,7 +5,9 @@ Install:
 download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.008/darwin008.c)
 by typing
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.008/darwin008.c -o darwin008.c
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.008/darwin008.c -o darwin008.c &&
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.008/types008.lua -o types008.lua &&
+
 ```
 
 Create the **darwinconf.lua** file, these file configure the entire project ,to you
@@ -30,15 +32,25 @@ Here
 ### Understanding Commands
 
 #### darwin.add_lua_file
+
 Add a lua file to be embed into the final  code
+
+```lua
+darwin.add_lua_file("main.lua")
+```
 
 #### darwin.add_lua_code
 Add code to be interpreted
+```lua
+darwin.add_lua_code("print(hello_msg)")
+``
 
 #### darwin.embedglobal
 Embed anything to the final executable,it works for any type of object ,(except for functions)
 if you pass "lua" as the 3 parameter, it will embed into the final lua
-
+```lua
+darwin.embedglobal("hello_msg", "hello world")
+```
 
 ### Generators
 there is a lot of generators , that can be used to generate exports, for a lot
@@ -46,6 +58,11 @@ of formats
 
 #### darwin.generate_c_executable_output
 export to a final *c* file , with a full runable executable code
-
+```lua
+darwin.generate_c_executable_output("saida.c")
+```
 #### darwin.generate_lua_output
 Generate a full lua code, with all the elements you added
+```lua
+darwin.generate_lua_output("saida.lua")
+``
