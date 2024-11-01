@@ -43,7 +43,7 @@ darwin.add_lua_file("main.lua")
 Add code to be interpreted
 ```lua
 darwin.add_lua_code("print(hello_msg)")
-```
+``
 
 #### darwin.embedglobal
 Embed anything to the final executable,it works for any type of object ,(except for functions)
@@ -65,4 +65,40 @@ darwin.generate_c_executable_output("saida.c")
 Generate a full lua code, with all the elements you added
 ```lua
 darwin.generate_lua_output("saida.lua")
-``
+```
+### CInterop
+#### darwin.add_c_code
+Add C code to the final **.c** file
+
+```lua
+darwin.add_c_code('#include "your lib here"')
+```
+#### darwin.c_include
+Include your lib into the final **c** code
+
+```lua
+darwin.c_include('your lib path')
+```
+#### darwin.add_c_internal
+Calls includes C code into your **main** code
+```lua
+darwin.add_c_internal('printf("test\n");')
+```
+#### darwin.load_lualib_from_c
+Loads a LuaLib into your code, note that the lib must follow the standard lua format
+```c
+int your_lib_start_path(lua_State *state);
+```
+```lua
+darwin.load_lualib_from_c("load_luaDoTheWorld", "dtw")
+```
+
+#### darwin.call_c_func
+Calls a C func passing the LuaCEmbed object to it,
+Note that your C func, must recive the **LuaCEmbed** object as argument
+```c
+void your_func(LuaCEmbed *l);
+```
+```lua
+darwin.call_c_func("your_func")
+```
