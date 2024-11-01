@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 debug.lua
+candangoEngine
 LuaDoTheWorld
 LuaCEmbed.h
 dependencies

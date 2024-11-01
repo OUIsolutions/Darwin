@@ -1,24 +1,15 @@
 darwin.generate_c_executable_code = function()
-    local main_lua_code = private_darwin.create_c_str_buffer(
+    private_darwin.darwin_execcode = private_darwin.create_c_str_buffer(
         darwin.generate_lua_code()
     )
+    local candango_result = private_darwin_candango.Render_text(PRIVATE_DARWIN_ASSETS['assets/executable.c'])
 
-    local replacers = {
-        { item = "darwin_luacembed", value = PRIVATE_DARWIN_LUA_CEMBED },
-        { item = "darwin_cglobals",  value = private_darwin.cglobals },
-        { item = "darwin_execcode",  value = main_lua_code },
-        { item = "cincludes",        value = private_darwin.include_code },
-        { item = "ccalls",           value = private_darwin.c_calls },
-
-    }
-    local final = PRIVATE_DARWIN_ASSETS["assets/executable.c"]
-    for i = 1, #replacers do
-        local current = replacers[i]
-
-        final = private_darwin.replace_simple(final, current.item, current.value)
+    if candango_result.exist_error then
+        error(candango_result.error_message)
     end
-    return final
+    return candango_result.render_text
 end
+
 
 darwin.generate_c_executable_output = function(filename)
     io.open(filename, "w"):write(darwin.generate_c_executable_code()):close()

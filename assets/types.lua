@@ -42,6 +42,9 @@
 ---@field print_green fun(text:string)
 ---@field print_blue fun(text:string)
 ---@field print_red fun(text:string)
+---@field darwin_execcode string
+---@field OPEN string
+---@field CLOSE string
 
 ---@type string
 PRIVATE_DARWIN_LUA_CEMBED = PRIVATE_DARWIN_LUA_CEMBED
