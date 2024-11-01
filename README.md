@@ -43,7 +43,7 @@ darwin.add_lua_file("main.lua")
 Add code to be interpreted
 ```lua
 darwin.add_lua_code("print(hello_msg)")
-```
+``
 
 #### darwin.embedglobal
 Embed anything to the final executable,it works for any type of object ,(except for functions)
@@ -87,7 +87,7 @@ darwin.add_c_internal('printf("test\n");')
 #### darwin.load_lualib_from_c
 Loads a LuaLib into your code, note that the lib must follow the standard lua format
 ```c
-int your_lib_start_path(lua_State *state);
+int load_luaDoTheWorld(lua_State *state);
 ```
 ```lua
 darwin.load_lualib_from_c("load_luaDoTheWorld", "dtw")
