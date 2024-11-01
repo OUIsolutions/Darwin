@@ -30,9 +30,9 @@
 ---@field is_string_at_point fun(str:string,target:string,point:number):boolean
 ---@field extract_dir fun(path:string):string
 ---@field addcfile_internal fun(contents_list:string[], already_included:string[], filename:string, include_verifier:fun(import:string,path:string):boolean)
-
-
-
+---@field c_global_concat fun(value:string)
+---@field embed_c_table fun(original_name:string, table_name:string, current_table:table)
+---@field embed_global_in_c fun(name:string, var:any, var_type:"string"|"nil"|"table"|"number")
 ---@type string
 PRIVATE_DARWIN_LUA_CEMBED = PRIVATE_DARWIN_LUA_CEMBED
 
