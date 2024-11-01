@@ -21,6 +21,8 @@ Add_c_file("LuaDoTheWorld/src/one.c", true, function(import, path)
 end)
 Load_lualib_from_c("load_luaDoTheWorld", "dtw")
 
+Addlua("darwin = {}")
+Addlua("private_darwin = {}")
 
 local src_files = dtw.list_files_recursively("src", true)
 for i = 1, #src_files do
