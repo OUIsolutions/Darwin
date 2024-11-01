@@ -45,6 +45,7 @@
 ---@field darwin_execcode string
 ---@field OPEN string
 ---@field CLOSE string
+---@field PERCENT string
 
 ---@type string
 PRIVATE_DARWIN_LUA_CEMBED = PRIVATE_DARWIN_LUA_CEMBED

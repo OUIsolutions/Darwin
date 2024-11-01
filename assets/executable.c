@@ -5,7 +5,6 @@
 
 #define OPEN {private_darwin.OPEN}
 #define CLOSE {private_darwin.CLOSE}
-#define STR(code) #code
 
 
 int main(int argc,char *argv[]) OPEN
@@ -18,9 +17,9 @@ int main(int argc,char *argv[]) OPEN
         CLOSE
     {private_darwin.cglobals}
     {private_darwin.c_calls}
-    LuaCEmbed_evaluate(main_obj,,(const char[]){private_darwin.darwin_execcode});
+    LuaCEmbed_evaluate(main_obj,"{private_darwin.PERCENT}s",(const char[]){private_darwin.darwin_execcode});
     if(LuaCEmbed_has_errors(main_obj)) OPEN
-        printf(,LuaCEmbed_get_error_message(main_obj));
+        printf("{private_darwin.PERCENT}s",LuaCEmbed_get_error_message(main_obj));
     CLOSE
 
     LuaCEmbed_free(main_obj);
@@ -28,4 +27,3 @@ CLOSE
 
 #undef OPEN
 #undef  CLOSE
-#undef  STR
