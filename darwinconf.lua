@@ -1,4 +1,9 @@
 local cache_arg = arg[4]
+
+-- eliminantes unwanted prints
+darwin.add_c_code("\n#undef printf\n")
+darwin.add_c_code("#define printf(...) \n")
+
 if cache_arg ~= "cache" then
     os.execute("curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/v0.77/LuaCEmbed.h -o LuaCEmbed.h  ")
     dtw.remove_any("LuaDoTheWorld")
@@ -6,16 +11,6 @@ if cache_arg ~= "cache" then
     dtw.remove_any("candangoEngine")
     os.execute("git clone -b V0.001 https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine.git")
 end
-
-darwin.embedglobal("PRIVATE_DARWIN_LUA_CEMBED", dtw.load_file("LuaCEmbed.h"))
-
-local assets_files = dtw.list_files_recursively("assets", true)
-local assets = {}
-for i = 1, #assets_files do
-    local current = assets_files[i]
-    assets[current] = dtw.load_file(current)
-end
-darwin.embedglobal("PRIVATE_DARWIN_ASSETS", assets)
 
 
 darwin.add_c_file("LuaDoTheWorld/src/one.c", true, function(import, path)
@@ -33,6 +28,20 @@ darwin.add_c_file("candangoEngine/src/main.c", true, function(import, path)
     end
     return true
 end)
+
+darwin.add_c_code("\n#undef printf\n")
+
+
+darwin.embedglobal("PRIVATE_DARWIN_LUA_CEMBED", dtw.load_file("LuaCEmbed.h"))
+
+local assets_files = dtw.list_files_recursively("assets", true)
+local assets = {}
+for i = 1, #assets_files do
+    local current = assets_files[i]
+    assets[current] = dtw.load_file(current)
+end
+darwin.embedglobal("PRIVATE_DARWIN_ASSETS", assets)
+
 
 darwin.load_lualib_from_c("load_luaDoTheWorld", "dtw")
 darwin.load_lualib_from_c("candango_engine_start_point", "private_darwin_candango")
