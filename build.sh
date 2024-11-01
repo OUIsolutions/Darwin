@@ -1,5 +1,5 @@
 
-#curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.005/darwin005.c -o darwin005.c
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.005/darwin005.c -o darwin005.c
 
 echo ""
 echo "get trivals darwin"
@@ -14,4 +14,3 @@ echo ""
 
 echo "generate the new version"
 echo ""
-mv darwin006.o /home/mateusmoutinho/Documentos/teste/darwin006.o

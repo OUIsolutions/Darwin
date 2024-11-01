@@ -1,4 +1,4 @@
---os.execute("curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/v0.77/LuaCEmbed.h -o LuaCEmbed.h  ")
+os.execute("curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/v0.77/LuaCEmbed.h -o LuaCEmbed.h  ")
 
 local luaembed = io.open("LuaCEmbed.h")
 Embedglobal("LUA_CEMBED", luaembed:read("a"))
