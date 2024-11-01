@@ -1,3 +1,5 @@
+---@alias DarwinGlobalMode "lua"| "c"
+
 ---@class Darwin
 ---@field Addlua_code fun(code:string)
 ---@field Addluafile fun(filename:string)
@@ -11,7 +13,7 @@
 ---@field load_lualib_from_c fun(function_name:string,object_name:string)
 ---@field call_c_func fun(function_name:string)
 ---@field add_c_file fun (filename:string, folow_includes:boolean | nil, include_verifier:fun(import:string,path:string):boolean | nil)
----@field embedglobal fun (name:string, var:any, mode:"lua"| "c"|nil)
+---@field embedglobal fun (name:string, var:any, mode:DarwinGlobalMode|nil)
 
 ---@class PrivateDarwin
 ---@field is_inside fun(target_table:table,value:any):boolean
@@ -32,10 +34,10 @@
 ---@field addcfile_internal fun(contents_list:string[], already_included:string[], filename:string, include_verifier:fun(import:string,path:string):boolean)
 ---@field c_global_concat fun(value:string)
 ---@field embed_c_table fun(original_name:string, table_name:string, current_table:table)
----@field embed_global_in_c fun(name:string, var:any, var_type:"string"|"nil"|"table"|"number")
+---@field embed_global_in_c fun(name:string, var:any, var_type:type)
 ---@field embed_lua_global_concat fun(value:string)
 ---@field embed_lua_table fun(table_name:string, current_table:table)
----@field embed_global_in_lua fun(name:string, var:any, var_type:"string"|"nil"|"table"|"number")
+---@field embed_global_in_lua fun(name:string, var:any, var_type:type)
 
 
 ---@type string
