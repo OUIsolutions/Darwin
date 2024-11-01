@@ -1,7 +1,7 @@
 
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.008/darwin008.c -o darwin008.c
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.009/darwin009.c -o darwin009.c
 echo "get previus darwin"
-gcc darwin008.c -o darwin008.o
+gcc darwin009.c -o darwin009.o
 echo "compilded the previus darwin"
-./darwin008.o
+./darwin009.o
 echo "generate the new version"
