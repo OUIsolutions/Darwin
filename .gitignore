@@ -5,6 +5,7 @@ LuaDoTheWorld
 LuaCEmbed.h
 dependencies
 types0*
+local_move.sh
 teste.lua
 final*
 teste.c

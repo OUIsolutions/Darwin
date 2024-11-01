@@ -1,8 +1,8 @@
 ---@alias DarwinGlobalMode "lua"| "c"
 
 ---@class Darwin
----@field Addlua_code fun(code:string)
----@field Addluafile fun(filename:string)
+---@field add_lua_code fun(code:string)
+---@field add_lua_file fun(filename:string)
 ---@field generate_lua_code fun():string
 ---@field generate_lua_output fun(filename:string)
 ---@field generate_c_executable_code fun():string
