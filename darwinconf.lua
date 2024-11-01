@@ -34,3 +34,6 @@ Generate_lua_output("debug.lua")
 Generate_c_executable_output("darwin008.c")
 os.execute("gcc darwin008.c -o  darwin008.o")
 os.execute("gcc darwin008.c -o  darwin008.o")
+
+local types = dtw.load_file("assets/dtw_types.lua") .. dtw.load_file("assets/types.lua")
+dtw.write_file("types008.lua", types)

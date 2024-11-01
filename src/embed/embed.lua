@@ -12,10 +12,13 @@ darwin.embedglobal = function(name, var, mode)
     if not mode then
         mode = "c"
     end
+
+
     if mode == "c" then
         private_darwin.embed_global_in_c(name, var, var_type)
-    end
-    if mode == "lua" then
+    elseif mode == "lua" then
         private_darwin.embed_global_in_lua(name, var, var_type)
+    else
+        error("mode " .. mode .. " not in " .. '"lua"|"c"')
     end
 end

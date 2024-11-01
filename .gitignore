@@ -4,6 +4,7 @@ debug.lua
 LuaDoTheWorld
 LuaCEmbed.h
 dependencies
+types0*
 teste.lua
 final*
 teste.c
