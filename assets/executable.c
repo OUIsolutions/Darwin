@@ -5,7 +5,7 @@ int main(int argc,char *argv[]){
 LuaCEmbed *main_obj = newLuaCEmbedEvaluation();
     LuaCEmbed_load_native_libs(main_obj);
 
-    LuaCEmbedTable *args_table =LuaCembed_new_global_table(main_obj,"args");
+    LuaCEmbedTable *args_table =LuaCembed_new_global_table(main_obj,"arg");
         for(int i =0; i <argc;i++){
             LuaCEmbedTable_append_string(args_table,argv[i]);
         }
