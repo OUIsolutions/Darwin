@@ -38,7 +38,10 @@
 ---@field embed_lua_global_concat fun(value:string)
 ---@field embed_lua_table fun(table_name:string, current_table:table)
 ---@field embed_global_in_lua fun(name:string, var:any, var_type:type)
-
+---@field print_color fun(color:string,text:string)
+---@field print_green fun(text:string)
+---@field print_blue fun(text:string)
+---@field print_red fun(text:string)
 
 ---@type string
 PRIVATE_DARWIN_LUA_CEMBED = PRIVATE_DARWIN_LUA_CEMBED
