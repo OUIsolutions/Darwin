@@ -1,15 +1,14 @@
----@return string
-function Generate_c_executable_code()
-    local main_lua_code = PrivateDarwing_Create_c_str_buffer(
-        Generate_lua_code()
+darwin.generate_c_executable_code = function()
+    local main_lua_code = private_darwin.create_c_str_buffer(
+        darwin.generate_lua_code()
     )
 
     local replacers = {
         { item = "darwin_luacembed", value = PRIVATE_DARWIN_LUA_CEMBED },
-        { item = "darwin_cglobals",  value = PrivateDarwin_cglobals },
+        { item = "darwin_cglobals",  value = private_darwin.cglobals },
         { item = "darwin_execcode",  value = main_lua_code },
-        { item = "cincludes",        value = PrivateDarwin_include_code },
-        { item = "ccalls",           value = PrivateDarwin_c_calls },
+        { item = "cincludes",        value = private_darwin.include_code },
+        { item = "ccalls",           value = private_darwin.c_calls },
 
     }
     local final = PRIVATE_DARWIN_ASSETS["assets/executable.c"]
@@ -21,7 +20,6 @@ function Generate_c_executable_code()
     return final
 end
 
----@param filename string
-function Generate_c_executable_output(filename)
-    io.open(filename, "w"):write(Generate_c_executable_code()):close()
+darwin.generate_c_executable_output = function(filename)
+    io.open(filename, "w"):write(darwin.generate_c_executable_code()):close()
 end

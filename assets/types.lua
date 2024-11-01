@@ -3,6 +3,8 @@
 ---@field Addluafile fun(filename:string)
 ---@field generate_lua_code fun():string
 ---@field generate_lua_output fun(filename:string)
+---@field generate_c_executable_code fun():string
+---@field generate_c_executable_output fun(filename:string)
 
 ---@class PrivateDarwin
 ---@field main_lua_code string
