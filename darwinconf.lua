@@ -5,7 +5,8 @@ darwin.add_c_code("\n#undef printf\n")
 darwin.add_c_code("#define printf(...) \n")
 
 if cache_arg ~= "cache" then
-    os.execute("curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/v0.77/LuaCEmbed.h -o LuaCEmbed.h  ")
+    os.execute(
+        "curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/v0.77/LuaCEmbed.h -o assets/LuaCEmbed.h  ")
     dtw.remove_any("LuaDoTheWorld")
     os.execute("git clone -b v0.71 https://github.com/OUIsolutions/LuaDoTheWorld.git")
     dtw.remove_any("candangoEngine")
@@ -32,13 +33,13 @@ end)
 darwin.add_c_code("\n#undef printf\n")
 
 
-darwin.embedglobal("PRIVATE_DARWIN_LUA_CEMBED", dtw.load_file("LuaCEmbed.h"))
 
-local assets_files = dtw.list_files_recursively("assets", true)
+local assets_files = dtw.list_files_recursively("assets", false)
 local assets = {}
 for i = 1, #assets_files do
-    local current = assets_files[i]
-    assets[current] = dtw.load_file(current)
+    local current_file = "assets/" .. assets_files[i]
+
+    assets[assets_files[i]] = dtw.load_file(current_file)
 end
 darwin.embedglobal("PRIVATE_DARWIN_ASSETS", assets)
 
@@ -60,9 +61,10 @@ darwin.generate_c_executable_output("darwin011.c")
 os.execute("gcc darwin011.c -o  darwin011.o")
 os.execute("gcc darwin011.c -o  darwin011.o")
 
-local types =
-    dtw.load_file("assets/dtw_types.lua") ..
-    dtw.load_file("assets/candango_type.lua") ..
-    dtw.load_file("assets/types.lua")
-
+local types = ""
+local types_files = dtw.list_files_recursively("types", true)
+for i = 1, #types_files do
+    types = types .. "\n" .. dtw.load_file(types_files[i])
+end
+darwin.embedglobal("PRIVATE_DARWIN_TYPES", types)
 dtw.write_file("types011.lua", types)

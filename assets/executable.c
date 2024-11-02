@@ -1,6 +1,6 @@
 
 
-{PRIVATE_DARWIN_LUA_CEMBED}
+{PRIVATE_DARWIN_ASSETS{"LuaCembed.h"}}
 {private_darwin.include_code}
 
 #define OPEN {private_darwin.OPEN}

@@ -36,7 +36,7 @@
 ---@field CLOSE string
 ---@field PERCENT string
 ---@field ask_yes_or_no fun(question:string):boolean
-
+---@field copy_assets fun (src:string,dest:string)
 
 
 ---@type PrivateDarwin
