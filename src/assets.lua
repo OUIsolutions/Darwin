@@ -23,8 +23,8 @@ private_darwin.list_assets_recursivly = function(src)
     for i = 1, #PRIVATE_DARWIN_ASSETS do
         local current = PRIVATE_DARWIN_ASSETS[i]
         if private_darwin.starts_with(current.path, src) then
-            local formmated_path = string.sub(current.path, #src + 2, #current.path)
-            if formmated_path ~= src then
+            if current.path ~= src then
+                local formmated_path = string.sub(current.path, #src + 2, #current.path)
                 result[#result + 1] = formmated_path
             end
         end

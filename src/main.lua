@@ -31,10 +31,13 @@ function main()
     end
 
     if private_darwin.is_inside({ "list", "examples", "list-examples", "--list", "--examples", "--list-examples" }, action) then
-        local elements = private_darwin.list_assets_recursivly("examples")
+        local elements = private_darwin.list_assets("examples")
         for i = 1, #elements do
             local current = elements[i]
-            print("value '" .. current .. "'")
+            private_darwin.print_green(string.format("%s:", current))
+            local description = private_darwin.get_asset(string.format("examples/%s/description.txt", current))
+            description = string.gsub(description, '\n', "")
+            private_darwin.print_blue(string.format("%s\n", description))
         end
         return
     end

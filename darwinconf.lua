@@ -48,12 +48,12 @@ for i = 1, #assets_files do
 end
 
 local assets_dirs = dtw.list_dirs_recursively("assets", false)
-for i = 1, #assets_files do
-    local current_item  = assets_files[i]
+for i = 1, #assets_dirs do
+    local current_item  = assets_dirs[i]
     ---removing / at the end of the the dir
     current_item        = string.sub(current_item, 0, #current_item - 1)
     assets[#assets + 1] = {
-        path = "assets/" .. current_item
+        path = current_item
     }
 end
 
