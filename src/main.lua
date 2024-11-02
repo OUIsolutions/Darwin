@@ -25,8 +25,32 @@ function main()
             private_darwin.print_red("example not passed\n")
             return
         end
+        example = string.gsub(example, "/", "") -- to avoid bugs on assets
+        local dir = "examples/" .. example
+        local description = private_darwin.get_asset(string.format("%s/description.txt", dir))
+        if not description then
+            private_darwin.print_red(string.format("example:%s not found\n", example))
+            return
+        end
+        private_darwin.print_blue("implementing:" .. example .. "," .. description)
 
-        private_darwin.print_red(string.format("example:%s not found\n", example))
+        local itens = private_darwin.list_assets_recursivly(dir)
+        for i = 1, #itens do
+            local current = itens[i]
+            local content = private_darwin.get_asset(dir .. "/" .. current)
+            if private_darwin.starts_with(current, "render.") and content then
+                local render_result = private_darwin_candango.Render_text(content)
+                if render_result.exist_error then
+                    error("internal errror" .. render_result.error_message)
+                end
+                content = render_result.render_text
+                current = string.sub(current, #"render." + 1, #current)
+            end
+
+            if content then
+                dtw.write_file(current, content)
+            end
+        end
         return
     end
 
@@ -36,8 +60,12 @@ function main()
             local current = elements[i]
             private_darwin.print_green(string.format("%s:", current))
             local description = private_darwin.get_asset(string.format("examples/%s/description.txt", current))
-            description = string.gsub(description, '\n', "")
-            private_darwin.print_blue(string.format("%s\n", description))
+            if description then
+                description = string.gsub(description, '\n', "")
+                private_darwin.print_blue(string.format("%s\n", description))
+            else
+                private_darwin.print_blue("description not provided")
+            end
         end
         return
     end

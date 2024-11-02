@@ -59,6 +59,12 @@ end
 
 
 darwin.embedglobal("PRIVATE_DARWIN_ASSETS", assets)
+local types = ""
+local types_files = dtw.list_files_recursively("types", true)
+for i = 1, #types_files do
+    types = types .. "\n" .. dtw.load_file(types_files[i])
+end
+darwin.embedglobal("PRIVATE_DARWIN_TYPES", types)
 
 
 darwin.load_lualib_from_c("load_luaDoTheWorld", "dtw")
@@ -77,10 +83,3 @@ darwin.generate_lua_output("debug.lua")
 darwin.generate_c_executable_output("darwin011.c")
 os.execute("gcc darwin011.c -o  darwin011.o")
 os.execute("gcc darwin011.c -o  darwin011.o")
-
-local types = ""
-local types_files = dtw.list_files_recursively("types", true)
-for i = 1, #types_files do
-    types = types .. "\n" .. dtw.load_file(types_files[i])
-end
-darwin.embedglobal("PRIVATE_DARWIN_TYPES", types)

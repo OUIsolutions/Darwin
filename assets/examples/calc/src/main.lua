@@ -1,4 +1,8 @@
 function main()
+    if arg[2] == "help" then
+        print(help)
+        return
+    end
     local x = get_arg_number(2)
     if not x then
         print("arg 2 not passed or its not a number")
