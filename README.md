@@ -14,7 +14,7 @@ gcc darwin011.c -o darwin011.o
 ```
 Then start a example project
 ```shel
-./darwin011.o start program
+./darwin011.o start calc
 ```
 and run with:
 ```shel
