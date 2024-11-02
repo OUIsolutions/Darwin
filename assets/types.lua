@@ -15,7 +15,14 @@
 ---@field add_c_file fun (filename:string, folow_includes:boolean | nil, include_verifier:fun(import:string,path:string):boolean | nil)
 ---@field embedglobal fun (name:string, var:any, mode:DarwinGlobalMode|nil)
 
+
+---@class Actions
+---@field description string
+---@field name string
+---@field callback fun()
+
 ---@class PrivateDarwin
+---@field actions Actions[]
 ---@field is_inside fun(target_table:table,value:any):boolean
 ---@field main_lua_code string
 ---@field cglobals_size number
@@ -57,4 +64,5 @@ PRIVATE_DARWIN_ASSETS = PRIVATE_DARWIN_ASSETS
 darwin = darwin
 
 ---@type PrivateDarwin
+private_darwin = private_darwin
 private_darwin = private_darwin

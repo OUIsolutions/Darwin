@@ -47,7 +47,7 @@ darwin.load_lualib_from_c("load_luaDoTheWorld", "dtw")
 darwin.load_lualib_from_c("candango_engine_start_point", "private_darwin_candango")
 
 darwin.add_lua_code("darwin = {}")
-darwin.add_lua_code("private_darwin = {}")
+darwin.add_lua_code("private_darwin = {actions={}}")
 
 local src_files = dtw.list_files_recursively("src", true)
 for i = 1, #src_files do
