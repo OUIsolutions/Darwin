@@ -3,12 +3,9 @@ A Boostrapped lua Compiler
 
 ## Install:
 download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.011/darwin011.c)
-and [Type Anotations](https://github.com/OUIsolutions/Darwin/releases/download/0.011/types011.lua)
 by typing
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.011/darwin011.c -o darwin011.c &&
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.011/types011.lua -o types011.lua
-
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.011/darwin011.c -o darwin011.c
 ```
 ## Creating a project
 first compile darwin

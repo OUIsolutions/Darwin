@@ -67,4 +67,3 @@ for i = 1, #types_files do
     types = types .. "\n" .. dtw.load_file(types_files[i])
 end
 darwin.embedglobal("PRIVATE_DARWIN_TYPES", types)
-dtw.write_file("types011.lua", types)
