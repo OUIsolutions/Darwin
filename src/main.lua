@@ -34,6 +34,7 @@ function main()
         local elements = private_darwin.list_assets_recursivly("examples")
         for i = 1, #elements do
             local current = elements[i]
+            print("value '" .. current .. "'")
         end
         return
     end
