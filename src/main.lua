@@ -10,7 +10,6 @@ function main()
         local darwin_conf_file = arg[3]
         if not darwin_conf_file then
             darwin_conf_file = "darwinconf.lua"
-            return
         end
         if not io.open(darwin_conf_file) then
             private_darwin.print_red(darwin_conf_file .. " not provided\n")
@@ -18,6 +17,7 @@ function main()
         end
         private_darwin.print_blue("starting: " .. darwin_conf_file .. "\n")
         dofile(darwin_conf_file)
+        return
     end
     if private_darwin.is_inside({ "start", "--start" }, action) then
         private_darwin.print_blue("starting examples\n")
