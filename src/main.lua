@@ -15,12 +15,24 @@ function main()
             private_darwin.print_red(darwin_conf_file .. " not provided\n")
             return
         end
-        private_darwin.print_blue("starting: " .. darwin_conf_file .. "\n")
+        private_darwin.print_blue("creating blueprint: " .. darwin_conf_file .. "\n")
         dofile(darwin_conf_file)
         return
     end
-    if private_darwin.is_inside({ "start", "--start" }, action) then
-        private_darwin.print_blue("starting examples\n")
+    if private_darwin.is_inside({ "start", "--start", "start-example", "--start-example" }, action) then
+        local example = arg[3]
+        if not example then
+            private_darwin.print_red("example not passed\n")
+            return
+        end
+        for i = 1, #private_darwin.actions do
+            local current = private_darwin.actions[i]
+            if current.name == example then
+                current.callback()
+                return
+            end
+        end
+        private_darwin.print_red(string.format("example:%s not found\n", example))
         return
     end
 

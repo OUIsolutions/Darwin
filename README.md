@@ -21,7 +21,9 @@ and run with:
 ./darwin011.o build darwinconf.lua
 ```
 
-### Understanding Commands
+### Understanding darwinconf.lua Commands
+The **darwinconf.lua** its the **blueprint** of  your project, its where you
+can put all the definitions of the project
 
 #### darwin.add_lua_file
 
