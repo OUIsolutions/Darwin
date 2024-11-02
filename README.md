@@ -16,9 +16,13 @@ Then start a example project
 ```shel
 ./darwin011.o start calc my_project_name
 ```
-and run with:
+and build with:
 ```shel
 ./darwin011.o build darwinconf.lua
+```
+now you can run the final bin with: 
+```shel
+./my_project_name.o 10 + 10
 ```
 
 ### Understanding darwinconf.lua Commands
