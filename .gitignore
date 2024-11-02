@@ -4,6 +4,8 @@ debug.lua
 candangoEngine
 LuaDoTheWorld
 LuaCEmbed.h
+assets/LuaCEmbed.h
+
 dependencies
 types0*
 local_move.sh

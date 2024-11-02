@@ -1,7 +1,7 @@
 # Darwin
 A Boostrapped lua Compiler
 
-Install:
+## Install:
 download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.011/darwin011.c)
 and [Type Anotations](https://github.com/OUIsolutions/Darwin/releases/download/0.011/types011.lua)
 by typing
@@ -10,22 +10,18 @@ curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.011/darwin011
 curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.011/types011.lua -o types011.lua
 
 ```
-
-Create the **darwinconf.lua** file, these file configure the entire project ,to you
-
-```lua
-darwin.embedglobal("hello_msg", "hello world")
-darwin.add_lua_code("print(hello_msg)")
-darwin.generate_c_executable_output("saida.c")
-darwin.generate_lua_output("saida.lua")
-os.execute("g++ saida.c ")
-os.execute("./a.out")
-
-
+## Creating a project
+first compile darwin
+```shel
+gcc darwin011.c -o darwin011.o
+```
+Then start a example project
+```shel
+./darwin011.o start program
 ```
 and run with:
 ```shel
-gcc darwin011.c -o darwin011.o && ./darwin011.o build darwinconf.lua
+./darwin011.o build darwinconf.lua
 ```
 
 ### Understanding Commands
