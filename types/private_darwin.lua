@@ -36,7 +36,9 @@
 ---@field CLOSE string
 ---@field PERCENT string
 ---@field ask_yes_or_no fun(question:string):boolean
-
-
+---@field list_assets fun(src:string):string[]
+---@field list_assets_recursivly fun(src:string):string[]
+---@field get_asset fun(path:string):string | nil
+---@field starts_with fun(str:string,target:string):boolean
 ---@type PrivateDarwin
 private_darwin = private_darwin

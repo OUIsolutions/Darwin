@@ -25,22 +25,15 @@ function main()
             private_darwin.print_red("example not passed\n")
             return
         end
-        for i = 1, #private_darwin.actions do
-            local current = private_darwin.actions[i]
-            if current.name == example then
-                current.callback()
-                return
-            end
-        end
+
         private_darwin.print_red(string.format("example:%s not found\n", example))
         return
     end
 
     if private_darwin.is_inside({ "list", "examples", "list-examples", "--list", "--examples", "--list-examples" }, action) then
-        for i = 1, #private_darwin.actions do
-            local current = private_darwin.actions[i]
-            private_darwin.print_blue(string.format("%s:", current.name))
-            private_darwin.print_green(string.format("%s\n", current.description))
+        local elements = private_darwin.list_assets_recursivly("examples")
+        for i = 1, #elements do
+            local current = elements[i]
         end
         return
     end

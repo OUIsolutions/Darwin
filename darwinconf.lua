@@ -34,12 +34,19 @@ darwin.add_c_code("\n#undef printf\n")
 
 
 
-local assets_files = dtw.list_files_recursively("assets", false)
+local assets_files = dtw.list_all_recursively("assets", false)
+---@type Asset[]
 local assets = {}
 for i = 1, #assets_files do
-    local current_file = "assets/" .. assets_files[i]
-
-    assets[assets_files[i]] = dtw.load_file(current_file)
+    local current_file = assets_files[i]
+    local path = "assets/" .. current_file
+    local current_asset = {
+        path = current_file
+    }
+    if dtw.isfile(path) then
+        current_asset.content = dtw.load_file(path)
+    end
+    assets[#assets + 1] = current_asset
 end
 darwin.embedglobal("PRIVATE_DARWIN_ASSETS", assets)
 

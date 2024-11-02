@@ -1,7 +1,7 @@
 darwin.generate_lua_code = function()
     local final = ""
     if private_darwin.require_parse_to_bytes then
-        final = final .. PRIVATE_DARWIN_ASSETS["parse_to_bytes.lua"] .. "\n"
+        final = final .. private_darwin.get_asset("parse_to_bytes.lua") .. "\n"
     end
     final = final .. private_darwin.lua_globals .. "\n"
     final = final .. private_darwin.main_lua_code .. "\n"
@@ -9,5 +9,5 @@ darwin.generate_lua_code = function()
 end
 
 darwin.generate_lua_output = function(filename)
-    io.open(filename, "w"):write(darwin.generate_lua_code()):close()
+    dtw.write_file(filename, darwin.generate_lua_code())
 end
