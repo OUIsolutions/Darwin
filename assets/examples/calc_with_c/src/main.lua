@@ -1,4 +1,8 @@
 function main()
+    if arg[2] == "help" then
+        print(help)
+        return
+    end
     local x = get_arg_number(2)
     if not x then
         print("arg 2 not passed or its not a number")
@@ -6,7 +10,7 @@ function main()
     end
     local operator = get_operator()
     if not operator then
-        print("operator not passed or is invalid ")
+        print("operator not passed or not in (+-x/) ")
         return
     end
     local y = get_arg_number(4)
@@ -15,15 +19,15 @@ function main()
         return
     end
     if operator == "+" then
-        print(x + y)
+        print(cinterop.add(x, y))
     end
     if operator == "-" then
-        print(x - y)
+        print(cinterop.sub(x, y))
     end
-    if operator == "*" then
-        print(x * y)
+    if operator == "x" then
+        print(cinterop.mull(x, y))
     end
     if operator == "/" then
-        print(x / y)
+        print(cinterop.div(x, y))
     end
 end

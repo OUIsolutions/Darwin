@@ -13,7 +13,7 @@ end
 
 function get_operator()
     local operator        = arg[3]
-    local VALID_OPERATORS = { "+", "-", "*", "/" }
+    local VALID_OPERATORS = { "+", "-", "x", "/" }
     for i = 1, #VALID_OPERATORS do
         if VALID_OPERATORS[i] == operator then
             return operator

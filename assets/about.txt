@@ -37,5 +37,5 @@ sha-256: https://github.com/amosnier/sha-2
 
 -------------------------Comands---------------------------------
 ./darwin.o help : to get help
-./darwin.o start <example> to start a example
+./darwin.o start <example> <your_project_name>(defauts to 'my_project') to start a example
 ./darwin.o build <conffile> to build a project

@@ -10,7 +10,7 @@ function main()
     end
     local operator = get_operator()
     if not operator then
-        print("operator not passed or is invalid ")
+        print("operator not passed or not in (+-x/) ")
         return
     end
     local y = get_arg_number(4)
@@ -24,7 +24,7 @@ function main()
     if operator == "-" then
         print(x - y)
     end
-    if operator == "*" then
+    if operator == "x" then
         print(x * y)
     end
     if operator == "/" then

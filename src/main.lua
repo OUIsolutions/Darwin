@@ -25,6 +25,13 @@ function main()
             private_darwin.print_red("example not passed\n")
             return
         end
+        local possible_project_name = arg[4]
+        private_darwin.project_name = "my_project"
+        if possible_project_name then
+            private_darwin.project_name = possible_project_name
+        end
+
+
         example = string.gsub(example, "/", "") -- to avoid bugs on assets
         local dir = "examples/" .. example
         local description = private_darwin.get_asset(string.format("%s/description.txt", dir))
@@ -38,13 +45,17 @@ function main()
         for i = 1, #itens do
             local current = itens[i]
             local content = private_darwin.get_asset(dir .. "/" .. current)
-            if private_darwin.starts_with(current, "render.") and content then
+            local path = dtw.newPath(current)
+            local name = path.get_name()
+            if private_darwin.starts_with(name, "render.") and content then
                 local render_result = private_darwin_candango.Render_text(content)
                 if render_result.exist_error then
                     error("internal errror" .. render_result.error_message)
                 end
-                content = render_result.render_text
-                current = string.sub(current, #"render." + 1, #current)
+                content        = render_result.render_text
+                local new_name = string.sub(name, #"render." + 1, #current)
+                path.set_name(new_name)
+                current = path.get_full_path()
             end
 
             if content then

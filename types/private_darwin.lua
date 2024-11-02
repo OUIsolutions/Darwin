@@ -40,5 +40,6 @@
 ---@field get_asset fun(path:string):string | nil
 ---@field starts_with fun(str:string,target:string):boolean
 ---@field count_bars fun(str:string):number
+---@field project_name string
 ---@type PrivateDarwin
 private_darwin = private_darwin
