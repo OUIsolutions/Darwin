@@ -1,1 +1,1 @@
-a basic calculator
+a basic calculator with C interoperability
