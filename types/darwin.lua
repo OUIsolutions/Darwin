@@ -7,6 +7,8 @@
 ---@field generate_lua_output fun(filename:string)
 ---@field generate_c_executable_code fun():string
 ---@field generate_c_executable_output fun(filename:string)
+---@field generate_c_lib_code fun():string
+---@field generate_c_lib_output fun(filename:string)
 ---@field add_c_code fun (code:string)
 ---@field c_include fun (lib:string)
 ---@field add_c_internal fun(code:string)
