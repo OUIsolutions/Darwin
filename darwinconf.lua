@@ -80,6 +80,6 @@ for i = 1, #src_files do
 end
 darwin.add_lua_code("main()")
 darwin.generate_lua_output("debug.lua")
-darwin.generate_c_executable_output("darwin011.c")
-os.execute("gcc darwin011.c -o  darwin011.o")
-os.execute("gcc darwin011.c -o  darwin011.o")
+darwin.generate_c_executable_output("darwin012.c")
+os.execute("gcc darwin012.c -o  darwin012.o")
+os.execute("gcc darwin012.c -o  darwin012.o")
