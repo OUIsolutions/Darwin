@@ -5,11 +5,7 @@
 
 {private_darwin.include_code}
 
-#define OPEN {private_darwin.OPEN}
-#define CLOSE {private_darwin.CLOSE}
-
-
-int luaopen_{private_darwin.lib_name}(lua_State *state)OPEN
+int luaopen_{private_darwin.lib_name}(lua_State *state){private_darwin.OPEN}
     //functions will be only assescible by the required reciver
     LuaCEmbed * l  = newLuaCEmbedLib(state);
 
@@ -19,9 +15,10 @@ int luaopen_{private_darwin.lib_name}(lua_State *state)OPEN
     LuaCEmbed_evaluate(main_obj,"{private_darwin.PERCENT}s",(const char[]){private_darwin.darwin_execcode});
 
 
-    if(LuaCEmbed_has_errors(main_obj)) OPEN
+    if(LuaCEmbed_has_errors(main_obj)) {private_darwin.OPEN}
         return 0;
-    CLOSE
+    {private_darwin.CLOSE}
+
 
     {{if private_darwin.lib_object then}
         lua_getglobal(self->state,"{private_darwin.lib_object}");
@@ -30,7 +27,4 @@ int luaopen_{private_darwin.lib_name}(lua_State *state)OPEN
         return 0;
     }
 
-CLOSE
-
-#undef OPEN
-#undef  CLOSE
+{private_darwin.CLOSE}
