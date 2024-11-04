@@ -10,5 +10,9 @@ for i = 1, #src_files do
     darwin.add_lua_code("-- file: " .. current .. "\n")
     darwin.add_lua_file(current)
 end
-darwin.add_lua_code("return {private_darwin.project_name}")
-darwin.generate_c_lib_output("private_darwin.project_name}")
+
+darwin.generate_c_lib_output(
+    "{private_darwin.project_name}",
+    "{private_darwin.project_name}",
+    "{private_darwin.project_name}.c"
+)
