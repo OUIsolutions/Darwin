@@ -21,7 +21,7 @@ int luaopen_{private_darwin.lib_name}(lua_State *state){private_darwin.OPEN}
 
 
     {{if private_darwin.lib_object then}
-        lua_getglobal(self->state,"{private_darwin.lib_object}");
+        lua_getglobal(self->state,"{private_darwin.object_export}");
         return 1;
     {%else}
         return 0;

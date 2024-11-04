@@ -1,8 +1,9 @@
-darwin.generate_c_lib_code = function(lib_name)
+darwin.generate_c_lib_code = function(lib_name, object_export)
     private_darwin.darwin_execcode = private_darwin.create_c_str_buffer(
         darwin.generate_lua_code()
     )
     private_darwin.lib_name = lib_name
+    private_darwin.object_export = object_export
     local executable = private_darwin.get_asset('lib.c')
     if not executable then
         error("internal error: executable not found")
@@ -16,6 +17,6 @@ darwin.generate_c_lib_code = function(lib_name)
 end
 
 
-darwin.generate_c_lib_output = function(libnname, filename)
-    dtw.write_file(filename, darwin.generate_c_lib_code(libnname))
+darwin.generate_c_lib_output = function(libnname, object_export, filename)
+    dtw.write_file(filename, darwin.generate_c_lib_code(libnname, object_export))
 end

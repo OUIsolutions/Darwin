@@ -43,5 +43,7 @@
 ---@field count_bars fun(str:string):number
 ---@field project_name string
 ---@field lib_name string
+---@field object_export string
+
 ---@type PrivateDarwin
 private_darwin = private_darwin
