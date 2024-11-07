@@ -16,6 +16,7 @@ darwin.load_lualib_from_c(
     "luaopen_private_{private_darwin.project_name}_cinterop",
     "private_{private_darwin.project_name}_cinterop"
 )
+-- we dont need to include ,since its already imported by "cinterop/main_lib.c"
 local include_lua_cembed = false
 darwin.generate_c_lib_output(
     "{private_darwin.project_name}",
