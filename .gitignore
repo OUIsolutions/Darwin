@@ -5,7 +5,7 @@ candangoEngine
 LuaDoTheWorld
 LuaCEmbed.h
 assets/LuaCEmbed.h
-
+install_dependencies.sh
 dependencies
 types0*
 local_move.sh

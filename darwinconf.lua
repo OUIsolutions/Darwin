@@ -4,15 +4,6 @@ local cache_arg = arg[4]
 darwin.add_c_code("\n#undef printf\n")
 darwin.add_c_code("#define printf(...) \n")
 
-if cache_arg ~= "cache" then
-    os.execute(
-        "curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/v0.77/LuaCEmbed.h -o assets/LuaCEmbed.h  ")
-    dtw.remove_any("LuaDoTheWorld")
-    os.execute("git clone -b v0.71 https://github.com/OUIsolutions/LuaDoTheWorld.git")
-    dtw.remove_any("candangoEngine")
-    os.execute("git clone -b V0.001 https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine.git")
-end
-
 
 darwin.add_c_file("LuaDoTheWorld/src/one.c", true, function(import, path)
     -- to make the luacembe not be imported twice
