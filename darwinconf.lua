@@ -1,5 +1,3 @@
-local cache_arg = arg[4]
-
 -- eliminantes unwanted prints
 darwin.add_c_code("\n#undef printf\n")
 darwin.add_c_code("#define printf(...) \n")
