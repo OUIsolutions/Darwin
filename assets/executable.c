@@ -1,6 +1,10 @@
 
 
-{!private_darwin.get_asset("LuaCEmbed.h")}
+
+{{if private_darwin.include_lua_cembed then}
+    {!private_darwin.get_asset("LuaCEmbed.h")}
+}
+
 {private_darwin.include_code}
 
 

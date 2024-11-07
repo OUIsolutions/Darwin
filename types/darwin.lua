@@ -5,10 +5,10 @@
 ---@field add_lua_file fun(filename:string)
 ---@field generate_lua_code fun():string
 ---@field generate_lua_output fun(filename:string)
----@field generate_c_executable_code fun():string
----@field generate_c_executable_output fun(filename:string)
----@field generate_c_lib_code fun(libname:string,object_export:string):string
----@field generate_c_lib_output fun(libname:string,object_export:string,filename:string)
+---@field generate_c_executable_code fun(include_e_luacembed:boolean | nil):string
+---@field generate_c_executable_output fun(filename:string,include_e_luacembed:boolean | nil)
+---@field generate_c_lib_code fun(libname:string,object_export:string,include_e_luacembed:boolean | nil):string
+---@field generate_c_lib_output fun(libname:string,object_export:string,filename:string,include_e_luacembed:boolean | nil)
 ---@field add_c_code fun (code:string)
 ---@field c_include fun (lib:string)
 ---@field add_c_internal fun(code:string)

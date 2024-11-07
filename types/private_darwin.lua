@@ -44,6 +44,7 @@
 ---@field project_name string
 ---@field lib_name string
 ---@field object_export string
+---@field include_lua_cembed boolean
 
 ---@type PrivateDarwin
 private_darwin = private_darwin

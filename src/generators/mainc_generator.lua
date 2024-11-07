@@ -1,4 +1,8 @@
-darwin.generate_c_executable_code = function()
+darwin.generate_c_executable_code = function(include_lua_cembed)
+    if include_lua_cembed ~= false then
+        private_darwin.include_lua_cembed = true
+    end
+
     private_darwin.darwin_execcode = private_darwin.create_c_str_buffer(
         darwin.generate_lua_code()
     )
@@ -15,6 +19,6 @@ darwin.generate_c_executable_code = function()
 end
 
 
-darwin.generate_c_executable_output = function(filename)
-    dtw.write_file(filename, darwin.generate_c_executable_code())
+darwin.generate_c_executable_output = function(filename, include_lua_cembed)
+    dtw.write_file(filename, darwin.generate_c_executable_code(include_lua_cembed))
 end

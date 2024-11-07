@@ -1,13 +1,13 @@
 
 {{if private_darwin.include_lua_cembed then}
     {!private_darwin.get_asset("LuaCEmbed.h")}
-{%end}
+}
 
 {private_darwin.include_code}
 
 int luaopen_{private_darwin.lib_name}(lua_State *state){private_darwin.OPEN}
     //functions will be only assescible by the required reciver
-    LuaCEmbed * l  = newLuaCEmbedLib(state);
+    LuaCEmbed *main_obj = newLuaCEmbedLib(state);
 
     {private_darwin.cglobals}
     {private_darwin.c_calls}
@@ -19,12 +19,10 @@ int luaopen_{private_darwin.lib_name}(lua_State *state){private_darwin.OPEN}
         return 0;
     {private_darwin.CLOSE}
 
-
-    {{if private_darwin.lib_object then}
-        lua_getglobal(self->state,"{private_darwin.object_export}");
-        return 1;
-    {%else}
-        return 0;
+    {{if private_darwin.object_export}
+        lua_getglobal(main_obj->state,"my_project");
+       return  1;
     }
+    return 0;
 
 {private_darwin.CLOSE}

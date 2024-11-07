@@ -1,4 +1,8 @@
-darwin.generate_c_lib_code = function(lib_name, object_export)
+darwin.generate_c_lib_code = function(lib_name, object_export, include_lua_cembed)
+    if include_lua_cembed ~= false then
+        private_darwin.include_lua_cembed = true
+    end
+
     private_darwin.darwin_execcode = private_darwin.create_c_str_buffer(
         darwin.generate_lua_code()
     )
@@ -17,6 +21,6 @@ darwin.generate_c_lib_code = function(lib_name, object_export)
 end
 
 
-darwin.generate_c_lib_output = function(libnname, object_export, filename)
-    dtw.write_file(filename, darwin.generate_c_lib_code(libnname, object_export))
+darwin.generate_c_lib_output = function(libnname, object_export, filename, include_lua_cembed)
+    dtw.write_file(filename, darwin.generate_c_lib_code(libnname, object_export, include_lua_cembed))
 end
