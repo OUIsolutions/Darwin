@@ -4,6 +4,7 @@ debug.lua
 candangoEngine
 LuaDoTheWorld
 LuaCEmbed.h
+internal_build.sh
 assets/LuaCEmbed.h
 dependencies
 types0*
