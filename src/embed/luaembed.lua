@@ -1,5 +1,5 @@
 private_darwin.embed_lua_global_concat = function(value)
-    PrivateDarwin_lua_globals = PrivateDarwin_lua_globals .. value
+    private_darwin.lua_globals = private_darwin.lua_globals .. value
 end
 
 private_darwin.embed_lua_table = function(table_name, current_table)

@@ -21,7 +21,7 @@ private_darwin.create_c_str_bufer = function(value)
 end
 
 private_darwin.create_lua_str_buffer = function(str_code)
-    PrivateDarwin_require_parse_to_bytes = true
+    private_darwin.require_parse_to_bytes = true
     local name = string.format("private_darwin_sha%s", dtw.generate_sha(str_code))
 
     if private_darwin.is_inside(private_darwin.generated_lua_str_shas, name) then
@@ -42,7 +42,7 @@ private_darwin.create_lua_str_buffer = function(str_code)
         buffer[#buffer + 1] = string.format("%d,", byte)
     end
 
-    buffer[#buffer + 1] = "}))"
+    buffer[#buffer + 1] = "}))\n"
     private_darwin.lua_str_shas_code = private_darwin.lua_str_shas_code .. table.concat(buffer, "")
     return name
 end
