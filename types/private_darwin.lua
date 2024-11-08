@@ -10,7 +10,7 @@
 ---@field cglobals_size number
 ---@field cglobals string
 ---@field include_code string
----@field c_calls string
+---@field c_calls string[]
 ---@field require_parse_to_bytes boolean
 ---@field lua_globals_size  number
 ---@field lua_globals  string

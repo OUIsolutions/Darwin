@@ -9,7 +9,17 @@ int luaopen_{private_darwin.lib_name}(lua_State *state){private_darwin.OPEN}
     LuaCEmbed *main_obj = newLuaCEmbedLib(state);
 
     {private_darwin.cglobals}
-    {private_darwin.c_calls}
+    {private_darwin.cglobals}
+
+    {{for i = 1, #private_darwin.c_calls do}
+        {private_darwin.c_calls[i]}
+        if(LuaCEmbed_has_errors(main_obj)) {private_darwin.OPEN}
+            printf("{private_darwin.PERCENT}s",LuaCEmbed_get_error_message(main_obj));
+            LuaCEmbed_dangerous_raise_self_error_jumping(main_obj);
+            return 0;
+
+        {private_darwin.CLOSE}
+    }
 
     LuaCEmbed_evaluate(main_obj,"{private_darwin.PERCENT}s",(const char[]){private_darwin.darwin_execcode});
     if(LuaCEmbed_has_errors(main_obj)) {private_darwin.OPEN}

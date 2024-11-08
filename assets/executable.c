@@ -18,12 +18,21 @@ int main(int argc,char *argv[]) {private_darwin.OPEN}
     {private_darwin.CLOSE}
 
     {private_darwin.cglobals}
-    {private_darwin.c_calls}
+    {{for i = 1, #private_darwin.c_calls do}
+        {private_darwin.c_calls[i]}
+        if(LuaCEmbed_has_errors(main_obj)) {private_darwin.OPEN}
+            printf("{private_darwin.PERCENT}s",LuaCEmbed_get_error_message(main_obj));
+            LuaCEmbed_free(main_obj);
+            return 1;
+        {private_darwin.CLOSE}
+    }
 
 
     LuaCEmbed_evaluate(main_obj,"{private_darwin.PERCENT}s",(const char[]){private_darwin.darwin_execcode});
     if(LuaCEmbed_has_errors(main_obj)) {private_darwin.OPEN}
         printf("{private_darwin.PERCENT}s",LuaCEmbed_get_error_message(main_obj));
+        LuaCEmbed_free(main_obj);
+        return 1;
     {private_darwin.CLOSE}
 
     LuaCEmbed_free(main_obj);

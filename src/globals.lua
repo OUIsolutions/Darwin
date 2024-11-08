@@ -4,7 +4,7 @@ private_darwin.cglobals_size = 1
 private_darwin.cglobals      = ""
 
 private_darwin.include_code  = ""
-private_darwin.c_calls       = ""
+private_darwin.c_calls       = {}
 
 
 private_darwin.require_parse_to_bytes  = false

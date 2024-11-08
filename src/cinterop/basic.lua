@@ -7,7 +7,7 @@ darwin.c_include = function(lib)
 end
 
 darwin.add_c_internal = function(code)
-    private_darwin.c_calls = private_darwin.c_calls .. code
+    private_darwin.c_calls[#private_darwin.c_calls + 1] = code
 end
 
 
