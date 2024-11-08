@@ -1,2 +1,2 @@
-gcc darwin011.c -o darwin011.o
-./darwin011.o build
+gcc darwin012.c -o darwin012.o
+./darwin012.o build
