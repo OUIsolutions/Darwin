@@ -10,7 +10,7 @@ curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.011/darwin012
 ## Creating a project
 first compile darwin
 ```shel
-gcc darwin011.c -o darwin011.o
+gcc darwin012.c -o darwin012.o
 ```
 Then start a example project
 ```shel
