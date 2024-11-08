@@ -2,10 +2,10 @@
 A Boostrapped lua Compiler
 
 ## Install:
-download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.012/darwin011.c)
+download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.012/darwin012.c)
 by typing
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.011/darwin012.c -o darwin011.c
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.011/darwin012.c -o darwin012.c
 ```
 ## Creating a project
 first compile darwin
