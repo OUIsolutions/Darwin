@@ -14,11 +14,11 @@ gcc darwin012.c -o darwin012.o
 ```
 Then start a example project
 ```shel
-./darwin011.o start calc my_project_name
+./darwin012.o start calc my_project_name
 ```
 and build with:
 ```shel
-./darwin011.o build darwinconf.lua
+./darwin012.o build darwinconf.lua
 ```
 now you can run the final bin with:
 ```shel
