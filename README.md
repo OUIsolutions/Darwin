@@ -20,7 +20,7 @@ and build with:
 ```shel
 ./darwin011.o build darwinconf.lua
 ```
-now you can run the final bin with: 
+now you can run the final bin with:
 ```shel
 ./my_project_name.o 10 + 10
 ```
@@ -44,11 +44,11 @@ darwin.add_lua_code("print(hello_msg)")
 ```
 
 
-#### darwin.embedglobal
+#### darwin.embed_global
 Embed anything to the final executable,it works for any type of object ,(except for functions)
 if you pass "lua" as the 3 parameter, it will embed into the final lua
 ```lua
-darwin.embedglobal("hello_msg", "hello world")
+darwin.embed_global("hello_msg", "hello world")
 ```
 
 ### Generators

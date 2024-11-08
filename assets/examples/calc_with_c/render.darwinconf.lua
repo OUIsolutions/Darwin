@@ -1,4 +1,4 @@
-darwin.embedglobal("help", dtw.load_file("help.txt"))
+darwin.embed_global("help", dtw.load_file("help.txt"))
 local concat_path = true
 local src_files = dtw.list_files_recursively("src", concat_path)
 for i = 1, #src_files do
