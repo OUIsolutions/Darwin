@@ -119,6 +119,15 @@ for i = 1, #src_files do
     darwin.add_lua_file(current)
 end
 ```
+
+### Building from scratch 
+if you want to build darwin from scratch run: 
+```shell
+sh install_dependencies.sh 
+sh compiledarwin.sh 
+sh build.sh 
+```
+
 ### DePendencies:
 ## Lua:
 **Lua** from https://lua.org/
