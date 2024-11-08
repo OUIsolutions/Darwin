@@ -14,7 +14,7 @@
 ---@field require_parse_to_bytes boolean
 ---@field lua_globals_size  number
 ---@field lua_globals  string
----@field cglobals_already_setted string[]
+---@field globals_already_setted string[]
 ---@field create_c_str_buffer fun(str_code:string):string
 ---@field create_lua_str_buffer fun(str_code:string):string
 ---@field is_string_at_point fun(str:string,target:string,point:number):boolean
@@ -45,6 +45,9 @@
 ---@field lib_name string
 ---@field object_export string
 ---@field include_lua_cembed boolean
+---@field resset_lua fun()
+---@field resset_c fun()
+---@field resset_all fun()
 
 ---@type PrivateDarwin
 private_darwin = private_darwin

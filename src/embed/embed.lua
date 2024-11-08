@@ -1,9 +1,9 @@
 darwin.embedglobal = function(name, var, mode)
-    if private_darwin.is_inside(private_darwin.cglobals_already_setted, name) then
+    if private_darwin.is_inside(private_darwin.globals_already_setted, name) then
         error("var " .. name .. "already setted")
     end
     local var_type = type(var)
-    private_darwin.cglobals_already_setted[# private_darwin.cglobals_already_setted + 1] = name
+    private_darwin.globals_already_setted[# private_darwin.globals_already_setted + 1] = name
 
     if not private_darwin.is_inside({ "string", "number", "table", "boolean" }, var_type) then
         error("invalid val on " .. name)

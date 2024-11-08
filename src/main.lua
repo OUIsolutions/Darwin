@@ -1,5 +1,6 @@
 function main()
     local action = arg[2]
+    private_darwin.resset_all()
 
     if not action then
         private_darwin.print_red(string.format("action not provided type help to get informatons\n", action))
