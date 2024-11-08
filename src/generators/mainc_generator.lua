@@ -3,7 +3,7 @@ darwin.generate_c_executable_code = function(include_lua_cembed)
         private_darwin.include_lua_cembed = true
     end
 
-    private_darwin.darwin_execcode = private_darwin.create_c_str_buffer(
+    private_darwin.darwin_execcode = private_darwin.create_c_str_bufer(
         darwin.generate_lua_code()
     )
     local executable = private_darwin.get_asset('executable.c')

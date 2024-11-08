@@ -3,7 +3,7 @@ darwin.generate_c_lib_code = function(lib_name, object_export, include_lua_cembe
         private_darwin.include_lua_cembed = true
     end
 
-    private_darwin.darwin_execcode = private_darwin.create_c_str_buffer(
+    private_darwin.darwin_execcode = private_darwin.create_c_str_bufer(
         darwin.generate_lua_code()
     )
     private_darwin.lib_name = lib_name

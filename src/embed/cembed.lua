@@ -3,6 +3,7 @@ private_darwin.c_global_concat = function(value)
 end
 
 
+
 private_darwin.embed_c_table = function(original_name, table_name, current_table)
     for key, val in pairs(current_table) do
         local key_type = type(key)
@@ -26,10 +27,10 @@ private_darwin.embed_c_table = function(original_name, table_name, current_table
 
         if key_type == "number" and valtype == "string" then
             private_darwin.c_global_concat(string.format(
-                "LuaCEmbedTable_set_raw_string_by_index(%s,%d,(const char *)(unsigned  char[])%s,%d);\n",
+                "LuaCEmbedTable_set_raw_string_by_index(%s,%d,(const char*)%s,%d);\n",
                 table_name,
                 key - 1,
-                private_darwin.create_c_str_buffer(val),
+                private_darwin.create_c_str_bufer(val),
                 string.len(val)
             ))
         end
@@ -79,7 +80,7 @@ private_darwin.embed_c_table = function(original_name, table_name, current_table
                 "LuaCEmbedTable_set_raw_string_prop(%s,%q,(const char *)(unsigned  char[])%s,%d);\n",
                 table_name,
                 key,
-                private_darwin.create_c_str_buffer(val),
+                private_darwin.create_c_str_bufer(val),
                 string.len(val)
             ))
         end
@@ -139,9 +140,9 @@ private_darwin.embed_global_in_c = function(name, var, var_type)
     if var_type == "string" then
         private_darwin.c_global_concat(
             string.format(
-                'LuaCEmbed_set_global_raw_string(main_obj,"%s",(const char *)(unsigned  char[])%s,%d);\n',
+                'LuaCEmbed_set_global_raw_string(main_obj,"%s",( const char *)%s,%d);\n',
                 name,
-                private_darwin.create_c_str_buffer(var),
+                private_darwin.create_c_str_bufer(var),
                 string.len(var)
             )
         )

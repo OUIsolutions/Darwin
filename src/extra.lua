@@ -1,33 +1,3 @@
-private_darwin.create_c_str_buffer = function(str_code)
-    local buffer = { "{" }
-    local size = string.len(str_code)
-    for i = 1, size do
-        local current_char = string.sub(str_code, i, i)
-        local byte = string.byte(current_char)
-        buffer[#buffer + 1] = string.format("%d,", byte)
-    end
-    buffer[#buffer + 1] = "0}"
-    return table.concat(buffer, "")
-end
-
-
-private_darwin.create_lua_str_buffer = function(str_code)
-    PrivateDarwin_require_parse_to_bytes = true
-    local buffer = { "table.concat(PrivateDarwing_parse_to_bytes({" }
-    local size = string.len(str_code)
-    for i = 1, size do
-        local current_char = string.sub(str_code, i, i)
-        local byte = string.byte(current_char)
-        buffer[#buffer + 1] = string.format("%d,", byte)
-    end
-
-    buffer[#buffer + 1] = "}))"
-    return table.concat(buffer, "")
-end
-
-
-
-
 private_darwin.is_inside = function(target_table, value)
     for i = 1, #target_table do
         if target_table[i] == value then

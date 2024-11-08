@@ -7,8 +7,7 @@
 int luaopen_{private_darwin.lib_name}(lua_State *state){private_darwin.OPEN}
     //functions will be only assescible by the required reciver
     LuaCEmbed *main_obj = newLuaCEmbedLib(state);
-
-    {private_darwin.cglobals}
+    {private_darwin.c_str_shas_code}
     {private_darwin.cglobals}
 
     {{for i = 1, #private_darwin.c_calls do}
@@ -21,7 +20,7 @@ int luaopen_{private_darwin.lib_name}(lua_State *state){private_darwin.OPEN}
         {private_darwin.CLOSE}
     }
 
-    LuaCEmbed_evaluate(main_obj,"{private_darwin.PERCENT}s",(const char[]){private_darwin.darwin_execcode});
+    LuaCEmbed_evaluate(main_obj,"{private_darwin.PERCENT}s",(const char *){private_darwin.darwin_execcode});
     if(LuaCEmbed_has_errors(main_obj)) {private_darwin.OPEN}
         LuaCEmbed_dangerous_raise_self_error_jumping(main_obj);
         return 0;
