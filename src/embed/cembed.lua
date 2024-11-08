@@ -77,7 +77,7 @@ private_darwin.embed_c_table = function(original_name, table_name, current_table
 
         if key_type == "string" and valtype == "string" then
             private_darwin.c_global_concat(string.format(
-                "LuaCEmbedTable_set_raw_string_prop(%s,%q,(const char *)(unsigned  char[])%s,%d);\n",
+                "LuaCEmbedTable_set_raw_string_prop(%s,%q,(const char *)%s,%d);\n",
                 table_name,
                 key,
                 private_darwin.create_c_str_bufer(val),
