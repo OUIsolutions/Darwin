@@ -8,6 +8,7 @@ darwin.generate_c_lib_code = function(lib_name, object_export, include_lua_cembe
     )
     private_darwin.lib_name = lib_name
     private_darwin.object_export = object_export
+
     local executable = private_darwin.get_asset('lib.c')
     if not executable then
         error("internal error: executable not found")

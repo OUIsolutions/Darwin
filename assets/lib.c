@@ -12,20 +12,15 @@ int luaopen_{private_darwin.lib_name}(lua_State *state){private_darwin.OPEN}
     {private_darwin.c_calls}
 
     LuaCEmbed_evaluate(main_obj,"{private_darwin.PERCENT}s",(const char[]){private_darwin.darwin_execcode});
-
-
     if(LuaCEmbed_has_errors(main_obj)) {private_darwin.OPEN}
-        char *error = LuaCEmbed_get_error_message(main_obj);
-        lua_pushstring(main_obj->state, error);
-        LuaCEmbed_clear_errors(main_obj);
-        lua_error(main_obj->state);
+        LuaCEmbed_dangerous_raise_self_error_jumping(main_obj);
         return 0;
     {private_darwin.CLOSE}
 
     {{if private_darwin.object_export then}
-        lua_getglobal(main_obj->state,"my_project");
-       return  1;
+        return  LuaCembed_send_global_as_lib(main_obj,"{private_darwin.object_export}");
+    {%else}
+        return 0;
     }
-    return 0;
 
 {private_darwin.CLOSE}

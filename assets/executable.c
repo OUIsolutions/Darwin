@@ -16,8 +16,11 @@ int main(int argc,char *argv[]) {private_darwin.OPEN}
     for(int i =0; i <argc;i++) {private_darwin.OPEN}
             LuaCEmbedTable_append_string(args_table,argv[i]);
     {private_darwin.CLOSE}
+
     {private_darwin.cglobals}
     {private_darwin.c_calls}
+
+
     LuaCEmbed_evaluate(main_obj,"{private_darwin.PERCENT}s",(const char[]){private_darwin.darwin_execcode});
     if(LuaCEmbed_has_errors(main_obj)) {private_darwin.OPEN}
         printf("{private_darwin.PERCENT}s",LuaCEmbed_get_error_message(main_obj));
