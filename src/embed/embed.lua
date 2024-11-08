@@ -1,4 +1,4 @@
-darwin.embedglobal = function(name, var, mode)
+darwin.embed_global = function(name, var, mode)
     if private_darwin.is_inside(private_darwin.globals_already_setted, name) then
         error("var " .. name .. "already setted")
     end

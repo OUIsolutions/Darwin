@@ -3,6 +3,7 @@ darwin.generate_lua_code = function()
     if private_darwin.require_parse_to_bytes then
         final = final .. private_darwin.get_asset("parse_to_bytes.lua") .. "\n"
     end
+    final = final .. private_darwin.lua_str_shas_code .. "\n"
     final = final .. private_darwin.lua_globals .. "\n"
     final = final .. private_darwin.main_lua_code .. "\n"
     return final

@@ -15,7 +15,7 @@
 ---@field load_lualib_from_c fun(function_name:string,object_name:string)
 ---@field call_c_func fun(function_name:string)
 ---@field add_c_file fun (filename:string, folow_includes:boolean | nil, include_verifier:fun(import:string,path:string):boolean | nil)
----@field embedglobal fun (name:string, var:any, mode:DarwinGlobalMode|nil)
+---@field embed_global fun (name:string, var:any, mode:DarwinGlobalMode|nil)
 
 
 ---@type Darwin

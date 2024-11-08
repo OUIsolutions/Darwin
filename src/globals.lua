@@ -1,7 +1,6 @@
 private_darwin.resset_lua = function()
     private_darwin.main_lua_code          = ""
     private_darwin.require_parse_to_bytes = false
-    private_darwin.globals_already_setted = {}
     private_darwin.lua_str_shas_code      = ""
     private_darwin.generated_lua_str_shas = {}
 end
@@ -21,6 +20,7 @@ private_darwin.resset_c = function()
 end
 
 private_darwin.resset_all = function()
+    private_darwin.globals_already_setted = {}
     private_darwin.resset_lua()
     private_darwin.resset_c()
 end

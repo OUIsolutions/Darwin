@@ -14,7 +14,6 @@
 ---@field require_parse_to_bytes boolean
 ---@field lua_globals_size  number
 ---@field lua_globals  string
----@field globals_already_setted string[]
 ---@field is_string_at_point fun(str:string,target:string,point:number):boolean
 ---@field extract_dir fun(path:string):string
 ---@field addcfile_internal fun(contents_list:string[], already_included:string[], filename:string, include_verifier:fun(import:string,path:string):boolean)
@@ -52,5 +51,7 @@
 ---@field generated_lua_str_shas string[]
 ---@field c_str_shas_code string
 ---@field generated_c_str_shas string[]
+---@field globals_already_setted string[]
+
 ---@type PrivateDarwin
 private_darwin = private_darwin
