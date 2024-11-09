@@ -59,5 +59,6 @@
 ---@field generated_c_str_shas string[]
 ---@field globals_already_setted string[]
 ---@field lua_modules PrivateDarwinModuleInternal[]
+---@field construct_possible_files string[]
 ---@type PrivateDarwin
 private_darwin = private_darwin

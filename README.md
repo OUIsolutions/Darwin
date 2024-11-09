@@ -2,23 +2,23 @@
 A Boostrapped lua Compiler
 
 ## Install:
-download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.012/darwin012.c)
+download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.013/darwin013.c)
 by typing
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.012/darwin012.c -o darwin012.c
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.013/darwin013.c -o darwin013.c
 ```
 ## Creating a project
 first compile darwin
 ```shel
-gcc darwin012.c -o darwin012.o
+gcc darwin013.c -o darwin013.o
 ```
 Then start a example project
 ```shel
-./darwin012.o start calc my_project_name
+./darwin013.o start calc my_project_name
 ```
 and build with:
 ```shel
-./darwin012.o build darwinconf.lua
+./darwin013.o build darwinconf.lua
 ```
 now you can run the final bin with:
 ```shel
