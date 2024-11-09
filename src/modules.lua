@@ -35,6 +35,10 @@ darwin.unsafe_add_lua_code_following_require = function(start_filename)
         for i = 1, #possible_paths do
             local current = possible_paths[i]
             local is_file = dtw.isfile(current)
+            if is_file and dtw.ends_with(current, ".so") then
+                content = private_darwin.embed_shared_lib(item, current)
+                break
+            end
             if is_file then
                 content = dtw.load_file(current)
                 break

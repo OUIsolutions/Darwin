@@ -22,6 +22,7 @@ end
 
 private_darwin.resset_all = function()
     private_darwin.globals_already_setted = {}
+    private_darwin.shared_libs = {}
     private_darwin.resset_lua()
     private_darwin.resset_c()
 end
