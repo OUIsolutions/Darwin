@@ -1,4 +1,4 @@
-function main()
+private_darwin.main = function()
     local action = arg[2]
     private_darwin.resset_all()
 

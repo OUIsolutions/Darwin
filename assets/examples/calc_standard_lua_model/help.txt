@@ -1,0 +1,4 @@
+type ./calc <x> + <y> to add
+type ./calc <x> - <y> to subtract
+type ./calc <x> x <y> to multiplicate
+type ./calc <x> / <y> to div

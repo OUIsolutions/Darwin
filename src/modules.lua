@@ -22,7 +22,6 @@ darwin.unsafe_add_lua_code_following_require = function(start_filename)
         if not content then
             error("file " .. item .. " not provided")
         end
-        dofile(filename)
         for i = 1, #private_darwin.lua_modules do
             local already_imported = private_darwin.lua_modules[i].path == filename
             if already_imported then
@@ -30,11 +29,11 @@ darwin.unsafe_add_lua_code_following_require = function(start_filename)
             end
         end
         private_darwin.lua_modules[#private_darwin.lua_modules + 1] = {
-            path = filename,
+            item = item,
             content = content
         }
+        return old_require(item)
     end
-
     dofile(start_filename)
     require = old_require
     darwin.add_lua_file(start_filename)

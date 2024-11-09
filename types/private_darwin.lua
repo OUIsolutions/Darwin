@@ -4,11 +4,12 @@
 ---@field callback fun()
 
 ---@class PrivateDarwinModuleInternal
----@field path string
+---@field item string
 ---@field content string
 
 
 ---@class PrivateDarwin
+---@field main fun()
 ---@field actions Actions[]
 ---@field is_inside fun(target_table:table,value:any):boolean
 ---@field main_lua_code string

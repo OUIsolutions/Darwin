@@ -1,5 +1,5 @@
 ---@class PrivateDarwinModule
----@field path string
+---@field item string
 ---@field callback_import fun():any
 
 ---@type PrivateDarwinModule[]
@@ -11,7 +11,7 @@ Private_darwin_old_require = require
 function require(item)
     for i = 1, #Private_darwin_modules do
         local current = Private_darwin_modules[i]
-        if current.path == item then
+        if current.item == item then
             return current.callback_import()
         end
     end

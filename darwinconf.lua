@@ -69,7 +69,7 @@ for i = 1, #src_files do
     local current = src_files[i]
     darwin.add_lua_file(current)
 end
-darwin.add_lua_code("main()")
+darwin.add_lua_code("private_darwin.main()")
 darwin.generate_lua_output("debug.lua")
 darwin.generate_c_executable_output("darwin013.c")
 os.execute("gcc darwin013.c -o  darwin013.o")
