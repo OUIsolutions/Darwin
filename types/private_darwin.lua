@@ -3,6 +3,11 @@
 ---@field name string
 ---@field callback fun()
 
+---@class PrivateDarwinModuleInternal
+---@field path string
+---@field content string
+
+
 ---@class PrivateDarwin
 ---@field actions Actions[]
 ---@field is_inside fun(target_table:table,value:any):boolean
@@ -52,6 +57,6 @@
 ---@field c_str_shas_code string
 ---@field generated_c_str_shas string[]
 ---@field globals_already_setted string[]
-
+---@field lua_modules PrivateDarwinModuleInternal[]
 ---@type PrivateDarwin
 private_darwin = private_darwin

@@ -16,7 +16,7 @@
 ---@field call_c_func fun(function_name:string)
 ---@field add_c_file fun (filename:string, folow_includes:boolean | nil, include_verifier:fun(import:string,path:string):boolean | nil)
 ---@field embed_global fun (name:string, var:any, mode:DarwinGlobalMode|nil)
-
+---@field unsafe_add_lua_code_following_require fun(start_filename:string)
 
 ---@type Darwin
 darwin = darwin

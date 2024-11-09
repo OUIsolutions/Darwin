@@ -3,6 +3,7 @@ private_darwin.resset_lua = function()
     private_darwin.require_parse_to_bytes = false
     private_darwin.lua_str_shas_code      = ""
     private_darwin.generated_lua_str_shas = {}
+    private_darwin.lua_modules            = {}
 end
 
 private_darwin.resset_c = function()
