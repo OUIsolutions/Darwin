@@ -13,6 +13,8 @@
 ---@field filename string
 
 ---@class PrivateDarwin
+---@field string string
+---@field table table
 ---@field main fun()
 ---@field actions Actions[]
 ---@field is_inside fun(target_table:table,value:any):boolean

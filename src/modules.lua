@@ -28,13 +28,13 @@ private_darwin.construct_possible_files = function(item)
 end
 darwin.unsafe_add_lua_code_following_require = function(start_filename)
     local old_package_load_lib = package.loadlib
+    local old_require = require
 
     package.loadlib = function(filename, func_name)
         private_darwin.embed_shared_lib(filename)
         return old_package_load_lib(filename, func_name)
     end
 
-    local old_require = require
     require = function(item)
         local content = nil
         local possible_paths = private_darwin.construct_possible_files(item)
