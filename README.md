@@ -50,6 +50,12 @@ binary, use only on trusted sources, and always make your bins using relative pa
 local include_shared_libs  = true
 darwin.unsafe_add_lua_code_following_require("main.lua",include_shared_libs)
 ```
+#### darwin.embed_shared_libs
+these functions embed the **.so**,its required if you need some **so** loaded by **unsafe_add_lua_code_following_require**
+call these function only after all your loadings ,and these function can be called only once per project (unless darwin.resset_all()
+```lua
+darwin.embed_shared_libs()
+```
 
 #### darwin.add_lua_code
 Add code to be interpreted
