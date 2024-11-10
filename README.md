@@ -54,7 +54,8 @@ darwin.unsafe_add_lua_code_following_require("main.lua",include_shared_libs)
 these functions embed the **.so**,its required if you need some **so** loaded by **unsafe_add_lua_code_following_require**
 call these function only after all your loadings ,and these function can be called only once per project (unless darwin.resset_all()
 ```lua
-darwin.embed_shared_libs()
+local mode = "c"
+darwin.embed_shared_libs(mode)
 ```
 
 #### darwin.add_lua_code
