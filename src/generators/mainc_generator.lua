@@ -24,7 +24,7 @@ end
 
 
 darwin.generate_c_executable_output = function(props)
-    dtw.write_file(props.filename,
+    dtw.write_file(props.output_name,
         darwin.generate_c_executable_code({
             include_lua_cembed = props.include_lua_cembed,
             temp_shared_lib_dir = props.temp_shared_lib_dir

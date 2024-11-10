@@ -11,5 +11,5 @@ end
 darwin.add_lua_code("return {private_darwin.project_name}")
 
 darwin.generate_lua_output({
-    filename = "{private_darwin.project_name}.lua"
+    output_name = "{private_darwin.project_name}.lua"
 })

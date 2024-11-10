@@ -5,7 +5,7 @@
 
 ---@class DarwinLuaGeneratorOutputProps
 ---@field temp_shared_lib_dir string | nil
----@field filename string
+---@field output_name string
 
 ---@class DarwinCExecutableProps
 ---@field temp_shared_lib_dir string | nil
@@ -14,7 +14,7 @@
 ---@class DarwinCOutputProps
 ---@field temp_shared_lib_dir string | nil
 ---@field include_lua_cembed boolean | nil
----@field filename string
+---@field output_name string
 
 ---@class DarwinClibProps
 ---@field libname  string
@@ -23,7 +23,7 @@
 ---@field temp_shared_lib_dir string | nil
 
 ---@class DarwinClibOutputProps
----@field filename string
+---@field output_name string
 ---@field libname  string
 ---@field object_export string
 ---@field include_e_luacembed boolean | nil

@@ -37,7 +37,7 @@ darwin.generate_lua_code = function(props)
 end
 
 darwin.generate_lua_output = function(props)
-    dtw.write_file(props.filename, darwin.generate_lua_code({
+    dtw.write_file(props.output_name, darwin.generate_lua_code({
         temp_shared_lib_dir = props.temp_shared_lib_dir
     }))
 end

@@ -20,7 +20,7 @@ darwin.load_lualib_from_c(
 darwin.generate_c_lib_output({
     libname = "{private_darwin.project_name}",
     object_export = "{private_darwin.project_name}",
-    filename = "{private_darwin.project_name}.c",
+    output_name = "{private_darwin.project_name}.c",
     include_e_luacembed = false
 })
 

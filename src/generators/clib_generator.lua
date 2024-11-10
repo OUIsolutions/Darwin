@@ -24,7 +24,7 @@ end
 
 
 darwin.generate_c_lib_output = function(props)
-    dtw.write_file(props.filename, darwin.generate_c_lib_code({
+    dtw.write_file(props.output_name, darwin.generate_c_lib_code({
         libname = props.libname,
         object_export = props.object_export,
         include_e_luacembed = props.include_e_luacembed,
