@@ -42,6 +42,14 @@ Add a lua file to be embed into the final  code
 ```lua
 darwin.add_lua_file("main.lua")
 ```
+#### darwin.unsafe_add_lua_code_following_require
+these will ad your files following the 'required' files,note that
+these functions uses evaluation and preserve your paths attributes to tthe final
+binary, use only on trusted sources, and always make your bins using relative paths
+```lua
+local include_shared_libs  = true
+darwin.unsafe_add_lua_code_following_require("main.lua",include_shared_libs)
+```
 
 #### darwin.add_lua_code
 Add code to be interpreted
@@ -143,12 +151,12 @@ for i = 1, #src_files do
 end
 ```
 
-### Building from scratch 
-if you want to build darwin from scratch run: 
+### Building from scratch
+if you want to build darwin from scratch run:
 ```shell
-sh install_dependencies.sh 
-sh compiledarwin.sh 
-sh build.sh 
+sh install_dependencies.sh
+sh compiledarwin.sh
+sh build.sh
 ```
 
 ### DePendencies:
