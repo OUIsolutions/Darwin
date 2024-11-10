@@ -27,8 +27,14 @@ private_darwin.construct_possible_files = function(item)
     }
 end
 darwin.unsafe_add_lua_code_following_require = function(start_filename)
-    local old_require = require
+    local old_package_load_lib = package.loadlib
 
+    package.loadlib = function(filename, func_name)
+        private_darwin.embed_shared_lib(filename)
+        return old_package_load_lib(filename, func_name)
+    end
+
+    local old_require = require
     require = function(item)
         local content = nil
         local possible_paths = private_darwin.construct_possible_files(item)
@@ -38,7 +44,7 @@ darwin.unsafe_add_lua_code_following_require = function(start_filename)
             if is_file and dtw.ends_with(current, ".so") then
                 local sha = private_darwin.embed_shared_lib(current)
                 content = string.format(
-                    "return package.loadlib(Private_darwin_shared_dir..'/%s.so','luaopen_%s')()",
+                    "return PrivateDarwin_old_load_lib(Private_darwin_shared_dir..'/%s.so','luaopen_%s')()",
                     sha,
                     item
                 )
@@ -68,5 +74,7 @@ darwin.unsafe_add_lua_code_following_require = function(start_filename)
     end
     dofile(start_filename)
     require = old_require
+    package.loadlib = old_package_load_lib
+
     darwin.add_lua_file(start_filename)
 end

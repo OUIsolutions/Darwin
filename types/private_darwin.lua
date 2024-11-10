@@ -10,6 +10,7 @@
 ---@class PrivateDarwinSHaredLib
 ---@field sha_item string
 ---@field content string
+---@field filename string
 
 ---@class PrivateDarwin
 ---@field main fun()

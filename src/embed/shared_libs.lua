@@ -1,5 +1,10 @@
 private_darwin.embed_shared_lib = function(filename)
     local content = dtw.load_file(filename)
+
+    if not content then
+        error("file of " .. filename .. " not provided")
+    end
+
     local sha = dtw.generate_sha(content)
 
     for i = 1, #private_darwin.shared_libs do
