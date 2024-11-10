@@ -16,7 +16,7 @@ private_darwin.create_c_str_bufer = function(value)
     end
     buffer[#buffer + 1] = "0};\n"
 
-    private_darwin.c_str_shas_code = private_darwin.c_str_shas_code .. table.concat(buffer, "")
+    private_darwin.c_str_shas_code = private_darwin.c_str_shas_code .. private_darwin.table.concat(buffer, "")
     return name
 end
 
@@ -43,6 +43,6 @@ private_darwin.create_lua_str_buffer = function(str_code)
     end
 
     buffer[#buffer + 1] = "}))\n"
-    private_darwin.lua_str_shas_code = private_darwin.lua_str_shas_code .. table.concat(buffer, "")
+    private_darwin.lua_str_shas_code = private_darwin.lua_str_shas_code .. private_darwin.table.concat(buffer, "")
     return name
 end

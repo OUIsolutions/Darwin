@@ -49,6 +49,6 @@
 ---@field add_c_file fun (filename:string, folow_includes:boolean | nil, include_verifier:fun(import:string,path:string):boolean | nil)
 ---@field embed_global fun (name:string, var:any, mode:DarwinGlobalMode|nil)
 ---@field embed_shared_libs fun( mode:DarwinGlobalMode|nil)
----@field unsafe_add_lua_code_following_require fun(start_filename:string)
+---@field unsafe_add_lua_code_following_require fun(start_filename:string,shared_lib_import:boolean | nil)
 ---@type Darwin
 darwin = darwin

@@ -3,6 +3,7 @@ darwin.generate_lua_code = function(props)
         props = {}
     end
     local final = ""
+
     if private_darwin.require_parse_to_bytes then
         final = final .. private_darwin.get_asset("parse_to_bytes.lua") .. "\n"
     end

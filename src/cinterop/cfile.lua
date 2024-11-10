@@ -118,5 +118,5 @@ darwin.add_c_file = function(filename, folow_includes, include_verifier)
     local contents_list = {}
     local already_included = {}
     private_darwin.addcfile_internal(contents_list, already_included, filename, include_verifier)
-    darwin.add_c_code(table.concat(contents_list, ""))
+    darwin.add_c_code(private_darwin.table.concat(contents_list, ""))
 end
