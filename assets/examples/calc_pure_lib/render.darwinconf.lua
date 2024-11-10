@@ -10,6 +10,6 @@ for i = 1, #src_files do
 end
 darwin.add_lua_code("return {private_darwin.project_name}")
 
-darwin.generate_lua_output({
+darwin.generate_lua_output({private_darwin.OPEN}
     output_name = "{private_darwin.project_name}.lua"
-})
+{private_darwin.CLOSE})

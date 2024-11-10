@@ -17,11 +17,11 @@ darwin.load_lualib_from_c(
     "private_{private_darwin.project_name}_cinterop"
 )
 -- we dont need to include ,since its already imported by "cinterop/main_lib.c"
-darwin.generate_c_lib_output({
+darwin.generate_c_lib_output({private_darwin.OPEN}
     libname = "{private_darwin.project_name}",
     object_export = "{private_darwin.project_name}",
     output_name = "{private_darwin.project_name}.c",
     include_e_luacembed = false
-})
+{private_darwin.CLOSE})
 
 os.execute(" gcc -Wall -shared -fpic -o {private_darwin.project_name}.so  {private_darwin.project_name}.c")
