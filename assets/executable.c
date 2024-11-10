@@ -1,6 +1,6 @@
 
 
-
+#define LUA_USE_DLOPEN
 {{if private_darwin.include_lua_cembed then}
     {!private_darwin.get_asset("LuaCEmbed.h")}
 }

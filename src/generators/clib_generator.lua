@@ -1,13 +1,16 @@
-darwin.generate_c_lib_code = function(lib_name, object_export, include_lua_cembed)
-    if include_lua_cembed ~= false then
+darwin.generate_c_lib_code = function(props)
+    if props.include_e_luacembed ~= false then
         private_darwin.include_lua_cembed = true
     end
 
     private_darwin.darwin_execcode = private_darwin.create_c_str_bufer(
-        darwin.generate_lua_code()
+        darwin.generate_lua_code({
+            temp_shared_lib_dir = props.temp_shared_lib_dir
+        })
     )
-    private_darwin.lib_name = lib_name
-    private_darwin.object_export = object_export
+
+    private_darwin.lib_name = props.libname
+    private_darwin.object_export = props.object_export
 
     local executable = private_darwin.get_asset('lib.c')
     if not executable then
@@ -22,6 +25,11 @@ darwin.generate_c_lib_code = function(lib_name, object_export, include_lua_cembe
 end
 
 
-darwin.generate_c_lib_output = function(libnname, object_export, filename, include_lua_cembed)
-    dtw.write_file(filename, darwin.generate_c_lib_code(libnname, object_export, include_lua_cembed))
+darwin.generate_c_lib_output = function(props)
+    dtw.write_file(props.output_name, darwin.generate_c_lib_code({
+        libname = props.libname,
+        object_export = props.object_export,
+        include_e_luacembed = props.include_e_luacembed,
+        temp_shared_lib_dir = props.temp_shared_lib_dir
+    }))
 end

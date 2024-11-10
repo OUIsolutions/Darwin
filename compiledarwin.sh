@@ -1,1 +1,1 @@
-gcc darwin011.c -o darwin011.o
+gcc darwin012.c -o darwin012.o

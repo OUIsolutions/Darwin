@@ -1,11 +1,17 @@
-darwin.generate_c_executable_code = function(include_lua_cembed)
-    if include_lua_cembed ~= false then
+darwin.generate_c_executable_code = function(props)
+    if not props then
+        props = {}
+    end
+    if props.include_lua_cembed ~= false then
         private_darwin.include_lua_cembed = true
     end
 
     private_darwin.darwin_execcode = private_darwin.create_c_str_bufer(
-        darwin.generate_lua_code()
+        darwin.generate_lua_code({
+            temp_shared_lib_dir = props.temp_shared_lib_dir,
+        })
     )
+
     local executable = private_darwin.get_asset('executable.c')
     if not executable then
         error("internal error: executable not found")
@@ -19,6 +25,10 @@ darwin.generate_c_executable_code = function(include_lua_cembed)
 end
 
 
-darwin.generate_c_executable_output = function(filename, include_lua_cembed)
-    dtw.write_file(filename, darwin.generate_c_executable_code(include_lua_cembed))
+darwin.generate_c_executable_output = function(props)
+    dtw.write_file(props.output_name,
+        darwin.generate_c_executable_code({
+            include_lua_cembed = props.include_lua_cembed,
+            temp_shared_lib_dir = props.temp_shared_lib_dir
+        }))
 end

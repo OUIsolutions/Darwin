@@ -2,23 +2,29 @@
 A Boostrapped lua Compiler
 
 ## Install:
-download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.012/darwin012.c)
+download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.013/darwin013.c)
 by typing
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.012/darwin012.c -o darwin012.c
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.013/darwin013.c -o darwin013.c
 ```
 ## Creating a project
 first compile darwin
 ```shel
-gcc darwin012.c -o darwin012.o
+gcc darwin013.c -o darwin013.o
 ```
 Then start a example project
 ```shel
-./darwin012.o start calc my_project_name
+./darwin013.o start calc my_project_name
 ```
+
+Alternativly you can list all the available start examples with:
+```shel
+./darwin013.o list
+```
+
 and build with:
 ```shel
-./darwin012.o build darwinconf.lua
+./darwin013.o build darwinconf.lua
 ```
 now you can run the final bin with:
 ```shel
@@ -58,12 +64,29 @@ of formats
 #### darwin.generate_c_executable_output
 export to a final *c* file , with a full runable executable code
 ```lua
-darwin.generate_c_executable_output("saida.c")
+darwin.generate_c_executable_output({output_name="saida.c"})
 ```
+#### darwin.generate_c_lib_output
+export to a lib  *c* file , that can be compiled as a shared lib after
+```lua
+darwin.generate_c_lib_output({
+    libname = "your_lib_name",
+    object_export = "the_global_object_you_want_to_export",
+    output_name = "your_output.c",
+    include_e_luacembed = true
+})
+```
+than you can complie with
+```shel
+gcc -Wall -shared -fpic -o your_output.so  your_output.c
+```
+
+
+
 #### darwin.generate_lua_output
 Generate a full lua code, with all the elements you added
 ```lua
-darwin.generate_lua_output("saida.lua")
+darwin.generate_lua_output({output_name="saida.lua"})
 ```
 ### CInterop
 #### darwin.add_c_code

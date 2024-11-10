@@ -3,7 +3,19 @@
 ---@field name string
 ---@field callback fun()
 
+---@class PrivateDarwinModuleInternal
+---@field item string
+---@field content string
+
+---@class PrivateDarwinSHaredLib
+---@field sha_item string
+---@field content string
+---@field filename string
+
 ---@class PrivateDarwin
+---@field string string
+---@field table table
+---@field main fun()
 ---@field actions Actions[]
 ---@field is_inside fun(target_table:table,value:any):boolean
 ---@field main_lua_code string
@@ -52,6 +64,10 @@
 ---@field c_str_shas_code string
 ---@field generated_c_str_shas string[]
 ---@field globals_already_setted string[]
-
+---@field lua_modules PrivateDarwinModuleInternal[]
+---@field construct_possible_files string[]
+---@field shared_libs  PrivateDarwinSHaredLib[]
+---@field embed_shared_lib fun(filename:string):string
+---@field shared_libs_were_embed boolean
 ---@type PrivateDarwin
 private_darwin = private_darwin
