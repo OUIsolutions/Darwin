@@ -8,7 +8,7 @@
 ---@field content string
 
 ---@class PrivateDarwinSHaredLib
----@field item string
+---@field sha_item string
 ---@field content string
 
 ---@class PrivateDarwin
@@ -64,6 +64,6 @@
 ---@field lua_modules PrivateDarwinModuleInternal[]
 ---@field construct_possible_files string[]
 ---@field shared_libs  PrivateDarwinSHaredLib[]
----@field embed_shared_lib fun(item:string,filename:string):string
+---@field embed_shared_lib fun(filename:string):string
 ---@type PrivateDarwin
 private_darwin = private_darwin

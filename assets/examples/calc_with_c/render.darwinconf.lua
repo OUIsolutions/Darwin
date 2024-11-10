@@ -10,7 +10,12 @@ darwin.add_lua_code("main()") -- these its required to start main
 
 darwin.c_include("cinterop/main_lib.c")
 darwin.load_lualib_from_c("luaopen_cinterop", "cinterop")
-local include_lua_cembed = false
-darwin.generate_c_executable_output("{private_darwin.project_name}.c", include_lua_cembed)
-darwin.generate_lua_output("{private_darwin.project_name}.lua")
+darwin.generate_c_executable_output({
+    filename = "{private_darwin.project_name}.c",
+    include_lua_cembed = false
+})
+
+darwin.generate_lua_output({
+    filename = "{private_darwin.project_name}.lua"
+})
 os.execute("gcc {private_darwin.project_name}.c -o {private_darwin.project_name}.o")
