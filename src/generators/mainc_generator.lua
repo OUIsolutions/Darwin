@@ -7,7 +7,9 @@ darwin.generate_c_executable_code = function(props)
     end
 
     private_darwin.darwin_execcode = private_darwin.create_c_str_bufer(
-        darwin.generate_lua_code({ temp_shared_lib_dir = props.temp_shared_lib_dir })
+        darwin.generate_lua_code({
+            temp_shared_lib_dir = props.temp_shared_lib_dir,
+        })
     )
 
     local executable = private_darwin.get_asset('executable.c')

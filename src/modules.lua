@@ -36,10 +36,11 @@ darwin.unsafe_add_lua_code_following_require = function(start_filename)
             local current = possible_paths[i]
             local is_file = dtw.isfile(current)
             if is_file and dtw.ends_with(current, ".so") then
-                local sha_item = private_darwin.embed_shared_lib(current)
+                local sha = private_darwin.embed_shared_lib(current)
                 content = string.format(
-                    "return require(Private_darwin_shared_dir ..'/'..'%s')",
-                    sha_item
+                    "return package.loadlib(Private_darwin_shared_dir..'/%s.so','luaopen_%s')()",
+                    sha,
+                    item
                 )
                 break
             end

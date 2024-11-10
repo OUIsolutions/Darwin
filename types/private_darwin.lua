@@ -65,5 +65,6 @@
 ---@field construct_possible_files string[]
 ---@field shared_libs  PrivateDarwinSHaredLib[]
 ---@field embed_shared_lib fun(filename:string):string
+---@field shared_libs_were_embed boolean
 ---@type PrivateDarwin
 private_darwin = private_darwin

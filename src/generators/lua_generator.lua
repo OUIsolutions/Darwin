@@ -1,12 +1,22 @@
 darwin.generate_lua_code = function(props)
-    local final = ""
     if not props then
         props = {}
     end
+    local final = ""
+    if private_darwin.require_parse_to_bytes then
+        final = final .. private_darwin.get_asset("parse_to_bytes.lua") .. "\n"
+    end
+
+    final = final .. private_darwin.lua_str_shas_code .. "\n"
+    final = final .. private_darwin.lua_globals .. "\n"
+
     if not props.temp_shared_lib_dir then
         props.temp_shared_lib_dir = '.darwin_shared_libs'
     end
     if #private_darwin.shared_libs > 0 then
+        if not private_darwin.shared_libs_were_embed then
+            error("shared libs were not embed call 'darwin.embed_shared_libs()' before these  function")
+        end
         final = final .. string.format('Private_darwin_shared_dir = "%s"\n', props.temp_shared_lib_dir)
         final = final .. private_darwin.get_asset("shared_libs.lua")
     end
@@ -27,11 +37,7 @@ darwin.generate_lua_code = function(props)
         final = final .. private_darwin.get_asset("require.lua")
     end
 
-    if private_darwin.require_parse_to_bytes then
-        final = final .. private_darwin.get_asset("parse_to_bytes.lua") .. "\n"
-    end
-    final = final .. private_darwin.lua_str_shas_code .. "\n"
-    final = final .. private_darwin.lua_globals .. "\n"
+
     final = final .. private_darwin.main_lua_code .. "\n"
     return final
 end
