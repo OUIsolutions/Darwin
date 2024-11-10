@@ -16,6 +16,12 @@ Then start a example project
 ```shel
 ./darwin013.o start calc my_project_name
 ```
+
+Alternativly you can list all the available start examples with:
+```shel
+./darwin013.o list
+```
+
 and build with:
 ```shel
 ./darwin013.o build darwinconf.lua
