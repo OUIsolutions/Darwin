@@ -19,9 +19,11 @@ sh download_dependencies.sh
 
 
 ## Building from docker
-if you have docker installed on your machine, you can create a docker image with:
+if you have docker installed on your machine, you build for all  plataforms with:
 ```shell
-docker build -t gcc_base .
+ sh download_dependencies.sh 
+sh create_all_docker_images.sh 
+sh build_all_from_docker.sh
 ```
 
 Then start a example project
