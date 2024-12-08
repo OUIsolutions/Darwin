@@ -3,10 +3,10 @@ A Boostrapped lua Compiler
 
 
 ## Compile:
-download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.013/darwin014.c)
+download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.014/darwin.c)
 by typing
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.014/darwin014.c -o darwin.c
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.014/darwin.c -o darwin.c
 ```
 first compile darwin
 ```shel
