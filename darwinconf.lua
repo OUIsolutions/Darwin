@@ -72,5 +72,5 @@ for i = 1, #src_files do
 end
 darwin.add_lua_code("private_darwin.main()")
 darwin.generate_lua_output("debug.lua")
-darwin.generate_c_executable_output("darwin013.c")
-os.execute("gcc darwin013.c -o  darwin013.o")
+darwin.generate_c_executable_output("darwin014.c")
+os.execute("gcc darwin013.c -o  darwin014.o")
