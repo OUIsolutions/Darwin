@@ -14,7 +14,7 @@ gcc darwin.c -o darwin.o
 for building from scratch you will need gcc  installed on your machine,clone the repo and run 
 ```shell
 sh download_dependencies.sh  
-./darwin.oout build  darwinconf.lua 
+./darwin.out build darwinconf.lua  build_windows build_linux
 ```
 
 
@@ -23,31 +23,20 @@ if you have docker installed on your machine, you can create a docker image with
 ```shell
 docker build -t gcc_base .
 ```
-and then you can run the container with:
-```shell 
- docker run  --volume $(pwd)/:/project:z -it  gcc_base
-```
-and now , the hole project will be mounted in the **project** folder, inside the container
-then , its possible to make the project, type: 
-```shell 
-cd project/ 
-sh install_dependencies.sh 
-./darwin.o build 
-```
 
 Then start a example project
 ```shel
-./darwin.o start calc my_project_name
+./darwin.out start calc my_project_name
 ```
 
 Alternativly you can list all the available start examples with:
 ```shel
-./darwin.o list
+./darwin.out list
 ```
 
 and build with:
 ```shel
-./darwin.o build darwinconf.lua
+./darwin.out build darwinconf.lua
 ```
 now you can run the final bin with:
 ```shel
@@ -181,13 +170,6 @@ for i = 1, #src_files do
 end
 ```
 
-### Building from scratch
-if you want to build darwin from scratch run:
-```shell
-sh install_dependencies.sh
-sh compiledarwin.sh
-sh build.sh
-```
 
 ### DePendencies:
 ## Lua:
