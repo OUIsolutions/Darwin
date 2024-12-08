@@ -3,23 +3,21 @@ A Boostrapped lua Compiler
 
 
 ## Compile:
-download the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.014/darwin.c)
-by typing
+download ando compile darwin  the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.014/darwin.c)
+by typing 
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.014/darwin.c -o darwin.c
-```
-first compile darwin
-```shel
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.014/darwin.c -o darwin.c && 
 gcc darwin.c -o darwin.o
 ```
-
 
 ## Building from scratch
 for building from scratch you will need gcc  installed on your machine,clone the repo and run 
 ```shell
-sh install_dependencies.sh  
-./darwin.o build 
+sh download_dependencies.sh  
+./darwin.oout build  darwinconf.lua 
 ```
+
+
 ## Building from docker
 if you have docker installed on your machine, you can create a docker image with:
 ```shell
