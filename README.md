@@ -1,12 +1,19 @@
 # Darwin
 A Boostrapped lua Compiler
 
+## Releases 
+| item          | plataform |  
+|-------        |-----------|
+| [Amalgamation](https://github.com/OUIsolutions/Darwin/releases/download/0.015/darwin.c)| Source  |
+| [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.015/darwin.out)|Linux binary|
+| [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.015/darwin.exe)|Windows binary | 
+
 
 ## Compile:
-download ando compile darwin  the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.014/darwin.c)
+download ando compile darwin  the: [Darwin](https://github.com/OUIsolutions/Darwin/releases/download/0.015/darwin.c)
 by typing 
 ```shel
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.014/darwin.c -o darwin.c && 
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.015/darwin.c -o darwin.c && 
 gcc darwin.c -o darwin.o
 ```
 
