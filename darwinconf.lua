@@ -60,5 +60,5 @@ end
 darwin.add_lua_code("private_darwin.main()")
 darwin.generate_lua_output({ output_name = "debug.lua" })
 darwin.generate_c_executable_output({ output_name = "release/darwin.c", include_lua_cembed = false })
-os.execute("gcc  release/darwin.c -o  release/darwin.o")
+os.execute("gcc --static  release/darwin.c -o  release/darwin.o")
 os.execute("i686-w64-mingw32-gcc  --static release/darwin.c -o  release/darwin.exe")
