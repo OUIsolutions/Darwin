@@ -1,18 +1,7 @@
 -- eliminantes unwanted prints
-darwin.add_c_code("\n#undef printf\n")
-darwin.add_c_code("#define printf(...) \n")
+darwin.add_c_code("#undef LUA_USE_DLOPEN")
 
-
-
-
-darwin.add_c_file("LuaDoTheWorld/src/one.c", true, function(import, path)
-    -- to make the luacembe not be imported twice
-    if import == "../dependencies/dependency.LuaCEmbed.h" then
-        return false
-    end
-    return true
-end)
-
+darwin.add_c_file("LuaDoTheWorld/src/one.c", true)
 darwin.add_c_file("candangoEngine/src/main.c", true, function(import, path)
     -- to make the luacembe not be imported twice
     if import == "../dependencies/depB.LuaCEmbed.h" then
@@ -20,8 +9,6 @@ darwin.add_c_file("candangoEngine/src/main.c", true, function(import, path)
     end
     return true
 end)
-
-darwin.add_c_code("\n#undef printf\n")
 
 
 
@@ -71,7 +58,7 @@ for i = 1, #src_files do
     darwin.add_lua_file(current)
 end
 darwin.add_lua_code("private_darwin.main()")
-darwin.generate_lua_output("debug.lua")
-darwin.generate_c_executable_output("release/darwin.c")
-os.execute("gcc --static release/darwin.c -o  release/darwin.o")
+darwin.generate_lua_output({ output_name = "debug.lua" })
+darwin.generate_c_executable_output({ output_name = "release/darwin.c", include_lua_cembed = false })
+os.execute("gcc  release/darwin.c -o  release/darwin.o")
 os.execute("i686-w64-mingw32-gcc  --static release/darwin.c -o  release/darwin.exe")

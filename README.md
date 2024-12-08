@@ -23,11 +23,11 @@ sh install_dependencies.sh
 ## Building from docker
 if you have docker installed on your machine, you can create a docker image with:
 ```shell
-docker build -t darwin .
+docker build -t gcc_base .
 ```
 and then you can run the container with:
 ```shell 
- docker run  --volume $(pwd)/:/project:z -it  darwin
+ docker run  --volume $(pwd)/:/project:z -it  gcc_base
 ```
 and now , the hole project will be mounted in the **project** folder, inside the container
 then , its possible to make the project, type: 
