@@ -19,9 +19,9 @@ sh download_dependencies.sh
 
 
 ## Building from docker
-if you have docker installed on your machine, you build for all  plataforms with:
+if you have docker installed on your machine, you can build for all  plataforms suportted  with:
 ```shell
- sh download_dependencies.sh 
+sh download_dependencies.sh 
 sh create_all_docker_images.sh 
 sh build_all_from_docker.sh
 ```
