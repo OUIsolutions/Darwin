@@ -1,12 +1,12 @@
 
-function is_arg_present(arg_name){
+function is_arg_present(arg_name) 
     for i=1, #arg do
         if arg[i] == arg_name then 
             return true 
-        end 
+        end
     end 
     return false
-}
+end 
 
 
 darwin.add_c_file("LuaDoTheWorld/src/one.c", true, function(import, path)
@@ -74,13 +74,12 @@ for i = 1, #src_files do
 end
 darwin.add_lua_code("private_darwin.main()")
 darwin.generate_lua_output({ output_name = "debug.lua" })
-darwin.generate_c_executable_output({ output_name = "release/darwin.c", include_lua_cembed = false })
+darwin.generate_c_executable_output({ output_name = "release/darwin.c" })
 
 if is_arg_present("build_windows") then 
     os.execute("i686-w64-mingw32-gcc  --static release/darwin.c -o  release/darwin.exe")
 end 
 
-os.execute("gcc --static  release/darwin.c -o  release/darwin.o")
 if is_arg_present("build_linux") then 
     os.execute("gcc --static  release/darwin.c -o  release/darwin.o")
 end 
