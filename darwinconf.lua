@@ -81,5 +81,5 @@ if is_arg_present("build_windows") then
 end 
 
 if is_arg_present("build_linux") then 
-    os.execute("gcc --static  release/darwin.c -o  release/darwin.o")
+    os.execute("gcc --static  release/darwin.c -o  release/darwin.out")
 end 
