@@ -4,3 +4,6 @@
 ---@field c_calls string[]
 ---@field add_lua_code fun(code:string)
 ---@field add_lua_file fun(src:string)
+---@field generate_lua_complex fun(props:LuaGenerationComplexProps)
+---@field generate_lua_code fun(props:LuaGenerationCodeProps):string
+---@field generate_lua_file fun(props:LuaGenerationOutputProps)
