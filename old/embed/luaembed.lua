@@ -61,6 +61,7 @@ private_darwin.embed_global_in_lua = function(name, var, var_type)
             string.format('%s = %s\n', name, tostring(var))
         )
     end
+
     if var_type == "string" then
         local converted = private_darwin.create_lua_str_buffer(var)
         private_darwin.embed_lua_global_concat(
