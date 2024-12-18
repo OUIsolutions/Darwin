@@ -6,6 +6,14 @@ private_darwin.main = function()
         private_darwin.print_red(string.format("action not provided type help to get informatons\n", action))
         return
     end
+    if private_darwin.is_inside({ "types", "--types" }) then
+        local out_name = arg[3]
+        if not out_name then
+            out_name = "darwin_types.lua"
+        end
+        dtw.write_file(out_name, PRIVATE_DARWIN_TYPES)
+        return
+    end
 
     if private_darwin.is_inside({ "build", "--build" }, action) then
         local darwin_conf_file = arg[3]

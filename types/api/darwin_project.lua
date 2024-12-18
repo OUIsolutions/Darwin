@@ -2,3 +2,5 @@
 ---@field lua_code string[]
 ---@field c_code string[]
 ---@field c_calls string[]
+---@field add_lua_code fun(code:string)
+---@field add_lua_file fun(src:string)
