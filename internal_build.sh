@@ -1,2 +1,2 @@
-./darwin012.o build
-mv ./darwin013.o /home/mateusmoutinho/Documentos/teste
+./darwin.o build
+mv ./darwin016.o /home/mateusmoutinho/Documentos/teste
