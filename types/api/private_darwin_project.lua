@@ -1,0 +1,2 @@
+---@class PrivateDarwinProject
+---@field construct_globals fun(self:DarwinProject)
