@@ -1,2 +1,2 @@
-./darwin012.o build
-mv ./darwin013.o /home/mateusmoutinho/Documentos/teste
+docker run  --volume $(pwd)/:/project:z  darwin_linux_build
+sudo cp release/darwin.out /home/mateusmoutinho/Documentos/teste
