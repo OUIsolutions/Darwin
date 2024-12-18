@@ -1,13 +1,11 @@
-
-function is_arg_present(arg_name) 
-    for i=1, #arg do
-        if arg[i] == arg_name then 
-            return true 
+function is_arg_present(arg_name)
+    for i = 1, #arg do
+        if arg[i] == arg_name then
+            return true
         end
-    end 
+    end
     return false
-end 
-
+end
 
 darwin.add_c_file("LuaDoTheWorld/src/one.c", true, function(import, path)
     -- to make the luacembe not be imported twice
@@ -65,6 +63,7 @@ darwin.load_lualib_from_c("candango_engine_start_point", "private_darwin_candang
 
 darwin.add_lua_code("darwin = {}")
 darwin.add_lua_code("private_darwin = {actions={}}")
+darwin.add_lua_code("private_darwin_project = {}")
 
 local src_files = dtw.list_files_recursively("src", true)
 for i = 1, #src_files do
@@ -76,10 +75,10 @@ darwin.add_lua_code("private_darwin.main()")
 darwin.generate_lua_output({ output_name = "debug.lua" })
 darwin.generate_c_executable_output({ output_name = "release/darwin.c" })
 
-if is_arg_present("build_windows") then 
+if is_arg_present("build_windows") then
     os.execute("i686-w64-mingw32-gcc  --static release/darwin.c -o  release/darwin.exe")
-end 
+end
 
-if is_arg_present("build_linux") then 
+if is_arg_present("build_linux") then
     os.execute("gcc --static  release/darwin.c -o  release/darwin.out")
-end 
+end
