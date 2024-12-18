@@ -1,5 +1,5 @@
 private_darwin_project.generate_lua_complex = function(selfobj, props)
-    for i = 1, selfobj.lua_code do
+    for i = 1, #selfobj.lua_code do
         props.stream("\n")
         props.stream(selfobj.lua_code[i])
     end

@@ -1,12 +1,11 @@
 private_darwin.main = function()
     local action = arg[2]
-    private_darwin.resset_all()
 
     if not action then
         private_darwin.print_red(string.format("action not provided type help to get informatons\n", action))
         return
     end
-    if private_darwin.is_inside({ "types", "--types" }) then
+    if private_darwin.is_inside({ "types", "--types" }, action) then
         local out_name = arg[3]
         if not out_name then
             out_name = "darwin_types.lua"

@@ -7,13 +7,13 @@ private_darwin_project.add_lua_methods = function(selfobj)
     end
 
     selfobj.generate_lua_complex = function(props)
-        private_darwin_project.generate_lua_complex(props)
+        private_darwin_project.generate_lua_complex(selfobj, props)
     end
 
     selfobj.generate_lua_code = function(props)
-        return private_darwin_project.generate_lua_code(props)
+        return private_darwin_project.generate_lua_code(selfobj, props)
     end
     selfobj.generate_lua_file = function(props)
-        private_darwin_project.generate_lua_file(props)
+        private_darwin_project.generate_lua_file(selfobj, props)
     end
 end
