@@ -57,13 +57,13 @@ for i = 1, #types_files do
 end
 darwin.embed_global("PRIVATE_DARWIN_TYPES", types)
 
-
 darwin.load_lualib_from_c("load_luaDoTheWorld", "dtw")
 darwin.load_lualib_from_c("candango_engine_start_point", "private_darwin_candango")
 
 darwin.add_lua_code("darwin = {}")
 darwin.add_lua_code("private_darwin = {}")
 darwin.add_lua_code("private_darwin_project = {}")
+
 
 local src_files = dtw.list_files_recursively("src", true)
 for i = 1, #src_files do
@@ -81,4 +81,7 @@ end
 
 if is_arg_present("build_linux") then
     os.execute("gcc --static  release/darwin.c -o  release/darwin.out")
+end
+if is_arg_present("debug") then
+    os.execute("gcc release/darwin.c -o  release/debug.out")
 end

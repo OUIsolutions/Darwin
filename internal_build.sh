@@ -1,3 +1,2 @@
-docker run  --volume $(pwd)/:/project:z  darwin_linux_build
-chmod +x darwin.out
-sudo mv release/darwin.out /home/mateusmoutinho/Documentos/teste
+sudo ./darwin.out build darwinconf.lua debug
+sudo cp release/debug.out /home/mateusmoutinho/Documentos/teste/darwin.out
