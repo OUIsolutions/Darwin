@@ -1,9 +1,13 @@
 ---typestart
 ---@class PrivateDarwinProject
 ---@field embed_global fun(selfobj:DarwinProject ,name:string,value:string | number | table | boolean| PrivateDarwinFileStream)
+
+
 ---@class PrivateDarwinFileStream
 ---@field type string
 ---@field filename string
+
+
 ---@class PrivateDarwinEmbed
 ---@field name string
 ---@field value table | string | number | boolean
