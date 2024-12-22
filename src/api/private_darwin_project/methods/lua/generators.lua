@@ -14,7 +14,12 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
 
     for i = 1, #selfobj.lua_code do
         props.stream("\n")
-        props.stream(selfobj.lua_code[i])
+        local current = selfobj.lua_code[i]
+        if private_darwin.is_file_stream(current) then
+            private_darwin.transfer_file_stream(current, props.stream)
+        else
+            props.stream(selfobj.lua_code[i])
+        end
     end
 end
 

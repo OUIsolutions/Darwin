@@ -3,9 +3,5 @@ private_darwin_project.add_lua_code = function(self_obj, code)
 end
 
 private_darwin_project.add_lua_file = function(self_obj, src)
-    local content = darwin.dtw.load_file(src)
-    if not content then
-        error("content of" .. src .. "not found")
-    end
-    private_darwin_project.add_lua_code(self_obj, content)
+    self_obj.lua_code[#self_obj.lua_code + 1] = darwin.file_stream(src)
 end

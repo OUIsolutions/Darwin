@@ -1,5 +1,5 @@
 ---@class DarwinProject
----@field lua_code string[]
+---@field lua_code any[] --DarwinFileStream or string
 ---@field c_code string[]
 ---@field c_calls string[]
 ---@field embed_data PrivateDarwinEmbed[]
