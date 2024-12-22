@@ -1,4 +1,4 @@
-function create_api_assets()
+function Create_api_assets()
     ---@type Asset[]
     local api_assets = {}
 
