@@ -6,6 +6,7 @@ require("build/embed_c")
 local function main()
     Embed_c_code()
     Create_api_assets()
+
     local src_files = dtw.list_files_recursively("src", true)
     for i = 1, #src_files do
         local current = src_files[i]
@@ -15,8 +16,6 @@ local function main()
     darwin.add_lua_code("private_darwin.main()")
     darwin.generate_lua_output({ output_name = "debug.lua" })
     darwin.generate_c_executable_output({ output_name = "release/darwin.c" })
-
-
 
 
     if is_arg_present("build_windows") then
