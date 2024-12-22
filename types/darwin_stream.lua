@@ -1,0 +1,3 @@
+---@class DarwinFileStream
+---@field type string
+---@filename string

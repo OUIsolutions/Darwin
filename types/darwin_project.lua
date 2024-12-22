@@ -6,7 +6,7 @@
 
 ---- methods
 ---@class DarwinProject
----@field embed_global fun(name:string,value:table | string | number |boolean)
+---@field embed_global fun(name:string,value:table | string | number |boolean | DarwinFileStream)
 ---@field add_lua_code fun(code:string)
 ---@field add_lua_file fun(src:string)
 ---@field generate_lua_complex fun(props:LuaGenerationComplexProps)

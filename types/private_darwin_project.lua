@@ -8,7 +8,7 @@
 
 
 ---@class PrivateDarwinProject
----@field embed_global fun(selfobj:DarwinProject,name:string,value:table | string | boolean | number)
+---@field embed_global fun(selfobj:DarwinProject,name:string,value:table | string | boolean | number | DarwinFileStream)
 ---@class PrivateDarwinProject
 ---@field generate_lua_complex fun(selfobj:DarwinProject,props:LuaGenerationComplexProps)
 ---@field generate_lua_code fun(selfobj:DarwinProject,props:LuaGenerationCodeProps):string
