@@ -1,2 +1,2 @@
-sudo ./darwin.out build darwinconf.lua debug
-sudo cp release/debug.out /home/mateusmoutinho/Documentos/teste/darwin.out
+./darwin.out build build/main.lua
+cp release/debug.out /home/mateusmoutinho/Documentos/teste/darwin.out
