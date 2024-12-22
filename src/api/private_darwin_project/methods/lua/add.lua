@@ -1,3 +1,10 @@
+---typestart
+---@class PrivateDarwinProject
+---@field add_lua_code fun(selfobj:DarwinProject,code:string)
+---@field add_lua_file fun(selfobj:DarwinProject,src:string)
+---typeend
+
+
 private_darwin_project.add_lua_code = function(self_obj, code)
     self_obj.lua_code[#self_obj.lua_code + 1] = code
 end
