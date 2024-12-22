@@ -44,17 +44,23 @@ end
 
 private_darwin_project.generate_lua_file = function(selfobj, props)
     darwin.dtw.write_file(props.output, "")
+    local file = io.open(props.output, "a+b")
 
     local function stream(data)
-        local file = io.open(props.output, "a+b")
+        if not file then
+            file = io.open(props.output, "a+b")
+        end
         if not file then
             error("impossible to generate output in" .. props.output)
         end
         file:write(data)
-        file:close()
     end
+
     private_darwin_project.generate_lua_complex(selfobj, {
         stream = stream,
         include_embed_data = props.include_embed_data
     })
+    if file then
+        file:close()
+    end
 end

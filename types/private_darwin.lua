@@ -4,7 +4,8 @@
 ---@field list_assets fun(asset_struct:Asset[],src:string):string[]
 ---@field is_file_stream fun(item:any):boolean
 ---@field transfer_file_stream fun(filestream:DarwinFileStream, stream:fun(data:string))
-
+---@field transfer_file_stream_bytes fun(filestream:DarwinFileStream, stream:fun(data:string))
+---@field transfer_string fun(str:string,stream:fun(data:string))
 
 
 ---@class PrivateDarwin

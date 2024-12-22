@@ -8,13 +8,7 @@ private_darwin_project.create_lua_str_buffer = function(str_code, streamed_shas,
         "%s = table.concat(PrivateDarwing_parse_to_bytes({",
         name
     ))
-
-    local size = string.len(str_code)
-    for i = 1, size do
-        local current_char = string.sub(str_code, i, i)
-        local byte = string.byte(current_char)
-        stream(string.format("%d,", byte))
-    end
+    private_darwin.transfer_string(str_code, stream)
 
     stream("}))\n")
     return name
@@ -32,25 +26,7 @@ private_darwin_project.create_lua_stream_buffer = function(filestream, streamed_
         "%s = table.concat(PrivateDarwing_parse_to_bytes({",
         name
     ))
-
-    local file = io.open(filestream.filename, "a+b")
-    if not file then
-        error("impossible to open" .. filestream.filename)
-    end
-
-    local chunk_size = 1024
-    while true do
-        local chunk = file:read(chunk_size)
-        if not chunk then break end
-        local current_chunk_size = #chunk
-        for i = 1, current_chunk_size do
-            local current_char = string.sub(chunk, i, i)
-            local byte = string.byte(current_char)
-            stream(string.format("%d,", byte))
-        end
-    end
-
-
+    private_darwin.transfer_file_stream_bytes(filestream, stream)
     stream("}))\n")
     return name
 end
