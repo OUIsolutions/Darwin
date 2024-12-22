@@ -8,9 +8,10 @@
 
 ---@class PrivateDarwinProject
 ---@field embed_global_in_lua fun(name:string,var:table | number | boolean | string,streammed_shas:string[], stream:fun(data:string))
----@field embed_table_in_lua fun(name:string,var:table,stream:fun(data:string))
+---@field embed_table_in_lua fun(name:string,var:table,streamed_shas:string[],stream:fun(data:string))
 ---@field create_lua_str_buffer fun(str:string,streamed_shas:string[], stream:fun(data:string)):string
 ---@field create_lua_stream_buffer fun(filestream:DarwinFileStream ,streamed_shas:string[], stream:fun(data:string)):string
+
 
 ---@class PrivateDarwinProject
 ---@field embed_global fun(selfobj:DarwinProject,name:string,value:table | string | boolean | number | DarwinFileStream)

@@ -39,7 +39,7 @@ private_darwin_project.generate_lua_code = function(selfobj, props)
         stream = stream,
         include_embed_data = props.include_embed_data
     })
-    return private_darwin.table.concat(content, "")
+    return table.concat(content, "")
 end
 
 private_darwin_project.generate_lua_file = function(selfobj, props)
