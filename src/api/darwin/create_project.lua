@@ -1,6 +1,10 @@
 darwin.create_project = function()
-    local self_obj = {}
-    private_darwin_project.construct_globals(self_obj)
-    private_darwin_project.add_lua_methods(self_obj)
-    return self_obj
+    local selfobj = {}
+    selfobj.embed_global = function(name, value)
+        private_darwin_project.embed_global(selfobj, name, value)
+    end
+
+    private_darwin_project.construct_globals(selfobj)
+    private_darwin_project.add_lua_methods(selfobj)
+    return selfobj
 end

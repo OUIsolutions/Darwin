@@ -6,8 +6,10 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
     if #selfobj.embed_data == 0 then
         embed_data = false
     end
-    if embed_data then
 
+    if embed_data then
+        local parse_to_bytes = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "parse_to_bytes.lua")
+        props.stream(parse_to_bytes)
     end
 
     for i = 1, #selfobj.lua_code do

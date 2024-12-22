@@ -5,7 +5,7 @@ private_darwin.get_asset = function(asset_struct, src)
             return current.content
         end
     end
-    return nil
+    error("unknow asset" .. src)
 end
 
 

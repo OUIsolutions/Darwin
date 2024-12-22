@@ -7,7 +7,8 @@
 ---@field add_lua_file fun(selfobj:DarwinProject,src:string)
 
 
-
+---@class PrivateDarwinProject
+---@field embed_global fun(selfobj:DarwinProject,name:string,value:table | string | boolean | number)
 ---@class PrivateDarwinProject
 ---@field generate_lua_complex fun(selfobj:DarwinProject,props:LuaGenerationComplexProps)
 ---@field generate_lua_code fun(selfobj:DarwinProject,props:LuaGenerationCodeProps):string
