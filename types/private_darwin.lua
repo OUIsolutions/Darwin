@@ -3,7 +3,9 @@
 ---@field list_assets_recursivly fun(asset_struct:Asset[],src:string):string[]
 ---@field list_assets fun(asset_struct:Asset[],src:string):string[]
 ---@field is_file_stream fun(item:any):boolean
----@field transfer_file_stream fun(filestream:DarwinFileStream,stream:fun(data:string))
+---@field transfer_file_stream fun(filestream:DarwinFileStream, stream:fun(data:string))
+
+
 
 ---@class PrivateDarwin
 ---@field is_inside fun(array:any[],value:any):boolean

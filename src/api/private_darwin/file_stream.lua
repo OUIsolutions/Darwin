@@ -11,7 +11,7 @@ end
 private_darwin.transfer_file_stream = function(filestream, stream)
     local file = io.open(filestream.filename, "a+b")
     if not file then
-        error("impossible to open", filestream.filename)
+        error("impossible to open" .. filestream.filename)
     end
     local chunk_size = 1024
     while true do

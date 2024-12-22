@@ -12,6 +12,13 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
         props.stream(parse_to_bytes)
     end
 
+
+    local streamed_shas = {}
+    for i = 1, #selfobj.embed_data do
+        local current = selfobj.embed_data[i]
+        private_darwin_project.embed_global_in_lua(current.name, streamed_shas, props.stream)
+    end
+
     for i = 1, #selfobj.lua_code do
         props.stream("\n")
         local current = selfobj.lua_code[i]
@@ -39,7 +46,6 @@ private_darwin_project.generate_lua_file = function(selfobj, props)
     darwin.dtw.write_file(props.output, "")
 
     local function stream(data)
-        print("stremou " .. data)
         local file = io.open(props.output, "a+b")
         if not file then
             error("impossible to generate output in" .. props.output)
