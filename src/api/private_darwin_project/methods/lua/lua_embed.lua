@@ -34,6 +34,10 @@ end
 
 
 private_darwin_project.embed_table_in_lua = function(table_name, current_table, streamed_shas, stream)
+    stream(
+        string.format('%s = {}\n', table_name)
+    )
+
     for key, val in pairs(current_table) do
         local key_type = type(key)
         local val_type = type(val)
@@ -81,10 +85,6 @@ private_darwin_project.embed_table_in_lua = function(table_name, current_table, 
         end
 
         if val_type == "table" and not is_stream then
-            stream(
-                string.format('%s%s = {}\n', table_name, formatted_key)
-            )
-
             private_darwin_project.embed_table_in_lua(
                 table_name .. formatted_key,
                 val,
