@@ -1,6 +1,8 @@
 ---typestart
 ---@class PrivateDarwin
 ---@field is_inside fun(array:any[],value:any):boolean
+---@field count_bars fun(src:string):number
+
 ---typeend
 
 private_darwin.is_inside = function(target_table, value)
@@ -23,4 +25,15 @@ private_darwin.extract_dir = function(path)
         i = i - 1
     end
     return ""
+end
+
+
+private_darwin.count_bars = function(str)
+    local total = 0
+    for i = 1, #str do
+        if string.sub(str, i, i) == "/" then
+            total = total + 1
+        end
+    end
+    return total
 end
