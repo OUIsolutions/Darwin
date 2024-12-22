@@ -5,7 +5,7 @@ function Create_api_assets()
     local assets_files = dtw.list_files_recursively("assets/api", false)
     for i = 1, #assets_files do
         local current_item = assets_files[i]
-        local path = "assets/api" .. current_item
+        local path = "assets/api/" .. current_item
         api_assets[#api_assets + 1] = {
             path = current_item,
             content = dtw.load_file(path)

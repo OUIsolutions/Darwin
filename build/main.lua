@@ -1,3 +1,5 @@
+---@type DtwModule
+dtw = dtw
 require("build/algo")
 require("build/types")
 require("build/assets")
@@ -6,7 +8,8 @@ require("build/embed_c")
 local function main()
     Embed_c_code()
     Create_api_assets()
-    darwin.add_lua_code("darwin = {dtw=private_dtw,candango=private_darwin_candango}")
+    Embed_types()
+    darwin.add_lua_code("darwin = {dtw=private_darwin_dtw,candango=private_darwin_candango}")
     darwin.add_lua_code("private_darwin = {}")
     darwin.add_lua_code("private_darwin_project = {}")
     local src_files = dtw.list_files_recursively("src", true)
