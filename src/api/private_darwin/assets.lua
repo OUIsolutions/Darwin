@@ -21,8 +21,8 @@ private_darwin.list_assets_recursivly = function(asset_struct, src)
     end
     return result
 end
-private_darwin.list_assets = function(src)
-    local values = private_darwin.list_assets_recursivly(src)
+private_darwin.list_assets = function(asset_struct, src)
+    local values = private_darwin.list_assets_recursivly(asset_struct, src)
     local valid_values = {}
     for i = 1, #values do
         local current = values[i]

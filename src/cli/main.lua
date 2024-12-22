@@ -24,6 +24,14 @@ private_darwin.main = function()
         dofile(darwin_conf_file)
         return
     end
+    if private_darwin.is_inside({ "types", "--drop_types" }, action) then
+        local name = arg[3]
+        if not name then
+            name = "darwin_types.lua"
+        end
+        dtw.write_file(name, PRIVATE_DARWIN_TYPES)
+        return
+    end
 
     private_darwin.print_red(string.format("invalid action:%s, type help to get informatons\n", action))
 end
