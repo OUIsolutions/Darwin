@@ -1,5 +1,5 @@
 private_darwin_project.create_lua_str_buffer = function(str_code, streamed_shas, stream)
-    local name = string.format("private_darwin_sha%s", dtw.generate_sha(str_code))
+    local name = string.format("private_darwin_sha%s", darwin.dtw.generate_sha(str_code))
     if private_darwin.is_inside(streamed_shas, name) then
         return name
     end
@@ -22,7 +22,7 @@ end
 
 
 private_darwin_project.create_lua_stream_buffer = function(filestream, streamed_shas, stream)
-    local name = string.format("private_darwin_sha%s", dtw.generate_sha_from_file(filestream.filename))
+    local name = string.format("private_darwin_sha%s", darwin.dtw.generate_sha_from_file(filestream.filename))
     if private_darwin.is_inside(streamed_shas, name) then
         return name
     end
@@ -113,19 +113,19 @@ private_darwin_project.embed_global_in_lua = function(name, var, streamed_shas, 
 
     if var_type == "number" then
         stream(
-            string.format('%s = %f\n', name, var)
+            string.format('%s = %f;\n', name, var)
         )
     end
     if var_type == "boolean" then
         stream(
-            string.format('%s = %s\n', name, tostring(var))
+            string.format('%s = %s;\n', name, tostring(var))
         )
     end
 
     if var_type == "string" then
         local sha_name = private_darwin_project.create_lua_str_buffer(var, streamed_shas, stream)
         stream(
-            string.format('%s = %s\n', name, sha_name)
+            string.format('%s = %s;\n', name, sha_name)
         )
     end
 
@@ -133,7 +133,7 @@ private_darwin_project.embed_global_in_lua = function(name, var, streamed_shas, 
     if is_stream then
         local sha_name = private_darwin_project.create_lua_stream_buffer(var, streamed_shas, stream)
         stream(
-            string.format('%s = %s\n', name, sha_name)
+            string.format('%s = %s;\n', name, sha_name)
         )
     end
 end

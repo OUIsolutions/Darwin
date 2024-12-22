@@ -16,7 +16,7 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
     local streamed_shas = {}
     for i = 1, #selfobj.embed_data do
         local current = selfobj.embed_data[i]
-        private_darwin_project.embed_global_in_lua(current.name, streamed_shas, props.stream)
+        private_darwin_project.embed_global_in_lua(current.name, current.value, streamed_shas, props.stream)
     end
 
     for i = 1, #selfobj.lua_code do

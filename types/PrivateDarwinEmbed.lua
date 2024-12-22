@@ -1,3 +1,3 @@
 ---@class PrivateDarwinEmbed
 ---@field name string
----@field value:table | string | boolean | number | DarwinFileStream
+---@field value table | string | boolean | number | DarwinFileStream
