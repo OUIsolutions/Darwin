@@ -19,8 +19,7 @@ private_darwin.transfer_byte_internal_format = function(str, stream)
 end
 
 private_darwin.transfer_byte_size_decide = function(str, stream)
-    local ONEMB = 1048576
-    local limit = ONEMB * 10
+    local limit = darwin.chunk_size
     if #str > limit then
         private_darwin.transfer_byte_direct_stream(str, stream)
         return
@@ -43,10 +42,9 @@ private_darwin.transfer_file_stream = function(filestream, stream)
     if not file then
         error("impossible to open" .. filestream.filename)
     end
-    local ONEMB = 1048576
-    local chunk_size = ONEMB * 10
+
     while true do
-        local chunk = file:read(chunk_size)
+        local chunk = file:read(darwin.chunk_size)
         if not chunk then break end
         stream(chunk)
     end
@@ -57,14 +55,15 @@ private_darwin.transfer_file_stream_bytes = function(filestream, stream)
     if not file then
         error("impossible to open" .. filestream.filename)
     end
-    local chunk_size = 1024
+
+
     local count = 0
     while true do
-        local chunk = file:read(chunk_size)
+        local chunk = file:read(darwin.chunk_size)
         if chunk then
             count = count + #chunk
+            print("transfed: " .. count)
         end
-        print("transfed: " .. count)
         if not chunk then break end
         private_darwin.transfer_byte_internal_format(chunk, stream)
     end
