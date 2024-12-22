@@ -31,7 +31,7 @@ private_darwin_project.generate_lua_code = function(selfobj, props)
 end
 
 private_darwin_project.generate_lua_file = function(selfobj, props)
-    dtw.write_file(props.output, "")
+    darwin.dtw.write_file(props.output, "")
     local file = io.open(props.output, "a+b")
     if not file then
         error("impossible to generate output in" .. props.output)

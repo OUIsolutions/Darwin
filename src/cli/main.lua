@@ -16,10 +16,11 @@ private_darwin.main = function()
         if not darwin_conf_file then
             darwin_conf_file = "darwinconf.lua"
         end
-        if not io.open(darwin_conf_file) then
+        if not darwin.dtw.isfile(darwin_conf_file) then
             private_darwin.print_red(darwin_conf_file .. " not provided\n")
             return
         end
+
         private_darwin.print_blue("creating blueprint: " .. darwin_conf_file .. "\n")
         dofile(darwin_conf_file)
         return
@@ -29,7 +30,7 @@ private_darwin.main = function()
         if not name then
             name = "darwin_types.lua"
         end
-        dtw.write_file(name, PRIVATE_DARWIN_TYPES)
+        darwin.dtw.write_file(name, PRIVATE_DARWIN_TYPES)
         return
     end
 
