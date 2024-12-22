@@ -1,9 +1,3 @@
----typestart
----@class PrivateDarwinProject
----@field add_lua_methods fun(selfobj:DarwinProject )
-
----typeend
-
 private_darwin_project.add_lua_methods = function(selfobj)
     selfobj.add_lua_code = function(code)
         private_darwin_project.add_lua_code(selfobj, code)

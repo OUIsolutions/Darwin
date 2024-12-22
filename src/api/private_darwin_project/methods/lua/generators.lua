@@ -1,25 +1,3 @@
----typestart
-
-
----@class LuaGenerationComplexProps
----@field stream fun(content:string)
----@field include_embed_data boolean
-
----@class LuaGenerationCodeProps
----@field include_embed_data boolean
-
----@class LuaGenerationOutputProps
----@field include_embed_data boolean
----@field output string
-
----@class PrivateDarwinProject
----@field generate_lua_complex fun(selfobj:DarwinProject,props:LuaGenerationComplexProps)
----@field generate_lua_code fun(selfobj:DarwinProject,props:LuaGenerationCodeProps):string
----@field generate_lua_file fun(selfobj:DarwinProject,props:LuaGenerationOutputProps)
-
----typeend
-
-
 private_darwin_project.generate_lua_complex = function(selfobj, props)
     local embed_data = props.include_embed_data
     if embed_data == nil then

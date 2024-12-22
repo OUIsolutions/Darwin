@@ -1,0 +1,3 @@
+---@class Asset
+---@field path string
+---@field content string

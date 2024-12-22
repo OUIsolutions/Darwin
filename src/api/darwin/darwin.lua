@@ -1,2 +1,0 @@
----@type Darwin
-darwin = darwin

@@ -1,10 +1,3 @@
----typestart
----@class PrivateDarwin
----@field is_inside fun(array:any[],value:any):boolean
----@field count_bars fun(src:string):number
-
----typeend
-
 private_darwin.is_inside = function(target_table, value)
     for i = 1, #target_table do
         if target_table[i] == value then

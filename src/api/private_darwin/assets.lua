@@ -1,14 +1,3 @@
----typestart
----@class Asset
----@field path string
----@field content string
-
-
----@class PrivateDarwin
----@field get_asset fun(asset_struct:Asset[],src:string):string | nil
----@field list_assets_recursivly fun(asset_struct:Asset[],strc:string):string[]
----typeend
-
 private_darwin.get_asset = function(asset_struct, src)
     for i = 1, #asset_struct do
         local current = asset_struct[i]
