@@ -1,4 +1,15 @@
 private_darwin_project.generate_lua_complex = function(selfobj, props)
+    local embed_data = props.include_embed_data
+    if embed_data == nil then
+        embed_data = true
+    end
+    if #selfobj.embed_data == 0 then
+        embed_data = false
+    end
+    if embed_data then
+
+    end
+
     for i = 1, #selfobj.lua_code do
         props.stream("\n")
         props.stream(selfobj.lua_code[i])

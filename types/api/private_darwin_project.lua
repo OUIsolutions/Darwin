@@ -10,7 +10,7 @@
 ---@field generate_lua_complex fun(selfobj:DarwinProject,props:LuaGenerationComplexProps)
 ---@field generate_lua_code fun(selfobj:DarwinProject,props:LuaGenerationCodeProps):string
 ---@field generate_lua_file fun(selfobj:DarwinProject,props:LuaGenerationOutputProps)
-
+---@field embed_global fun(selfobj:DarwinProject ,name:string,value:string | number | table | boolean| PrivateDarwinFileStream)
 
 ---@type PrivateDarwinProject
 private_darwin_project = private_darwin_project
