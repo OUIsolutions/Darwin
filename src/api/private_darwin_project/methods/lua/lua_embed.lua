@@ -8,7 +8,7 @@ private_darwin_project.create_lua_str_buffer = function(str_code, streamed_shas,
         "%s = table.concat(PrivateDarwing_parse_to_bytes({",
         name
     ))
-    private_darwin.transfer_string(str_code, stream)
+    private_darwin.transfer_byte_size_decide(str_code, stream)
 
     stream("}))\n")
     return name
@@ -33,7 +33,7 @@ end
 
 
 
-private_darwin_project.embed_lua_table = function(table_name, current_table)
+private_darwin_project.embed_lua_table = function(table_name, current_table, stream)
     for key, val in pairs(current_table) do
         local key_type = type(key)
         local val_type = type(val)
