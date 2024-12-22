@@ -44,7 +44,7 @@ private_darwin.transfer_file_stream = function(filestream, stream)
     end
 
     while true do
-        local chunk = file:read(darwin.chunk_size)
+        local chunk = file:read(math.floor(darwin.chunk_size))
         if not chunk then break end
         stream(chunk)
     end
@@ -59,7 +59,7 @@ private_darwin.transfer_file_stream_bytes = function(filestream, stream)
 
     local count = 0
     while true do
-        local chunk = file:read(darwin.chunk_size)
+        local chunk = file:read(math.floor(darwin.chunk_size))
         if chunk then
             count = count + #chunk
             print("transfed: " .. count)
