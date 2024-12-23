@@ -11,6 +11,7 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
     local NORMAL_STATE              = 1
     local WAITING_REQUIRE_STRING    = 2
     local COLLECTING_REQUIRE_STRING = 3
+    local INSIDE_COMMENT            = 4
     local state                     = NORMAL_STATE
     local current_string_identifier = 0
     local require_buffer            = ""
@@ -29,6 +30,16 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
             if private_darwin.is_string_at_point(content, "require", i) then
                 state = WAITING_REQUIRE_STRING
                 i = i + #"require" - 1
+                goto continue
+            end
+            if private_darwin.is_string_at_point(content, "--", i) then
+                state = INSIDE_COMMENT
+                goto continue
+            end
+        end
+        if state == INSIDE_COMMENT then
+            if private_darwin.is_string_at_point(content, "\n", i) then
+                state = NORMAL_STATE
                 goto continue
             end
         end
