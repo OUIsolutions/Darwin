@@ -5,6 +5,7 @@
 ---@class PrivateDarwinProject
 ---@field add_lua_code fun(selfobj:DarwinProject,code:string)
 ---@field add_lua_file fun(selfobj:DarwinProject,src:string)
+---@field add_lua_file_followin_require fun(selfobj:DarwinProject,src:string)
 
 ---@class PrivateDarwinProject
 ---@field embed_global_in_lua fun(name:string,var:table | number | boolean | string,streammed_shas:string[], stream:fun(data:string))

@@ -3,6 +3,7 @@
 ---@field c_code string[]
 ---@field c_calls string[]
 ---@field embed_data PrivateDarwinEmbed[]
+---@field embed_lua_requires EmbedableRequire[]
 
 ---- methods
 ---@class DarwinProject
@@ -12,3 +13,4 @@
 ---@field generate_lua_complex fun(props:LuaGenerationComplexProps)
 ---@field generate_lua_code fun(props:LuaGenerationCodeProps):string
 ---@field generate_lua_file fun(props:LuaGenerationOutputProps)
+---@field add_lua_file_followin_require fun(src:string)
