@@ -1,3 +1,3 @@
 ---@class EmbedableRequire
 ---@field name string
----@field content string
+---@field content DarwinFileStream
