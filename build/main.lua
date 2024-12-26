@@ -16,7 +16,7 @@ local function main()
 
     darwin.add_lua_code("darwin = {dtw=private_darwin_dtw,candango=private_darwin_candango}")
     darwin.add_lua_code("private_darwin = {}")
-    darwin.add_lua_code("private_darwin.watcher = private_darwin_stellar_modulue.create_root_watcher('debug.txt')")
+    darwin.add_lua_code("darwin.watcher = private_darwin_stellar_modulue.create_root_watcher('debug.txt')")
 
     darwin.add_lua_code("private_darwin_project = {}")
     local src_files = dtw.list_files_recursively("src", true)

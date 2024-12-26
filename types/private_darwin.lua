@@ -1,5 +1,4 @@
 ---@class PrivateDarwin
----@field watcher StellarWatcher
 ---@field get_asset fun(asset_struct:Asset[],src:string):string
 ---@field list_assets_recursivly fun(asset_struct:Asset[],src:string):string[]
 ---@field list_assets fun(asset_struct:Asset[],src:string):string[]
