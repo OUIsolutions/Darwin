@@ -6,5 +6,7 @@ darwin.create_project = function()
 
     private_darwin_project.construct_globals(selfobj)
     private_darwin_project.add_lua_methods(selfobj)
+    private_darwin_project.embed_global(selfobj,"PRIVATE_DARWIN_SO_INCLUDED", selfobj.so_includeds)
+
     return selfobj
 end
