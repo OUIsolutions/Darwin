@@ -4,4 +4,7 @@ private_darwin_project.construct_globals = function(self_obj)
     self_obj.c_calls = {}
     self_obj.embed_data = {}
     self_obj.embed_lua_requires = {}
+    self_obj.required_funcs  = {}
+    self_obj.so_includeds= {}
+    darwin.embed_global("PRIVATE_DARWIN_SO_INCLUDED", self_obj.so_includeds)
 end
