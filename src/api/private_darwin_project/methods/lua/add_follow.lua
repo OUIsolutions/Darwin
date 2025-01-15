@@ -83,9 +83,11 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
     local i = 1
     local acumulative_scape = 0
     local is_a_scape = false
-    local waiting_required_string = false
+    local waiting_required_string = false    
     local required_call_point = 0
 
+    local waiting_package_string = false
+    local package_call_point = 0
     while i < #content do
   
         ---------------------------Comment Tester ------------------------------------------
@@ -179,6 +181,13 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
                 required_call_point = i
                 i = i + #"require"
             end
+
+            local is_package_start = private_darwin.is_one_of_string_at_point(content,{ "package.loadlib ","package.loadlib("}, i)
+            if is_package_start then
+                waiting_package_string = true
+                package_call_point = i
+                i = i + #"package.loadlib"
+            end
         end
             
 
@@ -191,7 +200,19 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
                 private_darwin_project.add_lua_file_followin_require_recursively(selfobj, point,relative_path)
             end
         end
+        if waiting_package_string and not inside_string and last_string_start_point > package_call_point then
+            local package_string = string.sub(content, last_string_start_point, last_string_end_point)
+            if private_darwin_project.is_so_includeds(self_obj,package_string) then
+                return 
+            end
+            self_obj.so_includeds[#self_obj.so_includeds + 1] = {
+                comptime_included = package_string,
+                content  = darwin.file_stream(package_string)
+            }
 
+            waiting_package_string = false
+    
+        end
 
         i = i + 1
     end
