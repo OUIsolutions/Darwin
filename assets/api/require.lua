@@ -18,7 +18,7 @@ function require(item)
                 return current.loaded_obj
             end
             local dest = PRIVATE_DARWIN_SO_DEST.."/"..i..".so"
-            current.loaded_obj =  Private_darwin_old_package(dest,"lua_open_"..i)
+            current.loaded_obj =  Private_darwin_old_package(dest,"lua_open_"..current.comptime_included)
             return current.loaded_obj
         end
     end

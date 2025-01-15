@@ -22,9 +22,9 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
     end
 
     if not props.so_dest then
-        props.so_dest = "/tmp"
+        props.so_dest = "'/tmp'"
     end
-    
+
     if #selfobj.so_includeds > 0 then
         local so_actions = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "so_actions.lua")
         local so_actions_format = private_darwin.replace_str(so_actions, "SO_INCLUDE", so_includeds_name)
