@@ -33,7 +33,6 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
         props.stream(so_actions_format)   
     end
 
-
     ---- Handling require 
     props.stream(required_func_name.." = {}\n")
     for i=1,#selfobj.required_funcs do
@@ -51,7 +50,7 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
 
     local require_code = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "require.lua")
     local require_code_format = private_darwin.replace_str(require_code, "REQUIRE_FUNCS", required_func_name)
-    require_code_format = private_darwin.replace_str(require_code_format, "REQUIRE_SO", so_includeds)
+    require_code_format = private_darwin.replace_str(require_code_format, "REQUIRE_SO", so_includeds_name)
     props.stream(require_code_format)
 
     
