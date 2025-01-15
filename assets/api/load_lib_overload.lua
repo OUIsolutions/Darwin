@@ -15,7 +15,6 @@ package.loadlib = function (item, funcname)
             if not current.loaded_obj then
                 error("impossible to load "..dest)
             end
-            current.loaded_obj = current.loaded_obj()
             return current.loaded_obj
         end
     end
