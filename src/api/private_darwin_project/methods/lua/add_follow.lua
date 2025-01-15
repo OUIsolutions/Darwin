@@ -88,8 +88,30 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
 
     local waiting_package_string = false
     local package_call_point = 0
+    io.open("debug.txt", "w"):close()
+    local data   = io.open("debug.txt", "a")
+    dstream = function(s) 
+        data:write(s.."\n")
+    end
     while i < #content do
-  
+        if inside_string then
+            dstream("-------------------------------------------------")
+            dstream("i = "..tostring(i))
+            dstream(string.sub(content, i-5, i-1).."("..string.sub(content, i, i)..")"..string.sub(content, i+1, i+5))
+            dstream("inside_comment: "..tostring(inside_comment))
+            dstream("inside_string: "..tostring(inside_string))
+            dstream("waiting_required_string: "..tostring(waiting_required_string))
+            dstream("waiting_package_string: "..tostring(waiting_package_string))
+            dstream("i: "..tostring(i))
+            dstream("last_string_start_point: "..tostring(last_string_start_point))
+            dstream("last_string_end_point: "..tostring(last_string_end_point))
+            dstream("acumulative_scape: "..tostring(acumulative_scape))
+            dstream("is_a_scape: "..tostring(is_a_scape))
+            dstream("content: "..string.sub(content, i, i))
+            dstream("-------------------------------------------------")
+        end 
+
+
         ---------------------------Comment Tester ------------------------------------------
 
         if not inside_comment and not inside_string then
@@ -183,6 +205,7 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
             end
 
             local is_package_start = private_darwin.is_one_of_string_at_point(content,{ "package.loadlib ","package.loadlib("}, i)
+
             if is_package_start then
                 waiting_package_string = true
                 package_call_point = i
