@@ -4,7 +4,7 @@
 
 
 Private_darwin_old_require = require
-Private_darwin_old_package = package.load_lib
+Private_darwin_old_package = package.loadlib
 
 
 ---@param item string
@@ -18,7 +18,11 @@ function require(item)
                 return current.loaded_obj
             end
             local dest = PRIVATE_DARWIN_SO_DEST.."/"..i..".so"
-            current.loaded_obj =  Private_darwin_old_package(dest,"lua_open_"..current.comptime_included)
+            current.loaded_obj =  Private_darwin_old_package(dest,"luaopen_"..current.comptime_included)
+            if not current.loaded_obj then
+                error("impossible to load "..dest)
+            end
+            current.loaded_obj = current.loaded_obj()
             return current.loaded_obj
         end
     end
