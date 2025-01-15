@@ -6,8 +6,8 @@ private_darwin_project.add_lua_methods = function(selfobj)
         private_darwin_project.add_lua_file(selfobj, src)
     end
 
-    selfobj.add_lua_file_followin_require = function(src)
-        private_darwin_project.add_lua_file_followin_require(selfobj, src)
+    selfobj.add_lua_file_followin_require = function(src,relative_path)
+        private_darwin_project.add_lua_file_followin_require(selfobj, src,relative_path)
     end
 
     selfobj.generate_lua_complex = function(props)
