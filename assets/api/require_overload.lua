@@ -1,7 +1,10 @@
 
 
 Private_darwin_old_require = require
-Private_darwin_old_package = package.loadlib
+if not Private_darwin_old_package then
+    Private_darwin_old_package = package.loadlib
+end
+
 
 
 function require(item)
