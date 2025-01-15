@@ -172,13 +172,15 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
             is_a_scape = acumulative_scape % 2 == 1
         end
         if not inside_string and not inside_comment then
-            local is_require_start = private_darwin.is_string_at_point(content, "require", i)
+            local is_require_start = private_darwin.is_one_of_string_at_point(content,{ "require ","require("}, i)
+
             if is_require_start then
                 waiting_required_string = true
                 required_call_point = i
                 i = i + #"require"
             end
         end
+            
 
         -- means it found a required call
         if waiting_required_string and not inside_string and last_string_start_point > required_call_point then

@@ -5,7 +5,15 @@ private_darwin.is_string_at_point = function(str, target, point)
     end
     return false
 end
-
+private_darwin.is_one_of_string_at_point = function(str, targets, point)
+    for i = 1, #targets do
+        local target = targets[i]
+        if private_darwin.is_string_at_point(str, target, point) then
+            return true
+        end
+    end
+    return false
+end
 private_darwin.starts_with = function(str, target)
     return private_darwin.is_string_at_point(str, target, 1)
 end
