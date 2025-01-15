@@ -12,8 +12,29 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
         props.stream(parse_to_bytes)
     end
     local required_func_name = "PRIVATE_DARWIN_"..selfobj.project_name.."_REQUIRED_FUNCS"
-    
-    
+    local so_includeds_name = "PRIVATE_DARWIN_"..selfobj.project_name.."_SO_INCLUDED"
+        
+
+    local streamed_shas = {}
+    for i = 1, #selfobj.embed_data do
+        local current = selfobj.embed_data[i]
+        private_darwin_project.embed_global_in_lua(current.name, current.value, streamed_shas, props.stream)
+    end
+
+    if #selfobj.so_includeds > 0 then
+        local so_actions = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "so_actions.lua")
+        local so_actions_format = private_darwin.replace_str(so_actions, "SO_INCLUDE", so_includeds_name)
+        if props.so_dest then
+            so_actions_format = private_darwin.replace_str(so_actions_format, "PRIVATE_DARWIN_SO_DEST","'"..props.so_dest.."'")
+        else 
+            so_actions_format = private_darwin.replace_str(so_actions_format, "PRIVATE_DARWIN_SO_DEST", "'/tmp'")
+        end
+
+        props.stream(so_actions_format)   
+    end
+
+
+    ---- Handling require 
     props.stream(required_func_name.." = {}\n")
     for i=1,#selfobj.required_funcs do
         local current = selfobj.required_funcs[i]
@@ -28,16 +49,9 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
     end
 
 
-
-    local streamed_shas = {}
-    for i = 1, #selfobj.embed_data do
-        local current = selfobj.embed_data[i]
-        private_darwin_project.embed_global_in_lua(current.name, current.value, streamed_shas, props.stream)
-    end
-
-
     local require_code = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "require.lua")
     local require_code_format = private_darwin.replace_str(require_code, "REQUIRE_FUNCS", required_func_name)
+    require_code_format = private_darwin.replace_str(require_code_format, "REQUIRE_SO", so_includeds)
     props.stream(require_code_format)
 
     
