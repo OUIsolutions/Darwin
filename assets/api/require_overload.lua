@@ -1,14 +1,9 @@
----@class PrivateDarwinModule
----@field item string
----@field callback_import fun():any
 
 
 Private_darwin_old_require = require
 Private_darwin_old_package = package.loadlib
 
 
----@param item string
----@return any
 function require(item)
 
     for i =1,#REQUIRE_SO do
@@ -40,3 +35,4 @@ function require(item)
     end
     return Private_darwin_old_require(item)
 end
+
