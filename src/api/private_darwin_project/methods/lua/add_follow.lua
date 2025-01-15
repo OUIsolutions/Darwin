@@ -216,6 +216,9 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
         end
         if waiting_package_string and not inside_string and last_string_start_point > package_call_point then
             local package_string = string.sub(content, last_string_start_point, last_string_end_point)
+            local identifier_size = string.len(string_starter_char)
+            package_string = string.sub(package_string, identifier_size+1, string.len(package_string) - identifier_size)
+           
             if relative_path  then
                 package_string_path = relative_path .. "/" .. package_string
             end
