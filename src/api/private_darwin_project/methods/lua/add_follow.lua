@@ -190,6 +190,14 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
             end
         end
             
+        if (waiting_package_string or waiting_required_string ) and not inside_string then
+            local current_char = string.sub(content, i, i)
+            --print(string.sub(content, i-5, i).."("..current_char..")"..string.sub(content, i, i+5))
+            local valid_chars = {"(", ")", " ",'"',"'","[","]", ","}
+            if not private_darwin.is_inside(valid_chars,current_char) then
+                error("invalid package call at:("..src..") only raw string is allowed ")
+            end
+        end 
 
         -- means it found a required call
         if waiting_required_string and not inside_string and last_string_start_point > required_call_point then
