@@ -1,3 +1,70 @@
+
+private_darwin_project.is_required_included = function(self_obj, include)
+    for i=1,#self_obj.required_funcs do
+        if self_obj.required_funcs[i].name == include then
+            return true
+        end
+    end
+end
+
+private_darwin_project.is_so_includeds = function(self_obj, include)
+    for i=1,#self_obj.so_includeds do
+        if self_obj.so_includeds[i].name == include then
+            return true
+        end
+    end
+end
+
+private_darwin_project.create_include_stream = function(self_obj, include,relative_path)
+
+    if relative_path == nil then
+        relative_path = ""
+    end
+
+    local possibles = {
+        string.format("/usr/share/lua/%s/%s.lua", _VERSION, item),
+        string.format("/usr/share/lua/%s/%s/init.lua", _VERSION, item),
+        string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, item),
+        string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, item),
+        string.format("/usr/lib64/lua/%s/%s/init.lua", _VERSION, item),
+        string.format("%s./%s.lua",relative_path, item),
+        string.format("%s./%s/init.lua",relative_path, item),
+        string.format("/usr/lib64/lua/%s/%s.so", _VERSION, item),
+        string.format("/usr/lib64/lua/%s/loadall.so", _VERSION),
+        string.format("%s./%s.so",relative_path, item),
+    }
+    for i=1,#possibles do
+        local current = possibles[i]
+        if not dtw.is_file(current) then                        
+            goto ::continue::
+        end
+        if private_darwin.ends_with(current, ".lua") then
+           --- means its already included
+           if private_darwin_project.is_required_included(self_obj,include) then
+                return 
+           end
+           self_obj.required_funcs[#self_obj.required_funcs + 1] = {
+                comptime_included = include,
+                content  = darwin.file_stream(current)
+            }
+        end
+
+        if private_darwin.ends_with(current, ".so") then
+            --- means its already included
+            if private_darwin_project.is_so_includeds(self_obj,include) then
+                return 
+            end
+            self_obj.so_includeds[#self_obj.so_includeds + 1] = {
+                comptime_included = include,
+                content  = darwin.file_stream(current)
+            }
+        end
+        ::continue::
+    end
+    error("unknow include " .. include)
+
+end 
+
 private_darwin_project.add_lua_file_followin_require_recursively = function(selfobj, src)
     local content = darwin.dtw.load_file(src)
     if not content then

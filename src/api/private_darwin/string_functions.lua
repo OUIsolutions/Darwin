@@ -9,3 +9,6 @@ end
 private_darwin.starts_with = function(str, target)
     return private_darwin.is_string_at_point(str, target, 1)
 end
+private_darwin.ends_with = function(str, target)
+    return private_darwin.is_string_at_point(str, target, #str - #target + 1)
+end
