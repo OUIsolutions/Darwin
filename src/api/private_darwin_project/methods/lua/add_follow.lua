@@ -20,24 +20,28 @@ private_darwin_project.create_include_stream = function(self_obj, include,relati
     if relative_path == nil then
         relative_path = ""
     end
+   -- include = private_darwin.string.gsub(include, ".", "/")
 
     local possibles = {
-        string.format("/usr/share/lua/%s/%s.lua", _VERSION, item),
-        string.format("/usr/share/lua/%s/%s/init.lua", _VERSION, item),
-        string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, item),
-        string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, item),
-        string.format("/usr/lib64/lua/%s/%s/init.lua", _VERSION, item),
-        string.format("%s./%s.lua",relative_path, item),
-        string.format("%s./%s/init.lua",relative_path, item),
-        string.format("/usr/lib64/lua/%s/%s.so", _VERSION, item),
+        string.format("/usr/share/lua/%s/%s.lua", _VERSION, include),
+        string.format("/usr/share/lua/%s/%s/init.lua", _VERSION, include),
+        string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, include),
+        string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, include),
+        string.format("/usr/lib64/lua/%s/%s/init.lua", _VERSION, include),
+        string.format("%s./%s.lua",relative_path, include),
+        string.format("%s./%s/init.lua",relative_path, include),
+        string.format("/usr/lib64/lua/%s/%s.so", _VERSION, include),
         string.format("/usr/lib64/lua/%s/loadall.so", _VERSION),
-        string.format("%s./%s.so",relative_path, item),
+        string.format("%s./%s.so",relative_path, include),
     }
     for i=1,#possibles do
         local current = possibles[i]
-        if not dtw.is_file(current) then                        
-            goto ::continue::
+        print(current)
+
+        if not darwin.dtw.isfile(current) then                        
+            goto continue
         end
+
         if private_darwin.ends_with(current, ".lua") then
            --- means its already included
            if private_darwin_project.is_required_included(self_obj,include) then
@@ -61,7 +65,7 @@ private_darwin_project.create_include_stream = function(self_obj, include,relati
         end
         ::continue::
     end
-    error("unknow include " .. include)
+    error("impossible to find: " .. include)
 
 end 
 
