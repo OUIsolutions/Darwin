@@ -1,5 +1,9 @@
 darwin.create_project = function(project_name)
     local selfobj = {}
+    if not project_name then
+        error("project_name is required")
+    end
+    
     selfobj.project_name = project_name
     selfobj.embed_global = function(name, value)
         private_darwin_project.embed_global(selfobj, name, value)
