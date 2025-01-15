@@ -9,6 +9,14 @@ Private_darwin_old_require = require
 ---@param item string
 ---@return any
 function require(item)
+
+    for i =1,#REQUIRE_SO do
+        local current = REQUIRE_SO[i]
+        if current.item == item then
+            return 
+        end
+    end
+
     for i = 1, #REQUIRE_FUNCS do
         local current = REQUIRE_FUNCS[i]
         

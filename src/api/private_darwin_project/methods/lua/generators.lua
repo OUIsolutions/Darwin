@@ -27,9 +27,6 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
         props.stream("\n}\n")
     end
 
-    local require_code = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "require.lua")
-    local require_code_format = private_darwin.replace_str(require_code, "REQUIRE_FUNCS", required_func_name)
-    props.stream(require_code_format)
 
 
     local streamed_shas = {}
@@ -38,6 +35,12 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
         private_darwin_project.embed_global_in_lua(current.name, current.value, streamed_shas, props.stream)
     end
 
+
+    local require_code = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "require.lua")
+    local require_code_format = private_darwin.replace_str(require_code, "REQUIRE_FUNCS", required_func_name)
+    props.stream(require_code_format)
+
+    
     for i = 1, #selfobj.lua_code do
         props.stream("\n")
         local current = selfobj.lua_code[i]
