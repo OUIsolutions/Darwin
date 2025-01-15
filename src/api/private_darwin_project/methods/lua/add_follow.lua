@@ -20,7 +20,7 @@ private_darwin_project.create_include_stream = function(self_obj, include,relati
     if relative_path == nil then
         relative_path = ""
     end
-   -- include = private_darwin.string.gsub(include, ".", "/")
+    include = private_darwin.replace_str(include, ".", "/")
 
     local possibles = {
         string.format("/usr/share/lua/%s/%s.lua", _VERSION, include),
@@ -28,16 +28,14 @@ private_darwin_project.create_include_stream = function(self_obj, include,relati
         string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, include),
         string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, include),
         string.format("/usr/lib64/lua/%s/%s/init.lua", _VERSION, include),
-        string.format("%s./%s.lua",relative_path, include),
-        string.format("%s./%s/init.lua",relative_path, include),
+        string.format("%s/./%s.lua",relative_path, include),
+        string.format("%s/./%s/init.lua",relative_path, include),
         string.format("/usr/lib64/lua/%s/%s.so", _VERSION, include),
         string.format("/usr/lib64/lua/%s/loadall.so", _VERSION),
-        string.format("%s./%s.so",relative_path, include),
+        string.format("%s/./%s.so",relative_path, include),
     }
     for i=1,#possibles do
         local current = possibles[i]
-        print(current)
-
         if not darwin.dtw.isfile(current) then                        
             goto continue
         end
@@ -51,6 +49,7 @@ private_darwin_project.create_include_stream = function(self_obj, include,relati
                 comptime_included = include,
                 content  = darwin.file_stream(current)
             }
+            return  current
         end
 
         if private_darwin.ends_with(current, ".so") then
@@ -62,6 +61,7 @@ private_darwin_project.create_include_stream = function(self_obj, include,relati
                 comptime_included = include,
                 content  = darwin.file_stream(current)
             }
+            return nil
         end
         ::continue::
     end
@@ -182,9 +182,11 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
         -- means it found a required call
         if waiting_required_string and not inside_string and last_string_start_point > required_call_point then
             local require_string = string.sub(content, last_string_start_point, last_string_end_point)
-            print("require found: " .. require_string)
-            private_darwin_project.create_include_stream(selfobj, require_string, relative_path)
+            point =  private_darwin_project.create_include_stream(selfobj, require_string, relative_path)
             waiting_required_string = false
+            if point then
+                private_darwin_project.add_lua_file_followin_require_recursively(selfobj, point,relative_path)
+            end
         end
 
 
