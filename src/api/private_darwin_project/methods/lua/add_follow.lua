@@ -20,20 +20,21 @@ private_darwin_project.create_include_stream = function(self_obj, include,relati
     if relative_path == nil then
         relative_path = ""
     end
-    include = private_darwin.replace_str(include, ".", "/")
+    include_format = private_darwin.replace_str(include, ".", "/")
 
     local possibles = {
-        string.format("/usr/share/lua/%s/%s.lua", _VERSION, include),
-        string.format("/usr/share/lua/%s/%s/init.lua", _VERSION, include),
-        string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, include),
-        string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, include),
-        string.format("/usr/lib64/lua/%s/%s/init.lua", _VERSION, include),
-        string.format("%s/./%s.lua",relative_path, include),
-        string.format("%s/./%s/init.lua",relative_path, include),
-        string.format("/usr/lib64/lua/%s/%s.so", _VERSION, include),
+        string.format("/usr/share/lua/%s/%s.lua", _VERSION, include_format),
+        string.format("/usr/share/lua/%s/%s/init.lua", _VERSION, include_format),
+        string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, include_format),
+        string.format("/usr/lib64/lua/%s/%s.lua", _VERSION, include_format),
+        string.format("/usr/lib64/lua/%s/%s/init.lua", _VERSION, include_format),
+        string.format("%s/./%s.lua",relative_path, include_format),
+        string.format("%s/./%s/init.lua",relative_path, include_format),
+        string.format("/usr/lib64/lua/%s/%s.so", _VERSION, include_format),
         string.format("/usr/lib64/lua/%s/loadall.so", _VERSION),
-        string.format("%s/./%s.so",relative_path, include),
+        string.format("%s/./%s.so",relative_path, include_format),
     }
+
     for i=1,#possibles do
         local current = possibles[i]
         if not darwin.dtw.isfile(current) then                        
@@ -188,7 +189,6 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
                 private_darwin_project.add_lua_file_followin_require_recursively(selfobj, point,relative_path)
             end
         end
-
 
 
         i = i + 1
