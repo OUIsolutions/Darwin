@@ -4,6 +4,7 @@
 
 
 Private_darwin_old_require = require
+Private_darwin_old_package = package.load_lib
 
 
 ---@param item string
@@ -12,8 +13,13 @@ function require(item)
 
     for i =1,#REQUIRE_SO do
         local current = REQUIRE_SO[i]
-        if current.item == item then
-            return 
+        if current.comptime_included == item then
+            if current.loaded_obj then
+                return current.loaded_obj
+            end
+            local dest = PRIVATE_DARWIN_SO_DEST.."/"..i..".so"
+            current.loaded_obj =  Private_darwin_old_package(dest,"lua_open_"..i)
+            return current.loaded_obj
         end
     end
 

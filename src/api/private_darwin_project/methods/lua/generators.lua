@@ -21,14 +21,15 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
         private_darwin_project.embed_global_in_lua(current.name, current.value, streamed_shas, props.stream)
     end
 
+    if not props.so_dest then
+        props.so_dest = "/tmp"
+    end
+    
     if #selfobj.so_includeds > 0 then
         local so_actions = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "so_actions.lua")
         local so_actions_format = private_darwin.replace_str(so_actions, "SO_INCLUDE", so_includeds_name)
-        if props.so_dest then
-            so_actions_format = private_darwin.replace_str(so_actions_format, "PRIVATE_DARWIN_SO_DEST","'"..props.so_dest.."'")
-        else 
-            so_actions_format = private_darwin.replace_str(so_actions_format, "PRIVATE_DARWIN_SO_DEST", "'/tmp'")
-        end
+        so_actions_format = private_darwin.replace_str(so_actions_format, "PRIVATE_DARWIN_SO_DEST","'"..props.so_dest.."'")
+       
 
         props.stream(so_actions_format)   
     end
@@ -51,6 +52,7 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
     local require_code = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "require.lua")
     local require_code_format = private_darwin.replace_str(require_code, "REQUIRE_FUNCS", required_func_name)
     require_code_format = private_darwin.replace_str(require_code_format, "REQUIRE_SO", so_includeds_name)
+    require_code_format = private_darwin.replace_str(require_code_format, "PRIVATE_DARWIN_SO_DEST", props.so_dest)
     props.stream(require_code_format)
 
     

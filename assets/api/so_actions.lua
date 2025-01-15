@@ -3,6 +3,7 @@
 
 for i=1, #SO_INCLUDE do
     local current = SO_INCLUDE[i]
-    local write_point = io.open(PRIVATE_DARWIN_SO_DEST.."/"..i..".so", "wb")
+    local dest = PRIVATE_DARWIN_SO_DEST.."/"..i..".so"
+    local write_point = io.open(dest, "wb")
     write_point:write(current.content)
 end
