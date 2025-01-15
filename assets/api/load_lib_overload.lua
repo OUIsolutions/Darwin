@@ -2,7 +2,7 @@
 
 Private_darwin_old_package = package.loadlib
 
-package.loadlib = function (libname, funcname)
+package.loadlib = function (item, funcname)
   
     for i =1,#REQUIRE_SO do
         local current = REQUIRE_SO[i]
@@ -19,7 +19,7 @@ package.loadlib = function (libname, funcname)
             return current.loaded_obj
         end
     end
-    return Private_darwin_old_package(libname, funcname)
+    return Private_darwin_old_package(item, funcname)
 end
 
 

@@ -202,14 +202,18 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
         end
         if waiting_package_string and not inside_string and last_string_start_point > package_call_point then
             local package_string = string.sub(content, last_string_start_point, last_string_end_point)
-            if private_darwin_project.is_so_includeds(self_obj,package_string) then
-                return 
+            if relative_path  then
+                package_string_path = relative_path .. "/" .. package_string
             end
-            self_obj.so_includeds[#self_obj.so_includeds + 1] = {
-                comptime_included = package_string,
-                content  = darwin.file_stream(package_string)
-            }
 
+            if not private_darwin_project.is_so_includeds(selfobj,package_string) then
+                selfobj.so_includeds[#selfobj.so_includeds + 1] = {
+                    comptime_included = package_string,
+                    content  = darwin.file_stream(package_string_path)
+                }
+                 
+            end
+    
             waiting_package_string = false
     
         end
