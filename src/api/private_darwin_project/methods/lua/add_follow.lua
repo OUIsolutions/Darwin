@@ -88,28 +88,8 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
 
     local waiting_package_string = false
     local package_call_point = 0
-    io.open("debug.txt", "w"):close()
-    local data   = io.open("debug.txt", "a")
-    dstream = function(s) 
-        data:write(s.."\n")
-    end
+
     while i < #content do
-        if inside_string then
-            dstream("-------------------------------------------------")
-            dstream("i = "..tostring(i))
-            dstream(string.sub(content, i-5, i-1).."("..string.sub(content, i, i)..")"..string.sub(content, i+1, i+5))
-            dstream("inside_comment: "..tostring(inside_comment))
-            dstream("inside_string: "..tostring(inside_string))
-            dstream("waiting_required_string: "..tostring(waiting_required_string))
-            dstream("waiting_package_string: "..tostring(waiting_package_string))
-            dstream("i: "..tostring(i))
-            dstream("last_string_start_point: "..tostring(last_string_start_point))
-            dstream("last_string_end_point: "..tostring(last_string_end_point))
-            dstream("acumulative_scape: "..tostring(acumulative_scape))
-            dstream("is_a_scape: "..tostring(is_a_scape))
-            dstream("content: "..string.sub(content, i, i))
-            dstream("-------------------------------------------------")
-        end 
 
 
         ---------------------------Comment Tester ------------------------------------------
@@ -136,7 +116,7 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
             if is_small_string_start then
                 inside_string = true
                 string_starter_char = "'"
-                last_string_start_point = i + #"'"
+                last_string_start_point = i 
             end
         end
 
@@ -146,7 +126,7 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
             if is_median_string_start then
                 inside_string = true
                 string_starter_char = '"'
-                last_string_start_point = i + #'"'
+                last_string_start_point = i 
             end
         end
 
@@ -156,7 +136,7 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
             if is_big_string_start then
                 inside_string = true
                 string_starter_char = "[["
-                last_string_start_point = i + #'[['
+                last_string_start_point = i
             end
         end
         if inside_string and string_starter_char == "'" and i > last_string_start_point and not is_a_scape then
@@ -164,7 +144,7 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
 
             if is_small_string_end then
                 inside_string = false
-                last_string_end_point = i - 1
+                last_string_end_point = i 
             end
         end
 
@@ -173,7 +153,7 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
   
             if is_medium_string_end then
                 inside_string = false
-                last_string_end_point = i - 1
+                last_string_end_point = i
             end
         end
 
@@ -182,7 +162,7 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
 
             if is_big_string_end then
                 inside_string = false
-                last_string_end_point = i - 1
+                last_string_end_point = i+1
             end
         end
 
@@ -224,7 +204,10 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
 
         -- means it found a required call
         if waiting_required_string and not inside_string and last_string_start_point > required_call_point then
-            local require_string = string.sub(content, last_string_start_point, last_string_end_point)
+            local require_string = string.sub(content, last_string_start_point, last_string_end_point)            
+            local identifier_size = string.len(string_starter_char)
+
+            require_string = string.sub(require_string, identifier_size+1, string.len(require_string) - identifier_size)
             point =  private_darwin_project.create_include_stream(selfobj, require_string, relative_path)
             waiting_required_string = false
             if point then
