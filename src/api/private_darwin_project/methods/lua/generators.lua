@@ -11,6 +11,21 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
         local parse_to_bytes = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "parse_to_bytes.lua")
         props.stream(parse_to_bytes)
     end
+        local required_func_name = "PRIVATE_DARWIN_"..selfobj.project_name.."_REQUIRED_FUNCS"
+        props.stream(required_func_name.." = {}\n")
+        for i=1,#selfobj.required_funcs do
+            local current = selfobj.required_funcs[i]
+            props.stream(required_func_name.."[" .. i .. "] = {\n")
+            props.stream("comptime_include ='".. current.comptime_included .. "',\n")
+            props.stream("loaded_obj = nil,\n")
+            props.stream("content = function()\n")
+                private_darwin.transfer_file_stream(current.content, props.stream)
+            props.stream("end\n")
+        
+            props.stream("\n}\n")
+        end
+
+
 
 
     local streamed_shas = {}
