@@ -15,9 +15,9 @@ private_darwin_project.create_c_str_buffer = function(str_code, streamed_shas, s
 end
 
 
-private_darwin_project.embed_c_table = function(var,total_tables, streamed_shas,stream)
+private_darwin_project.embed_c_table = function(var,increment, streamed_shas,stream)
     
-    local table_name = "private_darwin_table" .. total_tables
+    local table_name = "private_darwin_table" .. increment()
     stream("LuaCEmbedTable *%s = LuaCembed_new_anonymous_table(darwin_main_obj);\n",table_name)
     total_tables = total_tables + 1
     for key, val in pairs(current_table) do
@@ -69,9 +69,9 @@ private_darwin_project.embed_c_table = function(var,total_tables, streamed_shas,
             ))
         end
         if key_type == "number" and valtype == "table" then
-            local created_name =  private_darwin_project.embed_c_table(val,total_tables,streamed_shas,stream)
+            local created_name =  private_darwin_project.embed_c_table(val,increment,streamed_shas,stream)
             stream(string.format(
-                "LuaCEmbedTable_set_table_by_index(%s,%d,%s);\n",
+                "LuaCEmbedTable_set_sub_table_by_index(%s,%d,%s);\n",
                 table_name,
                 key - 1,
                 created_name
@@ -114,14 +114,15 @@ private_darwin_project.embed_c_table = function(var,total_tables, streamed_shas,
         end
 
         if key_type == "string" and valtype == "table" then
-          local created_name =   private_darwin_project.embed_c_table(val,total_tables,streamed_shas,stream)
+          local created_name =   private_darwin_project.embed_c_table(val,increment,streamed_shas,stream)
             stream(string.format(
-                "LuaCEmbedTable_set_table_prop(%s,%q,%s);\n",
+                "LuaCEmbedTable_set_subm_table_prop(%s,%q,%s);\n",
                 table_name,
                 key,
                 created_name
             ))
         end
+        
     end
     return table_name
 end
@@ -151,6 +152,10 @@ private_darwin_project.embed_global_in_c = function(name, var, var_type,streamed
         
     end
     if var_type == "table" then        
-        private_darwin_project.embed_c_table(var,0,streamed_shas,stream)
+        local total_tables = 0
+        local increment = function()
+            total_tables = total_tables + 1
+        end
+        private_darwin_project.embed_c_table(var,increment,streamed_shas,stream)
     end
 end
