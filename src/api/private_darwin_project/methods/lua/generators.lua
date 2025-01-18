@@ -72,6 +72,17 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
             props.stream(selfobj.lua_code[i])
         end
     end
+
+    if #selfobj.required_funcs > 0 then
+        local resset_require = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "resset_require.lua")
+        props.stream(resset_require)
+        props.stream("\n")
+    end 
+    if #selfobj.so_includeds > 0 then
+        local resset_so = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "resset_so.lua")
+        props.stream(resset_so)
+        props.stream("\n")
+    end 
 end
 
 private_darwin_project.generate_lua_code = function(selfobj, props)
