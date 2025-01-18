@@ -122,13 +122,13 @@ private_darwin_project.embed_c_table = function(var,increment, streamed_shas,str
                 created_name
             ))
         end
-        
+
     end
     return table_name
 end
 
 
-private_darwin_project.embed_global_in_c = function(name, var, var_type,streamed_shas,stream)
+private_darwin_project.embed_global_in_c = function(name, var, var_type,streamed_shas,stream,increment)
     if var_type == "number" then
         stream(
             string.format('LuaCEmbed_set_global_double(main_obj,"%s",%f);\n', name, var)
@@ -152,10 +152,7 @@ private_darwin_project.embed_global_in_c = function(name, var, var_type,streamed
         
     end
     if var_type == "table" then        
-        local total_tables = 0
-        local increment = function()
-            total_tables = total_tables + 1
-        end
+
         private_darwin_project.embed_c_table(var,increment,streamed_shas,stream)
     end
 end
