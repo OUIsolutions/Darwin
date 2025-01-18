@@ -10,8 +10,8 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
     end
     props.stream("int main(int argc, char **argv) {\n")
     props.stream("LuaCEmbed  *darwin_main_obj = newLuaCEmbedEvaluation();\n")
+    props.stream("LuaCEmbed_load_native_libs(darwin_main_obj);\n")
     props.stream("unsigned char lua_code[] = {");
-    
     local function current_stream(data)
         private_darwin.transfer_byte_size_decide(data, props.stream)
     end 
