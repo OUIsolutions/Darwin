@@ -30,6 +30,10 @@ private_darwin_project.embed_c_table = function(current_table,increment, streame
             error("invalid val on " .. original_name)
         end
 
+        if valtype == "function" then
+            error("function cannot be embed")
+        end
+
         if key_type == "number" and valtype == "number" then
             stream(string.format(
                 "LuaCEmbedTable_set_double_by_index(%s,%d,%f);\n",
@@ -131,18 +135,22 @@ private_darwin_project.embed_global_in_c = function(name, var,streamed_shas,stre
     local var_type = type(var)
     if var_type == "number" then
         stream(
-            string.format('LuaCEmbed_set_global_double(main_obj,"%s",%f);\n', name, var)
+            string.format('LuaCEmbed_set_global_double(darwin_main_obj,"%s",%f);\n', name, var)
         )
     end
+    if var_type == "function" then
+      error("function cannot be embed")
+    end
+    
     if var_type == "boolean" then
         if var == true then
             stream(
-                string.format('LuaCEmbed_set_global_bool(main_obj,"%s",true);\n', name)
+                string.format('LuaCEmbed_set_global_bool(darwin_main_obj,"%s",true);\n', name)
             )
         end
         if var == false then
             stream(
-                string.format('LuaCEmbed_set_global_bool(main_obj,"%s",false);\n', name)
+                string.format('LuaCEmbed_set_global_bool(darwin_main_obj,"%s",false);\n', name)
             )
         end
     end
@@ -153,6 +161,7 @@ private_darwin_project.embed_global_in_c = function(name, var,streamed_shas,stre
     end
     if var_type == "table" then        
 
-        private_darwin_project.embed_c_table(var,increment,streamed_shas,stream)
+       local table_name = private_darwin_project.embed_c_table(var,increment,streamed_shas,stream)
+       stream(string.format('LuaCEmbed_set_global_table(darwin_main_obj,%q,%s);\n',name,table_name))
     end
 end
