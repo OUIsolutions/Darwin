@@ -19,7 +19,6 @@ private_darwin_project.embed_c_table = function(var,increment, streamed_shas,str
     
     local table_name = "private_darwin_table" .. increment()
     stream("LuaCEmbedTable *%s = LuaCembed_new_anonymous_table(darwin_main_obj);\n",table_name)
-    total_tables = total_tables + 1
     for key, val in pairs(current_table) do
         local key_type = type(key)
         local valtype = type(val)
@@ -116,7 +115,7 @@ private_darwin_project.embed_c_table = function(var,increment, streamed_shas,str
         if key_type == "string" and valtype == "table" then
           local created_name =   private_darwin_project.embed_c_table(val,increment,streamed_shas,stream)
             stream(string.format(
-                "LuaCEmbedTable_set_subm_table_prop(%s,%q,%s);\n",
+                "LuaCEmbedTable_set_sub_table_prop(%s,%q,%s);\n",
                 table_name,
                 key,
                 created_name
@@ -128,7 +127,8 @@ private_darwin_project.embed_c_table = function(var,increment, streamed_shas,str
 end
 
 
-private_darwin_project.embed_global_in_c = function(name, var, var_type,streamed_shas,stream,increment)
+private_darwin_project.embed_global_in_c = function(name, var,streamed_shas,stream,increment)
+    local var_type = type(var)
     if var_type == "number" then
         stream(
             string.format('LuaCEmbed_set_global_double(main_obj,"%s",%f);\n', name, var)
