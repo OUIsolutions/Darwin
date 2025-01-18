@@ -21,7 +21,13 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
     })
     props.stream("};\n")
     props.stream('LuaCEmbed_evaluate(darwin_main_obj,"%s", (const char*)lua_code);\n')
+    props.stream("if(LuaCEmbed_has_errors(darwin_main_obj)) {\n")
+    props.stream("    printf(\"Error: %s\\n\", LuaCEmbed_get_error_message(darwin_main_obj));\n")
+    props.stream("    LuaCEmbed_free(darwin_main_obj);\n")
+    props.stream("    return 1;\n")
+    props.stream("}\n")
     props.stream("LuaCEmbed_free(darwin_main_obj);\n")
+    props.stream("return 0;\n")
     props.stream("\n}");
 end
 
