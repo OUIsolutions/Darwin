@@ -18,11 +18,11 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
         return total_tables
     end
 
+    props.stream("LuaCEmbed_load_native_libs(darwin_main_obj);\n")
     for i = 1, #selfobj.embed_data do
         local current = selfobj.embed_data[i]
         private_darwin_project.embed_global_in_c(current.name, current.value, streamed_shas, props.stream,increment)
     end
-    props.stream("LuaCEmbed_load_native_libs(darwin_main_obj);\n")
     props.stream("unsigned char lua_code[] = {");
     local function current_stream(data)
         private_darwin.transfer_byte_size_decide(data, props.stream)
