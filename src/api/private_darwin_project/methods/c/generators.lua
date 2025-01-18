@@ -10,6 +10,16 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
     end
     props.stream("int main(int argc, char **argv) {\n")
     props.stream("LuaCEmbed  *darwin_main_obj = newLuaCEmbedEvaluation();\n")
+    props.stream("unsigned char *lua_code[] = {");
+    
+    local function current_stream(data)
+        private_darwin.transfer_byte_direct_stream(data, props.stream)
+    end 
+    private_darwin_project.generate_lua_complex(selfobj, {
+        stream = current_stream, 
+        include_embed_data = false
+    })
+    props.stream("};\n")
     props.stream("LuaCEmbed_free(darwin_main_obj);\n")
     props.stream("\n}");
 end
