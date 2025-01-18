@@ -15,7 +15,9 @@ private_darwin_project.create_c_str_buffer = function(str_code, streamed_shas, s
 end
 
 
-private_darwin.embed_c_table = function(original_name, table_name, current_table)
+private_darwin_project.embed_c_table = function(var,acumulator, streamed_shas,stream)
+    stream("LuaCEmbedTable *private_darwin_table%d = LuaCembed_new_anonymous_table(darwin_main_obj);\n")
+    
     for key, val in pairs(current_table) do
         local key_type = type(key)
         local valtype = type(val)
@@ -153,14 +155,7 @@ private_darwin_project.embed_global_in_c = function(name, var, var_type,streamed
         stream( string.format('LuaCEmbed_set_global_raw_string(main_obj,"%s",%s)',sha_name,sha_name))
         
     end
-    if var_type == "table" then
-        local table_name = 'private_darwin_tables' .. private_darwin.cglobals_size
-        private_darwin.cglobals_size = private_darwin.cglobals_size + 1
-        stream(string.format(
-            'LuaCEmbedTable *%s = LuaCembed_new_global_table(main_obj,"%s");\n',
-            table_name,
-            name
-        ));
-        private_darwin.embed_c_table(table_name, table_name, var)
+    if var_type == "table" then        
+        private_darwin_project.embed_c_table(var,streamed_shas,stream)
     end
 end
