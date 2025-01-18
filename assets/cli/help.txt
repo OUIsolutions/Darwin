@@ -1,9 +1,0 @@
-------------------------Darwin----------------------------
-A Boostrapped lua Compiler
-check documentation:
-github: https://github.com/OUIsolutions/Darwin
-------------------------Comands----------------------------
-./darwin.o help: to get help
-./darwin.o about: to get information about the project
-./darwin.o start <example> <your_project_name>(defauts to 'my_project') to start a example
-./darwin.o build <conffile> to build a project
