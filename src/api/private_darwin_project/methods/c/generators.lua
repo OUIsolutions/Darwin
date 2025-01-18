@@ -1,7 +1,7 @@
 private_darwin_project.generate_c_complex = function(selfobj, props)
     
     local include_lua_cembed = true
-    if props.include_lua_cembed == nil then
+    if props.include_lua_cembed ~= nil then
         include_lua_cembed = props.include_lua_cembed
     end
     if include_lua_cembed then
@@ -9,7 +9,8 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
         props.stream(lua_cembedd)
     end
     props.stream("int main(int argc, char **argv) {\n")
-    props.stream("LuaCEmbed *darwin_main_obj = newLuaCEmbed();\n")
+    props.stream("LuaCEmbed  *darwin_main_obj = newLuaCEmbedEvaluation();\n")
+    props.stream("LuaCEmbed_free(darwin_main_obj);\n")
     props.stream("\n}");
 end
 
