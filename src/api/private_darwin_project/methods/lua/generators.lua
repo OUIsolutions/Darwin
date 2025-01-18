@@ -6,7 +6,6 @@ private_darwin_project.generate_lua_complex = function(selfobj, props)
     if #selfobj.embed_data == 0 then
         embed_data = false
     end
-
     local so_dest = props.so_dest
     if not props.so_dest then
         so_dest = "/tmp/"..selfobj.project_name.."_so"

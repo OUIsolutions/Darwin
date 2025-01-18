@@ -8,8 +8,8 @@ end
 
 
 function require(item)
-
     for i =1,#REQUIRE_SO do
+        
         local current = REQUIRE_SO[i]
         if current.comptime_included == item then
             if current.loaded_obj then
