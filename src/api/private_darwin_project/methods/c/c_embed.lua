@@ -4,9 +4,48 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
     if props.include_lua_cembed == nil then
         include_lua_cembed = props.include_lua_cembed
     end
-    local embed_data =  true 
-    if props.embed_data == nil then
-        embed_data = props.embed_data
+    if include_lua_cembed then
+        local lua_cembedd = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "LuaCEmbed.h")
+        props.stream(lua_cembedd)
     end
-    
+    props.stream("int main(int argc, char **argv) {\n")
+    props.stream("LuaCEmbed *darwin_main_obj = newLuaCEmbed();\n")
+    props.stream("\n}");
+end
+
+private_darwin_project.generate_c_code = function(selfobj, props)
+    local content = {}
+    local function stream(data)
+        content[#content + 1] = data
+    end
+    private_darwin_project.generate_c_complex(selfobj, {
+        stream = stream,
+        include_embed_data = props.include_embed_data
+    })
+    return table.concat(content)
+end
+
+
+
+private_darwin_project.generate_c_file = function(selfobj, props)
+    darwin.dtw.write_file(props.output, "")
+    local file = io.open(props.output, "a+b")
+
+    local function stream(data)
+        if not file then
+            file = io.open(props.output, "a+b")
+        end
+        if not file then
+            error("impossible to generate output in" .. props.output)
+        end
+        file:write(data)
+    end
+
+    private_darwin_project.generate_c_complex(selfobj, {
+        stream = stream,
+        include_embed_data = props.include_embed_data
+    })
+    if file then
+        file:close()
+    end
 end
