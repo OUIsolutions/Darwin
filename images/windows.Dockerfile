@@ -8,4 +8,4 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 
-CMD ["sh", "-c", "cd project && ./darwin.out build build/darwinconf.lua build_windows"]
+CMD ["sh", "-c", "cd project && ./darwin.out build build/main.lua build_windows"]

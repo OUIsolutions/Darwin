@@ -21,7 +21,7 @@ local function main()
 
         darwin.add_lua_code("darwin = {}")
         darwin.add_lua_code("darwin.dtw=private_darwin_dtw")
-        darwin.add_lua_code("darwin.candango=private_darwin_candango")
+        darwin.add_lua_code("darwin.json=private_darwin_json")
         darwin.add_lua_code("darwin.candango=private_darwin_candango")
         darwin.add_lua_code("darwin.camalgamator=private_darwin_camalgamator")
         darwin.add_lua_code("darwin.silverchain = private_darwin_silverchain")
