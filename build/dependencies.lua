@@ -1,6 +1,7 @@
 function Install_all_dependencies()
     dtw.remove_any("dependencies")
     local commands = {
+
         "mkdir dependencies",
         "cd dependencies && git clone -b v0.52 https://github.com/OUIsolutions/LuaFluidJson.git",
         "cd dependencies && git clone -b v0.72 https://github.com/OUIsolutions/LuaDoTheWorld.git",
@@ -14,10 +15,6 @@ function Install_all_dependencies()
     }
 
     for _, cmd in ipairs(commands) do
-        local result = os.execute(cmd)
-        if result ~= 0 then
-            print("Erro ao executar: " .. cmd)
-            return
-        end
+        os.execute(cmd)
     end
 end

@@ -2,7 +2,7 @@ require("build/algo")
 require("build/types")
 require("build/assets")
 require("build/embed_c")
-require("dependencies")
+require("build/dependencies")
 
 local function main()
     if is_arg_present("install_dependencies") then
@@ -10,8 +10,8 @@ local function main()
     end
 
     if is_arg_present("create_images") then
-        os.execute("docker build -t darwin_windows_build -f windows.Dockerfile .")
-        os.execute("docker build -t darwin_linux_build -f linux.Dockerfile .")
+        os.execute("docker build -t darwin_windows_build -f  images/windows.Dockerfile .")
+        os.execute("docker build -t darwin_linux_build -f images/linux.Dockerfile .")
     end
 
     if is_arg_present("build_code") then
