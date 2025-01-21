@@ -39,7 +39,7 @@ local function main()
 
         darwin.add_lua_code("private_darwin.main()")
         darwin.generate_lua_output({ output_name = "debug.lua" })
-        darwin.generate_c_executable_output({ output_name = "release/darwin.c" })
+        darwin.generate_c_executable_output({ output_name = "release/darwin.c", include_lua_cembed = false })
     end
 
 
