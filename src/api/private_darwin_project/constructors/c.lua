@@ -7,6 +7,10 @@ private_darwin_project.add_c_methods = function(selfobj)
         private_darwin_project.add_c_include(selfobj, include_code)
     end
 
+    selfobj.add_c_file = function(filename, follow_includes, verifier_callback)
+        private_darwin_project.add_c_file(selfobj, filename, follow_includes, verifier_callback)
+    end
+
     selfobj.add_c_call = function(func_name)
         private_darwin_project.add_c_call(selfobj, func_name)
     end
