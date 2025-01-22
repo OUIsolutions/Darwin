@@ -20,12 +20,12 @@ private_darwin_project.add_c_call = function(selfob, func_name)
 end
 
 
-private_darwin_project.load_lib_from_c = function(selfob, lib_start_func, lua_obj)
+private_darwin_project.load_lib_from_c = function(selfobj, lib_start_func, lua_obj)
     local c_call = string.format(
         "LuaCEmbed_load_lib_from_c(darwin_main_obj,%s,%q);",
         lib_start_func,
         lua_obj
     )
-
-    selfob.c_main_code[#selfob.c_main_code + 1] = c_call
+    print("hamou aqui")
+    selfobj.c_main_code[#selfobj.c_main_code + 1] = c_call
 end

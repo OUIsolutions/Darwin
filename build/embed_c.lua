@@ -1,6 +1,6 @@
 function Embed_c_code()
     darwin.add_c_file("dependencies/CTextEngine.h")
-    darwin.add_c_file("dependencies/LuaCEmbed.h")
+    darwin.add_c_file("assets/api/LuaCEmbed.h")
     darwin.add_c_file("dependencies/doTheWorld.h")
     darwin.add_c_file("dependencies/lua_c_amalgamator_dependencie_not_included.c")
     darwin.add_c_file("dependencies/silverchain_no_dependecie_included.c")
