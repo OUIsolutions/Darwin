@@ -30,14 +30,14 @@ private_darwin_project.add_c_methods = function(selfobj)
         return private_darwin_project.generate_c_file(selfobj, props)
     end
     selfobj.generate_c_lib_complex = function(props)
-        return private_darwin_project.generate_c_lib_complex(props)
+        return private_darwin_project.generate_c_lib_complex(selfobj, props)
     end
 
     selfobj.generate_c_lib_code = function(props)
-        return private_darwin_project.generate_c_lib_code(props)
+        return private_darwin_project.generate_c_lib_code(selfobj, props)
     end
 
     selfobj.generate_c_lib_file = function(props)
-        return private_darwin_project.generate_c_lib_file(props)
+        return private_darwin_project.generate_c_lib_file(selfobj, props)
     end
 end

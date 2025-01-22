@@ -3,7 +3,7 @@ private_darwin_project.generate_c_lib_complex = function(selfobj, props)
     if props.include_lua_cembed ~= nil then
         include_lua_cembed = props.include_lua_cembed
     end
-    local lib_name = selfobj.project_name
+    local lib_name = "luaopen_" .. selfobj.project_name
     if props.lib_name then
         lib_name = props.lib_name
     end
@@ -35,7 +35,6 @@ private_darwin_project.generate_c_lib_complex = function(selfobj, props)
         return total_tables
     end
 
-    props.stream("LuaCEmbed_load_native_libs(darwin_main_obj);\n")
     for i = 1, #selfobj.embed_data do
         local current = selfobj.embed_data[i]
         private_darwin_project.embed_global_in_c(current.name, current.value, streamed_shas, props.stream, increment)
@@ -57,16 +56,16 @@ private_darwin_project.generate_c_lib_complex = function(selfobj, props)
 
 
     props.stream('LuaCEmbed_evaluate(darwin_main_obj,"%s", (const char*)lua_code);\n')
+
     props.stream("if(LuaCEmbed_has_errors(darwin_main_obj)) {\n")
-    props.stream("    printf(\"Error: %s\\n\", LuaCEmbed_get_error_message(darwin_main_obj));\n")
-    props.stream("    LuaCEmbed_free(darwin_main_obj);\n")
-    props.stream("    return 1;\n")
+    props.stream("LuaCEmbed_dangerous_raise_self_error_jumping(darwin_main_obj);\n")
+    props.stream("    return 0;\n")
     props.stream("}\n")
-    props.stream("LuaCEmbed_free(darwin_main_obj);\n")
+
 
     if props.object_export then
         props.stream(string.format(
-            'return  LuaCembed_send_global_as_lib(main_obj,%q);\n',
+            'return  LuaCembed_send_global_as_lib(darwin_main_obj,%q);\n',
             props.object_export
         ))
     end
@@ -107,7 +106,7 @@ private_darwin_project.generate_c_lib_file = function(selfobj, props)
         file:write(data)
     end
 
-    private_darwin_project.generate_c_complex(selfobj, {
+    private_darwin_project.generate_c_lib_complex(selfobj, {
         stream = stream,
         include_lua_cembed = props.include_lua_cembed,
         lib_name = props.lib_name,
