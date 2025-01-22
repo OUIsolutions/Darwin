@@ -15,14 +15,14 @@ private_darwin_project.add_c_file = function(selfobj, filename, follow_includes,
 end
 
 private_darwin_project.add_c_call = function(selfob, func_name)
-    local c_call = string.format("%s(darwin_main_obj)", func_name)
+    local c_call = string.format("%s(darwin_main_obj);", func_name)
     selfob.c_main_code[#selfob.c_main_code + 1] = c_call
 end
 
 
 private_darwin_project.load_lib_from_c = function(selfob, lib_start_func, lua_obj)
     local c_call = string.format(
-        "LuaCEmbed_load_lib_from_c(darwin_main_obj,%s,%q)",
+        "LuaCEmbed_load_lib_from_c(darwin_main_obj,%s,%q);",
         lib_start_func,
         lua_obj
     )

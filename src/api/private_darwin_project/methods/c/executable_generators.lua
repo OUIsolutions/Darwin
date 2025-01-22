@@ -1,5 +1,4 @@
 private_darwin_project.generate_c_complex = function(selfobj, props)
-    
     local include_lua_cembed = true
     if props.include_lua_cembed ~= nil then
         include_lua_cembed = props.include_lua_cembed
@@ -8,9 +7,20 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
         local lua_cembedd = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "LuaCEmbed.h")
         props.stream(lua_cembedd)
     end
+
+    for i = 1, #selfobj.c_external_code do
+        props.stream("\n")
+        local current = selfobj.c_external_code[i]
+        if private_darwin.is_file_stream(current) then
+            private_darwin.transfer_file_stream(current, props.stream)
+        else
+            props.stream(current)
+        end
+    end
+
     props.stream("int main(int argc, char **argv) {\n")
     props.stream("LuaCEmbed  *darwin_main_obj = newLuaCEmbedEvaluation();\n")
-    
+
     local streamed_shas = {}
     local total_tables = 0
     local increment = function()
@@ -21,17 +31,24 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
     props.stream("LuaCEmbed_load_native_libs(darwin_main_obj);\n")
     for i = 1, #selfobj.embed_data do
         local current = selfobj.embed_data[i]
-        private_darwin_project.embed_global_in_c(current.name, current.value, streamed_shas, props.stream,increment)
+        private_darwin_project.embed_global_in_c(current.name, current.value, streamed_shas, props.stream, increment)
     end
     props.stream("unsigned char lua_code[] = {");
     local function current_stream(data)
         private_darwin.transfer_byte_size_decide(data, props.stream)
-    end 
+    end
     private_darwin_project.generate_lua_complex(selfobj, {
-        stream = current_stream, 
+        stream = current_stream,
         include_embed_data = false
     })
     props.stream("0};\n")
+    for i = 1, #selfobj.c_main_code do
+        local current = selfobj.c_main_code[i]
+        props.stream(current);
+        props.stream("\n");
+    end
+
+
     props.stream('LuaCEmbed_evaluate(darwin_main_obj,"%s", (const char*)lua_code);\n')
     props.stream("if(LuaCEmbed_has_errors(darwin_main_obj)) {\n")
     props.stream("    printf(\"Error: %s\\n\", LuaCEmbed_get_error_message(darwin_main_obj));\n")
