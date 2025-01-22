@@ -11,6 +11,7 @@ private_darwin.main = function()
         return
     end
 
+
     if private_darwin.is_inside({ "build", "--build" }, action) then
         local darwin_conf_file = arg[3]
         if not darwin_conf_file then

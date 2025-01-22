@@ -25,6 +25,13 @@ local function main()
         darwin.add_lua_code("darwin.candango=private_darwin_candango")
         darwin.add_lua_code("darwin.camalgamator=private_darwin_camalgamator")
         darwin.add_lua_code("darwin.silverchain = private_darwin_silverchain")
+        local lua_argv_content = dtw.load_file("dependencies/luargv.lua")
+        darwin.add_lua_code(string.format(
+            "darwin.argv = function()\n %s\n end \n",
+            lua_argv_content
+        ))
+        darwin.add_lua_code("darwin.argv = darwin.argv()")
+
 
         darwin.add_lua_code("private_darwin = {}")
 
