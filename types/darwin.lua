@@ -5,6 +5,6 @@
 ---@field candango Cadango
 ---@field chunk_size number
 ---@field watcher StellarWatcher
-
+---@field argv Argv
 ---@type Darwin
 darwin = darwin

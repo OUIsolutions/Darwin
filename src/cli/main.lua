@@ -4,36 +4,15 @@
 ---typeend
 
 private_darwin.main = function()
-    local action = arg[2]
-
+    local action = darwin.argv.get_arg_by_index(2)
     if not action then
-        private_darwin.print_red(string.format("action not provided type help to get informatons\n", action))
-        return
+        private_darwin.print_red("action not passed")
     end
+    if action == "run_blueprint" then
+        Perform_blue_print()
+    elseif action == "drop_types" then
+        Drop_types()
+    else
 
-
-    if private_darwin.is_inside({ "build", "--build" }, action) then
-        local darwin_conf_file = arg[3]
-        if not darwin_conf_file then
-            darwin_conf_file = "darwinconf.lua"
-        end
-        if not darwin.dtw.isfile(darwin_conf_file) then
-            private_darwin.print_red(darwin_conf_file .. " not provided\n")
-            return
-        end
-
-        private_darwin.print_blue("creating blueprint: " .. darwin_conf_file .. "\n")
-        dofile(darwin_conf_file)
-        return
     end
-    if private_darwin.is_inside({ "types", "--drop_types" }, action) then
-        local name = arg[3]
-        if not name then
-            name = "darwin_types.lua"
-        end
-        darwin.dtw.write_file(name, PRIVATE_DARWIN_TYPES)
-        return
-    end
-
-    private_darwin.print_red(string.format("invalid action:%s, type help to get informatons\n", action))
 end
