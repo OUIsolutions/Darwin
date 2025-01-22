@@ -70,7 +70,7 @@ private_darwin_project.generate_c_code = function(selfobj, props)
     end
     private_darwin_project.generate_c_complex(selfobj, {
         stream = stream,
-        include_embed_data = props.include_embed_data
+        include_lua_cembed = props.include_lua_cembed
     })
     return table.concat(content)
 end
@@ -93,7 +93,7 @@ private_darwin_project.generate_c_file = function(selfobj, props)
 
     private_darwin_project.generate_c_complex(selfobj, {
         stream = stream,
-        include_embed_data = props.include_embed_data
+        include_lua_cembed = props.include_lua_cembed
     })
     if file then
         file:close()
