@@ -28,3 +28,11 @@ function Drop_lua_cembed()
     local lua_cembedd = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "LuaCEmbed.h")
     darwin.dtw.write_file(file, lua_cembedd)
 end
+function Drop_help()
+    local help = private_darwin.get_asset(PRIVATE_DARWIN_CLI_ASSETS, "help.txt")
+    print(help)
+    if not handle_unused() then
+        return
+    end
+
+end
