@@ -51,10 +51,29 @@ you can set a c function to be called on your main code
 ```lua
 project.add_c_call("my_c_function")
 ```
-these function must accet **LuaCEmbed** as first argument and return void
+these function must accept **LuaCEmbed** as first argument and return void,for having 
+[LuaCEmbed.c](https://github.com/OUIsolutions/LuaCEmbed) file  run: 
+```bash
+darwin drop_lua_cembed
+```
+function example:
 ```c
+
+#include "LuaCEmbed.c"
 void my_c_function(LuaCEmbed *lua)
 {
     printf("Hello World\n");
 }
 ```
+## Load a C Library
+for load a clib, the function must follow the pattern :
+```c    
+int your_func(lua_State *state);
+```
+and you can add it to your project with:
+```lua
+project.load_lib_from_c("your_func","my_output_object")
+```
+and a global object will be created with the name **my_output_object**
+
+
