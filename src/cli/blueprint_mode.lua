@@ -1,17 +1,21 @@
 ---@param blueprint string[]
 ---@param used_flags string[]
 function Perform_blue_print()
-    local file_or_folder = darwin.argv.get_arg_by_index(3)
+
+    
+    local blue_print_mode = darwin.argv.get_flag_arg_by_index("mode",1, "file")
+    if not private_darwin.is_inside({ "file", "folder" }, blue_print_mode) then
+        private_darwin.print_red("blue print mode must be file or folder\n")
+        return
+    end
+
+    local file_or_folder = darwin.argv.get_next_unused()
     if not file_or_folder then
         private_darwin.print_red("blue print file not passed")
         return
     end
 
-    local blue_print_mode = darwin.argv.get_first_flag_value_or_default("mode", "file")
-    if not private_darwin.is_inside({ "file", "folder" }, blue_print_mode) then
-        private_darwin.print_red("blue print mode must be file or folder\n")
-        return
-    end
+
 
     if blue_print_mode == "folder" then
         if not darwin.dtw.isdir(file_or_folder) then
