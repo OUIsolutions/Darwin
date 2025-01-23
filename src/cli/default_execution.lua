@@ -1,11 +1,11 @@
 
 local valid_out_modes = {
-    "lua"= {"lua"},
-    "c"= {"c"},
-    "linux_bin"={"o", "out"},
-    "windows_bin"={"exe"},
-    "linux_so"={"so"},
-    "windows_dll"={"dll"}
+    lua= {"lua"},
+    c= {"c"},
+    linux_bin={"o", "out"},
+    windows_bin={"exe"},
+    linux_so={"so"},
+    windows_dll={"dll"}
 }
 
 local function get_default_output_mode(output)
