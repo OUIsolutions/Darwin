@@ -26,9 +26,9 @@ darwin.exe test.lua -o test.exe
 ## Releases
 | item          | plataform |
 |-------        |-----------|
-| [Amalgamation](https://github.com/OUIsolutions/Darwin/releases/download/0.016/darwin.c)| Source  |
-| [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.016/darwin.out)|Linux binary|
-| [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.016/darwin.exe)|Windows binary |
+| [Amalgamation](https://github.com/OUIsolutions/Darwin/releases/download/v0.016/darwin.c)| Source  |
+| [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/v0.016/darwin.out)|Linux binary|
+| [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/v0.016/darwin.exe)|Windows binary |
 
 
 
