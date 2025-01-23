@@ -1,5 +1,5 @@
 
-local function main()
+ function main()
 
     if  darwin.argv.one_of_args_exist("install_dependencies") then
         Install_all_dependencies()
@@ -74,4 +74,3 @@ local function main()
         os.execute("gcc release/darwin.c -o  release/debug.out")
     end
 end
-main()
