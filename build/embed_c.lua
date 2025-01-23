@@ -5,8 +5,9 @@ function Embed_c_code(project)
     project.add_c_file("dependencies/lua_c_amalgamator_dependencie_not_included.c")
     project.add_c_file("dependencies/silverchain_no_dependecie_included.c")
 
-    project.add_c_file("dependencies/LuaDoTheWorld/src/one.c", true, function(import, path)
+    project.add_c_file("dependencies/LuaDoTheWorld/src/one.c", true, function(path,import )
         -- to make the luacembe not be imported twice
+        print(import)
         if import == "../dependencies/dependency.LuaCEmbed.h" then
             return false
         end
@@ -17,14 +18,14 @@ function Embed_c_code(project)
     end)
 
 
-    project.add_c_file("dependencies/candangoEngine/src/main.c", true, function(import, path)
+    project.add_c_file("dependencies/candangoEngine/src/main.c", true, function(path,import)
         -- to make the luacembe not be imported twice
         if import == "../dependencies/depB.LuaCEmbed.h" then
             return false
         end
         return true
     end)
-    project.add_c_file("dependencies/LuaFluidJson/src/main.c", true, function(import, path)
+    project.add_c_file("dependencies/LuaFluidJson/src/main.c", true, function(path,import)
         -- to make the luacembe not be imported twice
         if import == "dependencies/LuaCEmbed.h" then
             return false
