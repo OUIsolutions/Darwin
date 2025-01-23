@@ -14,6 +14,22 @@ private_darwin_project.create_c_str_buffer = function(str_code, streamed_shas, s
 end
 
 
+private_darwin_project.create_c_stream_buffer = function(filestream, streamed_shas, stream)
+    local name = string.format("private_darwin_sha%s",darwin.dtw.generate_sha_from_file(filestream.filename))
+    if private_darwin.is_inside(streamed_shas, name) then
+        return name
+    end
+    streamed_shas[#streamed_shas + 1] = name
+    stream(string.format(
+        "unsigned char %s[] ={",
+        name
+    ))
+    private_darwin.transfer_file_stream_bytes(filestream, stream)
+    stream("0};\n")
+    return name
+end
+
+
 private_darwin_project.embed_c_table = function(current_table, increment, streamed_shas, stream)
     local table_name = "private_darwin_table" .. increment()
     stream(string.format("LuaCEmbedTable *%s = LuaCembed_new_anonymous_table(darwin_main_obj);\n", table_name))
@@ -153,6 +169,14 @@ private_darwin_project.embed_global_in_c = function(name, var, streamed_shas, st
         stream(string.format('LuaCEmbed_set_global_raw_string(darwin_main_obj,%q,(const char*)%s,%d);\n', name, sha_name,
             string.len(var)))
     end
+
+    local is_stream = private_darwin.is_file_stream(var)
+    if is_stream then
+        local sha_name = private_darwin_project.create_c_stream_buffer(var, streamed_shas, stream)
+        stream(string.format('LuaCEmbed_set_global_raw_string(darwin_main_obj,%q,(const char*)%s,%d);\n', name, sha_name,
+        string.len(var)))
+    end
+
     if var_type == "table" then
         local table_name = private_darwin_project.embed_c_table(var, increment, streamed_shas, stream)
         stream(string.format('LuaCEmbed_set_global_table(darwin_main_obj,%q,%s);\n', name, table_name))
