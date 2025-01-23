@@ -3,7 +3,7 @@
 function handle_main_file()
 
     local entry_mode = darwin.argv.get_flag_arg_by_index_consider_only_first("entry_mode",1, "file")
-    if not private_darwin.is_inside({"file","folder"},entry+entry_mode) then
+    if not private_darwin.is_inside({"file","folder"},entry_mode) then
         private_darwin.print_red("entry mode not valid")
         return
     end
@@ -12,6 +12,7 @@ function handle_main_file()
 
     
     local main_file_or_folder = darwin.argv.get_next_unused()
+    
     if not main_file then
         private_darwin.print_red("main file not found")
         return false 
