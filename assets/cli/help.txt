@@ -1,0 +1,51 @@
+
+Darwin Compiler Help
+=====================
+Version:0.017
+Usage:
+  darwin <input_file> -o <output_file> [options]
+
+Examples:
+  Linux Compilation:
+    darwin main.lua -o my_program.out
+
+  Windows Compilation:
+    darwin main.lua -o my_program.exe
+
+Options:
+  -compiler <name>
+      Set a custom compiler. Default: "gcc" (Linux) or "i686-w64-mingw32-gcc" (Windows).
+      Example: darwin main.lua -o my_program.out -compiler clang
+
+  -flags <flags>
+      Add compilation flags.
+      Example: darwin main.lua -o my_program.out -flags -DMY_DEFINITION -flags-static
+
+  --embed_vars <var_name> -<var_name>:file <file_path>
+      Embed global variables or files into the project.
+      Example: darwin main.lua -o my_program.out --embed_vars my_image -my_image:file my_file.png
+
+  run_blueprint <file_or_folder> [-mode <mode>]
+      Generate a blueprint from a file or folder.
+      - Mode "file" (default): Load the specified file or "darwinconf.lua" if no file is provided.
+        Example: ./darwin.out run_blueprint props.lua
+      - Mode "folder": Recursively load files in a folder, requiring a main function.
+        Example: ./darwin.out run_blueprint my_folder -mode folder
+
+  -c_include <header_file>
+      Add C include files to the project.
+      Example: darwin main.lua -o my_program.out -c_include my_include.h
+
+  -c_calls <function_name>
+      Add a C function call to the project. The function must be defined in the C include file
+      and have the following signature:
+        void my_c_function(LuaCEmbed *lua);
+      Example: darwin main.lua -o my_program.out -c_calls my_func
+
+  -c_lib <library_name> --<library_name>:func <function_name>
+      Load a C library and specify a function to be loaded.
+      Example: darwin main.lua -o my_program.out -c_lib dtw --dtw:func load_luaDoTheWorld
+
+  -amalgamation <file>
+      Add an amalgamation C file to the project.
+      Example: darwin main.lua -o my_program.out -amalgamation my_amalgamation.c

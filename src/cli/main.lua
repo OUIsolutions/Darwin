@@ -11,6 +11,8 @@ private_darwin.main = function()
         Drop_types()
     elseif darwin.argv.one_of_args_exist("drop_lua_cembed") then
         Drop_lua_cembed()   
+    elseif darwin.argv.get_flag_arg_by_index_consider_only_first("help") then
+        print("help")
     else
         Default_execution()
     end
