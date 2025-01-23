@@ -14,7 +14,7 @@ function create_executable_bin_project(project, output,output_mode)
     if output_mode == "linux_bin" then
         compiler = darwin.argv.get_flag_arg_by_index({"compiler"}, 1,"gcc")
     end
-    local flags = darwin.argv.get_flag_arg_by_index({"compiler_flags"}, 1,"")
+    local flags = darwin.argv.get_flag_arg_by_index({"flags"}, 1,"")
     
     os.execute(compiler.." "..cache_output.." -o "..output.." "..flags)
     
