@@ -68,23 +68,23 @@ function Default_execution()
 
     
     if output_mode == "lua" then
-        create_lua_project(output, output_mode)
+        create_lua_project(project,output, output_mode)
         return 
     end 
     if output_mode == "linux_bin" or output_mode == "windows_bin" then
-        create_executable_bin_project( output, output_mode)
+        create_executable_bin_project( project,output, output_mode)
         return
     end
     if output_mode == "executable_source" then
-        create_executable_c_project(output, output_mode)
+        create_executable_c_project(project,output, output_mode)
         return
     end
     if output_mode == "lib_source" then
-        create_lib_source_project(output, output_mode)
+        create_lib_source_project(project,output, output_mode)
         return
     end
     if output_mode == "linux_so" or output_mode == "windows_dll" then
-        create_shared_lib_project( output, output_mode)
+        create_shared_lib_project( project,output, output_mode)
         return
     end
 
