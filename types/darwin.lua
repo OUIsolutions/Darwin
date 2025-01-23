@@ -4,7 +4,9 @@
 ---@field dtw DtwModule
 ---@field candango Cadango
 ---@field chunk_size number
----@field argv LuaArgv
+---@field argv Argv
+---@field camalgamator Amalgamator
+
 
 ---@type Darwin
 darwin = darwin
