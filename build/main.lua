@@ -14,12 +14,19 @@ local function main()
         os.execute("docker build -t darwin_linux_build -f images/linux.Dockerfile .")
     end
 
-    if is_arg_present("build_code") then
+    if is_arg_present("build_linux") or is_arg_present("build_windows") then
         Embed_c_code()
         Create_api_assets()
         Embed_types()
 
+
         darwin.add_lua_code("darwin = {}")
+        if is_arg_present("build_linux") then
+            darwin.add_lua_code("darwin.os = 'linux'")
+        end
+        if is_arg_present("build_windows") then
+            darwin.add_lua_code("darwin.os = 'windows'")
+        end
         darwin.add_lua_code("darwin.dtw=private_darwin_dtw")
         darwin.add_lua_code("darwin.json=private_darwin_json")
         darwin.add_lua_code("darwin.candango=private_darwin_candango")

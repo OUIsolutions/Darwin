@@ -67,7 +67,8 @@ function Default_execution()
     local relative_path = darwin.argv.get_flag_arg_by_index({"relative_path"}, 1)
     project.add_lua_file_following_require(main_file,relative_path)
 
-    
+    get_embed_vars(project)
+
     if output_mode == "lua" then
         create_lua_project(project,output, output_mode)
         return 
