@@ -2,7 +2,7 @@
 local valid_out_modes = {
     lua= {"lua"},
     executable_source= {"c"},
-    lib_source= {"h"},
+    lib_source={},
     linux_bin={"o", "out"},
     windows_bin={"exe"},
     linux_so={"so"},
@@ -12,6 +12,7 @@ local valid_out_modes = {
 local function get_default_output_mode(output)
     local extension = darwin.dtw.newPath(output).get_extension()
     for key,val in pairs(valid_out_modes) do
+   
         for i=1,#val do
             if val[i] == extension then
                 return key
