@@ -64,6 +64,9 @@ function Default_execution()
     if not ok then
         return
     end
+
+
+    
     if output_mode == "lua" then
         create_lua_project(project,output, output_mode)
         return 
