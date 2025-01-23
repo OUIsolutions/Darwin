@@ -10,6 +10,8 @@ private_darwin.main = function()
     
     elseif darwin.argv.one_of_args_exist("drop_types") then
         Drop_types()
+    elseif darwin.argv.one_of_args_exist("drop_lua_cembed") then
+        Drop_lua_cembed()   
     else
         Default_execution()
     end
