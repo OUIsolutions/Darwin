@@ -24,6 +24,9 @@ local function get_default_output_mode(output)
 end 
 
 function output_mode_its_valid(output_mode)
+    if not output_mode then
+        return false
+    end
     for key,_ in pairs(valid_out_modes) do
         if key == output_mode then
             return true
@@ -35,15 +38,18 @@ end
 function Default_execution()
     
     local output = darwin.argv.get_flag_arg_by_index_consider_only_first({"o", "output"},1)
+    
+    if not output then
+        private_darwin.print_red("output not found")
+        return
+    end
     local output_mode = darwin.argv.get_flag_arg_by_index_consider_only_first(
         {"mode", "output_mode"},
          1, 
          get_default_output_mode(output)
     )
-    if not output_mode then
-        private_darwin.print_red("output impossible to determine")
-        return
-    end
+    
+
     if not output_mode_its_valid(output_mode) then
         private_darwin.print_red("output mode not valid")
         return
