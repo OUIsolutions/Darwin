@@ -84,7 +84,7 @@ function Default_execution()
         return
     end
     if output_mode == "linux_so" or output_mode == "windows_dll" then
-        create_shared_lib_project( project,output, output_mode)
+        create_dynamic_link_lib_project( project,output, output_mode)
         return
     end
 

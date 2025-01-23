@@ -2,6 +2,7 @@
 function create_executable_bin_project(project, output,output_mode)
 
     local cache_output = "darwin_cache.c"
+    darwin.dtw.remove_any(cache_output)
     project.generate_c_file({
         output = cache_output,
         include_embed_data = true

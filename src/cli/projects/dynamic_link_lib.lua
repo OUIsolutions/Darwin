@@ -5,9 +5,11 @@ function create_dynamic_link_lib_project( project,output, output_mode)
     local object_export = darwin.argv.get_flag_arg_by_index({"object_export"}, 1)
     if not object_export then
         private_darwin.print_red("Error: object_export is required")
+        return 
     end
 
     local cache_output = "darwin_cache.c"
+    darwin.dtw.remove_any(cache_output)
     project.generate_c_lib_file({
         output = cache_output,
         object_export = object_export
