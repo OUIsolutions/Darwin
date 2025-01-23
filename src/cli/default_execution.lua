@@ -33,8 +33,9 @@ function output_mode_its_valid(output_mode)
 end
 
 function Default_execution()
-    local output = darwin.argv.get_flag_arg_by_index({"o", "output"}, 1)
-    local output_mode = darwin.argv.get_flag_arg_by_index(
+    
+    local output = darwin.argv.get_first_flag_arg({"o", "output"}, 1)
+    local output_mode = darwin.argv.get_first_flag_arg(
         {"mode", "output_mode"},
          1, 
          get_default_output_mode(output)
@@ -61,23 +62,20 @@ function Default_execution()
     end
     if output_mode == "lua" then
         create_lua_project(project,output, output_mode)
-        return 
     end 
     if output_mode == "linux_bin" or output_mode == "windows_bin" then
         create_executable_bin_project( project,output, output_mode)
-        return
     end
     if output_mode == "executable_source" then
         create_executable_c_project(project,output, output_mode)
-        return
     end
     if output_mode == "lib_source" then
         create_lib_source_project(project,output, output_mode)
-        return
+        
     end
     if output_mode == "linux_so" or output_mode == "windows_dll" then
         create_dynamic_link_lib_project( project,output, output_mode)
-        return
+        
     end
 
 
