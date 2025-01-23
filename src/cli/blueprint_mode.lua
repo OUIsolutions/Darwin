@@ -11,7 +11,7 @@ function Perform_blue_print()
 
     local file_or_folder = darwin.argv.get_next_unused()
     if not file_or_folder then
-        private_darwin.print_red("blue print file not passed")
+        file_or_folder = "darwinconf.lua"
         return
     end
 
