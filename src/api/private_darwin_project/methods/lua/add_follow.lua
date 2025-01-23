@@ -69,7 +69,7 @@ private_darwin_project.create_include_stream = function(self_obj, include, relat
     error("impossible to find: " .. include)
 end
 
-private_darwin_project.add_lua_file_followin_require_recursively = function(selfobj, src, relative_path)
+private_darwin_project.add_lua_file_following_require_recursively = function(selfobj, src, relative_path)
     local content = darwin.dtw.load_file(src)
     if not content then
         error("content of " .. src .. " not found")
@@ -209,7 +209,7 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
             point = private_darwin_project.create_include_stream(selfobj, require_string, relative_path)
             waiting_required_string = false
             if point then
-                private_darwin_project.add_lua_file_followin_require_recursively(selfobj, point, relative_path)
+                private_darwin_project.add_lua_file_following_require_recursively(selfobj, point, relative_path)
             end
         end
         if waiting_package_string and not inside_string and last_string_start_point > package_call_point then
@@ -235,7 +235,7 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
     end
 end
 
-private_darwin_project.add_lua_file_followin_require = function(selfobj, src, relative_path)
+private_darwin_project.add_lua_file_following_require = function(selfobj, src, relative_path)
     private_darwin_project.add_lua_file(selfobj, src)
-    private_darwin_project.add_lua_file_followin_require_recursively(selfobj, src, relative_path)
+    private_darwin_project.add_lua_file_following_require_recursively(selfobj, src, relative_path)
 end
