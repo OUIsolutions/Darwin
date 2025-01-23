@@ -17,9 +17,7 @@ private_darwin_project.is_so_includeds = function(self_obj, include)
 end
 
 private_darwin_project.create_include_stream = function(self_obj, include, relative_path)
-    if relative_path == nil then
-        relative_path = ""
-    end
+
     local include_format = private_darwin.replace_str(include, ".", "/")
 
     local possibles = {
@@ -236,6 +234,9 @@ private_darwin_project.add_lua_file_following_require_recursively = function(sel
 end
 
 private_darwin_project.add_lua_file_following_require = function(selfobj, src, relative_path)
+    if relative_path == nil then
+        relative_path = "."
+    end
     private_darwin_project.add_lua_file(selfobj, src)
     private_darwin_project.add_lua_file_following_require_recursively(selfobj, src, relative_path)
 end
