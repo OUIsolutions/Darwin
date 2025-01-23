@@ -2,9 +2,9 @@
 ---@param project DarwinProject
 function get_embed_vars(project)
 
-    local embed_vars_size = darwin.argv.get_flag_size("embed_var")
+    local embed_vars_size = darwin.argv.get_flag_size("embed_vars")
     for i=1,embed_vars_size do
-        local embed_var = darwin.argv.get_flag_arg_by_index("embed_var", i)
+        local embed_var = darwin.argv.get_flag_arg_by_index("embed_vars", i)
         local possible_text = darwin.argv.get_compact_flags("text"..embed_var.."=",1)
         local possible_file = darwin.argv.get_compact_flags("file"..embed_var.."=",1)
         local possible_folder = darwin.argv.get_compact_flags("folder"..embed_var.."=",1)
