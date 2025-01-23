@@ -2,12 +2,12 @@
 ---@param project DarwinProject
 function get_embed_vars(project)
 
-    local embed_vars_size = darwin.argv.get_flag_size("embed_vars")
+    local embed_vars_size = darwin.argv.get_flag_size_consider_only_first("embed_vars")
     for i=1,embed_vars_size do
-        local embed_var = darwin.argv.get_flag_arg_by_index("embed_vars", i)
-        local possible_text = darwin.argv.get_flag_arg_by_index(embed_var..":text",1)
-        local possible_file = darwin.argv.get_flag_arg_by_index(embed_var..":file",1)
-        local possible_folder = darwin.argv.get_flag_arg_by_index(embed_var..":folder",1)
+        local embed_var = darwin.argv.get_flag_arg_by_index_consider_only_first("embed_vars", i)
+        local possible_text = darwin.argv.get_flag_arg_by_index_consider_only_first(embed_var..":text",1)
+        local possible_file = darwin.argv.get_flag_arg_by_index_consider_only_first(embed_var..":file",1)
+        local possible_folder = darwin.argv.get_flag_arg_by_index_consider_only_first(embed_var..":folder",1)
         if not possible_text and not possible_file and not possible_folder then
             private_darwin.print_red("embed_var:"..embed_var.." not found\n")
             return false

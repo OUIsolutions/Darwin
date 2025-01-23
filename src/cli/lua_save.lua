@@ -2,13 +2,13 @@
 
 function handle_main_file()
 
-    local entry_mode = darwin.argv.get_first_flag_arg({"entry_mode"}, "file")
+    local entry_mode = darwin.argv.get_flag_arg_by_index_consider_only_first("entry_mode",1, "file")
     if not private_darwin.is_inside({"file","folder"},entry+entry_mode) then
         private_darwin.print_red("entry mode not valid")
         return
     end
 
-    local relative_path = darwin.argv.get_first_flag_arg({"relative_path"})
+    local relative_path = darwin.argv.get_flag_arg_by_index_consider_only_first("relative_path")
 
     
     local main_file_or_folder = darwin.argv.get_next_unused()
@@ -16,6 +16,7 @@ function handle_main_file()
         private_darwin.print_red("main file not found")
         return false 
     end
+    
     if entry_mode == "file" then
         project.add_lua_file_following_require(main_file,relative_path)
     end 

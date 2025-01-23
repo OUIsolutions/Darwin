@@ -2,21 +2,30 @@
 
 function create_dynamic_link_lib_project( project,output, output_mode)
 
-    local object_export = darwin.argv.get_flag_arg_by_index({"object_export"}, 1)
-    if not object_export then
-        private_darwin.print_red("Error: object_export is required")
-        return 
-    end
 
     local compiler = nil
-    if output_mode == "windows_dll" then
-        compiler = darwin.argv.get_flag_arg_by_index({"compiler"}, 1,"i686-w64-mingw32-gcc")
+    if output_mode == "windows_bin" then
+        compiler = darwin.argv.get_flag_arg_by_index_consider_only_first("compiler",1,"i686-w64-mingw32-gcc")
+    end 
+    if output_mode == "linux_bin" then
+        compiler = darwin.argv.get_flag_arg_by_index_consider_only_first("compiler",1, "gcc")
     end
-    if output_mode == "linux_so" then
-        compiler = darwin.argv.get_flag_arg_by_index({"compiler"}, 1,"gcc")
-    end
-    local flags = darwin.argv.get_flag_arg_by_index({"compiler_flags"}, 1,"")
 
+    local flags_size = darwin.argv.get_flag_size_consider_only_first("flags")
+    local flags_text = ""
+    for i = 1, flags_size do
+        local flag = darwin.argv.get_flag_arg_by_index_consider_only_first("flags", i, "")
+        flags_text = flags_text .. " " .. flag
+    end
+
+    if not handle_main_file() then
+        return
+    end
+    
+    
+    if not handle_unused() then
+        return
+    end
 
     local cache_output = "darwin_cache.c"
     darwin.dtw.remove_any(cache_output)
