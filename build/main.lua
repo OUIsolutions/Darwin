@@ -10,12 +10,13 @@ local function main()
         os.execute("docker build -t darwin_linux_build017  -f images/linux.Dockerfile .")
     end
 
-    if  darwin.argv.one_of_args_exist("build_linux") or is_arg_present("build_windows") then
+    if  darwin.argv.one_of_args_exist("build_linux") or darwin.argv.one_of_args_exist("build_windows") then
+
         local project = darwin.create_project("darwin")
+
         Embed_c_code(project)
         Create_api_assets(project)
         Embed_types(project)
-
 
         project.add_lua_code("darwin = {}")
         if is_arg_present("build_linux") then
