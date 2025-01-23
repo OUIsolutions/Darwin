@@ -6,14 +6,15 @@
 ---@field add_c_file fun(selfobj:DarwinProject,filename:string, follow_includes:boolean, verifier_callback:(fun(import:string,path:string):boolean))
 ---@field add_c_call fun(selfobj:DarwinProject,func_name:string)
 ---@field load_lib_from_c fun(selfobj:DarwinProject, lib_start_func:string, lua_obj:string)
+---@field create_include_stream fun(self_obj:DarwinProject, include:string, relative_path:DtwSchema):string | nil
 
 ---@class PrivateDarwinProject
 ---@field add_lua_code fun(selfobj:DarwinProject,code:string)
 ---@field add_lua_file fun(selfobj:DarwinProject,src:string)
 ---@field is_required_included fun(self_obj:DarwinProject, include:string):boolean
 ---@field is_so_includeds fun(self_obj:DarwinProject, include:string):boolean
----@field add_lua_file_followin_require fun(selfobj:DarwinProject,src:string)
----@field add_lua_file_followin_require_recursively fun(selfobj:DarwinProject,src:string)
+---@field add_lua_file_followin_require fun(selfobj:DarwinProject,src:string,relative_path:string)
+---@field add_lua_file_followin_require_recursively fun(selfobj:DarwinProject,src:string,relative_path:string)
 ---@field create_c_str_buffer fun(str_code:string,str_shas:string[],stream:fun(data:string)):string
 ---@field embed_c_table fun(current_table:table,increment:(fun():number), streamed_shas:string[], stream:fun(data:string)):string
 ---@field embed_global_in_c fun(name:string, var:any, streamed_shas:string[], stream:fun(data:string), increment:(fun():string))

@@ -1,6 +1,6 @@
 private_darwin_project.is_required_included = function(self_obj, include)
     for i = 1, #self_obj.required_funcs do
-        if self_obj.required_funcs[i].name == include then
+        if self_obj.required_funcs[i].comptime_included == include then
             return true
         end
     end
@@ -9,7 +9,7 @@ end
 
 private_darwin_project.is_so_includeds = function(self_obj, include)
     for i = 1, #self_obj.so_includeds do
-        if self_obj.so_includeds[i].name == include then
+        if self_obj.so_includeds[i].comptime_included == include then
             return true
         end
     end
@@ -20,7 +20,7 @@ private_darwin_project.create_include_stream = function(self_obj, include, relat
     if relative_path == nil then
         relative_path = ""
     end
-    include_format = private_darwin.replace_str(include, ".", "/")
+    local include_format = private_darwin.replace_str(include, ".", "/")
 
     local possibles = {
         string.format("/usr/share/lua/%s/%s.lua", _VERSION, include_format),
@@ -76,7 +76,7 @@ private_darwin_project.add_lua_file_followin_require_recursively = function(self
     end
     local inside_comment = false
     local inside_string = false
-    local string_starter_char = 0
+    local string_starter_char = ""
     local last_string_start_point = 0
     local last_string_end_point = 0
     local i = 1

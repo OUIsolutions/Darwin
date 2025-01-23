@@ -8,7 +8,6 @@
 ---@field transfer_byte_direct_stream fun(str:string,stream:fun(data:string))
 ---@field transfer_byte_internal_format fun(str:string,stream:fun(data:string))
 ---@field transfer_byte_size_decide fun(str:string,stream:fun(data:string))
-
 ---@class PrivateDarwin
 ---@field is_inside fun(array:any[],value:any):boolean
 ---@field count_bars fun(src:string):number
