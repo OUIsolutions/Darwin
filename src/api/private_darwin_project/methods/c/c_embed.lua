@@ -174,7 +174,6 @@ private_darwin_project.embed_global_in_c = function(name, var, streamed_shas, st
     if is_stream then
         local sha_name = private_darwin_project.create_c_stream_buffer(var, streamed_shas, stream)
         local size = io.open(var.filename, "rb"):seek("end")
-        print("size: " .. size)
         stream(
             string.format(
                 'LuaCEmbed_set_global_raw_string(darwin_main_obj,%q,(const char*)%s,%d);\n',
@@ -185,7 +184,7 @@ private_darwin_project.embed_global_in_c = function(name, var, streamed_shas, st
         )
     end
 
-    if var_type == "table" then
+    if var_type == "table" and not is_stream then
         local table_name = private_darwin_project.embed_c_table(var, increment, streamed_shas, stream)
         stream(string.format('LuaCEmbed_set_global_table(darwin_main_obj,%q,%s);\n', name, table_name))
     end
