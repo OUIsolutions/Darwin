@@ -48,18 +48,11 @@ function Default_execution()
         private_darwin.print_red("output mode not valid")
         return
     end
-    local entry_mode = darwin.argv.get_first_flag_arg({"entry_mode"}, "file")
-    if not private_darwin.is_inside({"file","folder"},entry+entry_mode) then
-        private_darwin.print_red("entry mode not valid")
-        return
-    end
-
 
     local default_name = darwin.dtw.newPath(output).get_only_name()
     local project_name = darwin.argv.get_first_flag_arg({"name"}, default_name)
 
     local project = darwin.create_project(project_name)
-    local relative_path = darwin.argv.get_flag_arg_by_index({"relative_path"}, 1)
 
     local ok =get_embed_vars(project)
     if not ok then
