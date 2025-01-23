@@ -18,9 +18,24 @@ you can set compilers and flags, in windows compilation,the default compiler its
 ```lua
 darwin main.lua -o my_program.out  -compiler clang
 ```
-### Seting flags 
+### Setting flags 
 its also possible to set  compilation flags with the **flags** flag 
 ```lua
 darwin main.lua -o my_program.out  -compiler clang flags:-DMY_DEFINITION flags:--static
 ```
 
+### Generating Blue Prints
+if you need to make the you compilation props into a **darwinconf.lua** file , you can make your generation by passing a file to be **interpreted** 
+```lua
+./darwin.out  run_blueprint props.lua 
+```
+if you dont pass the **props.lua** darwin will try to open a  **darwinconf.lua**  file 
+
+### Generating Blue Prints by  folder 
+you also can generate a blue print by folder ,but you need to specify the mode as **folder**, and your code 
+must have a **main** function,since it will load recursively all files of the folder, then 
+call the **main** function
+
+```lua
+./darwin.out  run_blueprint my_folder -mode folder 
+```
