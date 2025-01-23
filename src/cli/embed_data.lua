@@ -35,7 +35,7 @@ function get_embed_vars(project)
                 local full_path = darwin.dtw.concat_path(possible_folder,file)  
                 folder_to_be_embed[file] = darwin.file_stream( full_path)
             end
-            project.add_embedded_folder(embed_var,folder_to_be_embed)
+            project.embed_global(embed_var,folder_to_be_embed)
 
         end
 

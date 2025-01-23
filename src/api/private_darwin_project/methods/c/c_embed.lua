@@ -47,6 +47,7 @@ private_darwin_project.embed_c_table = function(current_table, increment, stream
         if valtype == "function" then
             error("function cannot be embed")
         end
+        local is_stream = private_darwin.is_file_stream(val)
 
         if key_type == "number" and valtype == "number" then
             stream(string.format(
@@ -82,7 +83,19 @@ private_darwin_project.embed_c_table = function(current_table, increment, stream
                 key - 1
             ))
         end
-        if key_type == "number" and valtype == "table" then
+        if key_type == "number" and is_stream then
+            local sha_name = private_darwin_project.create_c_stream_buffer(val, streamed_shas, stream)
+            local size = io.open(val.filename, "rb"):seek("end")
+            stream(string.format(
+                "LuaCEmbedTable_set_raw_string_by_index(%s,%d,%s,%d);\n",
+                table_name,
+                key - 1,
+                sha_name,
+                size
+            ))
+        end
+
+        if key_type == "number" and valtype == "table" and not is_stream then
             local created_name = private_darwin_project.embed_c_table(val, increment, streamed_shas, stream)
             stream(string.format(
                 "LuaCEmbedTable_set_sub_table_by_index(%s,%d,%s);\n",
@@ -127,7 +140,18 @@ private_darwin_project.embed_c_table = function(current_table, increment, stream
             ))
         end
 
-        if key_type == "string" and valtype == "table" then
+        if key_type == "string" and is_stream then
+            local sha_name = private_darwin_project.create_c_stream_buffer(val, streamed_shas, stream)
+            local size = io.open(val.filename, "rb"):seek("end")
+            stream(string.format(
+                "LuaCEmbedTable_set_raw_string_prop(%s,%q,(const char*)%s,%d);\n",
+                table_name,
+                key,
+                sha_name,
+                size
+            ))
+        end
+        if key_type == "string" and valtype == "table" and not is_stream then
             local created_name = private_darwin_project.embed_c_table(val, increment, streamed_shas, stream)
             stream(string.format(
                 "LuaCEmbedTable_set_sub_table_prop(%s,%q,%s);\n",
