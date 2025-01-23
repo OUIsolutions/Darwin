@@ -19,10 +19,10 @@
         Embed_types(project)
 
         project.add_lua_code("darwin = {}")
-        if is_arg_present("build_linux") then
+        if darwin.argv.one_of_args_exist("build_linux") then
             project.add_lua_code("darwin.os = 'linux'")
         end
-        if is_arg_present("build_windows") then
+        if darwin.argv.one_of_args_exist("build_windows") then
             project.add_lua_code("darwin.os = 'windows'")
         end
         project.add_lua_code("darwin.dtw=private_darwin_dtw")
@@ -50,8 +50,8 @@
 
 
         project.add_lua_code("private_darwin.main()")
-        project.generate_lua_output({ output_name = "debug.lua" })
-        project.generate_c_executable_output({ output_name = "release/darwin.c", include_lua_cembed = false })
+        project.generate_lua_file({ output = "debug.lua" })
+        project.generate_c_file({ output = "release/darwin.c", include_lua_cembed = false })
     end
 
 

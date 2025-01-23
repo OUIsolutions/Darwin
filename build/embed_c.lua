@@ -38,9 +38,9 @@ function Embed_c_code(project)
         return true
     end)
 
-    project.load_lualib_from_c("luaopen_lua_c_amalgamator", "private_darwin_camalgamator")
-    project.load_lualib_from_c("luaopen_lua_silverchain", "private_darwin_silverchain")
-    project.load_lualib_from_c("load_luaDoTheWorld", "private_darwin_dtw")
-    project.load_lualib_from_c("load_lua", "private_darwin_json")
-    project.load_lualib_from_c("candango_engine_start_point", "private_darwin_candango")
+    project.load_lib_from_c("luaopen_lua_c_amalgamator", "private_darwin_camalgamator")
+    project.load_lib_from_c("luaopen_lua_silverchain", "private_darwin_silverchain")
+    project.load_lib_from_c("load_luaDoTheWorld", "private_darwin_dtw")
+    project.load_lib_from_c("load_lua", "private_darwin_json")
+    project.load_lib_from_c("candango_engine_start_point", "private_darwin_candango")
 end
