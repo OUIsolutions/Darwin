@@ -23,6 +23,28 @@ and them embed into your final code with
 ```lua
 project.add_lua_file_following_require("test.lua")
 ```
+
+### Generatig lua output
+you can generate a lua file with:
+```lua
+project.generate_lua_file({output="my_out.lua",include_embed_data=true})
+```
+you also can get the lua code generation with:
+```lua
+local code = project.generate_lua_code({include_embed_data=true})
+```
+if you need , you can generate lua code streaming data to what ever you want 
+```lua
+project.generate_lua_complex({
+
+    stream=function(s) 
+        print(s) 
+    end,
+    include_embed_data=true
+})
+```
+
+
 ### Working With C 
 
 
