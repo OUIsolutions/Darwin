@@ -70,6 +70,14 @@ function Default_execution()
         create_executable_c_project(main_file, output, output_mode)
         return
     end
+    if output_mode == "lib_source" then
+        create_lib_source_project(main_file, output, output_mode)
+        return
+    end
+    if output_mode == "linux_so" or output_mode == "windows_dll" then
+        create_shared_lib_project(main_file, output, output_mode)
+        return
+    end
 
 
     
