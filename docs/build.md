@@ -8,7 +8,7 @@ gcc darwin.c -o darwin.out
 ### Building From Docker 
 for building from docker,you must have darwin installed on version 0.016 and docker installed,clone the repo  then type 
 ```bash
- ./darwin.out build build/main.lua  install_dependencies create_images build_linux_from_docker build_windows_from_docker
+ ./darwin.out run_blueprint build/ --mode folder install_dependencies create_images build_linux_from_docker build_windows_from_docker
 ``` 
 
 ### Building From Native 
