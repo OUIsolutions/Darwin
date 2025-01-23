@@ -12,7 +12,7 @@ function Perform_blue_print()
     local file_or_folder = darwin.argv.get_next_unused()
     if not file_or_folder then
         file_or_folder = "darwinconf.lua"
-        return
+        
     end
 
 
@@ -38,7 +38,7 @@ function Perform_blue_print()
 
     if blue_print_mode == "file" then
         if not darwin.dtw.isfile(file_or_folder) then
-            private_darwin.print_red("blue print its not a file")
+            private_darwin.print_red("blue print:"..file_or_folder.." its not a file")
             return
         end
         dofile(file_or_folder)
