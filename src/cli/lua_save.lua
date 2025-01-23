@@ -1,6 +1,6 @@
 
 
-function handle_main_file()
+function handle_main_file(project)
 
     local entry_mode = darwin.argv.get_flag_arg_by_index_consider_only_first("entry_mode",1, "file")
     if not private_darwin.is_inside({"file","folder"},entry_mode) then

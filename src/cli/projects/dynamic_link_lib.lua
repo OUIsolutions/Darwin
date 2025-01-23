@@ -18,7 +18,7 @@ function create_dynamic_link_lib_project( project,output, output_mode)
         flags_text = flags_text .. " " .. flag
     end
 
-    if not handle_main_file() then
+    if not handle_main_file(project) then
         return
     end
     

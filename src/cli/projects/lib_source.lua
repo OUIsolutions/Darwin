@@ -7,10 +7,9 @@ function create_lib_source_project(project,output, output_mode)
         return 
     end
     
-    if not handle_main_file() then
+    if not handle_main_file(project) then
         return
     end
-    
     
     if not handle_unused() then
         return

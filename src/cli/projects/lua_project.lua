@@ -5,7 +5,7 @@
 function create_lua_project(entry_mode,project,output,output_mode)
 
 
-    if not handle_main_file() then
+    if not handle_main_file(project) then
         return
     end
     
