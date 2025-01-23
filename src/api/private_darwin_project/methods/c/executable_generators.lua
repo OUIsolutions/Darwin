@@ -15,14 +15,22 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
     end
 
 
+
     if include_lua_cembed then
         local lua_cembedd = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "LuaCEmbed.h")
         props.stream(lua_cembedd)
     end
 
 
-    props.stream("int main(int argc, char **argv) {\n")
-    props.stream("LuaCEmbed  *darwin_main_obj = newLuaCEmbedEvaluation();\n")
+    props.stream([[
+        int main(int argc, char **argv) {
+        LuaCEmbed  *darwin_main_obj = newLuaCEmbedEvaluation();
+        LuaCEmbedTable *args_table =LuaCembed_new_global_table(darwin_main_obj,"arg");
+        for(int i =0; i <argc;i++) {
+                LuaCEmbedTable_append_string(args_table,argv[i]);
+        }
+    ]])
+
 
     local streamed_shas = {}
     local total_tables = 0
@@ -52,15 +60,19 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
     end
 
 
-    props.stream('LuaCEmbed_evaluate(darwin_main_obj,"%s", (const char*)lua_code);\n')
-    props.stream("if(LuaCEmbed_has_errors(darwin_main_obj)) {\n")
-    props.stream("    printf(\"Error: %s\\n\", LuaCEmbed_get_error_message(darwin_main_obj));\n")
-    props.stream("    LuaCEmbed_free(darwin_main_obj);\n")
-    props.stream("    return 1;\n")
-    props.stream("}\n")
-    props.stream("LuaCEmbed_free(darwin_main_obj);\n")
-    props.stream("return 0;\n")
-    props.stream("\n}");
+    props.stream([[
+        LuaCEmbed_evaluate(darwin_main_obj, "%s", (const char*)lua_code);
+        if (LuaCEmbed_has_errors(darwin_main_obj)) {
+            printf("Error: %s\n", LuaCEmbed_get_error_message(darwin_main_obj));
+            LuaCEmbed_free(darwin_main_obj);
+            return 1;
+        }
+        LuaCEmbed_free(darwin_main_obj);
+        return 0;
+    }]])
+
+
+   
 end
 
 private_darwin_project.generate_c_code = function(selfobj, props)
