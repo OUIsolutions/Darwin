@@ -66,4 +66,10 @@ and must follow the following signature
 void my_c_function(LuaCEmbed *lua);
 ```
 
+###  Load a C Library
+you can load a c library by passing the **-c_lib** flag 
+```shell
+darwin main.lua -o my_program.out  --lib_objects dtw --dtw:func load_luaDoTheWorld 
+```
+
 
