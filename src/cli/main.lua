@@ -4,6 +4,7 @@
 ---typeend
 
 private_darwin.main = function()
+    print(arg)
     darwin.argv.get_arg_by_index(1)
     if darwin.argv.one_of_args_exist("run_blueprint") then
         Perform_blue_print()
