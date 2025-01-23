@@ -1,4 +1,3 @@
-require("build/algo")
 require("build/types")
 require("build/assets")
 require("build/embed_c")

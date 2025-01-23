@@ -1,5 +1,5 @@
 function Install_all_dependencies()
-    dtw.remove_any("dependencies")
+    darwin.dtw.remove_any("dependencies")
     local commands = {
 
         "mkdir dependencies",
