@@ -68,7 +68,11 @@
 
 
     if  darwin.argv.one_of_args_exist("build_linux") then
-        os.execute("gcc --static  release/darwin.c -o  release/darwin.out")
+        if darwin.argv.one_of_args_exist("no_static") then
+            os.execute("gcc   release/darwin.c -o  release/darwin.out")
+        else
+            os.execute("gcc --static  release/darwin.c -o  release/darwin.out")
+        end
     end
     if  darwin.argv.one_of_args_exist("debug") then
         os.execute("gcc release/darwin.c -o  release/debug.out")
