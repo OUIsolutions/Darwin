@@ -1,6 +1,6 @@
 
-function create_lib_source_project(entry, output, output_mode)
 
+function create_dynamic_link_lib_project(entry, output, output_mode)
     local default_name = dtw.path.newPath(output).get_only_name()
     local project_name = darwin.argv.get_flag_arg_by_index({"name"}, 1, default_name)
     local project = darwin.create_project(project_name)
@@ -11,9 +11,21 @@ function create_lib_source_project(entry, output, output_mode)
         private_darwin.print_red("Error: object_export is required")
     end
 
+    local cache_output = "darwin_cache.c"
     project.generate_c_lib_file({
-        output = output,
+        output = cache_output,
         object_export = object_export
     })
+
+    local compiler = nil
+    if output_mode == "windows_dll" then
+        compiler = darwin.argv.get_flag_arg_by_index({"compiler"}, 1,"i686-w64-mingw32-gcc")
+    end
+    if output_mode == "linux_so" then
+        compiler = darwin.argv.get_flag_arg_by_index({"compiler"}, 1,"gcc")
+    end
+    local flags = darwin.argv.get_flag_arg_by_index({"compiler_flags"}, 1,"")
+
+    os.execute(compiler.." -shared -fPIC "..cache_output.." -o "..output.." "..flags)
     
 end
