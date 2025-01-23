@@ -24,6 +24,15 @@ its also possible to set  compilation flags with the **flags** flag
 darwin main.lua -o my_program.out  -compiler clang flags:-DMY_DEFINITION flags:--static
 ```
 
+### Embedding Global Variables
+you can embed data into your priject, you just need to especify the **--embed_vars** flags 
+
+```lua 
+darwin main.lua -o my_program.out  -embed_vars my_image -my_image:file my_file.png 
+```
+you can embed , **files** 
+
+
 ### Generating Blue Prints
 if you need to make the you compilation props into a **darwinconf.lua** file , you can make your generation by passing a file to be **interpreted** 
 ```lua

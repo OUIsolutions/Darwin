@@ -9,7 +9,7 @@ function get_embed_vars(project)
         local possible_file = darwin.argv.get_flag_arg_by_index(embed_var..":file",1)
         local possible_folder = darwin.argv.get_flag_arg_by_index(embed_var..":folder",1)
         if not possible_text and not possible_file and not possible_folder then
-            private_darwin.print_red("embed_var not found\n")
+            private_darwin.print_red("embed_var:"..embed_var.." not found\n")
             return false
         end
         
