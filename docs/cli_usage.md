@@ -72,4 +72,8 @@ you can load a c library by passing the **-c_lib** flag
 darwin main.lua -o my_program.out  --lib_objects dtw --dtw:func load_luaDoTheWorld 
 ```
 
-
+### Adding a amalgamation 
+you can add a amalgamation to your project by passing the **-amalgamation** flag 
+```shell
+darwin main.lua -o my_program.out  -amalgamation my_amalgamation.c
+```

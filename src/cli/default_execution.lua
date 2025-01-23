@@ -77,9 +77,9 @@ function Default_execution()
         project.add_c_call(c_call)
     end
     
-    local c_amalgamate_size = darwin.argv.get_flag_size_consider_only_first({"c_amalgamate"}, 1)
+    local c_amalgamate_size = darwin.argv.get_flag_size_consider_only_first({"amalgamation"}, 1)
     for i=1,c_amalgamate_size do
-        local c_amalgamate = darwin.argv.get_flag_arg_by_index_consider_only_first({"c_amalgamate"}, i)
+        local c_amalgamate = darwin.argv.get_flag_arg_by_index_consider_only_first({"amalgamation"}, i)
         project.add_c_file(c_amalgamate, true)
     end
 
