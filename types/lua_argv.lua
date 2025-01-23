@@ -3,6 +3,7 @@
 ---@class Argv
 ---@field get_flag_size fun(flags:string[]|string):number
 ---@field get_flag_arg_by_index fun(flags:string[]|string,index:number,default:string | nil):string|nil
+---@field get_first_flag_arg fun(flags:string[]|string,default:string | nil):string|nil
 ---@field flags_exist fun(flags:string[]):boolean
 ---@field one_of_args_exist fun(arg:string[] | string):boolean
 ---@field get_total_args_size fun():number

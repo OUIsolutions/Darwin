@@ -3,7 +3,7 @@
 function Perform_blue_print()
 
     
-    local blue_print_mode = darwin.argv.get_flag_arg_by_index("mode",1, "file")
+    local blue_print_mode = darwin.argv.get_first_flag_arg("mode",1, "file")
     if not private_darwin.is_inside({ "file", "folder" }, blue_print_mode) then
         private_darwin.print_red("blue print mode must be file or folder\n")
         return
@@ -11,10 +11,16 @@ function Perform_blue_print()
 
     local file_or_folder = darwin.argv.get_next_unused()
     if not file_or_folder then
-        file_or_folder = "darwinconf.lua"
-        
+        file_or_folder = "darwinconf.lua"        
     end
 
+    local unused_index = darwin.argv.get_next_unused_index()
+    if unused_index then
+        local unused_arg = darwin.argv.get_arg_by_index(unused_index)
+        local msg = "arg:" .. unused_arg .. " at index: " .. unused_index .. "its unused"
+        private_darwin.print_red(msg)
+        return 
+    end
 
 
     if blue_print_mode == "folder" then

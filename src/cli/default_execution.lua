@@ -48,18 +48,6 @@ function Default_execution()
         return
     end
     
-
-    local main_file = darwin.argv.get_next_unused()
-    if not main_file then
-        private_darwin.print_red("file not passed")
-        return
-    end
-
-    if not darwin.dtw.isfile(main_file) then
-        private_darwin.print_red("file not found")
-        return
-    end
-
     local default_name = darwin.dtw.newPath(output).get_only_name()
     local project_name = darwin.argv.get_flag_arg_by_index({"name"}, 1, default_name)
 
