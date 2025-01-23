@@ -27,12 +27,16 @@ function get_embed_vars(project)
                 private_darwin.print_red("folder not found")
                 return
             end
+
             local concat_path = false
             local files = darwin.dtw.list_files_recursively(possible_folder,concat_path)
             for i=1,#files do
-                local file = files[i]           
-                data[relative_path] = darwin.file_stream(file)
+                local file = files[i]         
+                local full_path = darwin.dtw.concat_path(possible_folder,file)  
+                folder_to_be_embed[file] = darwin.file_stream( full_path)
             end
+            project.add_embedded_folder(embed_var,folder_to_be_embed)
+
         end
 
     end
