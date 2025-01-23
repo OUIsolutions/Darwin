@@ -10,16 +10,14 @@ function handle_main_file()
 
     local relative_path = darwin.argv.get_flag_arg_by_index_consider_only_first("relative_path")
 
-    
     local main_file_or_folder = darwin.argv.get_next_unused()
-    
-    if not main_file then
+    if not main_file_or_folder then
         private_darwin.print_red("main file not found")
         return false 
     end
     
     if entry_mode == "file" then
-        project.add_lua_file_following_require(main_file,relative_path)
+        project.add_lua_file_following_require(main_file_or_folder,relative_path)
     end 
 
 
