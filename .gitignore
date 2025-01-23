@@ -5,7 +5,7 @@ candangoEngine
 LuaDoTheWorld
 release
 LuaCEmbed.h
-internal_build.sh
+internal_build*
 assets/LuaCEmbed.h
 dependencies
 types0*
