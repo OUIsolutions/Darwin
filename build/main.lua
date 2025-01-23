@@ -1,7 +1,3 @@
-require("build/types")
-require("build/assets")
-require("build/embed_c")
-require("build/dependencies")
 
 local function main()
 
@@ -11,7 +7,7 @@ local function main()
 
     if  darwin.argv.one_of_args_exist("create_images") then
         os.execute("docker build -t darwin_windows_build017 -f  images/windows.Dockerfile .")
-        os.execute("docker build -t darwin_linux_buildd017  -f images/linux.Dockerfile .")
+        os.execute("docker build -t darwin_linux_build017  -f images/linux.Dockerfile .")
     end
 
     if  darwin.argv.one_of_args_exist("build_linux") or is_arg_present("build_windows") then
@@ -59,14 +55,14 @@ local function main()
 
 
     if  darwin.argv.one_of_args_exist("build_windows_from_docker") then
-        os.execute("docker run  --volume $(pwd)/:/project:z  darwin_windows_buildd017 ")
+        os.execute("docker run  --volume $(pwd)/:/project:z  darwin_windows_build017 ")
     end
     if  darwin.argv.one_of_args_exist("build_windows") then
         os.execute("i686-w64-mingw32-gcc  --static release/darwin.c -o  release/darwin.exe")
     end
 
     if  darwin.argv.one_of_args_exist("build_linux_from_docker") then
-        os.execute("docker run  --volume $(pwd)/:/project:z  darwin_linux_buildd017 ")
+        os.execute("docker run  --volume $(pwd)/:/project:z  darwin_linux_build017 ")
     end
 
 
