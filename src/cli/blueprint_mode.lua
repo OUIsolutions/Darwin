@@ -3,7 +3,7 @@
 function Perform_blue_print()
 
     
-    local blue_print_mode = darwin.argv.get_first_flag_arg("mode",1, "file")
+    local blue_print_mode = darwin.argv.get_flag_arg_by_index_consider_only_first("mode",1, "file")
     if not private_darwin.is_inside({ "file", "folder" }, blue_print_mode) then
         private_darwin.print_red("blue print mode must be file or folder\n")
         return

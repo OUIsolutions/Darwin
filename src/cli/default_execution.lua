@@ -34,8 +34,8 @@ end
 
 function Default_execution()
     
-    local output = darwin.argv.get_first_flag_arg({"o", "output"})
-    local output_mode = darwin.argv.get_first_flag_arg(
+    local output = darwin.argv.get_flag_arg_by_index_consider_only_first({"o", "output"},1)
+    local output_mode = darwin.argv.get_flag_arg_by_index_consider_only_first(
         {"mode", "output_mode"},
          1, 
          get_default_output_mode(output)
@@ -50,7 +50,7 @@ function Default_execution()
     end
 
     local default_name = darwin.dtw.newPath(output).get_only_name()
-    local project_name = darwin.argv.get_first_flag_arg({"name"}, default_name)
+    local project_name = darwin.argv.get_flag_arg_by_index_consider_only_first({"name"}, 1,default_name)
 
     local project = darwin.create_project(project_name)
 
