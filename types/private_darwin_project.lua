@@ -7,6 +7,8 @@
 ---@field add_lua_file fun(selfobj:DarwinProject,src:string)
 ---@field add_lua_file_followin_require fun(selfobj:DarwinProject,src:string)
 ---@field add_lua_file_followin_require_recursively fun(selfobj:DarwinProject,src:string)
+---@field create_c_str_buffer fun(str_code:string,str_shas:string[],stream:fun(data:string)):string
+---@field embed_c_table fun(current_table:table,increment:fun():number, streamed_shas:string[], stream:fun(data:string)):string
 
 ---@class PrivateDarwinProject
 ---@field embed_global_in_lua fun(name:string,var:table | number | boolean | string,streammed_shas:string[], stream:fun(data:string))

@@ -8,6 +8,7 @@ private_darwin.main = function()
     if not action then
         private_darwin.print_red("action not passed")
     end
+
     if action == "run_blueprint" then
         Perform_blue_print()
     elseif action == "drop_types" then
