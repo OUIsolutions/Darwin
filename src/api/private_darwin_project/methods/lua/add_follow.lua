@@ -68,7 +68,7 @@ private_darwin_project.create_include_stream = function(self_obj, include, relat
 end
 
 private_darwin_project.add_lua_file_following_require_recursively = function(selfobj, src, relative_path)
-    local content = darwin.dtw.load_file(src)
+    local content = darwin.dtw.load_file(src) .. " \n"
     if not content then
         error("content of " .. src .. " not found")
     end
