@@ -64,31 +64,31 @@ function Default_execution()
     if not ok then
         return
     end
-    local cinclude_size  = darwin.argv.get_flag_size_consider_only_first({"cinclude"}, 1)
+    local cinclude_size  = darwin.argv.get_flag_size_consider_only_first({"c_include"}, 1)
     
     for i=1,cinclude_size do
-        local cinclude = darwin.argv.get_flag_arg_by_index_consider_only_first({"cinclude"}, i)
-        project:add_cinclude(cinclude)
+        local cinclude = darwin.argv.get_flag_arg_by_index_consider_only_first( "c_include", i)
+        project.add_c_include(cinclude)
     end
     
     local c_call_size  = darwin.argv.get_flag_size_consider_only_first({"c_call"}, 1)
     for i=1,c_call_size do
         local c_call = darwin.argv.get_flag_arg_by_index_consider_only_first({"c_call"}, i)
-        project:add_c_call(c_call)
+        project.add_c_call(c_call)
     end
     
     local c_amalgamate_size = darwin.argv.get_flag_size_consider_only_first({"c_amalgamate"}, 1)
     for i=1,c_amalgamate_size do
         local c_amalgamate = darwin.argv.get_flag_arg_by_index_consider_only_first({"c_amalgamate"}, i)
-        project:add_c_file(c_amalgamate, true)
+        project.add_c_file(c_amalgamate, true)
     end
 
-    local lib_objects_size = darwin.argv.get_flag_arg_by_index_consider_only_first({"lib_objects"}, 1)
+    local lib_objects_size = darwin.argv.get_flag_size_consider_only_first({"lib_objects"}, 1)
     for i=1,lib_objects_size do
         local lib_object = darwin.argv.get_flag_arg_by_index_consider_only_first({"lib_objects"}, i)
-        local func_name_flag lib_object..":func"
+        local func_name_flag = lib_object..":func"
         local func_name = darwin.argv.get_flag_arg_by_index_consider_only_first({func_name_flag}, 1)
-        project:load_lib_from_c(func_name, lib_object)
+        project.load_lib_from_c(func_name, lib_object)
     end
 
 
