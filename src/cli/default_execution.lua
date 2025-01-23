@@ -1,7 +1,8 @@
 
 local valid_out_modes = {
     lua= {"lua"},
-    c= {"c"},
+    executable_source= {"c"},
+    lib_source= {"h"},
     linux_bin={"o", "out"},
     windows_bin={"exe"},
     linux_so={"so"},
@@ -61,6 +62,15 @@ function Default_execution()
         create_lua_project(main_file, output, output_mode)
         return 
     end 
+    if output_mode == "linux_bin" or output_mode == "windows_bin" then
+        create_executable_bin_project(main_file, output, output_mode)
+        return
+    end
+    if output_mode == "executable_source" then
+        create_executable_c_project(main_file, output, output_mode)
+        return
+    end
+
 
     
 
