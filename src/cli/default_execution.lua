@@ -49,7 +49,7 @@ function Default_execution()
         return
     end
     local entry_mode = darwin.argv.get_first_flag_arg({"entry_mode"}, "file")
-    if entry_mode ~= "file" and entry_mode ~= "folder" then
+    if not private_darwin.is_inside({"file","folder"},entry+entry_mode) then
         private_darwin.print_red("entry mode not valid")
         return
     end

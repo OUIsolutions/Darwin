@@ -14,15 +14,11 @@ function Perform_blue_print()
         file_or_folder = "darwinconf.lua"        
     end
 
-    local unused_index = darwin.argv.get_next_unused_index()
-    if unused_index then
-        local unused_arg = darwin.argv.get_arg_by_index(unused_index)
-        local msg = "arg:" .. unused_arg .. " at index: " .. unused_index .. "its unused"
-        private_darwin.print_red(msg)
-        return 
+    if not handle_unused() then
+        return
     end
 
-
+    
     if blue_print_mode == "folder" then
         if not darwin.dtw.isdir(file_or_folder) then
             private_darwin.print_red(file_or_folder .. "its not a folder\n")
