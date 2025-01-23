@@ -99,3 +99,59 @@ project.load_lib_from_c("your_func","my_output_object")
 and a global object will be created with the name **my_output_object**
 
 
+### Generating C output
+you can generate a C file with:
+```lua
+project.generate_c_file({output="mycode.c",include_lua_cembed=true})
+```
+you also can get the C code generation with:
+```lua
+local code = project.generate_c_code({include_lua_cembed=true})
+```
+if you need , you can generate C code streaming data to what ever you want 
+```lua
+project.generate_c_complex({
+
+    stream=function(s) 
+        print(s) 
+    end,
+    include_lua_cembed=true
+})
+```
+
+### Generating C lib 
+you can generate a C lib with:
+```lua
+project.generate_c_lib_file({
+    output="mycode.c",
+    include_lua_cembed=true,
+    lib_name="mylib",
+    object_export="my_object"
+})
+
+```
+where lib name will became the name of the lib, with a c function called  **luaopen_mylib** and a global object that will be returned by the function called **my_object**
+
+### Generating C lib Code
+you can generate a C lib code with:
+```lua
+local code = project.generate_c_lib_code({
+    include_lua_cembed=true,
+    lib_name="mylib",
+    object_export="my_object"
+})
+```
+
+### Generating C lib Code Streaming
+if you need , you can generate C lib code streaming data to what ever you want 
+```lua
+project.generate_c_lib_complex({
+
+    stream=function(s) 
+        print(s) 
+    end,
+    include_lua_cembed=true,
+    lib_name="mylib",
+    object_export="my_object"
+})
+```
