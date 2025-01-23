@@ -57,7 +57,7 @@ local function main()
     end
 
 
-    if is_arg_present("build_windows_from_docer") then
+    if is_arg_present("build_windows_from_docker") then
         os.execute("docker run  --volume $(pwd)/:/project:z  darwin_windows_build ")
     end
     if is_arg_present("build_windows") then
