@@ -4,8 +4,7 @@
 ---@field dtw DtwModule
 ---@field candango Cadango
 ---@field chunk_size number
----@field watcher StellarWatcher
----@field argv Argv
+---@field argv LuaArgv
 
 ---@type Darwin
 darwin = darwin

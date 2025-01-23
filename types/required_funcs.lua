@@ -1,0 +1,3 @@
+---@class DarwinEmbedCode
+---@field content DarwinFileStream | string
+---@field include string
