@@ -21,5 +21,6 @@ darwin main.lua -o my_program.out  -compiler clang
 ### Seting flags 
 its also possible to set  compilation flags with the **flags** flag 
 ```lua
-darwin main.lua -o my_program.out  -compiler clang -flags "--static"
+darwin main.lua -o my_program.out  -compiler clang flags:-DMY_DEFINITION flags:--static
 ```
+
