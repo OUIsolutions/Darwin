@@ -4,16 +4,17 @@
 ---typeend
 
 private_darwin.main = function()
-    local action = darwin.argv.get_arg_by_index(2)
-    if not action then
-        private_darwin.print_red("action not passed")
+    if darwin.argv.one_of_args_exist("run_blueprint") then
+        Perform_blue_print()
     end
 
-    if action == "run_blueprint" then
-        Perform_blue_print()
-    elseif action == "drop_types" then
+    if darwin.argv.one_of_args_exist("drop_types") then
         Drop_types()
-    else
-
+    end
+    local unused_index = darwin.argv.get_next_unused_index()
+    if unused_index then
+        local unused_arg = darwin.argv.get_arg_by_index(unused_index)
+        local msg = "arg:" .. unused_arg .. " at index: " .. unused_index .. "its unused"
+        private_darwin.print_red(msg)
     end
 end
