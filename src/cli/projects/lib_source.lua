@@ -1,5 +1,5 @@
 
-function create_lib_source_project(entry, output, output_mode)
+function create_lib_source_project(output, output_mode)
 
     local object_export = darwin.argv.get_flag_arg_by_index({"object_export"}, 1)
     if not object_export then

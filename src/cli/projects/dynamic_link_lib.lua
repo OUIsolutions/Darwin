@@ -1,6 +1,6 @@
 
 
-function create_dynamic_link_lib_project(entry, output, output_mode)
+function create_dynamic_link_lib_project( output, output_mode)
 
     local object_export = darwin.argv.get_flag_arg_by_index({"object_export"}, 1)
     if not object_export then

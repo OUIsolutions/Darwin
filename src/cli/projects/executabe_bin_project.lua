@@ -1,5 +1,5 @@
 
-function create_executable_bin_project(entry, output,output_mode)
+function create_executable_bin_project( output,output_mode)
 
     local cache_output = "darwin_cache.c"
     project.generate_c_file({
