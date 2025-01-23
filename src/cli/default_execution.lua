@@ -34,7 +34,7 @@ end
 
 function Default_execution()
     
-    local output = darwin.argv.get_first_flag_arg({"o", "output"}, 1)
+    local output = darwin.argv.get_first_flag_arg({"o", "output"})
     local output_mode = darwin.argv.get_first_flag_arg(
         {"mode", "output_mode"},
          1, 
@@ -48,13 +48,18 @@ function Default_execution()
         private_darwin.print_red("output mode not valid")
         return
     end
-    
+    local entry_mode = darwin.argv.get_first_flag_arg({"entry_mode"}, "file")
+    if entry_mode ~= "file" and entry_mode ~= "folder" then
+        private_darwin.print_red("entry mode not valid")
+        return
+    end
+
+
     local default_name = darwin.dtw.newPath(output).get_only_name()
-    local project_name = darwin.argv.get_flag_arg_by_index({"name"}, 1, default_name)
+    local project_name = darwin.argv.get_first_flag_arg({"name"}, default_name)
 
     local project = darwin.create_project(project_name)
     local relative_path = darwin.argv.get_flag_arg_by_index({"relative_path"}, 1)
-    project.add_lua_file_following_require(main_file,relative_path)
 
     local ok =get_embed_vars(project)
     if not ok then
@@ -62,24 +67,26 @@ function Default_execution()
     end
     if output_mode == "lua" then
         create_lua_project(project,output, output_mode)
+        return 
     end 
     if output_mode == "linux_bin" or output_mode == "windows_bin" then
         create_executable_bin_project( project,output, output_mode)
+        return 
     end
     if output_mode == "executable_source" then
         create_executable_c_project(project,output, output_mode)
+        return 
     end
     if output_mode == "lib_source" then
         create_lib_source_project(project,output, output_mode)
-        
+        return 
     end
     if output_mode == "linux_so" or output_mode == "windows_dll" then
         create_dynamic_link_lib_project( project,output, output_mode)
-        
+        return 
     end
 
 
-    
 
 
 end
