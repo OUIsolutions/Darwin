@@ -24,9 +24,9 @@ private_darwin_project.create_c_stream_buffer = function(filestream, streamed_sh
         "unsigned char %s[] ={",
         name
     ))
-    local write_size = private_darwin.transfer_file_stream_bytes(filestream, stream)
+    private_darwin.transfer_file_stream_bytes(filestream, stream)
     stream("0};\n")
-    return name,write_size
+    return name
 end
 
 
@@ -172,7 +172,9 @@ private_darwin_project.embed_global_in_c = function(name, var, streamed_shas, st
 
     local is_stream = private_darwin.is_file_stream(var)
     if is_stream then
-        local sha_name,size = private_darwin_project.create_c_stream_buffer(var, streamed_shas, stream)
+        local sha_name = private_darwin_project.create_c_stream_buffer(var, streamed_shas, stream)
+        local size = io.open(var.filename, "rb"):seek("end")
+        print("size: " .. size)
         stream(
             string.format(
                 'LuaCEmbed_set_global_raw_string(darwin_main_obj,%q,(const char*)%s,%d);\n',
