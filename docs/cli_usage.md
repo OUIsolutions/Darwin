@@ -30,7 +30,7 @@ you can embed data into your priject, you just need to especify the **--embed_va
 ```shell 
 darwin main.lua -o my_program.out  -embed_vars my_image -my_image:file my_file.png 
 ```
-you can embed , **files** 
+you can embed  **files**, **folders** and **text**, just change :file for :folder or :text
 
 
 ### Generating Blue Prints
