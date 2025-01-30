@@ -155,3 +155,16 @@ project.generate_c_lib_complex({
     object_export="my_object"
 })
 ```
+
+
+## Building libs
+Darwin Have The Follow libs native
+
+|  Object Name  | Lib Name |
+|--------------|---------|
+|darwin.camalgamator | [LuaCAmalgamator](https://github.com/OUIsolutions/LuaCAmalgamator) |
+|darwin.dtw| [LuaDoTheWorld](https://github.com/OUIsolutions/LuaDoTheWorld)|
+|darwin.candango|[candangoEngine](https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine) |
+|darwin.json|[LuaFluidJson](https://github.com/OUIsolutions/LuaFluidJson) |
+|darwin.argv|[LuaFluidJson](https://github.com/OUIsolutions/LuaArgv) |
+|darwin.silverchain|[LuaFluidJson](https://github.com/OUIsolutions/LuaSilverChain) |
