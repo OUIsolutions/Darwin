@@ -25,7 +25,17 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
     props.stream([[
         int main(int argc, char **argv) {
         LuaCEmbed  *darwin_main_obj = newLuaCEmbedEvaluation();
+
+        #ifdef _WIN32
+                LuaCEmbed_set_global_string(darwin_main_obj, "darwin_os", "windows");
+        #endif
+
+        #ifdef __unix__
+                LuaCEmbed_set_global_string(darwin_main_obj, "darwin_os", "unix");
+        #endif
+
         LuaCEmbedTable *args_table =LuaCembed_new_global_table(darwin_main_obj,"arg");
+
         for(int i =0; i <argc;i++) {
                 LuaCEmbedTable_append_string(args_table,argv[i]);
         }
@@ -70,9 +80,6 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
         LuaCEmbed_free(darwin_main_obj);
         return 0;
     }]])
-
-
-   
 end
 
 private_darwin_project.generate_c_code = function(selfobj, props)

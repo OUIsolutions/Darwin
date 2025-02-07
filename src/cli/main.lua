@@ -10,12 +10,12 @@ private_darwin.main = function()
     elseif darwin.argv.one_of_args_exist("drop_types") then
         Drop_types()
     elseif darwin.argv.one_of_args_exist("drop_lua_cembed") then
-        Drop_lua_cembed()   
-    elseif darwin.argv.get_flag_arg_by_index_consider_only_first("help") then
+        Drop_lua_cembed()
+    elseif darwin.argv.flags_exist("help") then
         Drop_help()
+    elseif darwin.argv.flags_exist("version") then
+        print("darwin 0.018")
     else
         Default_execution()
     end
-
-  
 end
