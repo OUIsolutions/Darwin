@@ -1,17 +1,14 @@
-
- function main()
-
-    if  darwin.argv.one_of_args_exist("install_dependencies") then
+function main()
+    if darwin.argv.one_of_args_exist("install_dependencies") then
         Install_all_dependencies()
     end
 
-    if  darwin.argv.one_of_args_exist("create_images") then
+    if darwin.argv.one_of_args_exist("create_images") then
         os.execute("docker build -t darwin_windows_build017 -f  images/windows.Dockerfile .")
         os.execute("docker build -t darwin_linux_build017  -f images/linux.Dockerfile .")
     end
 
-    if  darwin.argv.one_of_args_exist("build_linux") or darwin.argv.one_of_args_exist("build_windows") then
-
+    if darwin.argv.one_of_args_exist("build_linux") or darwin.argv.one_of_args_exist("build_windows") then
         local project = darwin.create_project("darwin")
 
         Embed_c_code(project)
@@ -55,26 +52,25 @@
     end
 
 
-    if  darwin.argv.one_of_args_exist("build_windows_from_docker") then
+    if darwin.argv.one_of_args_exist("build_windows_from_docker") then
         os.execute("docker run  --volume $(pwd)/:/project:z  darwin_windows_build017 ")
     end
-    if  darwin.argv.one_of_args_exist("build_windows") then
+    if darwin.argv.one_of_args_exist("build_windows") then
         os.execute("i686-w64-mingw32-gcc  --static release/darwin.c -o  release/darwin.exe")
     end
 
-    if  darwin.argv.one_of_args_exist("build_linux_from_docker") then
+    if darwin.argv.one_of_args_exist("build_linux_from_docker") then
         os.execute("docker run  --volume $(pwd)/:/project:z  darwin_linux_build017 ")
     end
 
-
-    if  darwin.argv.one_of_args_exist("build_linux") then
+    if darwin.argv.one_of_args_exist("build_linux") then
         if darwin.argv.one_of_args_exist("no_static") then
             os.execute("gcc   release/darwin.c -o  release/darwin.out")
         else
             os.execute("gcc --static  release/darwin.c -o  release/darwin.out")
         end
     end
-    if  darwin.argv.one_of_args_exist("debug") then
+    if darwin.argv.one_of_args_exist("debug") then
         os.execute("gcc release/darwin.c -o  release/debug.out")
     end
 end
