@@ -1,6 +1,6 @@
 # Darwin
-The Most Advanced Lua Compiler 
-## Generations  
+The Most Advanced Lua Compiler
+## Generations
 - windows executable
 - Linux Executable
 - C/C++ code
@@ -15,7 +15,7 @@ The Most Advanced Lua Compiler
 - Comptime Lua Code Manipulation
 
 ## Quick Example Linux
-```bash 
+```bash
 ./darwin.out test.lua -o test.out
 ```
 ## Quick Example Windows
@@ -26,9 +26,9 @@ darwin.exe test.lua -o test.exe
 ## Releases
 | item          | plataform |
 |-------        |-----------|
-| [Amalgamation](https://github.com/OUIsolutions/Darwin/releases/download/0.017/darwin.c)| Source  |
-| [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.017/darwin.out)|Linux binary|
-| [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.017/darwin.exe)|Windows binary |
+| [Amalgamation](https://github.com/OUIsolutions/Darwin/releases/download/0.018/darwin.c)| Source  |
+| [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.018/darwin.out)|Linux binary|
+| [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.018/darwin.exe)|Windows binary |
 
 
 
