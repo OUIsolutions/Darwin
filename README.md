@@ -14,7 +14,7 @@ The Most Advanced Lua Compiler
 - C/C++ Integration
 - Comptime Lua Code Manipulation
 
-## Quick Example Linux
+## Quick Example
 ```bash
 darwin test.lua -o test.out
 ```
