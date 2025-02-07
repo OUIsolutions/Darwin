@@ -16,11 +16,13 @@ The Most Advanced Lua Compiler
 
 ## Quick Example Linux
 ```bash
-./darwin.out test.lua -o test.out
+darwin test.lua -o test.out
 ```
-## Quick Example Windows
+
+## Quick Install 
+if you are on linux you can install with:
 ```bash
-darwin.exe test.lua -o test.exe
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.018/darwin.out -o darwin.out && sudo chmod +x darwin.out &&  sudo  mv darwin.out /usr/bin/darwin
 ```
 
 ## Releases
