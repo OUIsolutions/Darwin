@@ -33,6 +33,16 @@ function main()
         project.add_lua_code("darwin.argv = darwin.argv()")
 
 
+        local lua_ship_content = darwin.dtw.load_file("dependencies/LuaShip.lua")
+        project.add_lua_code(string.format(
+            "darwin.ship = function()\n %s\n end \n",
+            lua_ship_content
+        ))
+        project.add_lua_code("darwin.ship = darwin.ship()")
+
+
+
+
         project.add_lua_code("private_darwin = {}")
 
         project.add_lua_code("private_darwin_project = {}")
