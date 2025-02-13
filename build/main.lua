@@ -1,7 +1,5 @@
 function main()
-    if darwin.argv.one_of_args_exist("install_dependencies") then
-        Install_all_dependencies()
-    end
+    Install_all_dependencies()
 
     if darwin.argv.one_of_args_exist("create_images") then
         os.execute("docker build -t darwin_windows_build017 -f  images/windows.Dockerfile .")

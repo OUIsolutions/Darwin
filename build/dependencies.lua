@@ -1,4 +1,12 @@
 function Install_all_dependencies()
+    local hasher = darwin.dtw.newHasher()
+    hasher.digest_folder_by_last_modification("dependencies")
+    local possible_old_hash = darwin.dtw.load_file("dependencie_hash.txt")
+    if hasher.get_value() == possible_old_hash then
+        print("dependencies cached")
+        return
+    end
+
     darwin.dtw.remove_any("dependencies")
     local commands = {
 
@@ -17,4 +25,7 @@ function Install_all_dependencies()
     for _, cmd in ipairs(commands) do
         os.execute(cmd)
     end
+    local new_hasher = darwin.dtw.newHasher()
+    new_hasher.digest_folder_by_last_modification("dependencies")
+    darwin.dtw.write_file("dependencie_hash.txt", new_hasher.get_value())
 end
