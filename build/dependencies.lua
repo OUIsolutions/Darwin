@@ -1,9 +1,8 @@
 function Install_all_dependencies()
     local hasher = darwin.dtw.newHasher()
-    hasher.digest_folder_by_last_modification("dependencies")
-    local possible_old_hash = darwin.dtw.load_file("dependencie_hash.txt")
-    if hasher.get_value() == possible_old_hash then
-        print("dependencies cached")
+    hasher.digest_folder_by_content("dependencies")
+    local EXPECTED_HASH = '9dcb72055027001949e3bf9983c44b67864725832a6e4fa1945fb4c77e22f84d'
+    if hasher.get_value() == EXPECTED_HASH then
         return
     end
 
@@ -26,6 +25,6 @@ function Install_all_dependencies()
         os.execute(cmd)
     end
     local new_hasher = darwin.dtw.newHasher()
-    new_hasher.digest_folder_by_last_modification("dependencies")
-    darwin.dtw.write_file("dependencie_hash.txt", new_hasher.get_value())
+    new_hasher.digest_folder_by_content("dependencies")
+    print("dependencie hash: " .. new_hasher.get_value())
 end
