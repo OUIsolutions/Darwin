@@ -70,7 +70,6 @@ function main()
 
     if darwin.argv.one_of_args_exist("build_windows_from_docker") then
         local image = darwin.ship.create_machine("debian:latest")
-        image.provider = "podman"
         image.add_comptime_command("apt-get update")
         image.add_comptime_command("apt-get -y install mingw-w64")
         image.start({
@@ -86,7 +85,6 @@ function main()
 
     if darwin.argv.one_of_args_exist("build_linux_from_docker") then
         local image = darwin.ship.create_machine("alpine:latest")
-        image.provider = "podman"
         image.add_comptime_command("apk update")
         image.add_comptime_command("apk add --no-cache gcc musl-dev curl")
 
