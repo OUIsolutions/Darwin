@@ -168,3 +168,4 @@ Darwin Have The Follow libs native
 |darwin.json|[LuaFluidJson](https://github.com/OUIsolutions/LuaFluidJson) |
 |darwin.argv|[LuaFluidJson](https://github.com/OUIsolutions/LuaArgv) |
 |darwin.silverchain|[LuaFluidJson](https://github.com/OUIsolutions/LuaSilverChain) |
+|darwin.ship|[LuaShip](https://github.com/OUIsolutions/LuaShip)|
