@@ -69,19 +69,15 @@ function main()
 
 
     if darwin.argv.one_of_args_exist("build_windows_from_docker") then
-        -- Create a new container machine
         local image = darwin.ship.create_machine("debian:latest")
-        -- Configure container runtime
         image.provider = "podman"
-        -- Add build-time commands
-        image.add_comptime_command(" apt-get install -y mingw-w64")
-
-        -- Start container with specific configuration
+        image.add_comptime_command("apt-get update")
+        image.add_comptime_command("apt-get -y install mingw-w64")
         image.start({
             volumes = {
                 { "./release", "/release" }
             },
-            command = "i686-w64-mingw32-gcc --static /release/darwin.c -o /release/darwin.out"
+            command = "i686-w64-mingw32-gcc --static /release/darwin.c -o /release/darwin.exe"
         })
     end
     if darwin.argv.one_of_args_exist("build_windows") then
@@ -89,15 +85,11 @@ function main()
     end
 
     if darwin.argv.one_of_args_exist("build_linux_from_docker") then
-        -- Create a new container machine
         local image = darwin.ship.create_machine("alpine:latest")
-        -- Configure container runtime
         image.provider = "podman"
-        -- Add build-time commands
         image.add_comptime_command("apk update")
         image.add_comptime_command("apk add --no-cache gcc musl-dev curl")
 
-        -- Start container with specific configuration
         image.start({
             volumes = {
                 { "./release", "/release" }
