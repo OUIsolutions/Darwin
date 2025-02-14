@@ -1,14 +1,22 @@
 function main()
     Install_all_dependencies()
 
-    if darwin.argv.one_of_args_exist("create_images") then
-        os.execute("docker build -t darwin_windows_build017 -f  images/windows.Dockerfile .")
-        os.execute("docker build -t darwin_linux_build017  -f images/linux.Dockerfile .")
+    local valid_builds = {
+        "build_source",
+        "build_linux",
+        "build_linux_from_docker",
+        "build_windows",
+        "build_windows_from_source"
+    }
+    local generate_source = false
+    for _, item in ipairs(valid_builds) do
+        if darwin.argv.one_of_args_exist(item) then
+            generate_source = true
+        end
     end
 
-    if darwin.argv.one_of_args_exist("build_linux") or darwin.argv.one_of_args_exist("build_windows") then
+    if generate_source then
         local project = darwin.create_project("darwin")
-
         Embed_c_code(project)
         Create_api_assets(project)
         Embed_types(project)
@@ -61,14 +69,41 @@ function main()
 
 
     if darwin.argv.one_of_args_exist("build_windows_from_docker") then
-        os.execute("docker run  --volume $(pwd)/:/project:z  darwin_windows_build017 ")
+        -- Create a new container machine
+        local image = darwin.ship.create_machine("debian:latest")
+        -- Configure container runtime
+        image.provider = "podman"
+        -- Add build-time commands
+        image.add_comptime_command(" apt-get install -y mingw-w64")
+
+        -- Start container with specific configuration
+        image.start({
+            volumes = {
+                { "./release", "/release" }
+            },
+            command = "i686-w64-mingw32-gcc --static /release/darwin.c -o /release/darwin.out"
+        })
     end
     if darwin.argv.one_of_args_exist("build_windows") then
         os.execute("i686-w64-mingw32-gcc  --static release/darwin.c -o  release/darwin.exe")
     end
 
     if darwin.argv.one_of_args_exist("build_linux_from_docker") then
-        os.execute("docker run  --volume $(pwd)/:/project:z  darwin_linux_build017 ")
+        -- Create a new container machine
+        local image = darwin.ship.create_machine("alpine:latest")
+        -- Configure container runtime
+        image.provider = "podman"
+        -- Add build-time commands
+        image.add_comptime_command("apk update")
+        image.add_comptime_command("apk add --no-cache gcc musl-dev curl")
+
+        -- Start container with specific configuration
+        image.start({
+            volumes = {
+                { "./release", "/release" }
+            },
+            command = "gcc --static /release/darwin.c -o /release/darwin.out"
+        })
     end
 
     if darwin.argv.one_of_args_exist("build_linux") then

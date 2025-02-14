@@ -6,7 +6,7 @@
 ---@field chunk_size number
 ---@field argv Argv
 ---@field camalgamator Amalgamator
-
+---@field ship LuaShip
 
 ---@type Darwin
 darwin = darwin

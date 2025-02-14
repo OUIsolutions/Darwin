@@ -17,3 +17,8 @@ for building from native,you must have darwin installed on version 0.015,gcc wit
 ```bash
 darwin run_blueprint build/ --mode folder   build_linux build_windows
 ```
+### Building Only source
+you can build the source amalgamation **darwin.c** only
+```bash
+darwin run_blueprint build/ --mode folder   build_source
+```
