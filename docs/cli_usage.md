@@ -77,3 +77,9 @@ you can add a amalgamation to your project by passing the **-amalgamation** flag
 ```shell
 darwin main.lua -o my_program.out  -amalgamation my_amalgamation.c
 ```
+
+### Type anotations
+to get type annotations just type:
+```bash
+darwin drop_types
+```
