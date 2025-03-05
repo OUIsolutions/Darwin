@@ -22,15 +22,15 @@ darwin test.lua -o test.out
 ## Quick Install
 if you are on linux you can install with:
 ```bash
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.020/darwin.out -o darwin.out && sudo chmod +x darwin.out &&  sudo  mv darwin.out /usr/bin/darwin
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.1.21/darwin.out -o darwin.out && sudo chmod +x darwin.out &&  sudo  mv darwin.out /usr/bin/darwin
 ```
 
 ## Releases
 | item          | plataform |
 |-------        |-----------|
-| [Amalgamation](https://github.com/OUIsolutions/Darwin/releases/download/0.020/darwin.c)| Source  |
-| [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.020/darwin.out)|Linux binary|
-| [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.020/darwin.exe)|Windows binary |
+| [Amalgamation](https://github.com/OUIsolutions/Darwin/releases/download/0.1.21/darwin.c)| Source  |
+| [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.1.21/darwin.out)|Linux binary|
+| [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.1.21/darwin.exe)|Windows binary |
 
 
 
