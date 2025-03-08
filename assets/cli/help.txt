@@ -1,7 +1,7 @@
 
 Darwin Compiler Help
 =====================
-Version:0.018
+Version:DARWIN_VERSION
 Usage:
   darwin <input_file> -o <output_file> [options]
 

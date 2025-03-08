@@ -30,5 +30,6 @@ end
 
 function Drop_help()
     local help = private_darwin.get_asset(PRIVATE_DARWIN_CLI_ASSETS, "help.txt")
+    help = string.gsub(help, "DARWIN_VERSION", darwin.version)
     print(help)
 end

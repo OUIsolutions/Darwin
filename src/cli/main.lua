@@ -14,7 +14,7 @@ private_darwin.main = function()
     elseif darwin.argv.flags_exist({ "help" }) or darwin.argv.one_of_args_exist("help") then
         Drop_help()
     elseif darwin.argv.flags_exist({ "version" }) or darwin.argv.one_of_args_exist("version") then
-        print("darwin 0.1.22")
+        print("darwin "..darwin.version)
     else
         Default_execution()
     end
