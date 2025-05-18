@@ -20,7 +20,7 @@ private_darwin_project.generate_c_lib_complex = function(selfobj, props)
 
 
     if include_lua_cembed then
-        local lua_cembedd = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "LuaCEmbed.h")
+        local lua_cembedd = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "LuaCEmbedOne.c")
         props.stream(lua_cembedd)
     end
 

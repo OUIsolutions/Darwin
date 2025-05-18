@@ -24,7 +24,7 @@ function Drop_lua_cembed()
     if not file then
         file = "LuaCEmbed.c"
     end
-    local lua_cembedd = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "LuaCEmbed.h")
+    local lua_cembedd = private_darwin.get_asset(PRIVATE_DARWIN_API_ASSETS, "LuaCEmbedOne.c")
     darwin.dtw.write_file(file, lua_cembedd)
 end
 

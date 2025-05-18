@@ -1,7 +1,7 @@
 function Install_all_dependencies()
     local hasher = darwin.dtw.newHasher()
     hasher.digest_folder_by_content("dependencies")
-    local EXPECTED_HASH = '8a3cc2d611abbc986fbdef4f547451a6af820a200a32e9cb4801a866d303c02d'
+    local EXPECTED_HASH = 'f5478848885922e0fb1ce8a7e3def73c7f528c7efedce8d26a835fcf1798ccdb'
     if hasher.get_value() == EXPECTED_HASH then
         return
     end
@@ -14,7 +14,7 @@ function Install_all_dependencies()
         "cd dependencies && git clone -b v0.72 https://github.com/OUIsolutions/LuaDoTheWorld.git",
         "cd dependencies && git clone -b V0.003 https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine.git",
         "cd dependencies && curl -L https://github.com/OUIsolutions/CTextEngine/releases/download/v2.002/CTextEngine.h -o CTextEngine.h",
-        "cd assets/api && curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/0.8.2/LuaCEmbedOne.c -o LuaCEmbed.h",
+        "cd assets/api && curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/0.8.2/LuaCEmbedOne.c -o LuaCEmbedOne.c",
         "cd dependencies && curl -L https://github.com/OUIsolutions/DoTheWorld/releases/download/v7.006/doTheWorld.h -o doTheWorld.h",
         "cd dependencies && curl -L https://github.com/OUIsolutions/LuaArgv/releases/download/0.09/luargv.lua -o luargv.lua",
         'cd dependencies && curl -L https://github.com/OUIsolutions/LuaShip/releases/download/0.1.0/LuaShip.lua -o LuaShip.lua',

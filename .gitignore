@@ -10,6 +10,7 @@ assets/LuaCEmbed.h
 dependencies
 teste.sh
 teste
+assets/api/LuaCEmbedOne.c
 types0*
 local_move.sh
 teste.lua
