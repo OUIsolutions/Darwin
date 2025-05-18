@@ -1,7 +1,7 @@
 function Install_all_dependencies()
     local hasher = darwin.dtw.newHasher()
     hasher.digest_folder_by_content("dependencies")
-    local EXPECTED_HASH = 'f5478848885922e0fb1ce8a7e3def73c7f528c7efedce8d26a835fcf1798ccdb'
+    local EXPECTED_HASH = '4a2e010a5a0e962e1bde4fdee22f0a9983730ad68b58cc62266a0e2d079a88e8'
     if hasher.get_value() == EXPECTED_HASH then
         return
     end
@@ -10,12 +10,12 @@ function Install_all_dependencies()
     local commands = {
 
         "mkdir dependencies",
-        "cd dependencies && git clone -b v0.52 https://github.com/OUIsolutions/LuaFluidJson.git",
-        "cd dependencies && git clone -b v0.72 https://github.com/OUIsolutions/LuaDoTheWorld.git",
+        "cd dependencies && curl -L https://github.com/OUIsolutions/LuaFluidJson/releases/download/0.6.1/luaFluidJson_no_dep.c -o luaFluidJson_no_dep.c",
+        "cd dependencies && curl -L https://github.com/OUIsolutions/LuaDoTheWorld/releases/download/0.7.2/luaDoTheWorld_no_dep.c -o luaDoTheWorld_no_dep.c",
         "cd dependencies && git clone -b V0.003 https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine.git",
-        "cd dependencies && curl -L https://github.com/OUIsolutions/CTextEngine/releases/download/v2.002/CTextEngine.h -o CTextEngine.h",
+        "cd dependencies && curl -L https://github.com/OUIsolutions/CTextEngine/releases/download/3.0.000/CTextEngineOne.c -o CTextEngineOne.c",
         "cd assets/api && curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/0.8.2/LuaCEmbedOne.c -o LuaCEmbedOne.c",
-        "cd dependencies && curl -L https://github.com/OUIsolutions/DoTheWorld/releases/download/10.1.1/doTheWorldOne.c -o doTheWorld.h",
+        "cd dependencies && curl -L https://github.com/OUIsolutions/DoTheWorld/releases/download/10.1.1/doTheWorldOne.c -o doTheWorldOne.c",
         "cd dependencies && curl -L https://github.com/OUIsolutions/LuaArgv/releases/download/0.09/luargv.lua -o luargv.lua",
         'cd dependencies && curl -L https://github.com/OUIsolutions/LuaShip/releases/download/0.1.0/LuaShip.lua -o LuaShip.lua',
         "cd dependencies && curl -L https://github.com/OUIsolutions/LuaSilverChain/releases/download/0.0.5/silverchain_no_dependecie_included.c -o silverchain_no_dependecie_included.c",
