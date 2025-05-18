@@ -1,7 +1,7 @@
 function Install_all_dependencies()
     local hasher = darwin.dtw.newHasher()
     hasher.digest_folder_by_content("dependencies")
-    local EXPECTED_HASH = 'c7bb84dbc0e1d7a2a3705119acf246ae40f89d807d05ff99dd16c6a068e44975'
+    local EXPECTED_HASH = '7e5f90aa764eac600c01b60e02e2033b86b64baf262ae7901bec7fb9febc91bf'
     if hasher.get_value() == EXPECTED_HASH then
         return
     end
@@ -19,7 +19,7 @@ function Install_all_dependencies()
         "cd dependencies && curl -L https://github.com/OUIsolutions/LuaArgv/releases/download/0.1.0/luargv.lua -o luargv.lua",
         'cd dependencies && curl -L https://github.com/OUIsolutions/LuaShip/releases/download/0.1.0/LuaShip.lua -o LuaShip.lua',
         "cd dependencies && curl -L https://github.com/OUIsolutions/LuaSilverChain/releases/download/0.1.0/silverchain_no_dependecie_included.c -o silverchain_no_dependecie_included.c",
-        "cd dependencies && curl -L https://github.com/OUIsolutions/LuaCAmalgamator/releases/download/0.0.3/lua_c_amalgamator_dependencie_not_included.c -o lua_c_amalgamator_dependencie_not_included.c"
+        "cd dependencies && curl -L https://github.com/OUIsolutions/LuaCAmalgamator/releases/download/0.1.0/lua_c_amalgamator_dependencie_not_included.c -o lua_c_amalgamator_dependencie_not_included.c"
     }
 
     for _, cmd in ipairs(commands) do
