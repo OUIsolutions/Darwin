@@ -39,7 +39,7 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
         LuaCEmbedTable *args_table =LuaCembed_new_global_table(darwin_main_obj,"arg");
 
         for(int i =0; i <argc;i++) {
-                LuaCEmbedTable_set_string_by_index(args_table,i,argv[i]);
+                LuaCEmbedTable_set_string_by_index(args_table,i-1,argv[i]);
         }
     ]])
 
