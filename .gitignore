@@ -5,6 +5,8 @@ candangoEngine
 LuaDoTheWorld
 release
 LuaCEmbed.h
+cli
+cli.lua
 internal_build*
 assets/LuaCEmbed.h
 dependencies

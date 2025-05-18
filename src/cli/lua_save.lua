@@ -1,7 +1,8 @@
 
 
 function handle_main_file(project)
-
+    local not_follow = darwin.argv.flags_exist({"not_follow"})
+    
     local entry_mode = darwin.argv.get_flag_arg_by_index_consider_only_first("entry_mode",1, "file")
     if not private_darwin.is_inside({"file","folder"},entry_mode) then
         private_darwin.print_red("entry mode not valid")
@@ -17,7 +18,11 @@ function handle_main_file(project)
     end
     
     if entry_mode == "file" then
-        project.add_lua_file_following_require(main_file_or_folder,relative_path)
+        if not_follow then 
+            project.add_lua_file(main_file_or_folder,relative_path)
+        else 
+         project.add_lua_file_following_require(main_file_or_folder,relative_path)
+        end 
     end 
 
 
