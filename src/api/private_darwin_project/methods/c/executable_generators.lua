@@ -25,8 +25,20 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
 
 
     props.stream([[
+
+        LuaCEmbed  *darwin_main_obj;
+        static void handle_sigint(int sig) {
+            if (darwin_main_obj) {
+                LuaCEmbed_free(darwin_main_obj);
+                darwin_main_obj = NULL;
+            }
+            _exit(130); // 130 is standard exit code for SIGINT
+        }
+
         int main(int argc, char **argv) {
-        LuaCEmbed  *darwin_main_obj = newLuaCEmbedEvaluation();
+        signal(SIGINT, handle_sigint);
+
+        darwin_main_obj = newLuaCEmbedEvaluation();
 
         #ifdef _WIN32
                 LuaCEmbed_set_global_string(darwin_main_obj, "darwin_os", "windows");
@@ -80,6 +92,7 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
             return 1;
         }
         LuaCEmbed_free(darwin_main_obj);
+        darwin_main_obj = NULL;
         return 0;
     }]])
 end
