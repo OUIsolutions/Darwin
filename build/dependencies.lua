@@ -1,7 +1,7 @@
 function Install_all_dependencies()
     local hasher = darwin.dtw.newHasher()
     hasher.digest_folder_by_content("dependencies")
-    local EXPECTED_HASH = '9243cee2af9d5487931f8dcf43aca20e4e0fc0529c53b8f061f90fe7a2772b46'
+    local EXPECTED_HASH = 'd9ed3ce3c7b5b303471ed2c27838def69f1901b11e48c03e850961cfdea6413a'
     if hasher.get_value() == EXPECTED_HASH then
         return
     end
@@ -25,6 +25,9 @@ function Install_all_dependencies()
     for _, cmd in ipairs(commands) do
         os.execute(cmd)
     end
+
+    darwin.dtw.remove_any("dependencies/candangoEngine/.git")
+
     local new_hasher = darwin.dtw.newHasher()
     new_hasher.digest_folder_by_content("dependencies")
     print("dependencie hash: " .. new_hasher.get_value())

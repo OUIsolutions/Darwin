@@ -14,6 +14,7 @@ function main()
             generate_source = true
         end
     end
+    local provider = darwin.argv.get_flag_arg_by_index("provider", 1,"docker")
 
     if generate_source then
         local project = darwin.create_project("darwin")
@@ -70,6 +71,7 @@ function main()
 
     if darwin.argv.one_of_args_exist("build_windows_from_docker") then
         local image = darwin.ship.create_machine("debian:latest")
+        image.provider = provider
         image.add_comptime_command("apt-get update")
         image.add_comptime_command("apt-get -y install mingw-w64")
         image.start({
@@ -85,6 +87,7 @@ function main()
 
     if darwin.argv.one_of_args_exist("build_linux_from_docker") then
         local image = darwin.ship.create_machine("alpine:latest")
+        image.provider = provider
         image.add_comptime_command("apk update")
         image.add_comptime_command("apk add --no-cache gcc musl-dev curl")
 
