@@ -52,7 +52,7 @@ darwin hello.lua -o hello.out
 
 ### 🐧 Linux (One-liner)
 ```bash
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.out -o darwin.out && sudo chmod +x darwin.out && sudo mv darwin.out /usr/bin/darwin
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.5.0/darwin.out -o darwin.out && sudo chmod +x darwin.out && sudo mv darwin.out /usr/bin/darwin
 ```
 
 ### 🪟 Windows
