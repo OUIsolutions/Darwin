@@ -2,7 +2,7 @@
 **The Most Advanced Lua Compiler** - Transform your Lua code into powerful executables
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.3.0-green.svg)](https://github.com/OUIsolutions/Darwin/releases)
+[![Version](https://img.shields.io/badge/Version-0.5.0-green.svg)](https://github.com/OUIsolutions/Darwin/releases)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows-lightgrey.svg)](#releases)
 [![Language](https://img.shields.io/badge/Language-Lua%20%7C%20C-orange.svg)](#features)
 [![Status](https://img.shields.io/badge/Status-Active-success.svg)](https://github.com/OUIsolutions/Darwin)
@@ -56,19 +56,19 @@ curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.5.0/darwin.ou
 ```
 
 ### 🪟 Windows
-Download [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.exe) and add it to your PATH
+Download [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.5.0/darwin.exe) and add it to your PATH
 
 ## 📋 Download Options
 
-[![Download for Linux](https://img.shields.io/badge/Download-Linux%20Binary-blue?style=for-the-badge&logo=linux)](https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.out)
-[![Download for Windows](https://img.shields.io/badge/Download-Windows%20Binary-blue?style=for-the-badge&logo=windows)](https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.exe)
-[![Download Source](https://img.shields.io/badge/Download-Source%20Code-green?style=for-the-badge&logo=github)](https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.c)
+[![Download for Linux](https://img.shields.io/badge/Download-Linux%20Binary-blue?style=for-the-badge&logo=linux)](https://github.com/OUIsolutions/Darwin/releases/download/0.5.0/darwin.out)
+[![Download for Windows](https://img.shields.io/badge/Download-Windows%20Binary-blue?style=for-the-badge&logo=windows)](https://github.com/OUIsolutions/Darwin/releases/download/0.5.0/darwin.exe)
+[![Download Source](https://img.shields.io/badge/Download-Source%20Code-green?style=for-the-badge&logo=github)](https://github.com/OUIsolutions/Darwin/releases/download/0.5.0/darwin.c)
 
 | Platform | File | Size | Description |
 |----------|------|------|-------------|
-| 🐧 Linux | [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.out) | ~2MB | Ready-to-use Linux binary |
-| 🪟 Windows | [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.exe) | ~2MB | Ready-to-use Windows executable |
-| 📄 Source | [darwin.c](https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.c) | ~500KB | C amalgamation for compilation |
+| 🐧 Linux | [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.5.0/darwin.out) | ~2MB | Ready-to-use Linux binary |
+| 🪟 Windows | [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.5.0/darwin.exe) | ~2MB | Ready-to-use Windows executable |
+| 📄 Source | [darwin.c](https://github.com/OUIsolutions/Darwin/releases/download/0.5.0/darwin.c) | ~500KB | C amalgamation for compilation |
 
 ## 🎓 Learning Resources
 
