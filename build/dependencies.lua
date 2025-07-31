@@ -11,7 +11,7 @@ function Install_all_dependencies()
 
         "mkdir dependencies",
         "cd dependencies && curl -L https://github.com/OUIsolutions/LuaFluidJson/releases/download/0.6.1/luaFluidJson_no_dep.c -o luaFluidJson_no_dep.c",
-        "cd dependencies && curl -L https://github.com/OUIsolutions/LuaDoTheWorld/releases/download/0.8.0/luaDoTheWorld_no_dep.c -o luaDoTheWorld_no_dep.c",
+        "cd dependencies && curl -L https://github.com/OUIsolutions/LuaDoTheWorld/releases/download/0.9.1/luaDoTheWorld_no_dep.c -o luaDoTheWorld_no_dep.c",
         "cd dependencies && git clone -b V0.003 https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine.git",
         "cd dependencies && curl -L https://github.com/OUIsolutions/CTextEngine/releases/download/3.0.000/CTextEngineOne.c -o CTextEngineOne.c",
         "cd assets/api && curl -L https://github.com/OUIsolutions/LuaCEmbed/releases/download/0.9.1/LuaCEmbedOne.c -o LuaCEmbedOne.c",
