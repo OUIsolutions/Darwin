@@ -1,9 +1,8 @@
-
 # 🏗️ Build Guide - Compile Darwin from Source
 
 [![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red.svg)](#)
 [![Time](https://img.shields.io/badge/Build%20Time-5--15%20minutes-blue.svg)](#)
-[![Requirements](https://img.shields.io/badge/Requirements-GCC%20%7C%20Docker-orange.svg)](#)
+[![Requirements](https://img.shields.io/badge/Requirements-GCC%20%7C%20Podman-orange.svg)](#)
 
 **Learn how to build Darwin from source code for development or custom deployments!**
 
@@ -23,7 +22,7 @@
 
 ```bash
 # Download and compile in one step
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.c -o darwin.c && gcc darwin.c -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/darwin.c -o darwin.c && gcc darwin.c -o darwin.out
 ```
 
 **That's it!** You now have a working `darwin.out` executable.
@@ -41,33 +40,48 @@ echo 'print("Hello from custom Darwin!")' > test.lua
 
 ---
 
-## 🐋 Docker Build (Recommended for Development)
+## 🐳 Container Build (Recommended for Development)
 
 ### 📋 Prerequisites
-- ✅ Docker installed
+- ✅ Podman installed (or Docker as alternative)
 - ✅ Darwin v0.020+ installed
 - ✅ Git repository cloned
 
-### 🖥️ Linux Build
+### 🖥️ Linux Builds
 ```bash
 # Clone the repository
 git clone https://github.com/OUIsolutions/Darwin.git
 cd Darwin
 
-# Build for Linux using Docker
-darwin run_blueprint build/ --mode folder build_linux_from_docker
+# Alpine static build (small, portable)
+darwin run_blueprint build/ --mode folder alpine_static_build --contanizer podman
+
+# RPM-based static build (RedHat, Fedora, CentOS)
+darwin run_blueprint build/ --mode folder rpm_static_build --contanizer podman
+
+# Debian static build (Ubuntu, Debian)
+darwin run_blueprint build/ --mode folder debian_static_build --contanizer podman
 ```
 
-### 🪟 Windows Build  
+### 🪟 Windows Builds  
 ```bash
-# Build for Windows using Docker
-darwin run_blueprint build/ --mode folder build_windows_from_docker
+# Windows 32-bit build
+darwin run_blueprint build/ --mode folder windowsi32_build --contanizer podman
+
+# Windows 64-bit build
+darwin run_blueprint build/ --mode folder windows64_build --contanizer podman
 ```
 
-### 📦 Build Both Platforms
+### 📦 Build Multiple Targets
 ```bash
+# Build all Linux variants
+darwin run_blueprint build/ --mode folder alpine_static_build rpm_static_build debian_static_build --contanizer podman
+
+# Build all Windows variants
+darwin run_blueprint build/ --mode folder windowsi32_build windows64_build --contanizer podman
+
 # Build everything at once
-darwin run_blueprint build/ --mode folder build_linux_from_docker build_windows_from_docker
+darwin run_blueprint build/ --mode folder amalgamation_build alpine_static_build windowsi32_build windows64_build rpm_static_build debian_static_build --contanizer podman
 ```
 
 **What you get:**
@@ -75,45 +89,34 @@ darwin run_blueprint build/ --mode folder build_linux_from_docker build_windows_
 - 📁 `release/darwin.exe` - Windows executable
 - 📁 `release/darwin.c` - Source amalgamation
 
-> 🐋 **Why Docker?** It provides a consistent build environment regardless of your host system!
+> 🐳 **Why Containers?** They provide consistent build environments regardless of your host system!
 
 ---
 
-## 🛠️ Native Build (For Experts)
+## 🛠️ Native Build (GCC Only)
 
 ### 📋 Prerequisites
-- ✅ Darwin v0.020+ installed
-- ✅ GCC with `--static` flag support
-- ✅ MinGW-w64 (for Windows builds)
+- ✅ GCC compiler
 - ✅ Git repository cloned
 
-### 🐧 Linux Native Build
+### 🐧 Simple GCC Build
 ```bash
 # Clone repository
 git clone https://github.com/OUIsolutions/Darwin.git
 cd Darwin
 
-# Build for Linux
-darwin run_blueprint build/ --mode folder build_linux
-```
+# Generate amalgamation and compile with GCC
+darwin run_blueprint build/ --mode folder amalgamation_build
 
-### 🪟 Windows Cross-Compilation
-```bash
-# Build Windows executable from Linux
-darwin run_blueprint build/ --mode folder build_windows
-```
-
-### 📦 Build All Targets
-```bash
-# Build everything
-darwin run_blueprint build/ --mode folder build_linux build_windows
+# The above generates release/darwin.c, then compile it:
+gcc release/darwin.c -o release/darwin.out
 ```
 
 ### 🔧 Install Dependencies (Ubuntu/Debian)
 ```bash
 # Install required packages
 sudo apt update
-sudo apt install -y gcc mingw-w64 git curl
+sudo apt install -y gcc git curl podman
 
 # Install Darwin if you don't have it
 curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.out -o darwin.out
@@ -124,7 +127,7 @@ sudo mv darwin.out /usr/bin/darwin
 ### 🔧 Install Dependencies (Fedora/RHEL)
 ```bash
 # Install required packages
-sudo dnf install -y gcc mingw64-gcc git curl
+sudo dnf install -y gcc git curl podman
 
 # Install Darwin
 curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.out -o darwin.out
@@ -145,7 +148,7 @@ git clone https://github.com/OUIsolutions/Darwin.git
 cd Darwin
 
 # Generate only the C amalgamation
-darwin run_blueprint build/ --mode folder build_source
+darwin run_blueprint build/ --mode folder amalgamation_build
 ```
 
 **Output:** `release/darwin.c` - Complete C source code in a single file
@@ -178,21 +181,23 @@ build/
 
 ### 🏗️ Build Targets Explained
 
-| Target | What it does | Output |
-|--------|--------------|--------|
-| `build_linux` | Native Linux compilation | `release/darwin.out` |
-| `build_windows` | Windows cross-compilation | `release/darwin.exe` |
-| `build_source` | Generate C amalgamation | `release/darwin.c` |
-| `build_linux_from_docker` | Linux build in Docker | `release/darwin.out` |
-| `build_windows_from_docker` | Windows build in Docker | `release/darwin.exe` |
+| Target | What it does | Output | Container |
+|--------|--------------|--------|-----------|
+| `amalgamation_build` | Generate C amalgamation | `release/darwin.c` | No |
+| `alpine_static_build` | Alpine Linux static build | `release/darwin.out` | Yes |
+| `rpm_static_build` | RPM-based static build | `release/darwin.out` | Yes |
+| `debian_static_build` | Debian-based static build | `release/darwin.out` | Yes |
+| `windowsi32_build` | Windows 32-bit build | `release/darwin.exe` | Yes |
+| `windows64_build` | Windows 64-bit build | `release/darwin.exe` | Yes |
 
 ### 🔄 Build Process Steps
 
 1. **📥 Dependency Collection** - Gather all required C files
 2. **🔗 Amalgamation** - Combine into single C file
-3. **⚙️ Compilation** - Build executable with appropriate flags
-4. **✅ Testing** - Verify the build works correctly
-5. **📦 Packaging** - Place results in `release/` folder
+3. **🐳 Container Setup** - Prepare build environment (if using containers)
+4. **⚙️ Compilation** - Build executable with appropriate flags
+5. **✅ Testing** - Verify the build works correctly
+6. **📦 Packaging** - Place results in `release/` folder
 
 ---
 
@@ -206,25 +211,29 @@ sudo chmod +x darwin.out
 sudo mv darwin.out /usr/bin/darwin
 ```
 
-### ❌ "MinGW not found" (Windows builds)
+### ❌ "Podman command not found"
 ```bash
-# Ubuntu/Debian
-sudo apt install mingw-w64
+# Install Podman on Ubuntu/Debian
+sudo apt update
+sudo apt install -y podman
 
-# Fedora/RHEL  
-sudo dnf install mingw64-gcc
+# Install Podman on Fedora/RHEL  
+sudo dnf install -y podman
 
-# Arch Linux
-sudo pacman -S mingw-w64-gcc
+# Install Podman on Arch Linux
+sudo pacman -S podman
 ```
 
-### ❌ "Docker command not found"
+### ❌ "Container build failed"
 ```bash
-# Install Docker on Ubuntu/Debian
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-sudo usermod -aG docker $USER
-# Log out and log back in
+# Check Podman is running
+podman --version
+
+# Check if you can pull images
+podman pull alpine:latest
+
+# Try with Docker if Podman fails
+darwin run_blueprint build/ --mode folder alpine_static_build --contanizer docker
 ```
 
 ### ❌ "Permission denied" errors
@@ -232,20 +241,45 @@ sudo usermod -aG docker $USER
 # Make sure you have permissions
 sudo chmod +x darwin.out
 
-# Or run with sudo if needed
-sudo ./darwin.out
+# For container builds, check user permissions
+sudo usermod -aG podman $USER
+# Log out and log back in
 ```
 
 ### ❌ "Build failed" errors
 ```bash
 # Check you have all dependencies
 gcc --version
-mingw-w64-gcc --version  # For Windows builds
-docker --version         # For Docker builds
-
-# Verify Darwin version
+podman --version
 darwin --version  # Should be 0.020 or higher
+
+# For GCC builds, ensure you have development tools
+sudo apt install build-essential  # Ubuntu/Debian
+sudo dnf groupinstall "Development Tools"  # Fedora/RHEL
 ```
+
+---
+
+## 🔧 Container Options
+
+### 🐳 Using Docker Instead of Podman
+```bash
+# Use Docker as container engine
+darwin run_blueprint build/ --mode folder alpine_static_build --contanizer docker
+
+# All builds work with Docker too
+darwin run_blueprint build/ --mode folder windowsi32_build windows64_build --contanizer docker
+```
+
+### 🚀 Container Benefits
+
+| Build Type | Benefits |
+|------------|----------|
+| `alpine_static_build` | Small, secure, fully static |
+| `debian_static_build` | Compatible, well-tested |
+| `rpm_static_build` | Enterprise-ready |
+| `windowsi32_build` | Legacy Windows support |
+| `windows64_build` | Modern Windows support |
 
 ---
 
@@ -273,14 +307,13 @@ project.add_c_file("my_custom_lib.c")
 Create different Darwin versions:
 
 ```bash
-# Debug build
-CFLAGS="-g -DDEBUG" darwin run_blueprint build/ --mode folder build_linux
+# Debug build (amalgamation only)
+CFLAGS="-g -DDEBUG" darwin run_blueprint build/ --mode folder amalgamation_build
+gcc -g -DDEBUG release/darwin.c -o darwin_debug.out
 
-# Optimized build  
-CFLAGS="-O3 -DNDEBUG" darwin run_blueprint build/ --mode folder build_linux
-
-# Minimal build
-CFLAGS="-Os -DMINIMAL" darwin run_blueprint build/ --mode folder build_linux
+# Optimized build
+CFLAGS="-O3 -DNDEBUG" darwin run_blueprint build/ --mode folder amalgamation_build
+gcc -O3 -DNDEBUG release/darwin.c -o darwin_optimized.out
 ```
 
 ---
@@ -297,7 +330,12 @@ CFLAGS="-Os -DMINIMAL" darwin run_blueprint build/ --mode folder build_linux
 ```bash
 # Quick development cycle
 edit_source_files()
-darwin run_blueprint build/ --mode folder build_linux
+
+# Generate amalgamation and compile
+darwin run_blueprint build/ --mode folder amalgamation_build
+gcc release/darwin.c -o release/darwin.out
+
+# Test
 ./release/darwin.out test_script.lua -o test.out
 ./test.out
 ```
@@ -325,21 +363,18 @@ echo 'print("Feature test:", 42 + 58)' > test2.lua
 
 | Method | Speed Gain | Trade-off |
 |--------|------------|-----------|
-| Use Docker | 🚀🚀🚀 | Requires Docker |
-| Native build | 🚀🚀 | Platform dependent |
-| Source only | 🚀 | Manual compilation |
+| Container builds | 🚀🚀🚀 | Requires containers |
+| Amalgamation + GCC | 🚀🚀 | Manual compilation |
 | Parallel builds | 🚀🚀 | More CPU usage |
 
 ### 💾 Reduce Build Size
 ```bash
-# Strip debug symbols
+# Use Alpine static build (smallest)
+darwin run_blueprint build/ --mode folder alpine_static_build --contanizer podman
+
+# Strip debug symbols after GCC build
+gcc -Os release/darwin.c -o release/darwin.out
 strip release/darwin.out
-
-# Use size optimization
-CFLAGS="-Os" darwin run_blueprint build/ --mode folder build_linux
-
-# Static linking (larger but more portable)
-CFLAGS="-static" darwin run_blueprint build/ --mode folder build_linux
 ```
 
 ---
