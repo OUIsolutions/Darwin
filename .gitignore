@@ -1,5 +1,5 @@
 dependencies
 release
 debug.lua
-darwin
+
 assets/api/LuaCEmbedOne.c
