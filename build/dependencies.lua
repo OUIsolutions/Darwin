@@ -1,7 +1,7 @@
 function Install_all_dependencies()
     local hasher = darwin.dtw.newHasher()
     hasher.digest_folder_by_content("dependencies")
-    local EXPECTED_HASH = '6bc4255c8c780a641c4768ca0b5f8afddddb188d5a22a9fb7b039761ee6d814f'
+    local EXPECTED_HASH = '47e3fce2af616b54abdc4cd2e5b80d8a795d0ea01cf315d8f8412249f038412b'
     if hasher.get_value() == EXPECTED_HASH then
         return
     end
@@ -10,6 +10,7 @@ function Install_all_dependencies()
     local commands = {
 
         "mkdir dependencies",
+        "cd dependencies && curl -L https://github.com/OUIsolutions/MDeclare/releases/download/0.1.0/MDeclareApiNoDependenciesIncluded.h -o MDeclareApiNoDependenciesIncluded.h",
         "cd dependencies && curl -L https://github.com/OUIsolutions/LuaFluidJson/releases/download/0.6.1/luaFluidJson_no_dep.c -o luaFluidJson_no_dep.c",
         "cd dependencies && curl -L https://github.com/OUIsolutions/LuaDoTheWorld/releases/download/0.9.1/luaDoTheWorld_no_dep.c -o luaDoTheWorld_no_dep.c",
         "cd dependencies && git clone -b V0.003 https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine.git",

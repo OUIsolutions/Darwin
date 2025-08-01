@@ -8,6 +8,7 @@ function Embed_c_code(project)
     project.add_c_file("dependencies/silverchain_no_dependecie_included.c")
     project.add_c_file("dependencies/luaDoTheWorld_no_dep.c")
     project.add_c_file("dependencies/luaFluidJson_no_dep.c")
+    project.add_c_file("dependencies/MDeclareApiNoDependenciesIncluded.h")
     project.add_c_file("dependencies/luamdeclare.c")
 
     project.add_c_file("dependencies/candangoEngine/src/main.c", true, function(path,import)
