@@ -2,7 +2,7 @@
 **The Most Advanced Lua Compiler** - Transform your Lua code into powerful executables
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.6.0-green.svg)](https://github.com/OUIsolutions/Darwin/releases)
+[![Version](https://img.shields.io/badge/Version-0.7.0-green.svg)](https://github.com/OUIsolutions/Darwin/releases)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows-lightgrey.svg)](#releases)
 [![Language](https://img.shields.io/badge/Language-Lua%20%7C%20C-orange.svg)](#features)
 [![Status](https://img.shields.io/badge/Status-Active-success.svg)](https://github.com/OUIsolutions/Darwin)
@@ -52,25 +52,25 @@ darwin hello.lua -o hello.out
 
 ### 🐧 Linux (One-liner)
 ```bash
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/darwin.out -o darwin.out && sudo chmod +x darwin.out && sudo mv darwin.out /usr/bin/darwin
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/darwin.out -o darwin.out && sudo chmod +x darwin.out && sudo mv darwin.out /usr/bin/darwin
 ```
 
 ### 🪟 Windows
-Download [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/darwin.exe) and add it to your PATH
+Download [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/darwin.exe) and add it to your PATH
 
 ## 📋 Download Options
 
-[![Download for Linux](https://img.shields.io/badge/Download-Linux%20Binary-blue?style=for-the-badge&logo=linux)](https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/darwin.out)
-[![Download for Windows](https://img.shields.io/badge/Download-Windows%20Binary-blue?style=for-the-badge&logo=windows)](https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/darwin.exe)
-[![Download Source](https://img.shields.io/badge/Download-Source%20Code-green?style=for-the-badge&logo=github)](https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/amalgamation.c)
+[![Download for Linux](https://img.shields.io/badge/Download-Linux%20Binary-blue?style=for-the-badge&logo=linux)](https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/darwin.out)
+[![Download for Windows](https://img.shields.io/badge/Download-Windows%20Binary-blue?style=for-the-badge&logo=windows)](https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/darwin.exe)
+[![Download Source](https://img.shields.io/badge/Download-Source%20Code-green?style=for-the-badge&logo=github)](https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/amalgamation.c)
 
 | Platform | File | Size | Description |
 |----------|------|------|-------------|
-| 🐧 Linux | [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/darwin.out) | ~2MB | Ready-to-use Linux binary |
-| 🪟 Windows x32 | [darwini32.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/darwini32.exe) | ~2MB | Ready-to-use Windows 32-bit executable |
-| 📦 Debian/Ubuntu | [darwin.deb](https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/darwin.deb) | ~2MB | Debian package for easy installation |
-| 📦 RedHat/Fedora | [darwin.rpm](https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/darwin.rpm) | ~2MB | RPM package for easy installation |
-| 📄 Source | [amalgamation.c](https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/amalgamation.c) | ~500KB | C amalgamation for compilation |
+| 🐧 Linux | [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/darwin.out) | ~2MB | Ready-to-use Linux binary |
+| 🪟 Windows x32 | [darwini32.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/darwini32.exe) | ~2MB | Ready-to-use Windows 32-bit executable |
+| 📦 Debian/Ubuntu | [darwin.deb](https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/darwin.deb) | ~2MB | Debian package for easy installation |
+| 📦 RedHat/Fedora | [darwin.rpm](https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/darwin.rpm) | ~2MB | RPM package for easy installation |
+| 📄 Source | [amalgamation.c](https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/amalgamation.c) | ~500KB | C amalgamation for compilation |
 
 ## 🎓 Learning Resources
 

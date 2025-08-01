@@ -22,7 +22,7 @@
 
 ```bash
 # Download and compile in one step
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.6.0/darwin.c -o darwin.c && gcc darwin.c -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/darwin.c -o darwin.c && gcc darwin.c -o darwin.out
 ```
 
 **That's it!** You now have a working `darwin.out` executable.
