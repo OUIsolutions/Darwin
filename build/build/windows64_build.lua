@@ -19,9 +19,7 @@ function windowsi64_build()
     image.start({
         volumes = {
             { "././release", "/release" },
-            { "././keys", "/keys" },
-
         },
-        command = compiler..[[ --static -DDEFINE_DEPENDENCIES  /release/amalgamation.c  -DCONTENT_ENCRYPT_KEY=\"../keys/content.h\" -DLLM_ENCRYPT_KEY=\"../keys/llm.h\" -DNAME_ENCRYPT_KEY=\"../keys/name.h\" -o /release/windows64.exe -lws2_32]]
+        command = compiler..[[ --static -DDEFINE_DEPENDENCIES  /release/amalgamation.c -lws2_32]]
     })
 end

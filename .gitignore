@@ -11,6 +11,7 @@ internal_build*
 assets/LuaCEmbed.h
 dependencies
 teste.sh
+.cache
 teste
 assets/api/LuaCEmbedOne.c
 types0*
