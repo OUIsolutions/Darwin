@@ -14,7 +14,7 @@ function amalgamation_build()
     end
     project.add_lua_code("darwin.dtw=private_darwin_dtw")
     project.add_lua_code("darwin.json=private_darwin_json")
-    project.add_lua_code("darwin.luamdeclare=private_darwin_luamdeclare")
+    project.add_lua_code("darwin.mdeclare=private_darwin_luamdeclare")
     project.add_lua_code("darwin.candango=private_darwin_candango")
     project.add_lua_code("darwin.camalgamator=private_darwin_camalgamator")
     project.add_lua_code("darwin.silverchain = private_darwin_silverchain")
