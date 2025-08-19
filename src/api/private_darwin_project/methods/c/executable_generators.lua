@@ -8,7 +8,6 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
         props.stream("\n")
         local current = selfobj.c_external_code[i]
         if private_darwin.is_file_stream(current) then
-            print("transferindo:" .. current.filename)
             private_darwin.transfer_file_stream(current, props.stream)
         else
             props.stream(current)
