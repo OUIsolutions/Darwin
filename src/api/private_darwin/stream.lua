@@ -45,6 +45,7 @@ private_darwin.transfer_file_stream = function(filestream, stream)
 
     while true do
         local chunk = file:read(math.floor(darwin.chunk_size))
+        print("\t\t chunck:",chunk)
         if not chunk then break end
         stream(chunk)
     end
