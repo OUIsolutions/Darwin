@@ -7,7 +7,6 @@ private_darwin_project.generate_c_complex = function(selfobj, props)
     for i = 1, #selfobj.c_external_code do
         props.stream("\n")
         local current = selfobj.c_external_code[i]
-        print("valor de arquvio",current)
         if private_darwin.is_file_stream(current) then
             private_darwin.transfer_file_stream(current, props.stream)
         else
@@ -117,6 +116,7 @@ private_darwin_project.generate_c_file = function(selfobj, props)
     local file = io.open(props.output, "a+b")
 
     local function stream(data)
+        print(data)
         if not file then
             file = io.open(props.output, "a+b")
         end
