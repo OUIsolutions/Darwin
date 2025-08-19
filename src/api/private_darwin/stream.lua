@@ -38,7 +38,7 @@ private_darwin.is_file_stream = function(item)
 end
 
 private_darwin.transfer_file_stream = function(filestream, stream)
-    local file = io.open(filestream.filename, "a+b")
+    local file = io.open(filestream.filename, "rb")
     if not file then
         error("impossible to open" .. filestream.filename)
     end
