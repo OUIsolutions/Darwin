@@ -116,7 +116,7 @@ private_darwin_project.generate_c_file = function(selfobj, props)
     local file = io.open(props.output, "a+b")
 
     local function stream(data)
-        print("streamed chunk ",data)
+       -- print("streamed chunk ",data)
         if not file then
             file = io.open(props.output, "a+b")
         end
