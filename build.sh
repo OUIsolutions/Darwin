@@ -9,3 +9,5 @@ docker build -f "$DOCKERFILE_PATH" -t "$IMAGE_NAME" .
 echo "Executando o container..."
 docker run --rm -v "$(pwd):/app" -w /app $IMAGE_NAME
 
+gcc release/amalgamation.c -o darwin 
+sudo cp darwin /usr/local/bin/darwin2
