@@ -41,6 +41,9 @@ function Perform_blue_print()
             private_darwin.print_red("blue print:"..file_or_folder.." its not a file")
             return
         end
+
+
+        
         dofile(file_or_folder)
     end
     return
