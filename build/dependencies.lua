@@ -1,7 +1,7 @@
 function Install_all_dependencies()
     local hasher = darwin.dtw.newHasher()
     hasher.digest_folder_by_content("dependencies")
-    local EXPECTED_HASH = '47e3fce2af616b54abdc4cd2e5b80d8a795d0ea01cf315d8f8412249f038412b'
+    local EXPECTED_HASH = 'c60e999c5e47a4a31b28527205ef51f319ce7af53d4c2cb2414267335a8b9295'
     if hasher.get_value() == EXPECTED_HASH then
         return
     end
@@ -12,7 +12,7 @@ function Install_all_dependencies()
         "mkdir dependencies",
         "cd dependencies && curl -L https://github.com/OUIsolutions/MDeclare/releases/download/0.1.0/MDeclareApiNoDependenciesIncluded.h -o MDeclareApiNoDependenciesIncluded.h",
         "cd dependencies && curl -L https://github.com/OUIsolutions/LuaFluidJson/releases/download/0.6.1/luaFluidJson_no_dep.c -o luaFluidJson_no_dep.c",
-        "cd dependencies && curl -L https://github.com/OUIsolutions/LuaDoTheWorld/releases/download/0.12.0/luaDoTheWorld_no_dep.c -o luaDoTheWorld_no_dep.c",
+        "cd dependencies && curl -L https://github.com/OUIsolutions/LuaDoTheWorld/releases/download/0l.12.0/luaDoTheWorld_no_dep.c -o luaDoTheWorld_no_dep.c",
         "cd dependencies && git clone -b V0.003 https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine.git",
         "cd dependencies && curl -L https://github.com/OUIsolutions/CTextEngine/releases/download/3.0.000/CTextEngineOne.c -o CTextEngineOne.c",
         "cd dependencies && curl -L https://github.com/OUIsolutions/LuaMDeclare/releases/download/0.1.0/luamdeclare.c -o luamdeclare.c",
