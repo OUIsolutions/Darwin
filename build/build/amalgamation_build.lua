@@ -49,6 +49,5 @@ function amalgamation_build()
 
     project.add_lua_code("private_darwin.main()")
     project.generate_lua_file({ output = "debug.lua" })
-  local content =   project.generate_c_code({include_lua_cembed=false})
-  darwin.dtw.write_file("release/amalgamation.c",content)
+    project.generate_c_file({output="release/amalgamation.c",include_lua_cembed=false})
 end
