@@ -34,7 +34,9 @@ function Describe_blue_prints()
         end
         dofile(file_or_folder)
     end
-
+    if not darwin.available_builds then 
+        darwin.available_builds = {}
+    end 
     for i =1,#darwin.available_builds do 
         private_darwin.print_blue("Available build: " .. darwin.available_builds[i].name .. "\n")
         private_darwin.print_blue("Description: " .. darwin.available_builds[i].description .. "\n")
