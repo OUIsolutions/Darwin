@@ -76,7 +76,7 @@ local function git_download(dep)
         return 
     end 
     if dep.branch then
-        local command = "git clone -b " .. dep.branch .. " " .. dep.repo .. " temp"
+        local command = "git clone -b " .. dep.branch .. " " .. "https://github.com/"..dep.repo ..".git" .." temp"
         os.execute(command)
     end
     if not dep.branch then
