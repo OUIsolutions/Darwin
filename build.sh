@@ -1,1 +1,1 @@
-darwin2 run_blueprint build/ --mode folder amalgamation_build
+darwin2 run_blueprint darwinconf.lua amalgamation_build
