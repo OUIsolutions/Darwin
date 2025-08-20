@@ -1,11 +1,4 @@
----typestart
----@class PrivateDarwin
----@field print_color fun(color:string,text:string)
----@field print_red fun(text:string)
----@field print_green fun(text:string)
----@field print_blue fun(text:string)
 
----typeend
 
 private_darwin.print_color = function(color, text)
     local RESSET = "\x1b[0m"

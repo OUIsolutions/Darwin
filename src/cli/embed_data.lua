@@ -1,5 +1,5 @@
 
----@param project DarwinProject
+
 function get_embed_vars(project)
 
     local embed_vars_size = darwin.argv.get_flag_size_consider_only_first("embed_vars")
