@@ -24,6 +24,9 @@ darwin.run_recipe = function (name)
     for i=1,#darwin.available_builds do
         local build = darwin.available_builds[i]
         if build.name == name then
+            if build.done then
+                return 
+            end
             
             private_darwin.print_green("Building: " .. name .. "\n")
             if build.outs then
@@ -32,9 +35,7 @@ darwin.run_recipe = function (name)
                 end
             end
 
-            if build.done then
-                return 
-            end
+         
             if build.requires then 
                 for j=1,#build.requires do
                     if build.requires[j] == name then
