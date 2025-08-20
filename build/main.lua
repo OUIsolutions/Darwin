@@ -8,8 +8,6 @@ function main()
   
     local build_funcs = create_build_funcs()
 
-
-    darwin.dtw.remove_any(".cache")
     local i = 1
     for name, buld_lambda in pairs(build_funcs) do
         if darwin.argv.one_of_args_exist(name) then
