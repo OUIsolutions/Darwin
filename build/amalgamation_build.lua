@@ -51,3 +51,11 @@ function amalgamation_build()
     project.generate_lua_file({ output = "debug.lua" })
     project.generate_c_file({output="release/amalgamation.c",include_lua_cembed=false})
 end
+
+
+darwin.add_recipe({
+    name="amalgamation",
+    description="make a single file amalgamation of the project",
+    outs="release/amalgamation.c",
+    callback=amalgamation_build
+})
