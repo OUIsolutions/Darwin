@@ -49,8 +49,8 @@ function Perform_blue_print()
         end
         dofile(file_or_folder)
     end
-    for i=1#targets do
-        print("building ")
+    for i=1,#targets do
+        darwin.run_build(targets[i])
     end
 
 
