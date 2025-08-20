@@ -48,7 +48,7 @@ local function release_download(dep)
     if temp_content == nil or temp_content == "Not Found" then
         error("Failed to download file: " .. dep.file, 0)
     end
-    darwin.dtw.write_file("temp", dep.dest)
+    darwin.dtw.write_file( dep.dest, temp_content)
 end
 
 local function url_download(dep)
