@@ -4,6 +4,9 @@ local function get_latest_version_from_repo(dep)
     local command = "curl -L " .. "https://api.github.com/repos/" .. dep.repo .. "/releases/latest -o temp"
     os.execute(command)
     local api_content = darwin.dtw.load_file("temp")
+    if api_content == nil or api_content == "Not Found" then
+        error("Failed to fetch latest version from repo: " .. dep.repo, 0)
+    end
     local json_content = darwin.json.load_from_string(api_content)
     return json_content.name
 end
