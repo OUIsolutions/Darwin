@@ -1,6 +1,6 @@
 ---@param blueprint string[]
 ---@param used_flags string[]
-function Perform_blue_print()
+function Describe_blue_prints()
 
     
     local blue_print_mode = darwin.argv.get_flag_arg_by_index_consider_only_first("mode",1, "file")
