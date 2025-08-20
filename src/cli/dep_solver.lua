@@ -24,7 +24,6 @@ local function release_download(dep)
         end
 
         local command = "curl -L https://github.com/" .. dep.repo .."/releases/"..tag.."download/"..dep.file.." -o temp"
-        print(command)
         os.execute(command)
 
     elseif dep.cli == "gh" then
