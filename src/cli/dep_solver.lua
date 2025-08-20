@@ -47,6 +47,24 @@ end
 
 
 function git_download(dep)
+    if not dep.repo then 
+        error("repo not provided",0)
+    end
+    if not dep.dest then 
+        error("dest not provided",0)
+    end
+    if darwin.dtw.isdir(dep.dest) then 
+        return 
+    end 
+    if dep.branch then
+        local command = "git clone -b " .. dep.branch .. " " .. dep.repo .. " temp"
+        os.execute(command)
+    end
+    if not dep.branch then
+        local command = "git clone " .. dep.repo .. " temp"
+        os.execute(command)
+    end
+    darwin.dtw.move_any_overwriting("temp",dep.dest)
 end 
 
 function dep_solver()
