@@ -1,14 +1,4 @@
-
-local function get_latest_tag_from_repo(dep)
-    --https://api.github.com/repos/OUIsolutions/BearHttpsClient/releases/latest
-    local command = "curl -L " .. "https://api.github.com/repos/" .. dep.repo .. "/releases/latest -o temp"
-    os.execute(command)
-    local api_content = darwin.dtw.load_file("temp")
-    if api_content == nil or api_content == "Not Found" then
-        error("Failed to fetch latest tag from repo: " .. dep.repo, 0)
-    end
-    local json_content = darwin.json.load_from_string(api_content)
-    return json_content.tag_name
+n json_content.tag_name
 end
 
 local function release_download(dep)
@@ -30,7 +20,7 @@ local function release_download(dep)
         
         local tag = dep.tag
         if not dep.tag then
-            tag = get_latest_tag_from_repo(dep)
+            tag = "latest"
         end
 
         local command = "curl -L https://github.com/" .. dep.repo .."/releases/download/"..tag.."/"..dep.file.." -o temp"
