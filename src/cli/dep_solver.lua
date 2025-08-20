@@ -44,8 +44,11 @@ local function release_download(dep)
     else
         error("invalid dep mode:"..dep.cli,0)
     end
-    darwin.dtw.move_any_overwriting("temp",dep.dest)
-
+    local temp_content = darwin.dtw.load_file("temp")
+    if temp_content == nil or temp_content == "Not Found" then
+        error("Failed to download file: " .. dep.file, 0)
+    end
+    darwin.dtw.write_file("temp", dep.dest)
 end
 
 local function url_download(dep)
