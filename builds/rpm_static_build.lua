@@ -1,10 +1,5 @@
-local rpm_static_build_done = false
 function rpm_static_build()
-    if rpm_static_build_done then
-        return
-    end
-    rpm_static_build_done = true
-    alpine_static_build()
+    
     darwin.dtw.copy_any_overwriting("release/linux_bin.out",
         ".cache/rpm_static_build/SOURCES/linux_bin.out"
     )

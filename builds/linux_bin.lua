@@ -20,6 +20,7 @@ function linux_bin()
 
     })
 end
+
 darwin.add_recipe({
     name="linux_bin",
     requires={"amalgamation"},
