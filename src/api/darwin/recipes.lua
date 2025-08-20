@@ -26,7 +26,14 @@ darwin.run_build = function (name)
             if build.done then
                 return 
             end
-
+            if build.requires then 
+                for j=1,#build.requires do
+                    if build.requires[j] == name then
+                        error("circular dependency detected: " .. name .. " requires itself")
+                    end
+                    darwin.run_build(build.requires[j])
+                end
+            end
             build.done = true 
             build.callback()
             return
