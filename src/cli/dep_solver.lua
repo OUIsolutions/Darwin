@@ -15,7 +15,8 @@ function release_download(dep)
     
     if dep.cli == "curl" then 
         local version = dep.version or "latest"
-        local command = "curl -L " .. dep.repo .."releases/download/"..version.."/"..dep.file.." -o temp"
+        local command = "curl -L " .. dep.repo .."/releases/download/"..version.."/"..dep.file.." -o temp"
+        print(command)
         os.execute(command)
     elseif dep.cli == "gh" then
         local version = dep.version or "latest"
@@ -66,6 +67,8 @@ function git_download(dep)
     end
     darwin.dtw.move_any_overwriting("temp",dep.dest)
 end 
+
+
 
 function dep_solver()
     local darwin_deps_json = darwin.dtw.load_file("darwindeps.json")
