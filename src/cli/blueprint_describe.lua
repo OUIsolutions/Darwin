@@ -35,6 +35,16 @@ function Perform_blue_print()
         dofile(file_or_folder)
     end
 
+    for i =1,#darwin.available_builds do 
+        private_darwin.print_blue("Available build: " .. darwin.available_builds[i].name .. "\n")
+        private_darwin.print_blue("Description: " .. darwin.available_builds[i].description .. "\n")
+        private_darwin.print_blue("Outputs: \n")
+        for j = 1, #darwin.available_builds[i].outs do
+            private_darwin.print_blue("    " .. darwin.available_builds[i].outs[j] .. "\n")
+        end
+        private_darwin.print_green("=======================================\n")
+    end
+
 
 
 
