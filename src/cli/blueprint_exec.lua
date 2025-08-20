@@ -49,9 +49,6 @@ function Perform_blue_print()
         end
         dofile(file_or_folder)
     end
-    for i=1,#targets do
-        darwin.run_recipe(targets[i])
-    end
     if targets[1] == "all" then 
         for i=1,#darwin.available_builds do
             local build = darwin.available_builds[i]
@@ -59,5 +56,9 @@ function Perform_blue_print()
                 darwin.run_recipe(build.name)
             end
         end
-    end
+    else 
+        for i=1,#targets do
+            darwin.run_recipe(targets[i])
+        end
+    end 
 end 
