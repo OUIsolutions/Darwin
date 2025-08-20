@@ -8,6 +8,12 @@ function Perform_blue_print()
         private_darwin.print_red("blue print mode must be file or folder\n")
         return
     end
+    local targets_size = darwin.argv.get_flag_size({"target","t"})
+    local targets  = {}
+    for i=1,targets_size do
+        targets[i] = darwin.argv.get_flag_arg_by_index({"target","t"},i)
+    end
+    
 
     local file_or_folder = darwin.argv.get_next_unused()
     if not file_or_folder then
@@ -41,10 +47,9 @@ function Perform_blue_print()
             private_darwin.print_red("blue print:"..file_or_folder.." its not a file")
             return
         end
-
-
-        
         dofile(file_or_folder)
     end
-    return
+    
+
+
 end
