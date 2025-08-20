@@ -16,6 +16,7 @@ darwin.add_recipe = function(props)
     if type(props.callback) ~= "function" then
         error("callback of recipe must be a function",props.callback,0)
     end
+    darwin.available_builds[#darwin.available_builds+1] = props
  
 end 
 
