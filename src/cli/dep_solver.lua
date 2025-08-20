@@ -1,11 +1,11 @@
 
-local function get_latest_version_from_repo(dep)
+local function get_latest_tag_from_repo(dep)
     --https://api.github.com/repos/OUIsolutions/BearHttpsClient/releases/latest
     local command = "curl -L " .. "https://api.github.com/repos/" .. dep.repo .. "/releases/latest -o temp"
     os.execute(command)
     local api_content = darwin.dtw.load_file("temp")
     if api_content == nil or api_content == "Not Found" then
-        error("Failed to fetch latest version from repo: " .. dep.repo, 0)
+        error("Failed to fetch latest tag from repo: " .. dep.repo, 0)
     end
     local json_content = darwin.json.load_from_string(api_content)
     return json_content.tag
@@ -28,19 +28,24 @@ local function release_download(dep)
 
     if dep.cli == "curl" then
         
-        local version = dep.version
-        if not dep.version then
-            version = get_latest_version_from_repo(dep)
+        local tag = dep.tag
+        if not dep.tag then
+            tag = get_latest_tag_from_repo(dep)
         end
 
-        local command = "curl -L https://github.com/" .. dep.repo .."/releases/download/"..version.."/"..dep.file.." -o temp"
+        local command = "curl -L https://github.com/" .. dep.repo .."/releases/download/"..tag.."/"..dep.file.." -o temp"
         os.execute(command)
     
     
     elseif dep.cli == "gh" then
-        local version = dep.version or "latest"
-        local command = "gh release download " .. version .. " -R " .. dep.repo .. " --pattern " .. dep.file .. " -D temp"
-        os.execute(command)
+        if dep.tag then
+            local command = "gh release download " .. dep.tag .. " -R " .. dep.repo .. " --pattern " .. dep.file .. " -D temp"
+            os.execute(command)
+        end
+        if not dep.tag then
+            local command = "gh release download -R " .. dep.repo .. " --pattern " .. dep.file .. " -D temp"
+            os.execute(command)
+        end
     else
         error("invalid dep mode:"..dep.cli,0)
     end
