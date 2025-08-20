@@ -22,7 +22,7 @@ function release_download(dep)
         error("invalid dep mode:"..dep.mode,0)
     end
     darwin.dtw.move_any_overwriting("temp",dep.dest)
-    
+
 end 
 function git_download(dep)
 end 
@@ -35,9 +35,9 @@ function dep_solver()
     local deps = darwin.json.load_from_string(darwin_deps_json)
     for i=1,#deps do 
         local current = deps[i]
-        if current.type == "release" then 
+        if current.type == "gitrelease" then 
             release_download(current) 
-        elseif current.type == "git" then
+        elseif current.type == "gitmode" then
             git_download(current)
         else 
             error("invalid dep type:"..current.type,0)
