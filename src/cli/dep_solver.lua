@@ -14,10 +14,11 @@ local function release_download(dep)
     end
 
     if dep.cli == "curl" then
-        local version = dep.version or "latest"
-        local command = "curl -L https://github.com/" .. dep.repo .."/releases/download/"..version.."/"..dep.file.." -o temp"
-        print(command)
-        os.execute(command)
+        if dep.version then 
+            local command = "curl -L https://github.com/" .. dep.repo .."/releases/download/"..dep.version.."/"..dep.file.." -o temp"
+            os.execute(command)
+        end
+        
     elseif dep.cli == "gh" then
         local version = dep.version or "latest"
         local command = "gh release download " .. version .. " -R " .. dep.repo .. " --pattern " .. dep.file .. " -D temp"
