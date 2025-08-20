@@ -40,7 +40,7 @@ function dep_solver()
         local current = deps[i]
         if current.type == "gitrelease" then 
             release_download(current) 
-        elseif current.type == "gitmode" then
+        elseif current.type == "gitrepo" then
             git_download(current)
         else 
             error("invalid dep type:"..current.type,0)
