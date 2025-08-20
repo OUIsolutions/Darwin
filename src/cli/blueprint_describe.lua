@@ -34,6 +34,8 @@ function Describe_blue_prints()
         end
         dofile(file_or_folder)
     end
+
+    
     if not darwin.available_builds then 
         darwin.available_builds = {}
     end 
