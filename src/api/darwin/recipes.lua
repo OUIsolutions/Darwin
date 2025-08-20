@@ -1,5 +1,5 @@
 
-darwin.add_recipie = function(props)
+darwin.add_recipe = function(props)
     if not darwin.available_builds then 
         darwin.available_builds = {}
     end
