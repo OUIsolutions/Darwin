@@ -1,10 +1,6 @@
-local alpine_static_build_done = false
 
 function alpine_static_build()
-    if alpine_static_build_done then
-        return
-    end
-    alpine_static_build_done = true
+
     amalgamation_build()
 
     os.execute("mkdir -p release")

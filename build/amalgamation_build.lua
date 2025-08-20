@@ -1,5 +1,5 @@
-local alreay_amalamated_done = false
 function amalgamation_build()
+
     local project = darwin.create_project("darwin")
     Embed_c_code(project)
     Create_api_assets(project)

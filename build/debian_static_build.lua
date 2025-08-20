@@ -1,11 +1,5 @@
-local debian_static_build_done = false
-function debian_static_build()
-    if debian_static_build_done then
-        return
-    end
-    debian_static_build_done = true
-    alpine_static_build()
 
+function debian_static_build()
 
     local control = [[
 Package: PROJECT_NAME
