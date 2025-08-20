@@ -50,3 +50,11 @@ Description: SUMARY
         command = "chmod 755 /project/DEBIAN/postinst &&  dpkg-deb --build /project /release/debian_static.deb"
     })
 end
+
+darwin.add_recipe({
+    name="debian_static_build",
+    requires={"linux_bin"},
+    description="create a debian package from the static linux binary",
+    outs={"release/debian_static.deb"},
+    callback=debian_static_build
+})

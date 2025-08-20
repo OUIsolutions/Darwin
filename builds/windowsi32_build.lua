@@ -25,3 +25,11 @@ function windowsi32_build()
         command = compiler..[[ --static    /release/amalgamation.c  -o /release/windowsi32.exe -lws2_32]]
     })
 end
+
+darwin.add_recipe({
+    name="windowsi32_build",
+    requires={"amalgamation"},
+    description="build a 32-bit Windows executable",
+    outs={"release/windowsi32.exe"},
+    callback=windowsi32_build
+})

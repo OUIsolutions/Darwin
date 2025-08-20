@@ -81,3 +81,11 @@ chmod +x %{buildroot}/usr/local/bin/PROJECT_NAME
         end
     end
 end
+
+darwin.add_recipe({
+    name="rpm_static_build",
+    requires={"linux_bin"},
+    description="create an RPM package from the static linux binary",
+    outs={"release/rpm_static_build.rpm"},
+    callback=rpm_static_build
+})

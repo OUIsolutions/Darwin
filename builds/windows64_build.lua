@@ -20,6 +20,14 @@ function windowsi64_build()
         volumes = {
             { "././release", "/release" },
         },
-        command = compiler..[[ --static -DDEFINE_DEPENDENCIES  /release/amalgamation.c -lws2_32]]
+        command = compiler..[[ --static -DDEFINE_DEPENDENCIES  /release/amalgamation.c -o /release/windows64.exe -lws2_32]]
     })
 end
+
+darwin.add_recipe({
+    name="windows64_build",
+    requires={"amalgamation"},
+    description="build a 64-bit Windows executable",
+    outs={"release/windows64.exe"},
+    callback=windowsi64_build
+})
