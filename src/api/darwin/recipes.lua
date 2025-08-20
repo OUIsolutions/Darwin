@@ -18,3 +18,19 @@ darwin.add_recipie = function(props)
     end
  
 end 
+
+darwin.run_build = function (name)
+    for i=1,#darwin.available_builds do
+        local build = darwin.available_builds[i]
+        if build.name == name then
+            if build.done then
+                return 
+            end
+
+            build.done = true 
+            build.callback()
+            return
+        end
+    end
+    error("build not found: " .. name)
+end
