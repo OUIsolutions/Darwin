@@ -19,7 +19,7 @@ darwin.add_recipie = function(props)
  
 end 
 
-darwin.run_build = function (name)
+darwin.run_recipe = function (name)
     for i=1,#darwin.available_builds do
         local build = darwin.available_builds[i]
         if build.name == name then

@@ -50,7 +50,7 @@ function Perform_blue_print()
         dofile(file_or_folder)
     end
     for i=1,#targets do
-        darwin.run_build(targets[i])
+        darwin.run_recipe(targets[i])
     end
 
 
