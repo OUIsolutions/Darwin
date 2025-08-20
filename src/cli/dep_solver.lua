@@ -1,35 +1,35 @@
-function release_download(dep)
+local function release_download(dep)
 
-    if not dep.file then 
+    if not dep.file then
         error("file not provided",0)
     end
-    if not dep.dest then 
+    if not dep.dest then
         error("dest not provided",0)
     end
-    if not dep.repo then 
+    if not dep.repo then
         error("repo not provided",0)
     end
-    if darwin.dtw.isfile(dep.dest) then 
-        return 
-    end 
-    
-    if dep.cli == "curl" then 
+    if darwin.dtw.isfile(dep.dest) then
+        return
+    end
+
+    if dep.cli == "curl" then
         local version = dep.version or "latest"
-        local command = "curl -L " .. dep.repo .."/releases/download/"..version.."/"..dep.file.." -o temp"
+        local command = "curl -L https://github.com/" .. dep.repo .."/releases/download/"..version.."/"..dep.file.." -o temp"
         print(command)
-        --  os.execute(command)
+        os.execute(command)
     elseif dep.cli == "gh" then
         local version = dep.version or "latest"
         local command = "gh release download " .. version .. " -R " .. dep.repo .. " --pattern " .. dep.file .. " -D temp"
         os.execute(command)
-    else 
+    else
         error("invalid dep mode:"..dep.cli,0)
     end
     darwin.dtw.move_any_overwriting("temp",dep.dest)
 
-end 
+end
 
-function url_download(dep) 
+local function url_download(dep)
     if not dep.url then 
         error("url not provided",0)
     end
@@ -47,7 +47,7 @@ end
 
 
 
-function git_download(dep)
+local function git_download(dep)
     if not dep.repo then 
         error("repo not provided",0)
     end
