@@ -6,20 +6,20 @@ function release_download(dep)
     if not dep.dest then 
         error("dest not provided",0)
     end
-    if dtw.isfile(dep.dest) then 
+    if darwin.dtw.isfile(dep.dest) then 
         return 
     end 
     
-    if dep.mode == "curl" then 
+    if dep.cli == "curl" then 
         local version = dep.version or "latest"
         local command = "curl -L " .. dep.git .."releases/download/"..version.."/"..dep.file.." -o temp"
         os.execute(command)
-    elseif dep.mode == "gh" then
+    elseif dep.cli == "gh" then
         local version = dep.version or "latest"
         local command = "gh release download " .. version .. " -R " .. dep.git .. " --pattern " .. dep.file .. " -D temp"
         os.execute(command)
     else 
-        error("invalid dep mode:"..dep.mode,0)
+        error("invalid dep mode:"..dep.cli,0)
     end
     darwin.dtw.move_any_overwriting("temp",dep.dest)
 
