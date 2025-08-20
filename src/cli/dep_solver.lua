@@ -80,7 +80,7 @@ local function git_download(dep)
         os.execute(command)
     end
     if not dep.branch then
-        local command = "git clone " .. dep.repo .. " temp"
+        local command = "git clone " .. "https://github.com/"..dep.repo ..".git" .." temp"
         os.execute(command)
     end
     darwin.dtw.move_any_overwriting("temp",dep.dest)
