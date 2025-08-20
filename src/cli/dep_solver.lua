@@ -8,7 +8,7 @@ local function get_latest_version_from_repo(dep)
         error("Failed to fetch latest version from repo: " .. dep.repo, 0)
     end
     local json_content = darwin.json.load_from_string(api_content)
-    return json_content.name
+    return json_content.tag
 end
 
 local function release_download(dep)
