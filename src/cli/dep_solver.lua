@@ -8,7 +8,7 @@ local function get_latest_tag_from_repo(dep)
         error("Failed to fetch latest tag from repo: " .. dep.repo, 0)
     end
     local json_content = darwin.json.load_from_string(api_content)
-    return json_content.tag
+    return json_content.tag_name
 end
 
 local function release_download(dep)
@@ -35,8 +35,7 @@ local function release_download(dep)
 
         local command = "curl -L https://github.com/" .. dep.repo .."/releases/download/"..tag.."/"..dep.file.." -o temp"
         os.execute(command)
-    
-    
+
     elseif dep.cli == "gh" then
         if dep.tag then
             local command = "gh release download " .. dep.tag .. " -R " .. dep.repo .. " --pattern " .. dep.file .. " -D temp"
@@ -54,6 +53,7 @@ local function release_download(dep)
         error("Failed to download file: " .. dep.file, 0)
     end
     darwin.dtw.write_file( dep.dest, temp_content)
+    darwin.dtw.remove_any("temp")
 end
 
 local function url_download(dep)
@@ -70,6 +70,7 @@ local function url_download(dep)
     local command = "curl -L " .. dep.url .. " -o temp"
     os.execute(command)
     darwin.dtw.move_any_overwriting("temp",dep.dest)
+    
 end 
 
 
@@ -93,6 +94,8 @@ local function git_download(dep)
         os.execute(command)
     end
     darwin.dtw.move_any_overwriting("temp",dep.dest)
+    darwin.dtw.remove_any("temp")
+
 end 
 
 
