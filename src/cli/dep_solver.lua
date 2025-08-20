@@ -16,7 +16,8 @@ function release_download(dep)
     if dep.cli == "curl" then 
         local version = dep.version or "latest"
         local command = "curl -L " .. dep.repo .."/releases/download/"..version.."/"..dep.file.." -o temp"
-        os.execute(command)
+        print(command)
+        --  os.execute(command)
     elseif dep.cli == "gh" then
         local version = dep.version or "latest"
         local command = "gh release download " .. version .. " -R " .. dep.repo .. " --pattern " .. dep.file .. " -D temp"
