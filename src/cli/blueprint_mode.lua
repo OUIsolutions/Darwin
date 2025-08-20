@@ -14,7 +14,7 @@ function Perform_blue_print()
         file_or_folder = "darwinconf.lua"        
     end
 
-  
+  dep_solver()
 
     
     if blue_print_mode == "folder" then
