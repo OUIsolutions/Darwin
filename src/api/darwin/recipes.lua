@@ -22,7 +22,6 @@ end
 darwin.run_recipe = function (name)
     for i=1,#darwin.available_builds do
         local build = darwin.available_builds[i]
-        print(build.name)
         if build.name == name then
             
             private_darwin.print_green("Building: " .. name .. "\n")
