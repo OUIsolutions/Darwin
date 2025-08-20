@@ -1,4 +1,5 @@
-
+---@param blueprint string[]
+---@param used_flags string[]
 function Perform_blue_print()
 
     
@@ -13,11 +14,10 @@ function Perform_blue_print()
         file_or_folder = "darwinconf.lua"        
     end
 
-    dep_solver()
+  
 
-   
+    
     if blue_print_mode == "folder" then
-        private_darwin.print_yellow("DEPRICATED ONLY 'darwinconf.lua' WILL BE ALLOWED IN FUTURE VERSIONS\n\n")
         if not darwin.dtw.isdir(file_or_folder) then
             private_darwin.print_red(file_or_folder .. "its not a folder\n")
             return
