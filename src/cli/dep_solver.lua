@@ -75,14 +75,16 @@ local function git_download(dep)
     if darwin.dtw.isdir(dep.dest) then 
         return 
     end 
-    if dep.branch then
-        local command = "git clone -b " .. dep.branch .. " " .. "https://github.com/"..dep.repo ..".git" .." temp"
-        os.execute(command)
+    darwin.dtw.remove_any("temp")
+
+    local command = "git clone " .. "https://github.com/"..dep.repo ..".git" .." temp"
+    os.execute(command)
+    if not dtw.isdir("temp") then
+        error("Failed to clone repository: " .. dep.repo, 0)
     end
-    if not dep.branch then
-        local command = "git clone " .. "https://github.com/"..dep.repo ..".git" .." temp"
-        os.execute(command)
-    end
+    os.execute("cd temp && git checkout " .. dep.branch)
+
+    
     darwin.dtw.move_any_overwriting("temp",dep.dest)
     darwin.dtw.remove_any("temp")
 
