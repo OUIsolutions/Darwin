@@ -6,17 +6,20 @@ function release_download(dep)
     if not dep.dest then 
         error("dest not provided",0)
     end
+    if not dep.repo then 
+        error("repo not provided",0)
+    end
     if darwin.dtw.isfile(dep.dest) then 
         return 
     end 
     
     if dep.cli == "curl" then 
         local version = dep.version or "latest"
-        local command = "curl -L " .. dep.git .."releases/download/"..version.."/"..dep.file.." -o temp"
+        local command = "curl -L " .. dep.repo .."releases/download/"..version.."/"..dep.file.." -o temp"
         os.execute(command)
     elseif dep.cli == "gh" then
         local version = dep.version or "latest"
-        local command = "gh release download " .. version .. " -R " .. dep.git .. " --pattern " .. dep.file .. " -D temp"
+        local command = "gh release download " .. version .. " -R " .. dep.repo .. " --pattern " .. dep.file .. " -D temp"
         os.execute(command)
     else 
         error("invalid dep mode:"..dep.cli,0)
