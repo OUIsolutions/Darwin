@@ -40,7 +40,7 @@ darwin.run_recipe = function (name)
                     if build.requires[j] == name then
                         error("circular dependency detected: " .. name .. " requires itself")
                     end
-                    darwin.run_build(build.requires[j])
+                    darwin.run_recipe(build.requires[j])
                 end
             end
             build.done = true 
