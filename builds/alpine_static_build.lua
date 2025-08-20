@@ -18,7 +18,7 @@ function alpine_static_build()
         volumes = {
             { "././release", "/release" },
         },
-        command = compiler..[[ --static /release/amalgamation.c  -o /release/alpine_static_bin.out]]
+        command = compiler..[[ --static /release/amalgamation.c  -o /release/linux_bin.out]]
 
     })
 end

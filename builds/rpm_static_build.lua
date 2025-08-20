@@ -5,8 +5,8 @@ function rpm_static_build()
     end
     rpm_static_build_done = true
     alpine_static_build()
-    darwin.dtw.copy_any_overwriting("release/alpine_static_bin.out",
-        ".cache/rpm_static_build/SOURCES/alpine_static_bin.out"
+    darwin.dtw.copy_any_overwriting("release/linux_bin.out",
+        ".cache/rpm_static_build/SOURCES/linux_bin.out"
     )
 
     local formmatted_rpm = [[
@@ -14,7 +14,7 @@ Name:           PROJECT_NAME
 Version:        VERSION
 Release:        1%{?dist}
 Summary:        SUMARY
-Source0:        alpine_static_bin.out
+Source0:        linux_bin.out
 
 License:        LICENSE
 URL:           PROJECT_URL
@@ -33,7 +33,7 @@ DESCRIPITION
 
 %install
 mkdir -p %{buildroot}/usr/local/bin
-cp %{_sourcedir}/alpine_static_bin.out   %{buildroot}/usr/local/bin/PROJECT_NAME
+cp %{_sourcedir}/linux_bin.out   %{buildroot}/usr/local/bin/PROJECT_NAME
 chmod +x %{buildroot}/usr/local/bin/PROJECT_NAME
 %files
 /usr/local/bin/PROJECT_NAME
