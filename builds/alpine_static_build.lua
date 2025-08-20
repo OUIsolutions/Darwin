@@ -1,8 +1,6 @@
 
 function linux_bin()
 
-    amalgamation_build()
-
     os.execute("mkdir -p release")
 
     local image = darwin.ship.create_machine("alpine:latest")
