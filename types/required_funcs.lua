@@ -1,3 +1,0 @@
----@class DarwinEmbedCode
----@field content DarwinFileStream | string
----@field comptime_included string
