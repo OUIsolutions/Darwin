@@ -1,5 +1,5 @@
 
-function alpine_static_build()
+function linux_bin()
 
     amalgamation_build()
 
