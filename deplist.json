@@ -1,0 +1,14 @@
+[
+    {
+        "type":"release",
+        "use":"curl",
+        "file":"MDeclareApiNoDependenciesIncluded.h",
+        "dest":"dependencies/MDeclareApiNoDependenciesIncluded.h"
+    },
+    {
+        "type":"git",
+        "repo":"https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine.git",
+        "branch":"V0.003",
+        "lock":true
+    }
+]
