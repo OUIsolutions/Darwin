@@ -27,6 +27,24 @@ function release_download(dep)
     darwin.dtw.move_any_overwriting("temp",dep.dest)
 
 end 
+
+function url_download(dep) 
+    if not dep.url then 
+        error("url not provided",0)
+    end
+    if not dep.dest then 
+        error("dest not provided",0)
+    end
+    if darwin.dtw.isfile(dep.dest) then 
+        return 
+    end 
+
+    local command = "curl -L " .. dep.url .. " -o temp"
+    os.execute(command)
+    darwin.dtw.move_any_overwriting("temp",dep.dest)
+end 
+
+
 function git_download(dep)
 end 
 
