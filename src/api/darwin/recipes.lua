@@ -23,6 +23,14 @@ darwin.run_build = function (name)
     for i=1,#darwin.available_builds do
         local build = darwin.available_builds[i]
         if build.name == name then
+            
+            private_darwin.print_green("Building: " .. name .. "\n")
+            if build.outs then
+                for j=1,#build.outs do
+                    private_darwin.print_blue("  Output: " .. build.outs[j] .. "\n")
+                end
+            end
+
             if build.done then
                 return 
             end
@@ -36,6 +44,7 @@ darwin.run_build = function (name)
             end
             build.done = true 
             build.callback()
+            private_darwin.print_green("=======================================\n")
             return
         end
     end
