@@ -1,102 +1,16 @@
 [
+
     {
-        "name": "json.lua",
-        "version": "v0.1",
-        "type": "release",
-        "url": "https://raw.githubusercontent.com/rxi/json.lua/master/json.lua",
-        "dest": "dependencies/json.lua"
+        "type": "gitrelease",
+        "repo": "https://github.com/OUIsolutions/MDeclare",
+        "file":"MDeclareApiNoDependenciesIncluded.h",
+        "dest": "dependencies/MDeclareApiNoDependenciesIncluded.h"
     },
     {
-        "name": "MDeclare",
-        "version": "0.1.0",
-        "type": "release",
-        "url": "https://github.com/OUIsolutions/MDeclare/releases/download/0.1.0/MDeclareApiNoDependenciesIncluded.h",
-        "dest": "dependencies/MDeclareApiNoDependenciesIncluded.h",
-        "c_file": true
+        "type":"gitrepo",
+        "repo":"https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine.git",
+        "dest":"dependencies/candangoEngine",
+        "branch":"V0.003"
     },
-    {
-        "name": "LuaFluidJson",
-        "version": "0.6.1",
-        "type": "release",
-        "url": "https://github.com/OUIsolutions/LuaFluidJson/releases/download/0.6.1/luaFluidJson_no_dep.c",
-        "dest": "dependencies/luaFluidJson_no_dep.c",
-        "c_file": true
-    },
-    {
-        "name": "LuaDoTheWorld",
-        "version": "0l.12.0",
-        "type": "release",
-        "url": "https://github.com/OUIsolutions/LuaDoTheWorld/releases/download/0l.12.0/luaDoTheWorld_no_dep.c",
-        "dest": "dependencies/luaDoTheWorld_no_dep.c",
-        "c_file": true
-    },
-    {
-        "name": "candangoEngine",
-        "type": "git",
-        "url": "https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine.git",
-        "branch": "V0.003",
-        "dest": "dependencies/candangoEngine"
-    },
-    {
-        "name": "CTextEngine",
-        "version": "3.0.000",
-        "type": "release",
-        "url": "https://github.com/OUIsolutions/CTextEngine/releases/download/3.0.000/CTextEngineOne.c",
-        "dest": "dependencies/CTextEngineOne.c",
-        "c_file": true
-    },
-    {
-        "name": "LuaMDeclare",
-        "version": "0.1.0",
-        "type": "release",
-        "url": "https://github.com/OUIsolutions/LuaMDeclare/releases/download/0.1.0/luamdeclare.c",
-        "dest": "dependencies/luamdeclare.c",
-        "c_file": true
-    },
-    {
-        "name": "LuaCEmbed",
-        "version": "0.11.0",
-        "type": "release",
-        "url": "https://github.com/OUIsolutions/LuaCEmbed/releases/download/0.11.0/LuaCEmbedOne.c",
-        "dest": "assets/api/LuaCEmbedOne.c",
-        "c_file": true
-    },
-    {
-        "name": "DoTheWorld",
-        "version": "11.0.0",
-        "type": "release",
-        "url": "https://github.com/OUIsolutions/DoTheWorld/releases/download/11.0.0/doTheWorldOne.c",
-        "dest": "dependencies/doTheWorldOne.c",
-        "c_file": true
-    },
-    {
-        "name": "LuaArgv",
-        "version": "0.1.0",
-        "type": "release",
-        "url": "https://github.com/OUIsolutions/LuaArgv/releases/download/0.1.0/luargv.lua",
-        "dest": "dependencies/luargv.lua"
-    },
-    {
-        "name": "LuaShip",
-        "version": "0.2.0",
-        "type": "release",
-        "url": "https://github.com/OUIsolutions/LuaShip/releases/download/0.2.0/LuaShip.lua",
-        "dest": "dependencies/LuaShip.lua"
-    },
-    {
-        "name": "LuaSilverChain",
-        "version": "0.2.1",
-        "type": "release",
-        "url": "https://github.com/OUIsolutions/LuaSilverChain/releases/download/0.2.1/silverchain_no_dependecie_included.c",
-        "dest": "dependencies/silverchain_no_dependecie_included.c",
-        "c_file": true
-    },
-    {
-        "name": "LuaCAmalgamator",
-        "version": "0.1.0",
-        "type": "release",
-        "url": "https://github.com/OUIsolutions/LuaCAmalgamator/releases/download/0.1.0/lua_c_amalgamator_dependencie_not_included.c",
-        "dest": "dependencies/lua_c_amalgamator_dependencie_not_included.c",
-        "c_file": true
-    }
+    
 ]
