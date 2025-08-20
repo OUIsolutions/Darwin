@@ -1,0 +1,1 @@
+darwin2 run_blueprint build/ --mode folder amalgamation_build
