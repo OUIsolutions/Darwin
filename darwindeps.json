@@ -8,7 +8,6 @@
     {
         "type":"git",
         "repo":"https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine.git",
-        "branch":"V0.003",
-        "lock":true
+        "branch":"V0.003"    
     }
 ]
