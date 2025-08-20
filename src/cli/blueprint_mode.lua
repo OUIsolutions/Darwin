@@ -13,7 +13,7 @@ function Perform_blue_print()
     for i=1,targets_size do
         targets[i] = darwin.argv.get_flag_arg_by_index({"target","t"},i)
     end
-    
+
 
     local file_or_folder = darwin.argv.get_next_unused()
     if not file_or_folder then
