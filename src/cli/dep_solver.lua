@@ -45,6 +45,7 @@ function url_download(dep)
 end 
 
 
+
 function git_download(dep)
 end 
 
@@ -60,6 +61,8 @@ function dep_solver()
             release_download(current) 
         elseif current.type == "gitrepo" then
             git_download(current)
+        elseif current.type == "url" then
+            url_download(current)
         else 
             error("invalid dep type:"..current.type,0)
         end 
