@@ -20,3 +20,10 @@ function linux_bin()
 
     })
 end
+darwin.add_recipe({
+    name="linux_bin",
+    requires={"amalgamation"},
+    description="make a static compiled linux binary of the project",
+    outs={"release/linux_bin.out"},
+    callback=linux_bin
+})
