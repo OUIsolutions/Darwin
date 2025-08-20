@@ -56,6 +56,6 @@ end
 darwin.add_recipe({
     name="amalgamation",
     description="make a single file amalgamation of the project",
-    outs="release/amalgamation.c",
+    outs={"release/amalgamation.c"},
     callback=amalgamation_build
 })
