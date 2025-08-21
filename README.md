@@ -1,171 +1,84 @@
-# Darwin 🧬
-**The Most Advanced Lua Compiler** - Transform your Lua code into powerful executables
+<div align="center">
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.8.0-green.svg)](https://github.com/OUIsolutions/Darwin/releases)
-[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows-lightgrey.svg)](#releases)
-[![Language](https://img.shields.io/badge/Language-Lua%20%7C%20C-orange.svg)](#features)
-[![Status](https://img.shields.io/badge/Status-Active-success.svg)](https://github.com/OUIsolutions/Darwin)
+# Darwin
+![Lua Logo](https://img.shields.io/badge/Darwin-0.11.0-blue?style=for-the-badge&logo=lua)
+[![GitHub Release](https://img.shields.io/github/release/OUIsolutions/Darwin.svg?style=for-the-badge)](https://github.com/OUIsolutions/Darwin/releases)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://github.com/OUIsolutions/Darwin/blob/main/LICENSE)
+![Status](https://img.shields.io/badge/Status-Alpha-orange?style=for-the-badge)
+![Platforms](https://img.shields.io/badge/Platforms-Windows%20|%20Linux%20|%20WebAssembly-lightgrey?style=for-the-badge)
 
-## 🎯 What can Darwin do?
-
-Darwin is a **powerful Lua compiler** that transforms your Lua scripts into:
-
-| Output Type | Description | Perfect for |
-|-------------|-------------|-------------|
-| 🐧 **Linux Executable** | Standalone binary for Linux | Servers, CLI tools |
-| 🪟 **Windows Executable** | Standalone .exe for Windows | Desktop apps, utilities |
-| ⚙️ **C/C++ Code** | Generated C source code | Integration, performance |
-| 📚 **SO Library** | Shared object libraries | Modular applications |
-| 🔗 **Lua Amalgamation** | Single Lua file | Distribution, embedding |
-
-## ✨ Why Choose Darwin?
-
-- 📁 **Embed Files & Folders** - Bundle resources directly into your executable
-- 🔧 **C/C++ Integration** - Mix Lua with native C code seamlessly
-- ⚡ **Compile-time Magic** - Manipulate code during compilation
-- 🎨 **Zero Dependencies** - Your compiled programs run anywhere
-- 🚀 **Lightning Fast** - Optimized compilation and execution
-
-## 🚀 Quick Start (30 seconds!)
-
-### Step 1: Create a simple Lua file
-```lua
--- hello.lua
-print("Hello from Darwin! 🧬")
-print("This is now a compiled executable!")
-```
-
-### Step 2: Compile it
-```bash
-darwin hello.lua -o hello.out
-```
-
-### Step 3: Run it
-```bash
-./hello.out
-```
-
-**That's it!** You've just created your first compiled Lua program! 🎉
-
-## 📦 Installation
-
-### 🐧 Linux (One-liner)
-```bash
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.8.0/darwin.out -o darwin.out && sudo chmod +x darwin.out && sudo mv darwin.out /usr/bin/darwin
-```
-
-### 🪟 Windows
-Download [darwin.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.8.0/darwin.exe) and add it to your PATH
-
-## 📋 Download Options
-
-[![Download for Linux](https://img.shields.io/badge/Download-Linux%20Binary-blue?style=for-the-badge&logo=linux)](https://github.com/OUIsolutions/Darwin/releases/download/0.8.0/darwin.out)
-[![Download for Windows](https://img.shields.io/badge/Download-Windows%20Binary-blue?style=for-the-badge&logo=windows)](https://github.com/OUIsolutions/Darwin/releases/download/0.8.0/darwin.exe)
-[![Download Source](https://img.shields.io/badge/Download-Source%20Code-green?style=for-the-badge&logo=github)](https://github.com/OUIsolutions/Darwin/releases/download/0.8.0/amalgamation.c)
-
-| Platform | File | Size | Description |
-|----------|------|------|-------------|
-| 🐧 Linux | [darwin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.8.0/darwin.out) | ~2MB | Ready-to-use Linux binary |
-| 🪟 Windows x32 | [darwini32.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.8.0/darwini32.exe) | ~2MB | Ready-to-use Windows 32-bit executable |
-| 📦 Debian/Ubuntu | [darwin.deb](https://github.com/OUIsolutions/Darwin/releases/download/0.8.0/darwin.deb) | ~2MB | Debian package for easy installation |
-| 📦 RedHat/Fedora | [darwin.rpm](https://github.com/OUIsolutions/Darwin/releases/download/0.8.0/darwin.rpm) | ~2MB | RPM package for easy installation |
-| 📄 Source | [amalgamation.c](https://github.com/OUIsolutions/Darwin/releases/download/0.8.0/amalgamation.c) | ~500KB | C amalgamation for compilation |
-
-## 🎓 Learning Resources
-
-### 📖 Documentation
-| Guide | Difficulty | Description |
-|-------|------------|-------------|
-| 🚀 [Quick Start Examples](#quick-start-30-seconds) | Beginner | Get started in 30 seconds |
-| 🖥️ [Command Line Usage](docs/cli_usage.md) | Beginner | All CLI commands explained |
-| 🔧 [API Usage](docs/api_usage.md) | Intermediate | Advanced project creation |
-| 🏗️ [Build Guide](docs/build.md) | Advanced | Build from source |
-| 📚 [Dependencies](docs/dependencies.md) | Reference | License information |
-
-### 🎯 Common Use Cases
-
-<details>
-<summary>🛠️ <strong>Command Line Tools</strong></summary>
-
-Perfect for creating system utilities and CLI applications:
-```bash
-# Create a file manager
-darwin file_manager.lua -o fm.out
-
-# Create a text processor
-darwin text_processor.lua -o process.out
-```
-</details>
-
-<details>
-<summary>🌐 <strong>Web Applications</strong></summary>
-
-Build web servers and APIs:
-```bash
-# Simple web server
-darwin web_server.lua -o server.out
-
-# REST API
-darwin api.lua -o api.out
-```
-</details>
-
-<details>
-<summary>🎮 <strong>Games & Interactive Apps</strong></summary>
-
-Create games and interactive applications:
-```bash
-# Simple game
-darwin game.lua -o game.out
-
-# Interactive quiz
-darwin quiz.lua -o quiz.out
-```
-</details>
-
-<details>
-<summary>⚙️ <strong>System Integration</strong></summary>
-
-Integrate with existing C/C++ projects:
-```bash
-# Generate C library
-darwin my_logic.lua -o liblogic.so
-
-# Create C header
-darwin logic.lua -output-type c-header
-```
-</details>
-
-## 🤝 Community & Support
-
-[![GitHub Issues](https://img.shields.io/badge/Issues-GitHub-red?style=flat-square&logo=github)](https://github.com/OUIsolutions/Darwin/issues)
-[![Discussions](https://img.shields.io/badge/Discussions-GitHub-blue?style=flat-square&logo=github)](https://github.com/OUIsolutions/Darwin/discussions)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-
-- 🐛 **Found a bug?** [Open an issue](https://github.com/OUIsolutions/Darwin/issues/new)
-- 💡 **Have an idea?** [Start a discussion](https://github.com/OUIsolutions/Darwin/discussions)
-- 📖 **Need help?** Check our [documentation](docs/)
-- 🌟 **Like Darwin?** Give us a star on GitHub!
-
-## 🏆 Why Darwin is Special
-
-Darwin isn't just another compiler - it's a **complete ecosystem** for Lua development:
-
-| Feature | Traditional Lua | Darwin |
-|---------|----------------|--------|
-| **Distribution** | Script files | Single executable |
-| **Dependencies** | External libs | Everything embedded |
-| **Performance** | Interpreted | Compiled optimization |
-| **Integration** | Lua only | Lua + C seamlessly |
-| **Deployment** | Complex setup | Drop and run |
+</div>
 
 ---
 
-<div align="center">
+## ⚠️ Important Notice
 
-**Made with ❤️ by the OUI Solutions team**
+> **This is alpha software!** Use at your own risk. While we're working hard to make it stable, bugs are expected. Perfect for learning and prototyping! 🧪
 
-[⭐ Star us on GitHub](https://github.com/OUIsolutions/Darwin) • [📖 Read the docs](docs/) • [🚀 Try Darwin now](#installation)
+---
 
-</div>
+### Overview
+
+Darwin is a powerful Lua compiler that transforms your Lua scripts into standalone executables. It provides a streamlined interface for compilation, eliminating the complexity of traditional build systems:
+
+1. **Write your Lua code** 
+2. **Compile to executable**
+3. **Deploy anywhere**
+
+This compiler is designed for developers who need to:
+- Create standalone applications from Lua scripts
+- Embed files and resources into executables
+- Mix Lua with native C code seamlessly
+- Deploy applications without dependencies
+
+### Key Features
+
+- **Multi-platform compilation** - Create executables for Windows, Linux, and more
+- **File embedding** - Bundle resources directly into your executable
+- **C/C++ integration** - Mix Lua with native code
+- **Zero dependencies** - Your compiled programs run anywhere
+- **Lua amalgamation** - Single file distribution
+- **SO library generation** - Create shared libraries from Lua code
+
+### AI/LLM Integration
+
+Want to learn how to use Darwin with AI assistance? Download the [ai_doc.md](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/ai_doc.md) file and paste its contents to your preferred AI assistant (ChatGPT, Claude, Copilot, etc.) for interactive learning and code examples.
+
+---
+
+## Releases
+
+
+|  **File**                                                                                                           | **What is**                                |
+|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+|[amalgamation.c](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/amalgamation.c) | A Amalgamation Containing all the Library  |
+|[linux_bin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/linux_bin.out)   | Ready-to-use Linux binary           |
+|[windowsi32.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/windowsi32.exe)       | Ready-to-use Windows 32-bit executable                         |
+|[debian_static.deb](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/debian_static.deb)       | Debian package for easy installation                             |
+|[rpm_static_build.rpm](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/rpm_static_build.rpm)       | RPM package for easy installation            |
+
+## Installations Tutorials
+| **Tutorial**                                                  | **Description**                                       |
+|---------------------------------------------------------------|------------------------------------------------------ |
+| [OneFile](docs/instalations/one_file.md)                      | Single File Library Installation Guide (the most easy)|
+| [Precompiled](docs/instalations/precompiled.md)               | Precompiled Library Installation Guide                |
+| [Full Directory](docs/instalations/full_dir.md)               | Full Directory Library Installation Guide             |
+| [Build from Scratch](docs/instalations/build_from_scratch.md) | Building Darwin from Source Code             | 
+
+## [Public API](docs/public_api.md)
+Click here [Public API](docs/public_api.md) to see the full list of public API functions.
+
+## Usage Tutorials 
+
+| **Tutorial**                                                    | **Description**                                         |
+|-----------------------------------------------------------------|---------------------------------------------------------|
+| [API Usage](docs/api_usage.md)              | Working with Darwin's API                       |
+| [Build Guide](docs/build.md)                           | Building Darwin from source                               |
+| [CLI Usage](docs/cli_usage.md)                   | Command line interface guide                     |
+| [Dependencies](docs/dependencies.md)      | Understanding project dependencies                          |
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
