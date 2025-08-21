@@ -21,9 +21,9 @@ function Perform_blue_print()
     end
 
   dep_solver()
-
     
     if blue_print_mode == "folder" then
+        private_darwin.print_yellow("WARNING: DEPRICATED MODE:use darwinconf.lua instead\n")
         if not darwin.dtw.isdir(file_or_folder) then
             private_darwin.print_red(file_or_folder .. "its not a folder\n")
             return
@@ -48,6 +48,7 @@ function Perform_blue_print()
             return
         end
         dofile(file_or_folder)
+        
     end
     if targets[1] == "all" then 
         for i=1,#darwin.available_builds do
