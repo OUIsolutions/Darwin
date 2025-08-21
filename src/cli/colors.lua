@@ -14,6 +14,9 @@ end
 private_darwin.print_green = function(text)
     private_darwin.print_color("\x1b[32m", text)
 end
+private_darwin.print_yellow = function(text)
+    private_darwin.print_color("\x1b[33m", text)
+end
 
 private_darwin.print_blue = function(text)
     private_darwin.print_color("\x1b[34m", text)
