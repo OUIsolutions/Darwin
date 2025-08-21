@@ -47,7 +47,7 @@ curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/linux_bi
 ```
 ### Mac-Os Instalation
 ```bash
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/amalgamation.c -o amalgamation.c && gcc amalgamation.c -o darwin.out && mv darwin.out /usr/local/bin/darwin && rm amalgamation.c 
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/amalgamation.c -o amalgamation.c && gcc amalgamation.c -o darwin.out && sudo mv darwin.out /usr/local/bin/darwin && rm amalgamation.c 
 ```
 
 ### AI/LLM Integration
