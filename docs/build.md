@@ -16,21 +16,11 @@
 
 ```bash
 # Download and compile in one step
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.7.0/darwin.c -o darwin.c && gcc darwin.c -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/darwin.c -o darwin.c && gcc darwin.c -o darwin.out
 ```
 
 **That's it!** You now have a working `darwin.out` executable.
 
-### Test Your Build
-```bash
-# Test the build
-./darwin.out --help
-
-# Create a test program
-echo 'print("Hello from custom Darwin!")' > test.lua
-./darwin.out test.lua -o test.out
-./test.out
-```
 
 ## Container Build (Recommended for Development)
 
@@ -60,8 +50,7 @@ darwin run_blueprint --target debian_static_build
 # Windows 32-bit build
 darwin run_blueprint --target windowsi32_build
 
-# Windows 64-bit build
-darwin run_blueprint --target windows64_build
+
 ```
 
 ### Build Multiple Targets
