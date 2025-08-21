@@ -53,41 +53,41 @@ echo 'print("Hello from custom Darwin!")' > test.lua
 git clone https://github.com/OUIsolutions/Darwin.git
 cd Darwin
 
-# Alpine static build (small, portable)
-darwin run_blueprint build/ --mode folder alpine_static_build --contanizer podman
+# Linux static build (small, portable)
+darwin run_blueprint --target linux_bin
 
 # RPM-based static build (RedHat, Fedora, CentOS)
-darwin run_blueprint build/ --mode folder rpm_static_build --contanizer podman
+darwin run_blueprint --target rpm_static_build
 
 # Debian static build (Ubuntu, Debian)
-darwin run_blueprint build/ --mode folder debian_static_build --contanizer podman
+darwin run_blueprint --target debian_static_build
 ```
 
 ### 🪟 Windows Builds  
 ```bash
 # Windows 32-bit build
-darwin run_blueprint build/ --mode folder windowsi32_build --contanizer podman
+darwin run_blueprint --target windowsi32_build
 
 # Windows 64-bit build
-darwin run_blueprint build/ --mode folder windows64_build --contanizer podman
+darwin run_blueprint --target windows64_build
 ```
 
 ### 📦 Build Multiple Targets
 ```bash
 # Build all Linux variants
-darwin run_blueprint build/ --mode folder alpine_static_build rpm_static_build debian_static_build --contanizer podman
+darwin run_blueprint --target linux_bin rpm_static_build debian_static_build
 
 # Build all Windows variants
-darwin run_blueprint build/ --mode folder windowsi32_build windows64_build --contanizer podman
+darwin run_blueprint --target windowsi32_build windows64_build
 
 # Build everything at once
-darwin run_blueprint build/ --mode folder amalgamation_build alpine_static_build windowsi32_build windows64_build rpm_static_build debian_static_build --contanizer podman
+darwin run_blueprint --target all
 ```
 
 **What you get:**
-- 📁 `release/darwin.out` - Linux executable
-- 📁 `release/darwin.exe` - Windows executable
-- 📁 `release/darwin.c` - Source amalgamation
+- 📁 `release/linux_bin.out` - Linux executable
+- 📁 `release/windows64.exe` / `release/windowsi32.exe` - Windows executables
+- 📁 `release/amalgamation.c` - Source amalgamation
 
 > 🐳 **Why Containers?** They provide consistent build environments regardless of your host system!
 
@@ -106,10 +106,10 @@ git clone https://github.com/OUIsolutions/Darwin.git
 cd Darwin
 
 # Generate amalgamation and compile with GCC
-darwin run_blueprint build/ --mode folder amalgamation_build
+darwin run_blueprint --target amalgamation
 
-# The above generates release/darwin.c, then compile it:
-gcc release/darwin.c -o release/darwin.out
+# The above generates release/amalgamation.c, then compile it:
+gcc release/amalgamation.c -o release/darwin.out
 ```
 
 ### 🔧 Install Dependencies (Ubuntu/Debian)
@@ -148,21 +148,21 @@ git clone https://github.com/OUIsolutions/Darwin.git
 cd Darwin
 
 # Generate only the C amalgamation
-darwin run_blueprint build/ --mode folder amalgamation_build
+darwin run_blueprint --target amalgamation
 ```
 
-**Output:** `release/darwin.c` - Complete C source code in a single file
+**Output:** `release/amalgamation.c` - Complete C source code in a single file
 
 ### 🔨 Compile the Amalgamation
 ```bash
 # Compile with your preferred settings
-gcc release/darwin.c -o darwin.out
+gcc release/amalgamation.c -o darwin.out
 
 # Or with optimizations
-gcc -O3 -DNDEBUG release/darwin.c -o darwin.out
+gcc -O3 -DNDEBUG release/amalgamation.c -o darwin.out
 
 # Or statically linked
-gcc -static release/darwin.c -o darwin.out
+gcc -static release/amalgamation.c -o darwin.out
 ```
 
 ---
@@ -171,24 +171,25 @@ gcc -static release/darwin.c -o darwin.out
 
 ### 📁 Build Structure
 ```
-build/
-├── assets.lua          # Asset management
-├── dependencies.lua    # Dependency handling
-├── embed_c.lua         # C code embedding
-├── main.lua            # Main build logic
-└── types.lua           # Type definitions
+builds/
+├── amalgamation_build.lua  # Generate C amalgamation
+├── linux_bin.lua          # Linux static binary
+├── debian_static_build.lua # Debian package
+├── rpm_static_build.lua    # RPM package
+├── windowsi32_build.lua    # Windows 32-bit binary
+└── windows64_build.lua     # Windows 64-bit binary
 ```
 
 ### 🏗️ Build Targets Explained
 
 | Target | What it does | Output | Container |
 |--------|--------------|--------|-----------|
-| `amalgamation_build` | Generate C amalgamation | `release/darwin.c` | No |
-| `alpine_static_build` | Alpine Linux static build | `release/darwin.out` | Yes |
-| `rpm_static_build` | RPM-based static build | `release/darwin.out` | Yes |
-| `debian_static_build` | Debian-based static build | `release/darwin.out` | Yes |
-| `windowsi32_build` | Windows 32-bit build | `release/darwin.exe` | Yes |
-| `windows64_build` | Windows 64-bit build | `release/darwin.exe` | Yes |
+| `amalgamation` | Generate C amalgamation | `release/amalgamation.c` | No |
+| `linux_bin` | Linux static build | `release/linux_bin.out` | Yes |
+| `debian_static_build` | Debian package build | `release/debian_static.deb` | Yes |
+| `rpm_static_build` | RPM package build | `release/rpm_static_build.rpm` | Yes |
+| `windowsi32_build` | Windows 32-bit build | `release/windowsi32.exe` | Yes |
+| `windows64_build` | Windows 64-bit build | `release/windows64.exe` | Yes |
 
 ### 🔄 Build Process Steps
 
@@ -226,14 +227,17 @@ sudo pacman -S podman
 
 ### ❌ "Container build failed"
 ```bash
-# Check Podman is running
+# Check Podman/Docker is running
 podman --version
+# or
+docker --version
 
 # Check if you can pull images
 podman pull alpine:latest
+# or  
+docker pull alpine:latest
 
-# Try with Docker if Podman fails
-darwin run_blueprint build/ --mode folder alpine_static_build --contanizer docker
+# The blueprint system will automatically choose the available container engine
 ```
 
 ### ❌ "Permission denied" errors
@@ -263,19 +267,22 @@ sudo dnf groupinstall "Development Tools"  # Fedora/RHEL
 ## 🔧 Container Options
 
 ### 🐳 Using Docker Instead of Podman
-```bash
-# Use Docker as container engine
-darwin run_blueprint build/ --mode folder alpine_static_build --contanizer docker
+**Note:** The new blueprint system handles containerization automatically based on your system configuration.
 
-# All builds work with Docker too
-darwin run_blueprint build/ --mode folder windowsi32_build windows64_build --contanizer docker
+```bash
+# The containerization is handled internally by the blueprint system
+# Simply run your desired target
+darwin run_blueprint --target linux_bin
+
+# All builds work with the available container engine (Podman/Docker)
+darwin run_blueprint --target windowsi32_build windows64_build
 ```
 
 ### 🚀 Container Benefits
 
 | Build Type | Benefits |
 |------------|----------|
-| `alpine_static_build` | Small, secure, fully static |
+| `linux_bin` | Small, secure, fully static |
 | `debian_static_build` | Compatible, well-tested |
 | `rpm_static_build` | Enterprise-ready |
 | `windowsi32_build` | Legacy Windows support |
@@ -289,7 +296,7 @@ darwin run_blueprint build/ --mode folder windowsi32_build windows64_build --con
 Edit the build scripts to add custom flags:
 
 ```lua
--- In build/main.lua, modify the compilation section
+-- In builds/amalgamation_build.lua, modify the compilation section
 local custom_flags = "-O3 -march=native -DCUSTOM_FEATURE"
 -- Add your custom flags to the compilation command
 ```
@@ -298,7 +305,7 @@ local custom_flags = "-O3 -march=native -DCUSTOM_FEATURE"
 Add your own C libraries to the build:
 
 ```lua
--- In build/dependencies.lua
+-- In builds/amalgamation_build.lua
 project.add_c_include("my_custom_lib.h")
 project.add_c_file("my_custom_lib.c")
 ```
@@ -308,12 +315,8 @@ Create different Darwin versions:
 
 ```bash
 # Debug build (amalgamation only)
-CFLAGS="-g -DDEBUG" darwin run_blueprint build/ --mode folder amalgamation_build
-gcc -g -DDEBUG release/darwin.c -o darwin_debug.out
-
-# Optimized build
-CFLAGS="-O3 -DNDEBUG" darwin run_blueprint build/ --mode folder amalgamation_build
-gcc -O3 -DNDEBUG release/darwin.c -o darwin_optimized.out
+CFLAGS="-g -DDEBUG" darwin run_blueprint --target amalgamation
+gcc -g -DDEBUG release/amalgamation.c -o darwin_debug.out
 ```
 
 ---
