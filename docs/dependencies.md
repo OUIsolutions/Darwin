@@ -1,44 +1,21 @@
+# Dependencies & Licenses
 
-
-# 📚 Dependencies & Licenses
-
-[![License Status](https://img.shields.io/badge/License%20Status-All%20Open%20Source-green.svg)](#)
-[![MIT Compatible](https://img.shields.io/badge/MIT%20Compatible-Yes-brightgreen.svg)](#)
-[![Commercial Use](https://img.shields.io/badge/Commercial%20Use-Allowed-blue.svg)](#)
-
-**Darwin is built on the shoulders of giants! Here are all the amazing open-source projects that make Darwin possible.**
-
-## 🎯 License Summary
-
-All Darwin dependencies are **100% open source** and compatible with commercial use. You can:
-
-- ✅ **Use Darwin commercially** without any restrictions
-- ✅ **Distribute Darwin-compiled programs** freely
-- ✅ **Modify Darwin** for your needs
-- ✅ **Include in proprietary projects** without issues
+Darwin uses only open-source dependencies, all compatible with commercial use. You can:
+- Use Darwin commercially
+- Distribute Darwin-compiled programs
+- Modify Darwin
+- Include Darwin in proprietary projects
 
 ---
+## Core Dependencies
 
-## 🧬 Core Dependencies
-
-### 🌙 Lua Programming Language
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://lua.org/)
-[![Website](https://img.shields.io/badge/Website-lua.org-orange.svg)](https://lua.org/)
-
-**What it is:** The heart of Darwin - the Lua programming language itself
-
-**From:** https://lua.org/
-
-**License:** MIT License (extremely permissive)
-
-**Why we love it:**
-- 🚀 **Fast and lightweight** - Perfect for embedding
-- 📚 **Simple syntax** - Easy to learn and use  
-- 🔧 **Extensible** - Integrates beautifully with C
-- 🌍 **Mature** - Decades of proven reliability
+### Lua Programming Language
+- License: MIT ([link](https://lua.org/))
+- Source: https://lua.org/
+- Description: Fast, lightweight, simple syntax, extensible, mature.
 
 <details>
-<summary>📄 <strong>Full Lua License Text</strong></summary>
+<summary>Full Lua License Text</summary>
 
 ```
 Lua is free software distributed under the terms of the MIT license 
@@ -59,25 +36,15 @@ the copyright notice somewhere in your product or its documentation.
 </details>
 
 ---
+## Integration Libraries
 
-## 🔧 Integration Libraries
-
-### 🚀 LuaCEmbed
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/OUIsolutions/LuaCEmbed)
-[![GitHub](https://img.shields.io/badge/GitHub-LuaCEmbed-black.svg)](https://github.com/OUIsolutions/LuaCEmbed)
-
-**What it is:** The magic bridge between Lua and C code
-
-**From:** https://github.com/OUIsolutions/LuaCEmbed
-
-**Why it's awesome:**
-- 🔗 **Seamless integration** - C and Lua work together perfectly
-- 🛡️ **Memory safe** - Handles complex memory management
-- ⚡ **High performance** - Optimized for speed
-- 🎯 **Easy to use** - Simple API for complex operations
+### LuaCEmbed
+- License: MIT ([link](https://github.com/OUIsolutions/LuaCEmbed))
+- Source: https://github.com/OUIsolutions/LuaCEmbed
+- Description: Bridge between Lua and C, memory safe, high performance, easy API.
 
 <details>
-<summary>📄 <strong>LuaCEmbed License (MIT)</strong></summary>
+<summary>LuaCEmbed License (MIT)</summary>
 
 ```
 MIT License
@@ -106,25 +73,15 @@ SOFTWARE.
 </details>
 
 ---
+## Built-in Library Ecosystem
 
-## 🌍 Built-in Library Ecosystem
-
-### 🗂️ LuaDoTheWorld
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/OUIsolutions/LuaDoTheWorld)
-[![Features](https://img.shields.io/badge/Features-File%20Operations-green.svg)](#)
-
-**What it is:** Powerful file and system operations for Lua
-
-**From:** https://github.com/OUIsolutions/LuaDoTheWorld
-
-**Powers features like:**
-- 📁 File and directory operations
-- 🔍 File searching and filtering  
-- 📊 System information access
-- 🔄 Cross-platform compatibility
+### LuaDoTheWorld
+- License: MIT ([link](https://github.com/OUIsolutions/LuaDoTheWorld))
+- Source: https://github.com/OUIsolutions/LuaDoTheWorld
+- Description: File and system operations, cross-platform.
 
 <details>
-<summary>📄 <strong>LuaDoTheWorld License (MIT)</strong></summary>
+<summary>LuaDoTheWorld License (MIT)</summary>
 
 ```
 MIT License
@@ -152,22 +109,13 @@ SOFTWARE.
 
 </details>
 
-### ⚙️ DoTheWorld (C Library)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/OUIsolutions/DoTheWorld)
-[![Language](https://img.shields.io/badge/Language-C-orange.svg)](#)
-
-**What it is:** The C foundation that powers LuaDoTheWorld
-
-**From:** https://github.com/OUIsolutions/DoTheWorld
-
-**Provides:**
-- 🏗️ Core system operations
-- 🔧 Low-level file handling
-- 🌐 Cross-platform abstractions
-- ⚡ Optimized performance
+### DoTheWorld (C Library)
+- License: MIT ([link](https://github.com/OUIsolutions/DoTheWorld))
+- Source: https://github.com/OUIsolutions/DoTheWorld
+- Description: Core system operations, low-level file handling, cross-platform, optimized.
 
 <details>
-<summary>📄 <strong>DoTheWorld License (MIT)</strong></summary>
+<summary>DoTheWorld License (MIT)</summary>
 
 ```
 MIT License
@@ -196,25 +144,15 @@ SOFTWARE.
 </details>
 
 ---
+## JSON & Data Processing
 
-## 📄 JSON & Data Processing
-
-### 🌊 cJSON
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/DaveGamble/cJSON)
-[![Language](https://img.shields.io/badge/Language-C-orange.svg)](#)
-
-**What it is:** Ultra-fast JSON parsing and generation
-
-**From:** https://github.com/DaveGamble/cJSON
-
-**Why it's great:**
-- ⚡ **Lightning fast** - Optimized C implementation
-- 🔧 **Easy to use** - Simple API for complex JSON
-- 🛡️ **Robust** - Handles malformed JSON gracefully
-- 📦 **Lightweight** - Minimal memory footprint
+### cJSON
+- License: MIT ([link](https://github.com/DaveGamble/cJSON))
+- Source: https://github.com/DaveGamble/cJSON
+- Description: Fast JSON parsing/generation, robust, lightweight.
 
 <details>
-<summary>📄 <strong>cJSON License (MIT)</strong></summary>
+<summary>cJSON License (MIT)</summary>
 
 ```
 MIT License
@@ -243,25 +181,15 @@ SOFTWARE.
 </details>
 
 ---
+## Security & Cryptography
 
-## 🔐 Security & Cryptography
-
-### 🔒 SHA-256
-[![License](https://img.shields.io/badge/License-0BSD-green.svg)](https://github.com/amosnier/sha-2)
-[![Security](https://img.shields.io/badge/Security-Cryptographic%20Hash-red.svg)](#)
-
-**What it is:** Secure hash algorithm for data integrity
-
-**From:** https://github.com/amosnier/sha-2
-
-**Used for:**
-- 🛡️ **File integrity** checking
-- 🔐 **Secure hashing** of data
-- ✅ **Verification** of embedded content
-- 🔒 **Security** features in Darwin
+### SHA-256
+- License: 0BSD ([link](https://github.com/amosnier/sha-2))
+- Source: https://github.com/amosnier/sha-2
+- Description: Secure hash algorithm for data integrity, file integrity, verification, security features.
 
 <details>
-<summary>📄 <strong>SHA-256 License (Zero Clause BSD)</strong></summary>
+<summary>SHA-256 License (Zero Clause BSD)</summary>
 
 ```
 Zero Clause BSD License
@@ -282,92 +210,54 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 </details>
 
 ---
-
-## 📊 License Compatibility Matrix
+## License Compatibility Matrix
 
 | License | Commercial Use | Redistribution | Modification | Patent Grant | Copyleft |
 |---------|---------------|----------------|--------------|--------------|----------|
-| **MIT** | ✅ Yes | ✅ Yes | ✅ Yes | ❌ No | ❌ No |
-| **0BSD** | ✅ Yes | ✅ Yes | ✅ Yes | ❌ No | ❌ No |
+| MIT     | Yes           | Yes            | Yes          | No           | No       |
+| 0BSD    | Yes           | Yes            | Yes          | No           | No       |
 
-### 🎯 What This Means for You
+**Summary:**
+- Commercial use allowed
+- Closed source allowed
+- No royalties
+- Attribution recommended for redistribution
+- Worldwide, perpetual rights
 
-- ✅ **Commercial projects** - Use Darwin in any commercial software
-- ✅ **Closed source** - Your Darwin-compiled programs can be proprietary  
-- ✅ **No royalties** - Never pay licensing fees
-- ✅ **No attribution required** - Though we'd appreciate it! 😊
-- ✅ **Worldwide use** - Valid in all countries
-- ✅ **Perpetual license** - Rights never expire
+---
+## Contributing Back
+
+Ways to help:
+- Star the [Darwin repository](https://github.com/OUIsolutions/Darwin)
+- Report bugs, suggest features, improve documentation, submit pull requests
+- Support and contribute to dependencies (Lua, LuaCEmbed, LuaDoTheWorld, cJSON, crypto libraries)
+
+---
+## License FAQ
+
+- Can I use Darwin in commercial products? **Yes.**
+- Do I need to share my source code? **No.**
+- Can I modify Darwin and keep changes private? **Yes.**
+- Do I need to include license notices? **Recommended for redistribution.**
+- Can I sell Darwin-compiled programs? **Yes.**
+
+For legal questions, consult a lawyer or read the full license texts above.
+
+---
+## Hall of Fame
+
+Special thanks to the developers of these libraries:
+
+| Project      | Maintainer           | Country   | Fun Fact                      |
+|--------------|----------------------|-----------|-------------------------------|
+| Lua          | PUC-Rio Team         | Brazil    | Created for oil exploration   |
+| LuaCEmbed    | Mateus Queiroz       | Brazil    | Powers Darwin's core magic    |
+| LuaDoTheWorld| OUI Solutions        | Brazil    | Makes file ops a breeze       |
+| cJSON        | Dave Gamble          | Global    | Used by millions of projects  |
+| SHA-256      | Alain Mosnier        | Global    | Keeps your data secure        |
 
 ---
 
-## 🤝 Contributing Back
+Thank you to all open source contributors who make Darwin possible!
 
-While not required, here are ways to give back to the community:
-
-### 🌟 For Darwin
-- ⭐ **Star** the [Darwin repository](https://github.com/OUIsolutions/Darwin)
-- 🐛 **Report bugs** you encounter
-- 💡 **Suggest features** that would help you
-- 📖 **Improve documentation** like this guide
-- 🔀 **Submit pull requests** with improvements
-
-### ❤️ For Dependencies
-- 🌙 **Support Lua** - Use it in your projects, contribute to the ecosystem
-- 🔧 **Contribute to LuaCEmbed** - Help improve C-Lua integration
-- 🗂️ **Help LuaDoTheWorld** - Add new features for file operations
-- 📄 **Support cJSON** - One of the most used JSON libraries
-- 🔐 **Crypto libraries** - Security is everyone's responsibility
-
----
-
-## 📞 Questions About Licenses?
-
-### 🤔 Common Questions
-
-**Q: Can I use Darwin in my commercial product?**  
-A: ✅ **Yes!** All licenses are commercial-friendly.
-
-**Q: Do I need to share my source code?**  
-A: ❌ **No!** None of the licenses require this.
-
-**Q: Can I modify Darwin and not share changes?**  
-A: ✅ **Yes!** You can keep modifications private.
-
-**Q: Do I need to include license notices?**  
-A: 📋 **It's recommended** but most licenses only require it if you redistribute the source code.
-
-**Q: Can I sell Darwin-compiled programs?**  
-A: ✅ **Absolutely!** No restrictions on selling your applications.
-
-### 🆘 Need Legal Advice?
-
-While we've made our licenses as clear as possible, we're developers, not lawyers! For specific legal questions:
-
-- 📞 **Consult a lawyer** familiar with software licensing
-- 📚 **Read the full license texts** provided above
-- 🤝 **Contact the dependency maintainers** directly if needed
-
----
-
-## 🏆 Hall of Fame
-
-**Special thanks to all the amazing developers who created these libraries!**
-
-| Project | Maintainer | Country | Fun Fact |
-|---------|------------|---------|----------|
-| 🌙 **Lua** | PUC-Rio Team | 🇧🇷 Brazil | Created for oil exploration! |
-| 🔧 **LuaCEmbed** | Mateus Queiroz | 🇧🇷 Brazil | Powers Darwin's core magic |
-| 🗂️ **LuaDoTheWorld** | OUI Solutions | 🇧🇷 Brazil | Makes file ops a breeze |
-| 📄 **cJSON** | Dave Gamble | 🌍 Global | Used by millions of projects |
-| 🔐 **SHA-256** | Alain Mosnier | 🌍 Global | Keeps your data secure |
-
----
-
-<div align="center">
-
-**🙏 Thank you to all open source contributors who make projects like Darwin possible!**
-
-**Back:** [🏗️ Build Guide](build.md) | **Home:** [🏠 Main README](../README.md)
-
-</div>
+Back: [Build Guide](build.md) | Home: [Main README](../README.md)
