@@ -57,13 +57,7 @@ Want to learn how to use Darwin with AI assistance? Download the [ai_doc.md](htt
 |[debian_static.deb](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/debian_static.deb)       | Debian package for easy installation                             |
 |[rpm_static_build.rpm](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/rpm_static_build.rpm)       | RPM package for easy installation            |
 
-## Installations Tutorials
-| **Tutorial**                                                  | **Description**                                       |
-|---------------------------------------------------------------|------------------------------------------------------ |
-| [OneFile](docs/instalations/one_file.md)                      | Single File Library Installation Guide (the most easy)|
-| [Precompiled](docs/instalations/precompiled.md)               | Precompiled Library Installation Guide                |
-| [Full Directory](docs/instalations/full_dir.md)               | Full Directory Library Installation Guide             |
-| [Build from Scratch](docs/instalations/build_from_scratch.md) | Building Darwin from Source Code             | 
+
 
 ## [Public API](docs/public_api.md)
 Click here [Public API](docs/public_api.md) to see the full list of public API functions.
