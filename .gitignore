@@ -4,3 +4,4 @@ release
 assets/api/LuaCEmbedOne.c
 debug.lua
 .cache
+*.out
