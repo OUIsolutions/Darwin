@@ -1,28 +1,22 @@
 
-# 🔧 API Usage Guide - Advanced Project Creation
-
-[![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow.svg)](#)
-[![Time](https://img.shields.io/badge/Reading%20Time-10%20minutes-blue.svg)](#)
-[![Use Case](https://img.shields.io/badge/Use%20Case-Complex%20Projects-purple.svg)](#)
+# API Usage Guide - Advanced Project Creation
 
 **Learn how to create sophisticated Darwin projects using the programmatic API!**
 
-## 🎯 What is the Darwin API?
+## What is the Darwin API?
 
 The Darwin API lets you create **blueprint files** that define complex compilation setups. Think of it as a **recipe** for building your project programmatically instead of using long command lines.
 
-### 📋 Table of Contents
-- [🚀 Getting Started](#-getting-started)
-- [📝 Working with Lua](#-working-with-lua)
-- [⚙️ Working with C](#️-working-with-c)
-- [🏗️ Generation Options](#️-generation-options)
-- [📚 Built-in Libraries](#-built-in-libraries)
+### Table of Contents
+- [Getting Started](#getting-started)
+- [Working with Lua](#working-with-lua)
+- [Working with C](#working-with-c)
+- [Generation Options](#generation-options)
+- [Built-in Libraries](#built-in-libraries)
 
----
+## Getting Started
 
-## 🚀 Getting Started
-
-### 📦 Create Your First Project
+### Create Your First Project
 **Step 1:** Create a blueprint file (e.g., `darwinconf.lua`)
 
 ```lua
@@ -53,11 +47,9 @@ gcc myapp.c -o myapp.out
 ./myapp.out
 ```
 
-> 🎯 **What happened?** Darwin took your Lua code, wrapped it in C, and created a source file ready for compilation!
+**What happened?** Darwin took your Lua code, wrapped it in C, and created a source file ready for compilation!
 
----
-
-## 📝 Working with Lua
+## Working with Lua
 
 ### ✍️ Adding Inline Lua Code
 **When to use:** For small scripts or configuration

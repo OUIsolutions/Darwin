@@ -1,56 +1,40 @@
-# 🖥️ Command Line Usage Guide
+# Command Line Usage Guide
 
-[![Difficulty](https://img.shields.io/badge/Difficulty-Beginner-green.svg)](#)
-[![Time](https://img.shields.io/badge/Reading%20Time-5%20minutes-blue.svg)](#)
-[![Examples](https://img.shields.io/badge/Examples-12+-orange.svg)](#)
+## Table of Contents
+- [Basic Compilation](#basic-compilation)
+- [Advanced Options](#advanced-options)
+- [Embedding Resources](#embedding-resources)
+- [C Integration](#c-integration)
+- [Project Blueprints](#project-blueprints)
+- [Type Annotations](#type-annotations)
+- [Quick Reference](#quick-reference)
 
-**Learn how to use Darwin from the command line with easy examples!**
+## Basic Compilation
 
-## 🎯 Table of Contents
-- [📦 Basic Compilation](#-basic-compilation)
-- [🔧 Advanced Options](#-advanced-options)
-- [📁 Embedding Resources](#-embedding-resources)
-- [⚙️ C Integration](#️-c-integration)
-- [🎨 Project Blueprints](#-project-blueprints)
-- [📝 Type Annotations](#-type-annotations)
-
----
-
-## 📦 Basic Compilation
-
-### 🐧 Create a Linux Executable
-**What it does:** Converts your Lua script into a Linux binary that runs anywhere
+### Linux Executable
+Converts your Lua script into a Linux binary:
 
 ```bash
 # Basic compilation
 darwin main.lua -o my_program.out
 
-# Real example
+# Example
 darwin calculator.lua -o calc.out
-./calc.out  # Run your calculator!
+./calc.out
 ```
 
-> 💡 **Tip:** The `.out` extension is just a convention - you can name it anything!
-
-### 🪟 Create a Windows Executable
-**What it does:** Creates a `.exe` file that runs on Windows
+### Windows Executable
+Creates a `.exe` file (can be done from Linux):
 
 ```bash
-# Windows compilation
 darwin main.lua -o my_program.exe
-
-# Real example
 darwin game.lua -o awesome_game.exe
 ```
 
-> 🎯 **Note:** You can compile for Windows even from Linux!
+## Advanced Options
 
----
-
-## 🔧 Advanced Options
-
-### 🛠️ Custom Compiler
-**When to use:** When you want to use a specific compiler like `clang` instead of `gcc`
+### Custom Compiler
+Use a specific compiler instead of the default:
 
 ```bash
 # Use clang instead of gcc
@@ -60,8 +44,8 @@ darwin main.lua -o my_program.out -compiler clang
 darwin main.lua -o my_program.exe -compiler x86_64-w64-mingw32-gcc
 ```
 
-### 🏴 Compilation Flags
-**When to use:** When you need special compilation options
+### Compilation Flags
+Add special compilation options:
 
 ```bash
 # Add static linking
@@ -74,14 +58,10 @@ darwin main.lua -o my_program.out -flags -DMY_DEFINITION -flags -O2
 darwin main.lua -o my_program.out -flags -g -flags -DDEBUG
 ```
 
-> 📚 **What are flags?** Think of them as special instructions for the compiler
+## Embedding Resources
 
----
-
-## 📁 Embedding Resources
-
-### 🖼️ Embed Files (Images, Data, etc.)
-**What it does:** Puts files directly inside your executable - no external files needed!
+### Embed Files
+Include files directly in your executable:
 
 ```bash
 # Embed an image
@@ -96,43 +76,32 @@ darwin main.lua -o my_app.out \
   -embed_vars data -data:file data.csv
 ```
 
-**In your Lua code:**
+Access embedded files in Lua:
 ```lua
--- Access your embedded files
 print("Logo size:", #logo)  -- logo variable contains the file data
 local config = json.decode(config)  -- config variable contains the JSON
 ```
 
-### 📂 Embed Entire Folders
-**What it does:** Includes a whole folder and all its contents in your executable
+### Embed Folders
+Include entire folders:
 
 ```bash
-# Embed a templates folder
 darwin main.lua -o my_app.out -embed_vars templates -templates:folder ./templates/
-
-# Embed assets folder
 darwin main.lua -o my_app.out -embed_vars assets -assets:folder ./assets/
 ```
 
-### 📝 Embed Text Data
-**What it does:** Includes text directly in your program
+### Embed Text Data
+Include text directly:
 
 ```bash
-# Embed a welcome message
-darwin main.lua -o my_app.out -embed_vars welcome -welcome:text "Welcome to my awesome app!"
-
-# Embed version info
+darwin main.lua -o my_app.out -embed_vars welcome -welcome:text "Welcome to my app!"
 darwin main.lua -o my_app.out -embed_vars version -version:text "v1.0.0"
 ```
 
-> 🎯 **Pro Tip:** Embedding makes your app portable - it works even without the original files!
+## C Integration
 
----
-
-## ⚙️ C Integration
-
-### 📚 Include C Header Files
-**What it does:** Lets you use C libraries and custom C code
+### Include C Header Files
+Use C libraries and custom C code:
 
 ```bash
 # Include a C header
@@ -142,7 +111,7 @@ darwin main.lua -o my_program.out -c_include my_functions.h
 darwin main.lua -o my_program.out -c_include math_utils.h -c_include file_utils.h
 ```
 
-**Example C header (my_functions.h):**
+Example C header (my_functions.h):
 ```c
 #include "LuaCEmbed.c"
 
@@ -155,8 +124,8 @@ void calculate_something(LuaCEmbed *lua) {
 }
 ```
 
-### 🚀 Call C Functions
-**What it does:** Runs your C functions from Lua
+### Call C Functions
+Run C functions from Lua:
 
 ```bash
 # Call a C function during startup
@@ -169,10 +138,10 @@ darwin main.lua -o my_program.out \
   -c_calls setup_logging
 ```
 
-> 📖 **Function Requirements:** C functions must accept `LuaCEmbed *lua` and return `void`
+**Note:** C functions must accept `LuaCEmbed *lua` and return `void`
 
-### 📦 Load C Libraries as Lua Objects
-**What it does:** Makes C libraries available as Lua objects
+### Load C Libraries as Lua Objects
+Make C libraries available as Lua objects:
 
 ```bash
 # Load DoTheWorld library as 'dtw' object
@@ -184,15 +153,14 @@ darwin main.lua -o my_program.out \
   --lib_objects json --json:func load_luaFluidJson
 ```
 
-**In your Lua code:**
+Use in Lua code:
 ```lua
--- Use the loaded C library
 dtw.file_exists("myfile.txt")
 local data = json.decode('{"name": "John"}')
 ```
 
-### 🔗 Add C Amalgamations
-**What it does:** Includes entire C libraries in one file
+### Add C Amalgamations
+Include entire C libraries:
 
 ```bash
 # Add a C amalgamation
@@ -204,12 +172,10 @@ darwin main.lua -o my_program.out \
   -amalgamation network_lib.c
 ```
 
----
+## Project Blueprints
 
-## 🎨 Project Blueprints
-
-### 📋 Run a Blueprint File
-**What it does:** Uses a configuration file to build complex projects
+### Run a Blueprint File
+Use configuration files to build complex projects:
 
 ```bash
 # Run a specific blueprint
@@ -219,27 +185,20 @@ darwin run_blueprint my_config.lua
 darwin run_blueprint
 ```
 
-**Example blueprint file (darwinconf.lua):**
+Example blueprint file (darwinconf.lua):
 ```lua
--- Create your project
 local project = darwin.create_project("MyAwesomeApp")
-
--- Add your main Lua file
 project.add_lua_file("src/main.lua")
-
--- Add C integration
 project.add_c_include("libs/custom.h")
 project.add_c_call("init_custom_lib")
-
--- Generate the executable
 project.generate_c_file({
     output = "myapp.c",
     include_lua_cembed = true
 })
 ```
 
-### 📁 Build from Folder
-**What it does:** Automatically includes all Lua files in a folder and calls `main()`
+### Build from Folder
+Automatically include all Lua files in a folder:
 
 ```bash
 # Build entire folder (looks for main() function)
@@ -249,7 +208,7 @@ darwin run_blueprint my_project_folder --mode folder
 darwin run_blueprint src/ --mode folder
 ```
 
-**Folder structure example:**
+Required folder structure:
 ```
 my_project/
 ├── main.lua        ← Must have main() function
@@ -259,25 +218,17 @@ my_project/
     └── config.lua  ← Also included
 ```
 
----
+## Type Annotations
 
-## 📝 Type Annotations
-
-### 🏷️ Get Type Definitions
-**What it does:** Creates type definition files for better IDE support
+Generate type definition files for better IDE support:
 
 ```bash
-# Generate type annotations
 darwin drop_types
 ```
 
-This creates files that help your code editor understand Darwin's functions and provide better autocomplete!
+## Quick Reference
 
----
-
-## 🎯 Quick Reference
-
-### Most Common Commands
+### Common Commands
 ```bash
 # Simple compilation
 darwin script.lua -o program.out
@@ -296,8 +247,8 @@ darwin run_blueprint config.lua
 ```
 
 ### Flags Summary
-| Flag | What it does | Example |
-|------|--------------|---------|
+| Flag | Description | Example |
+|------|-------------|---------|
 | `-o` | Output file name | `-o myapp.out` |
 | `-compiler` | Set compiler | `-compiler clang` |
 | `-flags` | Compiler flags | `-flags -static` |
@@ -307,18 +258,12 @@ darwin run_blueprint config.lua
 | `--lib_objects` | Load C library | `--lib_objects dtw --dtw:func load_luaDoTheWorld` |
 | `-amalgamation` | Include C amalgamation | `-amalgamation biglib.c` |
 
----
+## Need Help?
 
-## 🆘 Need Help?
-
-- 🐛 **Something not working?** Check our [troubleshooting guide](../README.md#community--support)
-- 📖 **Want more examples?** See our [API documentation](api_usage.md)
-- 💡 **Have questions?** [Ask the community](https://github.com/OUIsolutions/Darwin/discussions)
+- **Issues?** Check our [troubleshooting guide](../README.md#community--support)
+- **More examples?** See our [API documentation](api_usage.md)
+- **Questions?** [Ask the community](https://github.com/OUIsolutions/Darwin/discussions)
 
 ---
 
-<div align="center">
-
-**Next:** [🔧 Learn API Usage](api_usage.md) | **Back:** [🏠 Main README](../README.md)
-
-</div>
+**Next:** [Learn API Usage](api_usage.md) | **Back:** [Main README](../README.md)
