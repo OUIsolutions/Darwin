@@ -1,2 +1,2 @@
 darwin.chunk_size = 1048576 ---One mega
-darwin.version = "0.8.0"
+darwin.version = "0.11.0"

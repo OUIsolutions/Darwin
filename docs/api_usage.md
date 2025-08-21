@@ -1,11 +1,11 @@
 
 # API Usage Guide - Advanced Project Creation
 
-**Learn how to create sophisticated Darwin projects using the programmatic API!**
+Learn how to create sophisticated Darwin projects using the programmatic API.
 
 ## What is the Darwin API?
 
-The Darwin API lets you create **blueprint files** that define complex compilation setups. Think of it as a **recipe** for building your project programmatically instead of using long command lines.
+The Darwin API lets you create blueprint files that define complex compilation setups. Think of it as a recipe for building your project programmatically instead of using long command lines.
 
 ### Table of Contents
 - [Getting Started](#getting-started)
@@ -17,7 +17,7 @@ The Darwin API lets you create **blueprint files** that define complex compilati
 ## Getting Started
 
 ### Create Your First Project
-**Step 1:** Create a blueprint file (e.g., `darwinconf.lua`)
+Create a blueprint file (e.g., `darwinconf.lua`):
 
 ```lua
 -- Create a new project
@@ -36,23 +36,23 @@ project.generate_c_file({
 })
 ```
 
-**Step 2:** Run the blueprint
+Run the blueprint:
 ```bash
 darwin run_blueprint darwinconf.lua
 ```
 
-**Step 3:** Compile the generated C code
+Compile the generated C code:
 ```bash
 gcc myapp.c -o myapp.out
 ./myapp.out
 ```
 
-**What happened?** Darwin took your Lua code, wrapped it in C, and created a source file ready for compilation!
+Darwin takes your Lua code, wraps it in C, and creates a source file ready for compilation.
 
 ## Working with Lua
 
-### ✍️ Adding Inline Lua Code
-**When to use:** For small scripts or configuration
+### Adding Inline Lua Code
+For small scripts or configuration:
 
 ```lua
 local project = darwin.create_project("Calculator")
@@ -73,8 +73,8 @@ project.add_lua_code([[
 ]])
 ```
 
-### 📄 Adding Lua Files
-**When to use:** For existing Lua scripts
+### Adding Lua Files
+For existing Lua scripts:
 
 ```lua
 local project = darwin.create_project("FileProcessor")
@@ -87,8 +87,8 @@ project.add_lua_file("src/utils.lua")
 project.add_lua_file("src/config.lua")
 ```
 
-### 🔗 Smart Dependency Resolution
-**When to use:** When your Lua files use `require()` or `package.load_lib()`
+### Smart Dependency Resolution
+When your Lua files use `require()` or `package.load_lib()`:
 
 ```lua
 local project = darwin.create_project("WebServer")
@@ -97,20 +97,18 @@ local project = darwin.create_project("WebServer")
 project.add_lua_file_following_require("src/server.lua")
 ```
 
-**Example:** If `server.lua` contains:
+If `server.lua` contains:
 ```lua
 local http = require("http_utils")
 local db = require("database")
 local json = package.load_lib("json_parser")
 ```
 
-Darwin will automatically find and include `http_utils.lua`, `database.lua`, and `json_parser` in your project!
+Darwin will automatically find and include `http_utils.lua`, `database.lua`, and `json_parser` in your project.
 
-> 💡 **Magic!** No more hunting for dependencies - Darwin finds them all!
+### Generate Lua Outputs
 
-### 🎯 Generate Lua Outputs
-
-#### 📁 Create a Standalone Lua File
+#### Create a Standalone Lua File
 ```lua
 -- Generate a single Lua file with everything included
 project.generate_lua_file({
@@ -119,7 +117,7 @@ project.generate_lua_file({
 })
 ```
 
-#### 📜 Get Lua Code as String
+#### Get Lua Code as String
 ```lua
 -- Get the generated code in a variable
 local complete_code = project.generate_lua_code({
@@ -129,7 +127,7 @@ local complete_code = project.generate_lua_code({
 print("Generated code length:", #complete_code)
 ```
 
-#### 🌊 Stream Lua Generation
+#### Stream Lua Generation
 ```lua
 -- Process the code as it's generated (useful for large projects)
 project.generate_lua_complex({
@@ -142,12 +140,10 @@ project.generate_lua_complex({
 })
 ```
 
----
+## Working with C
 
-## ⚙️ Working with C
-
-### 📚 Adding C Headers
-**When to use:** When you need to include C libraries or custom functions
+### Adding C Headers
+When you need to include C libraries or custom functions:
 
 ```lua
 local project = darwin.create_project("SystemTool")
@@ -160,8 +156,8 @@ project.add_c_include("stdlib.h")
 project.add_c_include("src/custom_functions.h")
 ```
 
-### 📂 Adding C Source Files
-**When to use:** For complex C integration with dependency tracking
+### Adding C Source Files
+For complex C integration with dependency tracking:
 
 ```lua
 local project = darwin.create_project("GraphicsApp")
@@ -185,8 +181,8 @@ end
 project.add_c_file("src/graphics.c", follow_includes, verify_callback)
 ```
 
-### 🚀 Adding C Function Calls
-**When to use:** To run C functions during program startup
+### Adding C Function Calls
+To run C functions during program startup:
 
 ```lua
 local project = darwin.create_project("DatabaseApp")
@@ -200,7 +196,7 @@ project.add_c_call("setup_logging")
 project.add_c_call("load_configuration")
 ```
 
-**Your C functions must look like this:**
+Your C functions must look like this:
 ```c
 #include "LuaCEmbed.c"
 
@@ -215,8 +211,8 @@ void setup_logging(LuaCEmbed *lua) {
 }
 ```
 
-### 📦 Load C Libraries as Lua Objects
-**When to use:** To make C libraries available in Lua
+### Load C Libraries as Lua Objects
+To make C libraries available in Lua:
 
 ```lua
 local project = darwin.create_project("DataProcessor")
@@ -238,18 +234,16 @@ project.add_lua_code([[
 ]])
 ```
 
-> 📖 **Note:** The C function (e.g., `load_luaDoTheWorld`) must follow this pattern:
+Note: The C function (e.g., `load_luaDoTheWorld`) must follow this pattern:
 > ```c
 > int load_luaDoTheWorld(lua_State *state);
 > ```
 
----
+## Generation Options
 
-## 🏗️ Generation Options
+### Generate C Executables
 
-### ⚙️ Generate C Executables
-
-#### 📁 Create C Source File
+#### Create C Source File
 ```lua
 -- Generate C code for compilation
 project.generate_c_file({
@@ -258,7 +252,7 @@ project.generate_c_file({
 })
 ```
 
-#### 📜 Get C Code as String
+#### Get C Code as String
 ```lua
 -- Get the C code in memory
 local c_code = project.generate_c_code({
@@ -271,7 +265,7 @@ file:write(c_code)
 file:close()
 ```
 
-#### 🌊 Stream C Generation
+#### Stream C Generation
 ```lua
 -- Process C code in chunks
 project.generate_c_complex({
@@ -283,9 +277,9 @@ project.generate_c_complex({
 })
 ```
 
-### 📚 Generate C Libraries
+### Generate C Libraries
 
-#### 📁 Create Shared Library File
+#### Create Shared Library File
 ```lua
 -- Generate a .so/.dll library
 project.generate_c_lib_file({
@@ -296,7 +290,7 @@ project.generate_c_lib_file({
 })
 ```
 
-#### 📜 Get Library Code as String
+#### Get Library Code as String
 ```lua
 local lib_code = project.generate_c_lib_code({
     include_lua_cembed = true,
@@ -305,7 +299,7 @@ local lib_code = project.generate_c_lib_code({
 })
 ```
 
-#### 🌊 Stream Library Generation
+#### Stream Library Generation
 ```lua
 project.generate_c_lib_complex({
     stream = function(code_chunk)
@@ -318,34 +312,32 @@ project.generate_c_lib_complex({
 })
 ```
 
-**Usage of generated library:**
+Usage of generated library:
 ```lua
 -- In another Lua script
 local awesome = require("awesome_lib")
 awesome.do_something()
 ```
 
----
-
-## 📚 Built-in Libraries
+## Built-in Libraries
 
 Darwin comes with powerful built-in libraries ready to use:
 
-### 🛠️ Available Libraries
+### Available Libraries
 
 | Object Name | Library | Description | Use Case |
 |-------------|---------|-------------|----------|
-| 🔧 `darwin.camalgamator` | [LuaCAmalgamator](https://github.com/OUIsolutions/LuaCAmalgamator) | C code amalgamation | Combining C files |
-| 🌍 `darwin.dtw` | [LuaDoTheWorld](https://github.com/OUIsolutions/LuaDoTheWorld) | File/system operations | File management |
-| 🎨 `darwin.candango` | [candangoEngine](https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine) | Template engine | Dynamic content |
-| 📄 `darwin.json` | [LuaFluidJson](https://github.com/OUIsolutions/LuaFluidJson) | JSON processing | API data handling |
-| 🔗 `darwin.argv` | [LuaArgv](https://github.com/OUIsolutions/LuaArgv) | Command line parsing | CLI applications |
-| ⛓️ `darwin.silverchain` | [LuaSilverChain](https://github.com/OUIsolutions/LuaSilverChain) | Method chaining | Fluent APIs |
-| 🚢 `darwin.ship` | [LuaShip](https://github.com/OUIsolutions/LuaShip) | Package management | Dependency handling |
+| `darwin.camalgamator` | [LuaCAmalgamator](https://github.com/OUIsolutions/LuaCAmalgamator) | C code amalgamation | Combining C files |
+| `darwin.dtw` | [LuaDoTheWorld](https://github.com/OUIsolutions/LuaDoTheWorld) | File/system operations | File management |
+| `darwin.candango` | [candangoEngine](https://github.com/SamuelHenriqueDeMoraisVitrio/candangoEngine) | Template engine | Dynamic content |
+| `darwin.json` | [LuaFluidJson](https://github.com/OUIsolutions/LuaFluidJson) | JSON processing | API data handling |
+| `darwin.argv` | [LuaArgv](https://github.com/OUIsolutions/LuaArgv) | Command line parsing | CLI applications |
+| `darwin.silverchain` | [LuaSilverChain](https://github.com/OUIsolutions/LuaSilverChain) | Method chaining | Fluent APIs |
+| `darwin.ship` | [LuaShip](https://github.com/OUIsolutions/LuaShip) | Package management | Dependency handling |
 
-### 🎯 Quick Examples
+### Quick Examples
 
-#### 🌍 File Operations with DoTheWorld
+#### File Operations with DoTheWorld
 ```lua
 local project = darwin.create_project("FileManager")
 
@@ -371,7 +363,7 @@ project.add_lua_code([[
 ]])
 ```
 
-#### 📄 JSON Processing
+#### JSON Processing
 ```lua
 local project = darwin.create_project("APIClient")
 
@@ -394,7 +386,7 @@ project.add_lua_code([[
 ]])
 ```
 
-#### 🔗 Command Line Arguments
+#### Command Line Arguments
 ```lua
 local project = darwin.create_project("CLI_Tool")
 
@@ -419,9 +411,7 @@ project.add_lua_code([[
 ]])
 ```
 
----
-
-## 🎯 Complete Example: Web Server
+## Complete Example: Web Server
 
 Here's a complete example that combines multiple features:
 
@@ -467,63 +457,57 @@ project.generate_c_file({
 })
 ```
 
-**To build:**
+To build:
 ```bash
 darwin run_blueprint server_config.lua
 gcc webserver.c -o webserver.out
 ./webserver.out
 ```
 
----
-
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
-#### ❌ "Function not found" Error
+#### "Function not found" Error
 ```lua
--- ❌ Wrong: Function name doesn't exist
+-- Wrong: Function name doesn't exist
 project.add_c_call("non_existent_function")
 
--- ✅ Correct: Make sure function is declared in included header
+-- Correct: Make sure function is declared in included header
 project.add_c_include("my_functions.h")  -- Contains the function
 project.add_c_call("my_actual_function")
 ```
 
-#### ❌ "Cannot follow require" Error
+#### "Cannot follow require" Error
 ```lua
--- ❌ Wrong: File doesn't exist
+-- Wrong: File doesn't exist
 project.add_lua_file_following_require("missing_file.lua")
 
--- ✅ Correct: Check file exists first
+-- Correct: Check file exists first
 if darwin.dtw.file_exists("src/main.lua") then
     project.add_lua_file_following_require("src/main.lua")
 end
 ```
 
-#### ❌ Library Loading Issues
+#### Library Loading Issues
 ```lua
--- ❌ Wrong: Function signature doesn't match
+-- Wrong: Function signature doesn't match
 project.load_lib_from_c("wrong_signature_func", "myobj")
 
--- ✅ Correct: Use proper function signature
+-- Correct: Use proper function signature
 -- int your_func(lua_State *state)
 project.load_lib_from_c("proper_signature_func", "myobj")
 ```
 
----
+## Next Steps
 
-## 🎓 Next Steps
-
-1. 📖 **Practice:** Try the examples above
-2. 🔍 **Explore:** Check the [CLI documentation](cli_usage.md) for simpler workflows
-3. 🏗️ **Build:** Create your own blueprint for your project
-4. 🤝 **Share:** Show your creations to the [Darwin community](https://github.com/OUIsolutions/Darwin/discussions)
-
----
+1. Practice: Try the examples above
+2. Explore: Check the [CLI documentation](cli_usage.md) for simpler workflows
+3. Build: Create your own blueprint for your project
+4. Share: Show your creations to the [Darwin community](https://github.com/OUIsolutions/Darwin/discussions)
 
 <div align="center">
 
-**Next:** [🏗️ Build Guide](build.md) | **Back:** [🖥️ CLI Usage](cli_usage.md) | **Home:** [🏠 Main README](../README.md)
+**Next:** [Build Guide](build.md) | **Back:** [CLI Usage](cli_usage.md) | **Home:** [Main README](../README.md)
 
 </div>

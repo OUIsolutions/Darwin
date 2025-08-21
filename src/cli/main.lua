@@ -5,8 +5,10 @@
 
 private_darwin.main = function()
     darwin.argv.get_arg_by_index(1)
-    if darwin.argv.one_of_args_exist("run_blueprint") then
+    if darwin.argv.one_of_args_exist({"run_blueprint","run_blueprints"}) then
         Perform_blue_print()
+    elseif darwin.argv.one_of_args_exist("list_blueprints") then
+        Describe_blue_prints()
     elseif darwin.argv.one_of_args_exist("drop_types") then
         Drop_types()
     elseif darwin.argv.one_of_args_exist("drop_lua_cembed") then
