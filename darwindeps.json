@@ -21,10 +21,11 @@
         "dest": "dependencies/luaDoTheWorld_no_dep.c"
     },
     {
-        "type": "gitrepo",
+        "type": "gitrelease",
+        "cli":"curl",
         "repo": "SamuelHenriqueDeMoraisVitrio/candangoEngine",
-        "dest": "dependencies/candangoEngine",
-        "branch": "V0.003"
+        "file":"CandangoEngine.c",
+        "dest": "dependencies/candangoEngine.c"
     },
     {
         "type": "gitrelease",
