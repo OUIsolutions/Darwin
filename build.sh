@@ -1,1 +1,0 @@
-darwin2 run_blueprint darwinconf.lua amalgamation_build
