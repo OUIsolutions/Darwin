@@ -40,6 +40,16 @@ This compiler is designed for developers who need to:
 - **Lua amalgamation** - Single file distribution
 - **SO library generation** - Create shared libraries from Lua code
 
+
+### Linux Installation 
+```bash
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/linux_bin.out -o darwin.out && chmod +x darwin.out &&   mv darwin.out /usr/local/bin/darwin 
+```
+### Mac-Os Instalation
+```bash
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/amalgamation.c -o amalgamation.c && gcc amalgamation.c -o darwin.out && mv darwin.out /usr/local/bin/darwin && rm amalgamation.c 
+```
+
 ### AI/LLM Integration
 
 Want to learn how to use Darwin with AI assistance? Download the [ai_doc.md](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/ai_doc.md) file and paste its contents to your preferred AI assistant (ChatGPT, Claude, Copilot, etc.) for interactive learning and code examples.
