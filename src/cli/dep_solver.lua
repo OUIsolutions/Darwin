@@ -51,7 +51,8 @@ local function release_download(dep)
             error("Failed to download file: " .. dep.file, 0)
         end
         darwin.dtw.write_file( dep.dest, temp_content)
-        darwin.dtw.remove_any(temp_path)
+        darwin.dtw.remove_any("temp")
+
         return
 
     end
