@@ -15,6 +15,7 @@ local function release_download(dep)
     if darwin.dtw.isfile(dep.dest) then
         return
     end
+    darwin.dtw.remove_any("temp")
 
     if dep.cli == "curl" then
         
@@ -26,7 +27,16 @@ local function release_download(dep)
         local command = "curl -L https://github.com/" .. dep.repo .."/releases/"..tag.."/download/"..dep.file.." -o temp"
         os.execute(command)
 
-    elseif dep.cli == "gh" then
+
+        local temp_content = darwin.dtw.load_file("temp")
+        if temp_content == nil or temp_content == "Not Found" then
+            error("Failed to download file: " .. dep.file, 0)
+        end
+        darwin.dtw.write_file( dep.dest, temp_content)
+        darwin.dtw.remove_any("temp")
+        return
+    end 
+    if dep.cli == "gh" then
         if dep.tag then
             local command = "gh release download " .. dep.tag .. " -R " .. dep.repo .. " --pattern " .. dep.file .. " -D temp"
             os.execute(command)
@@ -35,15 +45,18 @@ local function release_download(dep)
             local command = "gh release download -R " .. dep.repo .. " --pattern " .. dep.file .. " -D temp"
             os.execute(command)
         end
-    else
-        error("invalid dep mode:"..dep.cli,0)
+        local temp_path = "temp/" .. dep.file
+        local temp_content = darwin.dtw.load_file(temp_path)
+        if temp_content == nil or temp_content == "Not Found" then
+            error("Failed to download file: " .. dep.file, 0)
+        end
+        darwin.dtw.write_file( dep.dest, temp_content)
+        darwin.dtw.remove_any(temp_path)
+        return
+
     end
-    local temp_content = darwin.dtw.load_file("temp")
-    if temp_content == nil or temp_content == "Not Found" then
-        error("Failed to download file: " .. dep.file, 0)
-    end
-    darwin.dtw.write_file( dep.dest, temp_content)
-    darwin.dtw.remove_any("temp")
+    error("invalid dep mode:"..dep.cli,0)
+
 end
 
 local function url_download(dep)
