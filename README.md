@@ -1,7 +1,7 @@
 <div align="center">
 
 # Darwin
-![Lua Logo](https://img.shields.io/badge/Darwin-0.11.0-blue?style=for-the-badge&logo=lua)
+![Lua Logo](https://img.shields.io/badge/Darwin-0.12.0-blue?style=for-the-badge&logo=lua)
 [![GitHub Release](https://img.shields.io/github/release/OUIsolutions/Darwin.svg?style=for-the-badge)](https://github.com/OUIsolutions/Darwin/releases)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://github.com/OUIsolutions/Darwin/blob/main/LICENSE)
 ![Status](https://img.shields.io/badge/Status-Alpha-orange?style=for-the-badge)
@@ -43,16 +43,16 @@ This compiler is designed for developers who need to:
 
 ### Linux Installation 
 ```bash
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/linux_bin.out -o darwin.out && chmod +x darwin.out &&   mv darwin.out /usr/local/bin/darwin 
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.12.0/darwin_linux_bin.out -o darwin.out && chmod +x darwin.out &&   mv darwin.out /usr/local/bin/darwin 
 ```
 ### Mac-Os Instalation
 ```bash
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/amalgamation.c -o amalgamation.c && gcc amalgamation.c -o darwin.out && sudo mv darwin.out /usr/local/bin/darwin && rm amalgamation.c 
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.12.0/darwin.c -o darwin.c && gcc darwin.c -o darwin.out && sudo mv darwin.out /usr/local/bin/darwin && rm darwin.c 
 ```
 
 ### AI/LLM Integration
 
-Want to learn how to use Darwin with AI assistance? Download the [ai_doc.md](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/ai_doc.md) file and paste its contents to your preferred AI assistant (ChatGPT, Claude, Copilot, etc.) for interactive learning and code examples.
+Want to learn how to use Darwin with AI assistance? Download the [ai_doc.md](https://github.com/OUIsolutions/Darwin/releases/download/0.12.0/ai_doc.md) file and paste its contents to your preferred AI assistant (ChatGPT, Claude, Copilot, etc.) for interactive learning and code examples.
 
 ---
 
@@ -61,11 +61,11 @@ Want to learn how to use Darwin with AI assistance? Download the [ai_doc.md](htt
 
 |  **File**                                                                                                           | **What is**                                |
 |---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-|[amalgamation.c](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/amalgamation.c) | A Amalgamation Containing all the Library  |
-|[linux_bin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/linux_bin.out)   | Ready-to-use Linux binary           |
-|[windowsi32.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/windowsi32.exe)       | Ready-to-use Windows 32-bit executable                         |
-|[debian_static.deb](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/debian_static.deb)       | Debian package for easy installation                             |
-|[rpm_static_build.rpm](https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/rpm_static_build.rpm)       | RPM package for easy installation            |
+|[darwin.c](https://github.com/OUIsolutions/Darwin/releases/download/0.12.0/darwin.c) | A Amalgamation Containing all the Library  |
+|[darwin_linux_bin.out](https://github.com/OUIsolutions/Darwin/releases/download/0.12.0/darwin_linux_bin.out)   | Ready-to-use Linux binary           |
+|[darwini32.exe](https://github.com/OUIsolutions/Darwin/releases/download/0.12.0/darwini32.exe)       | Ready-to-use Windows 32-bit executable                         |
+|[darwin.deb](https://github.com/OUIsolutions/Darwin/releases/download/0.12.0/darwin.deb)       | Debian package for easy installation                             |
+|[darwin.rpm](https://github.com/OUIsolutions/Darwin/releases/download/0.12.0/darwin.rpm)       | RPM package for easy installation            |
 
 
 
