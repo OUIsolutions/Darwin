@@ -22,7 +22,7 @@ function windowsi32_build()
             { "././release", "/release" },
 
         },
-        command = compiler..[[ --static    /release/amalgamation.c  -o /release/windowsi32.exe -lws2_32]]
+        command = compiler..[[ --static    /release/darwin.c  -o /release/darwini32.exe -lws2_32]]
     })
 end
 
@@ -30,6 +30,6 @@ darwin.add_recipe({
     name="windowsi32_build",
     requires={"amalgamation"},
     description="build a 32-bit Windows executable",
-    outs={"release/windowsi32.exe"},
+    outs={"release/darwini32.exe"},
     callback=windowsi32_build
 })

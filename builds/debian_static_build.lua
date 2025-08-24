@@ -23,7 +23,7 @@ Description: SUMARY
 
     darwin.dtw.copy_any_overwriting(
 
-        "release/linux_bin.out",
+        "release/darwin_linux_bin.out",
         '.cache/debian_static_build/project/usr/local/bin/' .. PROJECT_NAME
     )
     local POST_INSTALL = 
@@ -47,7 +47,7 @@ Description: SUMARY
             { "./release",                          "/release" },
 
         },
-        command = "chmod 755 /project/DEBIAN/postinst &&  dpkg-deb --build /project /release/debian_static.deb"
+        command = "chmod 755 /project/DEBIAN/postinst &&  dpkg-deb --build /project /release/darwin.deb"
     })
 end
 
@@ -55,6 +55,6 @@ darwin.add_recipe({
     name="debian_static_build",
     requires={"linux_bin"},
     description="create a debian package from the static linux binary",
-    outs={"release/debian_static.deb"},
+    outs={"release/darwin.deb"},
     callback=debian_static_build
 })

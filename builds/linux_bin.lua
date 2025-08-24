@@ -16,7 +16,7 @@ function linux_bin()
         volumes = {
             { "././release", "/release" },
         },
-        command = compiler..[[ --static /release/amalgamation.c  -o /release/linux_bin.out]]
+        command = compiler..[[ --static /release/darwin.c  -o /release/darwin_linux_bin.out]]
 
     })
 end
@@ -25,6 +25,6 @@ darwin.add_recipe({
     name="linux_bin",
     requires={"amalgamation"},
     description="make a static compiled linux binary of the project",
-    outs={"release/linux_bin.out"},
+    outs={"release/darwin_linux_bin.out"},
     callback=linux_bin
 })
