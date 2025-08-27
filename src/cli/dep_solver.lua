@@ -1,15 +1,7 @@
 
 
 
-local function release_download(dep)
-    local cli = nil 
-    if os.execute("gh --version")  then
-        cli = "gh"
-    elseif os.execute("curl --version")  then
-        cli = "curl"
-    end
-    cli = "curl"
-    print("cli",cli)
+local function release_download(dep, cli)
     if not dep.file then
         error("file not provided",0)
     end
@@ -118,6 +110,16 @@ end
 
 
 function dep_solver()
+    -- Detect CLI tool once per dep_solver call
+    local cli = nil
+    if os.execute("gh --version") then
+        cli = "gh"
+    elseif os.execute("curl --version") then
+        cli = "curl"
+    else
+       error("no suitable CLI tool found")
+    end
+
     local darwin_deps_json = darwin.dtw.load_file("darwindeps.json")
     if not darwin_deps_json then
         return 
@@ -126,7 +128,7 @@ function dep_solver()
     for i=1,#deps do 
         local current = deps[i]
         if current.type == "gitrelease" then 
-            release_download(current) 
+            release_download(current, cli) 
         elseif current.type == "gitrepo" then
             git_download(current)
         elseif current.type == "url" then
