@@ -8,7 +8,7 @@ local function release_download(dep)
     elseif os.execute("curl --version")  then
         cli = "curl"
     end
-
+    cli = "curl"
     print("cli",cli)
     if not dep.file then
         error("file not provided",0)
@@ -27,13 +27,18 @@ local function release_download(dep)
     if cli  == "curl" then
         
         local tag = dep.tag
+        local command = nil
+        if dep.tag then
+            command = "curl -L https://github.com/" .. dep.repo .."/releases/download/"..dep.tag.."/"..dep.file.." -o temp"
+
+        end
         if not dep.tag then
-            tag = "latest"
+            command = "curl -L https://github.com/" .. dep.repo .."/releases/latest/download/"..dep.file.." -o temp"
         end
 
-        local command = "curl -L https://github.com/" .. dep.repo .."/releases/"..tag.."/download/"..dep.file.." -o temp"
         os.execute(command)
-
+    
+        
 
         local temp_content = darwin.dtw.load_file("temp")
         if temp_content == nil or temp_content == "Not Found" then
