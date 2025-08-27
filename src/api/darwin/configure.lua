@@ -25,3 +25,27 @@ darwin.get_global_config = function (prop)
     end
     return darwin.dtw.interpret_serialized_var(serialized)
 end
+
+darwin.get_local_config_dir = function ()
+    local current_dir = darwin.dtw.get_current_dir(".")
+    local current_repo_sha = darwin.dtw.generate_sha(current_dir)
+    local config_dir = darwin.get_config_dir()
+    return config_dir .. current_repo_sha .. "/"
+end
+
+darwin.configure_local = function (prop, value)
+    local config_dir = darwin.get_local_config_dir()
+    local serialized = darwin.dtw.serialize_var(value)
+    local sha_prop = darwin.dtw.generate_sha(prop)
+    darwin.dtw.write_file(config_dir.."/"..sha_prop, serialized)
+end
+
+darwin.get_local_config = function (prop)
+    local config_dir = darwin.get_local_config_dir()
+    local sha_prop = darwin.dtw.generate_sha(prop)
+    local serialized = darwin.dtw.load_file(config_dir.."/"..sha_prop)
+    if not serialized then
+        return nil
+    end
+    return darwin.dtw.interpret_serialized_var(serialized)
+end
