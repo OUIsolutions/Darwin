@@ -27,7 +27,7 @@ darwin.get_global_config = function (prop)
 end
 
 darwin.get_local_config_dir = function ()
-    local current_dir = darwin.dtw.get_current_dir(".")
+    local current_dir = darwin.dtw.get_absolute_path(".")
     local current_repo_sha = darwin.dtw.generate_sha(current_dir)
     local config_dir = darwin.get_config_dir()
     return config_dir .. current_repo_sha .. "/"
