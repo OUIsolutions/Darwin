@@ -2,6 +2,16 @@
 
 
 local function release_download(dep)
+    local cli = darwin.get_local_config("cli")
+    if not cli then 
+        cli = darwin.get_global_config("cli")
+    end 
+    if not cli then 
+        error("cli not configured, run: darwin set_local_config <curl|gh> or darwin set_global_config <curl|gh>",0)
+    end
+    if cli ~= "curl" and cli ~= "gh" then
+        error("invalid cli, must be curl or gh",0)
+    end
 
     if not dep.file then
         error("file not provided",0)
@@ -17,7 +27,7 @@ local function release_download(dep)
     end
     darwin.dtw.remove_any("temp")
 
-    if dep.cli == "curl" then
+    if cli  == "curl" then
         
         local tag = dep.tag
         if not dep.tag then
@@ -36,7 +46,7 @@ local function release_download(dep)
         darwin.dtw.remove_any("temp")
         return
     end 
-    if dep.cli == "gh" then
+    if cli == "gh" then
         if dep.tag then
             local command = "gh release download " .. dep.tag .. " -R " .. dep.repo .. " --pattern " .. dep.file .. " -D temp"
             os.execute(command)
@@ -56,7 +66,6 @@ local function release_download(dep)
         return
 
     end
-    error("invalid dep mode:"..dep.cli,0)
 
 end
 
