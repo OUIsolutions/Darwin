@@ -13,6 +13,10 @@ private_darwin.main = function()
         Drop_types()
     elseif darwin.argv.one_of_args_exist("drop_lua_cembed") then
         Drop_lua_cembed()
+    elseif darwin.argv.one_of_args_exist("global_config") then
+        Global_configure()
+    elseif darwin.argv.one_of_args_exist("get_global_config") then
+         Get_global_config()
     elseif darwin.argv.flags_exist({ "help" }) or darwin.argv.one_of_args_exist("help") then
         Drop_help()
     elseif darwin.argv.flags_exist({ "version" }) or darwin.argv.one_of_args_exist("version") then
