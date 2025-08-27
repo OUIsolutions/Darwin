@@ -2,17 +2,14 @@
 
 
 local function release_download(dep)
-    local cli = darwin.get_local_config("cli")
-    if not cli then 
-        cli = darwin.get_global_config("cli")
-    end 
-    if not cli then 
-        error("cli not configured, run: darwin set_local_config <curl|gh> or darwin set_global_config <curl|gh>",0)
-    end
-    if cli ~= "curl" and cli ~= "gh" then
-        error("invalid cli, must be curl or gh",0)
+    local cli = nil 
+    if os.execute("gh --version")  then
+        cli = "gh"
+    elseif os.execute("curl --version")  then
+        cli = "curl"
     end
 
+    print("cli",cli)
     if not dep.file then
         error("file not provided",0)
     end
