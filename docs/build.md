@@ -16,7 +16,7 @@
 
 ```bash
 # Download and compile in one step
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/darwin.c -o darwin.c && gcc darwin.c -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.c -o darwin.c && gcc darwin.c -o darwin.out
 ```
 
 **That's it!** You now have a working `darwin.out` executable.
@@ -26,7 +26,7 @@ curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.11.0/darwin.c
 
 ### Prerequisites
 - Podman installed (or Docker as alternative)
-- Darwin v0.020+ installed
+- Darwin 0.13.0+ installed
 - Git repository cloned
 
 ### Linux Builds
@@ -98,7 +98,7 @@ sudo apt update
 sudo apt install -y gcc git curl podman
 
 # Install Darwin if you don't have it
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.out -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.out -o darwin.out
 sudo chmod +x darwin.out
 sudo mv darwin.out /usr/bin/darwin
 ```
@@ -109,7 +109,7 @@ sudo mv darwin.out /usr/bin/darwin
 sudo dnf install -y gcc git curl podman
 
 # Install Darwin
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.out -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.out -o darwin.out
 sudo chmod +x darwin.out
 sudo mv darwin.out /usr/bin/darwin
 ```
@@ -180,7 +180,7 @@ builds/
 ### "Darwin command not found"
 ```bash
 # Install Darwin first
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.3.0/darwin.out -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.out -o darwin.out
 sudo chmod +x darwin.out
 sudo mv darwin.out /usr/bin/darwin
 ```
@@ -325,37 +325,5 @@ echo 'print("Feature test:", 42 + 58)' > test2.lua
 ./test2.out
 ```
 
-## Build Performance Tips
 
-### Speed Up Builds
 
-| Method | Speed Gain | Trade-off |
-|--------|------------|-----------|
-| Container builds | Fast | Requires containers |
-| Amalgamation + GCC | Medium | Manual compilation |
-| Parallel builds | Medium | More CPU usage |
-
-### Reduce Build Size
-```bash
-# Use Alpine static build (smallest)
-darwin run_blueprint build/ --mode folder alpine_static_build --contanizer podman
-
-# Strip debug symbols after GCC build
-gcc -Os release/darwin.c -o release/darwin.out
-strip release/darwin.out
-```
-
-## Getting Help
-
-- **Build issues?** [Open an issue](https://github.com/OUIsolutions/Darwin/issues/new)
-- **Questions?** [Join discussions](https://github.com/OUIsolutions/Darwin/discussions)  
-- **Documentation unclear?** Help us improve it!
-- **Want to contribute?** Check our [contribution guidelines](https://github.com/OUIsolutions/Darwin/blob/main/CONTRIBUTING.md)
-
----
-
-<div align="center">
-
-**Next:** [Dependencies](dependencies.md) | **Back:** [API Usage](api_usage.md) | **Home:** [Main README](../README.md)
-
-</div>

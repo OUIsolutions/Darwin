@@ -1,84 +1,84 @@
 [
     {
         "type": "gitrelease",
-        "cli":"curl",
         "repo": "OUIsolutions/MDeclare",
         "file": "MDeclareApiNoDependenciesIncluded.h",
+        "tag":"0.2.0",
         "dest": "dependencies/MDeclareApiNoDependenciesIncluded.h"
     },
     {
         "type": "gitrelease",
-        "cli":"curl",
         "repo": "OUIsolutions/LuaFluidJson",
         "file": "luaFluidJson_no_dep.c",
+        "tag":"0.6.1",
         "dest": "dependencies/luaFluidJson_no_dep.c"
     },
     {
         "type": "gitrelease",
-         "cli":"curl",
         "repo": "OUIsolutions/LuaDoTheWorld",
         "file": "luaDoTheWorld_no_dep.c",
+        "tag":"0.14.0",
         "dest": "dependencies/luaDoTheWorld_no_dep.c"
     },
     {
         "type": "gitrelease",
-        "cli":"curl",
         "repo": "SamuelHenriqueDeMoraisVitrio/candangoEngine",
         "file":"CandangoEngine.c",
+        "tag":"0.2.0",
         "dest": "dependencies/candangoEngine.c"
     },
     {
         "type": "gitrelease",
-        "cli":"curl",
+        "tag":"3.0.000",
         "repo": "OUIsolutions/CTextEngine",
         "file": "CTextEngineOne.c",
         "dest": "dependencies/CTextEngineOne.c"
     },
     {
         "type": "gitrelease",
-        "cli":"curl",
+        "tag":"0.1.0",
         "repo": "OUIsolutions/LuaMDeclare",
         "file": "luamdeclare.c",
         "dest": "dependencies/luamdeclare.c"
     },
     {
         "type": "gitrelease",
-        "cli":"curl",
         "repo": "OUIsolutions/LuaCEmbed",
+        "tag":"0.8.0",
         "file": "LuaCEmbedOne.c",
         "dest": "assets/api/LuaCEmbedOne.c"
     },
     {
         "type": "gitrelease",
-         "cli":"curl",
+        "tag":"11.1.0",
         "repo": "OUIsolutions/DoTheWorld",
         "file": "doTheWorldOne.c",
         "dest": "dependencies/doTheWorldOne.c"
     },
     {
         "type": "gitrelease",
-        "cli":"curl",
+        "tag":"0.1.0",
         "repo": "OUIsolutions/LuaArgv",
         "file": "luargv.lua",
         "dest": "dependencies/luargv.lua"
     },
     {
         "type": "gitrelease",
-        "cli":"curl",
+        "tag":"0.2.0",
         "repo": "OUIsolutions/LuaShip",
         "file": "LuaShip.lua",
         "dest": "dependencies/LuaShip.lua"
     },
     {
         "type": "gitrelease",
-        "cli":"curl",
+        "tag":"0.2.1",
         "repo": "OUIsolutions/LuaSilverChain",
         "file": "silverchain_no_dependecie_included.c",
         "dest": "dependencies/silverchain_no_dependecie_included.c"
     },
     {
         "type": "gitrelease",
-        "cli":"curl",
+        "tag":"0.1.0",
         "repo": "OUIsolutions/LuaCAmalgamator",
         "file": "lua_c_amalgamator_dependencie_not_included.c",
         "dest": "dependencies/lua_c_amalgamator_dependencie_not_included.c"
