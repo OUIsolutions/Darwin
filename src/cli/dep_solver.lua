@@ -82,7 +82,40 @@ end
 
 
 
-local function git_download(dep,mode)
+local function detect_git_protocol()
+    -- Method 1: Check if SSH key is available and can connect to GitHub
+    local ssh_test = os.execute("ssh -T git@github.com 2>/dev/null")
+    if ssh_test == 0 then
+        return "ssh"
+    end
+    
+    -- Method 2: Check git global config for credential helper or URL rewrites
+    local git_config_check = io.popen("git config --global --get-regexp 'url\\..*\\.insteadof' 2>/dev/null")
+    if git_config_check then
+        local config_output = git_config_check:read("*all")
+        git_config_check:close()
+        
+        -- Check if there are URL rewrites that indicate SSH preference
+        if config_output and config_output:match("git@github%.com") then
+            return "ssh"
+        end
+    end
+    
+    -- Method 3: Check if git credential helper is configured (indicates HTTPS preference)
+    local credential_helper = io.popen("git config --global credential.helper 2>/dev/null")
+    if credential_helper then
+        local helper_output = credential_helper:read("*all")
+        credential_helper:close()
+        if helper_output and helper_output:match("%S") then
+            return "https"
+        end
+    end
+    
+    -- Default to HTTPS if no clear SSH setup is detected
+    return "https"
+end
+
+local function git_download(dep, mode)
     if not dep.repo then 
         error("repo not provided",0)
     end
@@ -93,6 +126,8 @@ local function git_download(dep,mode)
         return 
     end 
     darwin.dtw.remove_any("temp")
+    
+    
     local command = nil
     if mode == "ssh" then 
         command = "git clone git@github.com:" .. dep.repo .. ".git temp"
@@ -123,7 +158,7 @@ function dep_solver()
     else
        error("no suitable CLI tool found")
     end
-
+    local mode =  detect_git_protocol()
     local darwin_deps_json = darwin.dtw.load_file("darwindeps.json")
     if not darwin_deps_json then
         return 
@@ -134,7 +169,7 @@ function dep_solver()
         if current.type == "gitrelease" then 
             release_download(current, cli) 
         elseif current.type == "gitrepo" then
-            git_download(current)
+            git_download(current, mode)
         elseif current.type == "url" then
             url_download(current)
         else 
