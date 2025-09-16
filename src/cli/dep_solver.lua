@@ -118,7 +118,6 @@ function dep_solver()
     else
        error("no suitable CLI tool found")
     end
-    local mode =  detect_git_protocol()
     local darwin_deps_json = darwin.dtw.load_file("darwindeps.json")
     if not darwin_deps_json then
         return 
