@@ -44,7 +44,7 @@
     {
         "type": "gitrelease",
         "repo": "OUIsolutions/LuaCEmbed",
-        "tag":"0.8.0",
+        "tag":"0.11.0",
         "file": "LuaCEmbedOne.c",
         "dest": "assets/api/LuaCEmbedOne.c"
     },
