@@ -82,7 +82,7 @@ end
 
 
 
-local function git_download(dep)
+local function git_download(dep,mode)
     if not dep.repo then 
         error("repo not provided",0)
     end
@@ -93,15 +93,19 @@ local function git_download(dep)
         return 
     end 
     darwin.dtw.remove_any("temp")
+    local command = nil
+    if mode == "ssh" then 
+        command = "git clone git@github.com:" .. dep.repo .. ".git temp"
+    end
+    if mode == "https" then
+        command = "git clone https://github.com/" .. dep.repo .. ".git temp"
+    end
 
-    local command = "git clone " .. "https://github.com/"..dep.repo ..".git" .." temp"
     os.execute(command)
     if not dtw.isdir("temp") then
         error("Failed to clone repository: " .. dep.repo, 0)
     end
     os.execute("cd temp && git checkout " .. dep.branch)
-
-    
     darwin.dtw.move_any_overwriting("temp",dep.dest)
     darwin.dtw.remove_any("temp")
 
