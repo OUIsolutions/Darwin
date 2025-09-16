@@ -19,7 +19,7 @@ function Perform_blue_print()
     if not file_or_folder then
         file_or_folder = "darwinconf.lua"        
     end
-    if not argv.flags_exist({ "no_dep_install"}) then
+    if not darwin.argv.flags_exist({ "no_dep_install"}) then
         dep_solver()
     end 
     if blue_print_mode == "folder" then
