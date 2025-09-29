@@ -12,7 +12,7 @@ local function release_download(dep, cli)
         error("repo not provided",0)
     end
     if darwin.dtw.isfile(dep.dest) then
-        dtw.remove_any(dep.dest)    
+        darwin.dtw.remove_any(dep.dest)    
     end
     darwin.dtw.remove_any("temp")
 
@@ -71,7 +71,7 @@ local function url_download(dep)
         error("dest not provided",0)
     end
     if darwin.dtw.isfile(dep.dest) then 
-        dtw.remove_any(dep.dest)
+        darwin.dtw.remove_any(dep.dest)
     end 
 
     local command = "curl -L " .. dep.url .. " -o temp"
@@ -90,13 +90,13 @@ local function git_download(dep)
         error("dest not provided",0)
     end
     if darwin.dtw.isdir(dep.dest) then 
-         dtw.remove_any(dep.dest)
+         darwin.dtw.remove_any(dep.dest)
     end 
     darwin.dtw.remove_any("temp")
 
     local command = "git clone " .. "https://github.com/"..dep.repo ..".git" .." temp"
     os.execute(command)
-    if not dtw.isdir("temp") then
+    if not darwin.dtw.isdir("temp") then
         error("Failed to clone repository: " .. dep.repo, 0)
     end
     os.execute("cd temp && git checkout " .. dep.branch)
@@ -119,11 +119,22 @@ function dep_solver()
     else
        error("no suitable CLI tool found")
     end
+    local possible_darwindeps = darwin.argv.get_next_unused()
 
-    local darwin_deps_json = darwin.dtw.load_file("darwindeps.json")
+    local darwin_deps_json = nil 
+    
+    if possible_darwindeps then 
+        darwin_deps_json = darwin.dtw.load_file(possible_darwindeps)
+    end
+    if not possible_darwindeps then 
+        darwin_deps_json = darwin.dtw.load_file("darwindeps.json")
+    end
+    
     if not darwin_deps_json then
+        print("No darwindeps.json file found")
         return 
     end
+
     local deps = darwin.json.load_from_string(darwin_deps_json)
     for i=1,#deps do 
         local current = deps[i]
