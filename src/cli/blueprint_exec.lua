@@ -20,7 +20,7 @@ function Perform_blue_print()
         file_or_folder = "darwinconf.lua"        
     end
 
-  dep_solver()
+
     
     if blue_print_mode == "folder" then
         private_darwin.print_yellow("WARNING: DEPRICATED MODE:use darwinconf.lua instead\n")

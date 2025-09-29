@@ -12,7 +12,7 @@ local function release_download(dep, cli)
         error("repo not provided",0)
     end
     if darwin.dtw.isfile(dep.dest) then
-        return
+        dtw.remove_any(dep.dest)    
     end
     darwin.dtw.remove_any("temp")
 
@@ -71,7 +71,7 @@ local function url_download(dep)
         error("dest not provided",0)
     end
     if darwin.dtw.isfile(dep.dest) then 
-        return 
+        dtw.remove_any(dep.dest)
     end 
 
     local command = "curl -L " .. dep.url .. " -o temp"
@@ -90,7 +90,7 @@ local function git_download(dep)
         error("dest not provided",0)
     end
     if darwin.dtw.isdir(dep.dest) then 
-        return 
+         dtw.remove_any(dep.dest)
     end 
     darwin.dtw.remove_any("temp")
 
