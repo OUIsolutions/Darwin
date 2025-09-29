@@ -7,7 +7,7 @@ private_darwin.main = function()
     darwin.argv.get_arg_by_index(1)
     if darwin.argv.one_of_args_exist({"run_blueprint","run_blueprints"}) then
         Perform_blue_print()
-    elseif darwin.argv.one_of_args_exist({"list_blueprints","list_blueprint"}) then
+    elseif darwin.argv.one_of_args_exist({"list_blueprints","list_blueprint","list"}) then
         Describe_blue_prints()
     elseif darwin.argv.one_of_args_exist({"install_deps","install"}) then
         dep_solver()
