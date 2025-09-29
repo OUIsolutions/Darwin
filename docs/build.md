@@ -2,7 +2,7 @@
 
 ### Prerequisites
 - Podman installed (or Docker as alternative)
-- Darwin 0.13.0+ installed
+- Darwin 0.15.0+ installed
 - Git repository cloned
 - Dependencies installed with `darwin install` from Source
 
@@ -116,7 +116,7 @@ sudo apt update
 sudo apt install -y gcc git curl podman
 
 # Install Darwin if you don't have it
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.out -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.15.0/darwin.out -o darwin.out
 sudo chmod +x darwin.out
 sudo mv darwin.out /usr/bin/darwin
 ```
@@ -127,7 +127,7 @@ sudo mv darwin.out /usr/bin/darwin
 sudo dnf install -y gcc git curl podman
 
 # Install Darwin
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.out -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.15.0/darwin.out -o darwin.out
 sudo chmod +x darwin.out
 sudo mv darwin.out /usr/bin/darwin
 ```
@@ -202,7 +202,7 @@ builds/
 ### "Darwin command not found"
 ```bash
 # Install Darwin first
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.out -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.15.0/darwin.out -o darwin.out
 sudo chmod +x darwin.out
 sudo mv darwin.out /usr/bin/darwin
 ```
