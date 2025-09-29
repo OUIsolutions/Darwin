@@ -32,7 +32,7 @@ curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.15.0/darwin.c
 
 ### Prerequisites
 - Podman installed (or Docker as alternative)
-- Darwin 0.13.0+ installed
+- Darwin 0.15.0+ installed
 - Git repository cloned
 
 ### Linux Builds
