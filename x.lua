@@ -1,0 +1,1 @@
+print( argv.one_of_args_exist({"install_deps","install"}))
