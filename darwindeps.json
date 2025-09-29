@@ -57,7 +57,7 @@
     },
     {
         "type": "gitrelease",
-        "tag":"0.1.0",
+        "tag":"0.1.1",
         "repo": "OUIsolutions/LuaArgv",
         "file": "luargv.lua",
         "dest": "dependencies/luargv.lua"

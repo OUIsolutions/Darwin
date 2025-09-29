@@ -1,4 +1,10 @@
-# Build Guide - Compile Darwin from Source
+# Build Guide - Compile ### Container Build (Recommended for Development)
+
+### Prerequisites
+- Podman installed (or Docker as alternative)
+- Darwin 0.15.0+ installed
+- Git repository cloned
+- Dependencies installed with `darwin install` from Source
 
 **Build Darwin from source code for development or custom deployments.**
 
@@ -16,7 +22,7 @@
 
 ```bash
 # Download and compile in one step
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.c -o darwin.c && gcc darwin.c -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.15.0/darwin.c -o darwin.c && gcc darwin.c -o darwin.out
 ```
 
 **That's it!** You now have a working `darwin.out` executable.
@@ -26,7 +32,7 @@ curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.c
 
 ### Prerequisites
 - Podman installed (or Docker as alternative)
-- Darwin 0.13.0+ installed
+- Darwin 0.15.0+ installed
 - Git repository cloned
 
 ### Linux Builds
@@ -34,6 +40,9 @@ curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.c
 # Clone the repository
 git clone https://github.com/OUIsolutions/Darwin.git
 cd Darwin
+
+# Install dependencies first (required before running blueprints)
+darwin install
 
 # Linux static build (small, portable)
 darwin run_blueprint --target linux_bin
@@ -47,6 +56,9 @@ darwin run_blueprint --target debian_static_build
 
 ### Windows Builds
 ```bash
+# Install dependencies first (required before running blueprints)
+darwin install
+
 # Windows 32-bit build
 darwin run_blueprint --target windowsi32_build
 
@@ -55,6 +67,9 @@ darwin run_blueprint --target windowsi32_build
 
 ### Build Multiple Targets
 ```bash
+# Install dependencies first (required before running blueprints)
+darwin install
+
 # Build all Linux variants
 darwin run_blueprint --target linux_bin rpm_static_build debian_static_build
 
@@ -84,6 +99,9 @@ darwin run_blueprint --target all
 git clone https://github.com/OUIsolutions/Darwin.git
 cd Darwin
 
+# Install dependencies first (required before running blueprints)
+darwin install
+
 # Generate amalgamation and compile with GCC
 darwin run_blueprint --target amalgamation
 
@@ -98,7 +116,7 @@ sudo apt update
 sudo apt install -y gcc git curl podman
 
 # Install Darwin if you don't have it
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.out -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.15.0/darwin.out -o darwin.out
 sudo chmod +x darwin.out
 sudo mv darwin.out /usr/bin/darwin
 ```
@@ -109,7 +127,7 @@ sudo mv darwin.out /usr/bin/darwin
 sudo dnf install -y gcc git curl podman
 
 # Install Darwin
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.out -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.15.0/darwin.out -o darwin.out
 sudo chmod +x darwin.out
 sudo mv darwin.out /usr/bin/darwin
 ```
@@ -123,6 +141,9 @@ sudo mv darwin.out /usr/bin/darwin
 # Clone repository
 git clone https://github.com/OUIsolutions/Darwin.git
 cd Darwin
+
+# Install dependencies first (required before running blueprints)
+darwin install
 
 # Generate only the C amalgamation
 darwin run_blueprint --target amalgamation
@@ -168,19 +189,20 @@ builds/
 
 ### Build Process Steps
 
-1. **Dependency Collection** - Gather all required C files
-2. **Amalgamation** - Combine into single C file
-3. **Container Setup** - Prepare build environment (if using containers)
-4. **Compilation** - Build executable with appropriate flags
-5. **Testing** - Verify the build works correctly
-6. **Packaging** - Place results in `release/` folder
+1. **Install Dependencies** - Run `darwin install` to set up required dependencies
+2. **Dependency Collection** - Gather all required C files
+3. **Amalgamation** - Combine into single C file
+4. **Container Setup** - Prepare build environment (if using containers)
+5. **Compilation** - Build executable with appropriate flags
+6. **Testing** - Verify the build works correctly
+7. **Packaging** - Place results in `release/` folder
 
 ## Troubleshooting
 
 ### "Darwin command not found"
 ```bash
 # Install Darwin first
-curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.13.0/darwin.out -o darwin.out
+curl -L https://github.com/OUIsolutions/Darwin/releases/download/0.15.0/darwin.out -o darwin.out
 sudo chmod +x darwin.out
 sudo mv darwin.out /usr/bin/darwin
 ```
@@ -242,6 +264,9 @@ sudo dnf groupinstall "Development Tools"  # Fedora/RHEL
 
 ```bash
 # The containerization is handled internally by the blueprint system
+# Install dependencies first (required)
+darwin install
+
 # Simply run your desired target
 darwin run_blueprint --target linux_bin
 
@@ -300,6 +325,9 @@ gcc -g -DDEBUG release/amalgamation.c -o darwin_debug.out
 ```bash
 # Quick development cycle
 edit_source_files()
+
+# Install dependencies first (required)
+darwin install
 
 # Generate amalgamation and compile
 darwin run_blueprint build/ --mode folder amalgamation_build

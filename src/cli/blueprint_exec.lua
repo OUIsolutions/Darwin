@@ -19,9 +19,9 @@ function Perform_blue_print()
     if not file_or_folder then
         file_or_folder = "darwinconf.lua"        
     end
-    if not darwin.argv.flags_exist({ "no_dep_install"}) then
-        dep_solver()
-    end 
+
+
+    
     if blue_print_mode == "folder" then
         private_darwin.print_yellow("WARNING: DEPRICATED MODE:use darwinconf.lua instead\n")
         if not darwin.dtw.isdir(file_or_folder) then
