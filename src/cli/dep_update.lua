@@ -64,7 +64,7 @@ function dep_update()
         ::continue::
     end
 
-    local updated_json = darwin.json.dump_to_string(deps, "    ")
+    local updated_json = darwin.json.dumps_to_string(deps,true)
     darwin.dtw.write_file(deps_file_path, updated_json)
     private_darwin.print_green("\nDependencies file updated: " .. deps_file_path .. "\n")
   
