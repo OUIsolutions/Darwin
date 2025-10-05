@@ -57,7 +57,7 @@ function dep_update()
             local current_asset = assets[j]
             if current_asset.name == current.dest then
                 current.tag = parsed.tag
-                current_asset.updated_at = current.updated_at
+                current.updated_at = current.updated_at
             end
         end
 
