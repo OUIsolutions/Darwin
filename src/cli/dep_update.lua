@@ -1,52 +1,4 @@
-local function get_latest_release_tag(repo)
-    local command = "gh release list -R " .. repo .. " --limit 1 --json tagName -q '.[0].tagName'"
-    local handle = io.popen(command)
-    if not handle then
-        return nil
-    end
-    local result = handle:read("*a")
-    handle:close()
-    
-    if result and result ~= "" then
-        return result:gsub("%s+", "") -- trim whitespace
-    end
-    return nil
-end
 
-local function compare_versions(v1, v2)
-    -- Simple version comparison (e.g., "0.12.0" vs "0.13.0")
-    -- Returns true if v2 is higher than v1
-    if not v1 or not v2 then
-        return false
-    end
-    
-    -- Remove 'v' prefix if present
-    v1 = v1:gsub("^v", "")
-    v2 = v2:gsub("^v", "")
-    
-    local parts1 = {}
-    for part in v1:gmatch("[^.]+") do
-        table.insert(parts1, tonumber(part) or 0)
-    end
-    
-    local parts2 = {}
-    for part in v2:gmatch("[^.]+") do
-        table.insert(parts2, tonumber(part) or 0)
-    end
-    
-    local max_len = math.max(#parts1, #parts2)
-    for i = 1, max_len do
-        local p1 = parts1[i] or 0
-        local p2 = parts2[i] or 0
-        if p2 > p1 then
-            return true
-        elseif p2 < p1 then
-            return false
-        end
-    end
-    
-    return false
-end
 
 function dep_update()
     -- Check if gh CLI is available
@@ -90,30 +42,8 @@ function dep_update()
             goto continue
         end
         
-        -- Get latest release
-        private_darwin.print_blue("Checking for updates: " .. current.repo .. "\n")
-        local latest_tag = get_latest_release_tag(current.repo)
         
-        if not latest_tag then
-            private_darwin.print_red("Failed to get latest release for: " .. current.repo .. "\n")
-            goto continue
-        end
-        
-        local current_tag = current.tag
-        
-        -- If no current tag, update to latest
-        if not current_tag then
-            private_darwin.print_green("Updating " .. current.dest .. ": no tag -> " .. latest_tag .. "\n")
-            deps[i].tag = latest_tag
-            updated = true
-        -- If current tag is different and latest is higher, update
-        elseif current_tag ~= latest_tag and compare_versions(current_tag, latest_tag) then
-            private_darwin.print_green("Updating " .. current.dest .. ": " .. current_tag .. " -> " .. latest_tag .. "\n")
-            deps[i].tag = latest_tag
-            updated = true
-        else
-            print("No update needed for " .. current.dest .. " (current: " .. current_tag .. ")")
-        end
+
         
         ::continue::
     end
