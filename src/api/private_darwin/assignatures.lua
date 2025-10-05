@@ -13,7 +13,7 @@ end
 
 private_darwin.generate_assignature = function (elements)
     
-    local hasher = darwin.dtw.newHash()
+    local hasher = darwin.dtw.newHasher()
     for i = 1, #elements do
         local current_item = elements[i]
         if not  private_darwin.assignatures[current_item] then 
