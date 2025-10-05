@@ -53,6 +53,8 @@ function main()
            os.execute("git commit -m 'release: prepare new release'")
            os.execute("git push")
            
+
+           
            session.sendMessage({ text = "Release prepared successfully. on darwin" })
 
 
