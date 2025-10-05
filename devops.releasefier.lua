@@ -41,7 +41,8 @@ function main()
            os.execute("git add .")
            os.execute("git commit -m 'release: prepare new release'")
            os.execute("darwin run_blueprint --target all")
-
+           shipyard.generate_release_from_json("release.json")
+           
         end,
       cache_name="release",
       cache_dir=".cachify",
