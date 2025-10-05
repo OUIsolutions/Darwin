@@ -10,6 +10,8 @@ cachify.execute_config({
     callback = function()
         dtw.remove_any("dependencies")
         os.execute("darwin install darwindeps.json")
+        os.execute("git add .")
+        os.execute("git commit -m 'deps: update dependencies'")
       end,
     cache_name="teste",
     cache_dir=".cachify",
