@@ -29,7 +29,7 @@ darwin.run_recipe = function (name)
             for j=1,#build.outs do
                 local cached_path = ".darwincache/" .. assignature .. "/" .. build.outs[j]
                 if darwin.dtw.isfile(cached_path) then
-                    private_darwin.print_green("Using cached output: " .. build.outs[j] .. "\n")
+                    private_darwin.print_yellow("Using cached output: " .. build.outs[j] .. "\n")
                     darwin.dtw.copy_any_overwriting(
                         cached_path,
                         build.outs[j]

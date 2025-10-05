@@ -26,6 +26,6 @@ darwin.add_recipe({
     requires={"amalgamation"},
     description="make a static compiled linux binary of the project",
     outs={"release/darwin_linux_bin.out"},
-    inputs={"src","dependencies","assets"},
+    inputs={"release/darwin.c"},
     callback=linux_bin
 })
