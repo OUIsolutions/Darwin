@@ -34,6 +34,7 @@ darwin.run_recipe = function (name)
                         cached_path,
                         build.outs[j]
                     )
+                    build.done = true
                 end
             end             
         end 
