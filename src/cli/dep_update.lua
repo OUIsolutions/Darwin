@@ -55,7 +55,8 @@ function dep_update()
         local assets = parsed.assets
         for j=1,#assets do 
             local current_asset = assets[j]
-            if current_asset.name == current.dest then
+            if current_asset.name == current.file then
+                print("Updating " .. current.dest .. " from " .. (current.tag or "none") .. " to " .. parsed.tag .. "\n")
                 current.tag = parsed.tag
                 current.updated_at = current.updated_at
             end
