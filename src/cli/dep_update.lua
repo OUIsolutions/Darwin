@@ -58,7 +58,7 @@ function dep_update()
             if current_asset.name == current.file then
                 print("Updating " .. current.dest .. " from " .. (current.tag or "none") .. " to " .. parsed.tag .. "\n")
                 current.tag = parsed.tag
-                current.updated_at = current.updated_at
+                current.updated_at = current_asset.updated_at
             end
         end
 
