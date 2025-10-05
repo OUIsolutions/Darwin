@@ -1,6 +1,19 @@
 local cachify = load_global_module("cachify")
 
-function darwin_deps_update()
+
+function main()
+  os.execute("git restore .")
+
+  cachify.register_first({
+      sources = {"darwindeps.json"},
+      cache_name="teste",
+      cache_dir=".cachify"
+  })
+
+
+
+  os.execute("git pull")
+  os.execute("darwin update darwindeps.json")
 
   cachify.execute_config({
       sources = {"darwindeps.json"},
@@ -14,14 +27,6 @@ function darwin_deps_update()
       cache_dir=".cachify",
       ignore_first = true
   })  
-end
-function main()
-  os.execute("git restore .")
-  darwin_deps_update()
-  os.execute("git pull")
-  os.execute("darwin update darwindeps.json")
-
-  darwin_deps_update()
 
 
 end 
