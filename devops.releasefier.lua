@@ -68,8 +68,9 @@ function main()
            if not ok then
               session.sendMessage({ text = "Error generating release: " .. error })
            end
-           
-           
+           os.execute("gh release view > release.log")
+           local log = dtw.load_file("release.log")
+           session.sendMessage({ text = "Release generated successfully. on darwin\n" .. log
         end,
       cache_name="release",
       cache_dir=".cachify",
