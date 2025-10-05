@@ -1,0 +1,17 @@
+{
+   "replacers": {
+       "BIG_VERSION": "0",
+       "SMALL_VERSION": "16",
+       "PATCH_VERSION": "0"
+   },
+   "release": "{BIG_VERSION}.{SMALL_VERSION}.{PATCH_VERSION}",
+   "tag": "{BIG_VERSION}.{SMALL_VERSION}.{PATCH_VERSION}",
+   "description": "cache darwin implementation",
+   "assets": [
+    "release/darwin_linux_bin.out",
+   "release/darwin.c",
+   "release/darwin.deb",
+   "release/darwin.rpm",
+   "release/darwini32.exe"
+]
+}
