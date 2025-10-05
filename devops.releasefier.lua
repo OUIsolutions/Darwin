@@ -16,12 +16,15 @@ function darwin_deps_update()
   })  
 end
 
+darwin_deps_update()
+
 
 os.execute("git restore .")
 os.execute("git pull")
 
-darwin_deps_update()
 
 os.execute("darwin update darwindeps.json")
 
 darwin_deps_update()
+
+
