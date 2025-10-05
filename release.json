@@ -1,12 +1,12 @@
 {
    "replacers": {
        "BIG_VERSION": "0",
-       "SMALL_VERSION": "16",
+       "SMALL_VERSION": "17",
        "PATCH_VERSION": "0"
    },
    "release": "{BIG_VERSION}.{SMALL_VERSION}.{PATCH_VERSION}",
    "tag": "{BIG_VERSION}.{SMALL_VERSION}.{PATCH_VERSION}",
-   "description": "cache darwin implementation",
+   "description": "added flag  --soft to darwin install, allowing  to install only deps that were not found",
    "assets": [
     "release/darwin_linux_bin.out",
    "release/darwin.c",
