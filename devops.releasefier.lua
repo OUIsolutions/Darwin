@@ -37,10 +37,10 @@ function main()
       sources = {"src","dependencies","assets","darwinconf.lua","builds"},
       callback = function()
            dtw.remove_any("release")
-           os.execute("darwin run_blueprint --target all")
            shipyard.increment_replacer("release.json","PATCH_VERSION")
            os.execute("git add .")
            os.execute("git commit -m 'release: prepare new release'")
+           os.execute("darwin run_blueprint --target all")
 
         end,
       cache_name="release",
