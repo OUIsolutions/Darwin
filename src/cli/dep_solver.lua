@@ -119,6 +119,7 @@ function dep_solver()
        error("no suitable CLI tool found")
     end
     local possible_darwindeps = darwin.argv.get_next_unused()
+    local soft = darwin.argv.flags_exist({"soft"})
 
     local darwin_deps_json = nil 
     
@@ -137,6 +138,13 @@ function dep_solver()
     local deps = darwin.json.load_from_string(darwin_deps_json)
     for i=1,#deps do 
         local current = deps[i]
+        if soft then 
+            if darwin.dtw.isfile(current.dest) or darwin.dtw.isdir(current.dest) then 
+                private_darwin.print_yellow("Skipping existing dep: " .. current.dest .. "\n")
+                goto continue
+            end 
+        end
+
         if current.type == "gitrelease" then 
             release_download(current, cli) 
         elseif current.type == "gitrepo" then
@@ -149,6 +157,7 @@ function dep_solver()
         else 
             error("invalid dep type:"..current.type,0)
         end 
+        ::continue::
     end 
 
 end 
