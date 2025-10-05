@@ -35,6 +35,7 @@ function main()
           os.execute("darwin install darwindeps.json")
           os.execute("git add .")
           os.execute("git commit -m 'deps: update dependencies'")
+          os.execute("git push")
           session.sendMessage({ text = "Dependencies updated successfully. on darwin" })
         end,
       cache_name="darwindeps",
@@ -50,7 +51,7 @@ function main()
            shipyard.increment_replacer("release.json","PATCH_VERSION")
            os.execute("git add .")
            os.execute("git commit -m 'release: prepare new release'")
-           
+           os.execute("git push")
            
            session.sendMessage({ text = "Release prepared successfully. on darwin" })
 
