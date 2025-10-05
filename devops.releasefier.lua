@@ -2,7 +2,6 @@ local cachify = load_global_module("cachify")
 
 os.execute("git restore .")
 os.execute("git pull")
-os.execute("darwin update darwindeps.json")
 
 
 cachify.execute_config({
@@ -17,3 +16,4 @@ cachify.execute_config({
     cache_dir=".cachify",
     ignore_first = true
 })
+os.execute("darwin update darwindeps.json")
