@@ -1,7 +1,15 @@
 local cachify = load_global_module("cachify")
 local shipyard = load_global_module("shipyard")
 
+   
+
 function main()
+
+  local session = luaberrante.newTelegramSession({
+      token = get_prop("devops.validator.token"),
+      id_chat = get_prop("devops.validator.chat_id")
+  }, luabear.fetch)
+
   os.execute("git restore .")
 
   cachify.register_first({
@@ -27,6 +35,7 @@ function main()
           os.execute("darwin install darwindeps.json")
           os.execute("git add .")
           os.execute("git commit -m 'deps: update dependencies'")
+          session.sendMessage({ text = "Dependencies updated successfully. on darwin" })
         end,
       cache_name="darwindeps",
       cache_dir=".cachify",
@@ -36,12 +45,19 @@ function main()
   cachify.execute_config({
       sources = {"src","dependencies","assets","darwinconf.lua","builds"},
       callback = function()
+           
            dtw.remove_any("release")
            shipyard.increment_replacer("release.json","PATCH_VERSION")
            os.execute("git add .")
            os.execute("git commit -m 'release: prepare new release'")
            os.execute("darwin run_blueprint --target all")
-           shipyard.generate_release_from_json("release.json")
+           local ok ,error = pcall(shipyard.generate_release_from_json,"release.json")
+           
+           local menssage = ""
+           
+           if not ok then
+              menssage = "darwin release generated the following error: "..error
+           end
            
         end,
       cache_name="release",
