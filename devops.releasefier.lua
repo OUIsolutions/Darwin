@@ -1,3 +1,5 @@
+local cachify = load_global_module("cachify")
+
 os.execute("git restore .")
 os.execute("git pull")
 
