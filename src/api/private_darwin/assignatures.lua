@@ -20,6 +20,6 @@ private_darwin.generate_assignature = function (elements)
             private_darwin.assignatures[current_item] = private_darwin.get_item_assignature(current_item)
         end 
         hasher.digest(private_darwin.assignatures[current_item])
-
     end
+    return hasher.get_value()
 end
