@@ -6,7 +6,7 @@ function main()
 
   cachify.register_first({
       sources = {"darwindeps.json"},
-      cache_name="teste",
+      cache_name="darwindeps",
       cache_dir=".cachify"
   })
 
@@ -23,7 +23,7 @@ function main()
           os.execute("git add .")
           os.execute("git commit -m 'deps: update dependencies'")
         end,
-      cache_name="teste",
+      cache_name="darwindeps",
       cache_dir=".cachify",
       ignore_first = true
   })  
