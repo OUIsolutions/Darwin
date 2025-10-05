@@ -10,7 +10,8 @@ function main()
       id_chat = get_prop("devops.validator.chat_id")
   }, luabear.fetch)
 
-  os.execute("git restore .")
+  os.execute("git fetch origin")  
+  os.execute("git reset --hard origin/main")
 
   cachify.register_first({
       sources = {"darwindeps.json"},
@@ -54,7 +55,7 @@ function main()
            os.execute("git push")
            
 
-           
+
            session.sendMessage({ text = "Release prepared successfully. on darwin" })
 
 
