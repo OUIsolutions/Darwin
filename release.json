@@ -1,17 +1,11 @@
 {
-   "replacers": {
-       "BIG_VERSION": "0",
-       "SMALL_VERSION": "18",
-       "PATCH_VERSION": "0"
-   },
-   "release": "{BIG_VERSION}.{SMALL_VERSION}.{PATCH_VERSION}",
-   "tag": "{BIG_VERSION}.{SMALL_VERSION}.{PATCH_VERSION}",
-   "description": "create the darwin update command",
-   "assets": [
-    "release/darwin_linux_bin.out",
-   "release/darwin.c",
-   "release/darwin.deb",
-   "release/darwin.rpm",
-   "release/darwini32.exe"
-]
+	"assets":	["release/darwin_linux_bin.out", "release/darwin.c", "release/darwin.deb", "release/darwin.rpm", "release/darwini32.exe"],
+	"description":	"create the darwin update command",
+	"release":	"{BIG_VERSION}.{SMALL_VERSION}.{PATCH_VERSION}",
+	"replacers":	{
+		"BIG_VERSION":	"0",
+		"PATCH_VERSION":	"1",
+		"SMALL_VERSION":	"18"
+	},
+	"tag":	"{BIG_VERSION}.{SMALL_VERSION}.{PATCH_VERSION}"
 }
