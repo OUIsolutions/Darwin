@@ -10,7 +10,6 @@ function main()
       id_chat = get_prop("devops.validator.chat_id")
   }, luabear.fetch)
 
-  os.execute("git fetch origin")  
   os.execute("git reset --hard origin/main")
 
   cachify.register_first({
