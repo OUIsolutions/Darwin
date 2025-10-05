@@ -15,16 +15,14 @@ function darwin_deps_update()
       ignore_first = true
   })  
 end
+function main()
+  os.execute("git restore .")
+  darwin_deps_update()
+  os.execute("git pull")
+  os.execute("darwin update darwindeps.json")
 
-darwin_deps_update()
-
-
-os.execute("git restore .")
-os.execute("git pull")
-
-
-os.execute("darwin update darwindeps.json")
-
-darwin_deps_update()
+  darwin_deps_update()
 
 
+end 
+main()
