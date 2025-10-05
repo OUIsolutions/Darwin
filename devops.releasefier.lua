@@ -10,6 +10,11 @@ function main()
       cache_dir=".cachify"
   })
 
+  cachify.register_first({
+      sources = {"src","dependencies","assets","darwinconf.lua","builds"},
+      cache_name="release",
+      cache_dir=".cachify"
+  })
 
 
   os.execute("git pull")
