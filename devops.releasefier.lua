@@ -1,5 +1,5 @@
 local cachify = load_global_module("cachify")
-
+local shipyard = load_global_module("shipyard")
 
 function main()
   os.execute("git restore .")
@@ -33,6 +33,19 @@ function main()
       ignore_first = true
   })  
 
+  cachify.execute_config({
+      sources = {"src","dependencies","assets","darwinconf.lua","builds"},
+      callback = function()
+           dtw.remove_any("release")
+           os.execute("darwin run_blueprint --target all")
+           shipyard.increment_replacer("release.json","PATCH_VERSION")
+           os.execute("git add .")
+           os.execute("git commit -m 'release: prepare new release'")
 
+        end,
+      cache_name="release",
+      cache_dir=".cachify",
+      ignore_first = true
+  })
 end 
 main()
