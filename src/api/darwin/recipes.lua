@@ -23,27 +23,34 @@ end
 darwin.run_recipe = function (name)
     for i=1,#darwin.available_builds do
         local build = darwin.available_builds[i]
-        local asssignature = nil
-        if build.inputs then 
-            assignature = private_darwin.generate_assignature(build.inputs)
-            for j=1,#build.outs do
-                local cached_path = ".darwincache/" .. assignature .. "/" .. build.outs[j]
-                if darwin.dtw.isfile(cached_path) then
-                    private_darwin.print_yellow("Using cached output: " .. build.outs[j] .. "\n")
-                    darwin.dtw.copy_any_overwriting(
-                        cached_path,
-                        build.outs[j]
-                    )
-                    build.done = true
-                end
-            end             
-        end 
+
 
         if build.name == name then
+
+            local assignature = nil
+            if build.inputs then 
+                assignature = private_darwin.generate_assignature(build.inputs)
+                for j=1,#build.outs do
+                    local cached_path = ".darwincache/" .. assignature .. "/" .. build.outs[j]
+                    if darwin.dtw.isfile(cached_path) then
+                        private_darwin.print_yellow("Using cached output: " .. build.outs[j] .. "\n")
+                        darwin.dtw.copy_any_overwriting(
+                            cached_path,
+                            build.outs[j]
+                        )
+                        build.done = true
+                    end
+                end             
+            end 
+            
+            
             if build.done then
                 return 
             end
+
             
+
+
             private_darwin.print_green("Building: " .. name .. "\n")
             if build.outs then
                 for j=1,#build.outs do
