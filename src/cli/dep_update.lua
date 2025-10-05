@@ -25,11 +25,10 @@ function dep_update()
     end
     
     local deps = darwin.json.load_from_string(darwin_deps_json)
-    local updated = false
     
     for i = 1, #deps do
         local current = deps[i]
-        
+       
         -- Skip if not gitrelease type
         if current.type ~= "gitrelease" then
             private_darwin.print_yellow("Skipping non-gitrelease dep: " .. (current.dest or "unknown") .. "\n")
@@ -41,6 +40,9 @@ function dep_update()
             private_darwin.print_yellow("Skipping locked dep: " .. current.dest .. " (current: " .. (current.tag or "latest") .. ")\n")
             goto continue
         end
+       
+
+
         dtw.remove_any("temp.json")
         local command = "gh release view -R "..current.repo.." --json tagName,assets --jq '{tag: .tagName, assets: [.assets[] | {name: .name, updated_at: .updatedAt}]}' > temp.json"
         os.execute(command)
@@ -50,20 +52,21 @@ function dep_update()
             goto continue
         end
         local parsed = darwin.json.load_from_string(temp_json)
-        
+        local assets = parsed.assets
+        for j=1,#assets do 
+            local current_asset = assets[j]
+            if current_asset.name == current.dest then
+                current.tag = parsed.tag
+                current_asset.updated_at = current.updated_at
+            end
+        end
 
-
-        
         ::continue::
     end
-    
-    if updated then
-        -- Write updated deps back to file
-        local updated_json = darwin.json.dump_to_string(deps, "    ")
-        darwin.dtw.write_file(deps_file_path, updated_json)
-        private_darwin.print_green("\nDependencies file updated: " .. deps_file_path .. "\n")
-        print("Run 'darwin install_deps' to download the updated dependencies")
-    else
-        print("\nAll dependencies are up to date!")
-    end
+
+    local updated_json = darwin.json.dump_to_string(deps, "    ")
+    darwin.dtw.write_file(deps_file_path, updated_json)
+    private_darwin.print_green("\nDependencies file updated: " .. deps_file_path .. "\n")
+  
+
 end
