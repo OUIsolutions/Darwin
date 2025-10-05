@@ -44,7 +44,8 @@ function dep_update()
 
 
         darwin.dtw.remove_any("temp.json")
-        local command = "gh release view -R "..current.repo.." --json tagName,assets --jq '{tag: .tagName, assets: [.assets[] | {name: .name, updated_at: .updatedAt}]}' > temp.json"
+        -- Filter to only get the specific asset we need, not all assets
+        local command = "gh release view -R "..current.repo.." --json tagName,assets --jq '{tag: .tagName, assets: [.assets[] | select(.name==\""..current.file.."\") | {name: .name, updated_at: .updatedAt}]}' > temp.json"
         os.execute(command)
         local temp_json = darwin.dtw.load_file("temp.json")
         if not temp_json then
@@ -53,13 +54,13 @@ function dep_update()
         end
         local parsed = darwin.json.load_from_string(temp_json)
         local assets = parsed.assets
-        for j=1,#assets do 
-            local current_asset = assets[j]
-            if current_asset.name == current.file then
-                print("Updating " .. current.dest .. " from " .. (current.tag or "none") .. " to " .. parsed.tag .. "\n")
-                current.tag = parsed.tag
-                current.updated_at = current_asset.updated_at
-            end
+        if #assets > 0 then
+            local current_asset = assets[1]
+            print("Updating " .. current.dest .. " from " .. (current.tag or "none") .. " to " .. parsed.tag .. "\n")
+            current.tag = parsed.tag
+            current.updated_at = current_asset.updated_at
+        else
+            private_darwin.print_yellow("Asset " .. current.file .. " not found in latest release of " .. current.repo .. "\n")
         end
 
         ::continue::
