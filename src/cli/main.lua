@@ -11,6 +11,8 @@ private_darwin.main = function()
         Describe_blue_prints()
     elseif darwin.argv.one_of_args_exist({"install_deps","install"}) then
         dep_solver()
+    elseif darwin.argv.one_of_args_exist({"update_deps","update"}) then
+        dep_update()
     elseif darwin.argv.one_of_args_exist("drop_types") then
         Drop_types()
     elseif darwin.argv.one_of_args_exist("drop_lua_cembed") then
