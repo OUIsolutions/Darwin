@@ -25,7 +25,6 @@ function main()
   })
 
   os.execute("git pull")
-  if true then return end 
 
   os.execute("darwin update darwindeps.json")
 
