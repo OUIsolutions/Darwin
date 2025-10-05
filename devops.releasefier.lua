@@ -25,8 +25,9 @@ function main()
       cache_dir=".cachify"
   })
 
-
   os.execute("git pull")
+  if true then return end 
+
   os.execute("darwin update darwindeps.json")
 
   cachify.execute_config({
