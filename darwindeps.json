@@ -46,7 +46,7 @@
 		"repo":	"OUIsolutions/LuaCEmbed",
 		"tag":	"0.13.0",
 		"type":	"gitrelease",
-		"updated_at":	"2025-10-05T11:52:16Z"
+		"updated_at":	"2025-10-05T12:21:23Z"
 	}, {
 		"dest":	"dependencies/doTheWorldOne.c",
 		"file":	"doTheWorldOne.c",
