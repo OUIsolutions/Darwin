@@ -87,6 +87,6 @@ darwin.add_recipe({
     requires={"linux_bin"},
     description="create an RPM package from the static linux binary",
     outs={"release/darwin.rpm"},
-    depends={"src","dependencies","assets"},
+    inputs={"src","dependencies","assets"},
     callback=rpm_static_build
 })

@@ -23,6 +23,12 @@ end
 darwin.run_recipe = function (name)
     for i=1,#darwin.available_builds do
         local build = darwin.available_builds[i]
+
+        if build.inputs then 
+            local assignature = private_darwin.generate_assignature(build.inputs)
+            print("Assignature for " .. build.name .. ": " .. assignature .. "\n")
+        end 
+
         if build.name == name then
             if build.done then
                 return 
