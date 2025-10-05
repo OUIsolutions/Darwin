@@ -1,4 +1,5 @@
-
+os.execute("git restore .")
+os.execute("git pull")
 
 
 
