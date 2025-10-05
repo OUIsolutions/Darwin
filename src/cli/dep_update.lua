@@ -41,8 +41,17 @@ function dep_update()
             private_darwin.print_yellow("Skipping locked dep: " .. current.dest .. " (current: " .. (current.tag or "latest") .. ")\n")
             goto continue
         end
+        dtw.remove_any("temp.json")
+        local command = "gh release view -R "..current.repo.." --json tagName,assets --jq '{tag: .tagName, assets: [.assets[] | {name: .name, updated_at: .updatedAt}]}' > temp.json"
+        os.execute(command)
+        local temp_json = darwin.dtw.load_file("temp.json")
+        if not temp_json then
+            private_darwin.print_red("Failed to fetch release info for: " .. current.repo .. "\n")
+            goto continue
+        end
+        local parsed = darwin.json.load_from_string(temp_json)
         
-        
+
 
         
         ::continue::
