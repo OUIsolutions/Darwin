@@ -43,7 +43,7 @@ function dep_update()
        
 
 
-        dtw.remove_any("temp.json")
+        darwin.dtw.remove_any("temp.json")
         local command = "gh release view -R "..current.repo.." --json tagName,assets --jq '{tag: .tagName, assets: [.assets[] | {name: .name, updated_at: .updatedAt}]}' > temp.json"
         os.execute(command)
         local temp_json = darwin.dtw.load_file("temp.json")
