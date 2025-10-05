@@ -16,4 +16,4 @@ cachify.execute_config({
     cache_dir=".cachify",
     ignore_first = true
 })
-os.execute("darwin update darwindeps.json")
+--os.execute("darwin update darwindeps.json")
