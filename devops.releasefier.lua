@@ -50,14 +50,25 @@ function main()
            shipyard.increment_replacer("release.json","PATCH_VERSION")
            os.execute("git add .")
            os.execute("git commit -m 'release: prepare new release'")
-           os.execute("darwin run_blueprint --target all")
+           
+           
+           session.sendMessage({ text = "Release prepared successfully. on darwin" })
+
+
+           local ok = os.execute("darwin run_blueprint --target all")
+            if not ok then
+                session.sendMessage({ text = "Error running blueprints. on darwin" })
+                return
+            end
+
            local ok ,error = pcall(shipyard.generate_release_from_json,"release.json")
            
            local menssage = ""
            
            if not ok then
-              menssage = "darwin release generated the following error: "..error
+              session.sendMessage({ text = "Error generating release: " .. error })
            end
+           
            
         end,
       cache_name="release",
