@@ -4,7 +4,7 @@
 	"release":	"{BIG_VERSION}.{SMALL_VERSION}.{PATCH_VERSION}",
 	"replacers":	{
 		"BIG_VERSION":	"0",
-		"PATCH_VERSION":	"1",
+		"PATCH_VERSION":	"2",
 		"SMALL_VERSION":	"18"
 	},
 	"tag":	"{BIG_VERSION}.{SMALL_VERSION}.{PATCH_VERSION}"
