@@ -8,6 +8,6 @@ FULLNAME     = "VibeScript"
 EMAIL        = "mateusmoutinho01@gmail.com"
 SUMARY       = "A Runtime to work with llms"
 YOUR_CHANGES = "--"
---TESTE_INC = 2
+--TESTE_INC = 3
 LAUNGUAGE     = "c"
 darwin.load_all("builds")
