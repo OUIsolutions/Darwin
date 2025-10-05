@@ -68,5 +68,5 @@ function dep_update()
     darwin.dtw.write_file(deps_file_path, updated_json)
     private_darwin.print_green("\nDependencies file updated: " .. deps_file_path .. "\n")
   
-
+    darwin.dtw.remove_any("temp.json")  
 end
