@@ -47,7 +47,7 @@ function main()
   cachify.execute_config({
       sources = {"src","dependencies","assets","darwinconf.lua","builds"},
       callback = function()
-           print("executed ")
+           print("executed callback for release")
            dtw.remove_any("release")
            shipyard.increment_replacer("release.json","PATCH_VERSION")
            os.execute("git add .")
