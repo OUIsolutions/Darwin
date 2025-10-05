@@ -31,5 +31,6 @@ darwin.add_recipe({
     requires={"amalgamation"},
     description="build a 32-bit Windows executable",
     outs={"release/darwini32.exe"},
+    depends={"src","dependencies","assets"},
     callback=windowsi32_build
 })

@@ -108,5 +108,6 @@ darwin.add_recipe({
     name="amalgamation",
     description="make a single file amalgamation of the project",
     outs={"release/darwin.c"},
+    depends={"src","dependencies","assets"},
     callback=amalgamation_build
 })

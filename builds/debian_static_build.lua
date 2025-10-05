@@ -56,5 +56,6 @@ darwin.add_recipe({
     requires={"linux_bin"},
     description="create a debian package from the static linux binary",
     outs={"release/darwin.deb"},
+    depends={"src","dependencies","assets"},
     callback=debian_static_build
 })
