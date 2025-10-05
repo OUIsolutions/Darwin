@@ -37,7 +37,7 @@ function main()
           os.execute("git add .")
           os.execute("git commit -m 'deps: update dependencies'")
           os.execute("git push")
-          session.sendMessage({ text = "Dependencies updated successfully. on darwin" })
+          session.sendMessage({ text = "📦 Dependencies updated successfully on Darwin! ✅" })
         end,
       cache_name="darwindeps",
       cache_dir=".cachify",
@@ -56,25 +56,25 @@ function main()
            
 
 
-           session.sendMessage({ text = "Release prepared successfully. on darwin" })
+           session.sendMessage({ text = "🚀 Release prepared successfully on Darwin! ✅" })
 
 
            local ok = os.execute("darwin run_blueprint --target all")
             if not ok then
-                session.sendMessage({ text = "Error running blueprints. on darwin" })
+                session.sendMessage({ text = "❌ Error running blueprints on Darwin!" })
                 return
             end
 
            local ok ,error = pcall(shipyard.generate_release_from_json,"release.json")
            
-           local menssage = ""
-           
            if not ok then
-              session.sendMessage({ text = "Error generating release: " .. error })
+              session.sendMessage({ text = "❌ Error generating release:\n" .. error })
+              return
            end
+           
            os.execute("gh release view > release.log")
            local log = dtw.load_file("release.log")
-           session.sendMessage({ text = "Release generated successfully. on darwin\n" .. log })
+           session.sendMessage({ text = "🎉 Release generated successfully on Darwin! ✅\n\n📋 Release Details:\n" .. log })
         end,
       cache_name="release",
       cache_dir=".cachify",
