@@ -6,7 +6,7 @@ private_darwin.get_item_assignature = function(item)
         return darwin.dtw.generate_sha_from_file(item)
     end
     if darwin.dtw.isdir(item) then
-        return darwin.dtw.generate_sha_from_folder_by_last_modification(item)
+        return darwin.dtw.generate_sha_from_folder_by_content(item)
     end
     return ""
 end 
