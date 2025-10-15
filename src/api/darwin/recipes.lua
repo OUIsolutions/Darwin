@@ -30,6 +30,7 @@ darwin.run_recipe = function (name)
             local assignature = nil
             if build.inputs then 
                 assignature = private_darwin.generate_assignature(build.inputs)
+                private_darwin.print_yellow("assignature  : " .. assignature .. "\n")
                 for j=1,#build.outs do
                     local cached_path = ".darwincache/" .. assignature .. "/" .. build.outs[j]
                     if darwin.dtw.isfile(cached_path) then

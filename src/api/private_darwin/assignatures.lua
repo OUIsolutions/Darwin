@@ -21,5 +21,9 @@ private_darwin.generate_assignature = function (elements)
         end 
         hasher.digest(private_darwin.assignatures[current_item])
     end
+    local args_size = darwin.argv.get_total_args_size()
+    for i = 1, args_size do
+        hasher.digest((darwin.argv.get_arg_by_index(i)))
+    end
     return hasher.get_value()
 end
