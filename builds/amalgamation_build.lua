@@ -74,6 +74,13 @@ function amalgamation_build()
         "darwin.argv = function()\n %s\n end \n",
         lua_argv_content
     ))
+
+    local luminar_content = darwin.dtw.load_file("dependencies/Luminar.lua")
+    project.add_lua_code(string.format(
+        "darwin.Luminar = function()\n %s\n end \n",
+        luminar_content
+    ))
+    project.add_lua_code("darwin.Luminar = darwin.Luminar()")
     project.add_lua_code("darwin.argv = darwin.argv()")
 
 
